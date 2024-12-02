@@ -1,0 +1,131 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-light);
+
+  .left {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      font-family: "facebook letter faces";
+      font-size: 60px;
+      color: #1877f2;
+    }
+
+    p {
+      font-size: 30px;
+      color: #1c1e21;
+      height: 200px;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+  }
+
+  .right {
+    width: 400px;
+
+    form {
+      background-color: var(--white-color);
+      border-radius: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      input {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #999;
+        outline: none;
+        font-size: 16px;
+      }
+      .password-input {
+        position: relative;
+        .show-hide {
+          position: absolute;
+          top: 18px;
+          right: 6px;
+          width: 20px;
+          height: 20px;
+          i {
+            font-size: 1.5rem;
+            width: 100%;
+            height: 100%;
+            color: var(--bs-gray);
+          }
+        }
+      }
+
+      .loginBtn {
+        cursor: pointer;
+        background-color: var(--bs-primary);
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        border-radius: 5px;
+        color: white;
+        font-size: 1.7rem;
+        font-family: "Arial";
+        font-weight: 700;
+        transition: 0.5s;
+
+        &:hover {
+          background-color: var(--bs-secondary);
+        }
+      }
+
+      .forget {
+        margin: 15px 0;
+        text-decoration: none;
+        color: var(--bs-indigo);
+        font-family: "Arial";
+        font-size: 14px;
+        margin: 0 auto;
+        padding: 5px;
+        cursor: pointer;
+      }
+
+      .sign-up {
+        padding-top: 20px;
+        border-top: 1px solid #999;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .signupBtn {
+          background-color: #42b72a;
+          padding: 15px;
+          text-align: center;
+          text-decoration: none;
+          border-radius: 5px;
+          color: white;
+          font-size: 17px;
+          font-family: "Arial";
+          font-weight: 600;
+          transition: 0.5s;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--bs-green);
+          }
+        }
+      }
+    }
+
+    p {
+      text-align: center;
+      font-family: "Arial";
+      font-size: 15px;
+    }
+  }
+}

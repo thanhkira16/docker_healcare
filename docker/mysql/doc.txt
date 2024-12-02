@@ -1,0 +1,7 @@
+ docker compose -p thanhkira-mysql up -d
+ docker exec -it thanhkira-mysql-db-1 mysql -u root -p
+SHOW DATABASES;
+USE hoidanit;
+SHOW TABLES;
+.....
+npx sequelize-cli db:migrate
