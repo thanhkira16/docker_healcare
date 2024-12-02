@@ -11,6 +11,11 @@ services:
       - '3307:3306'
     expose:
       - 3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p123456"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   backend:
     container_name: node_app
@@ -24,5 +29,14 @@ services:
       # - DB_HOST=host.docker.internal
     ports:
       - 8080:8080
+    depends_on:
+      - database-mysql  # Ensure the database starts before the backend
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    command: /bin/sh -c "npx sequelize-cli db:migrate && node build/server.js"  # Run the migration before starting the server
+
 
 # docker compose -p thanhkira-nodejs-mysql up -d
