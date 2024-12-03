@@ -1,8 +1,5 @@
 docker compose -p thanhkira-sern up -d
 
-
-
-
 docker exec -it thanhkira-sern-database-mysql-1 mysql -u root -p123456
 --
 DROP DATABASE hoidanit;
@@ -10,7 +7,6 @@ CREATE DATABASE hoidanit
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 EXIT;
-
 
 --
 docker exec -i thanhkira-sern-database-mysql-1 mysql -u root -p123456 hoidanit < hoidanit.sql
