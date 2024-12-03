@@ -26,6 +26,12 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `allcodes`
 --
+DROP DATABASE hoidanit;
+CREATE DATABASE hoidanit
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE hoidanit;
 
 CREATE TABLE `allcodes` (
   `id` int(11) NOT NULL,
