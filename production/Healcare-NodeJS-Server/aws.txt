@@ -1,3 +1,5 @@
+--Login ec2 --
+
 ssh -i ~/.ssh/id_rsa ubuntu@54.152.249.78
 ssh -i ./cicd-healcare.pem ubuntu@54.152.249.78
 
@@ -9,6 +11,37 @@ Custom TCP Rule	TCP	8080	Anywhere	Để truy cập backend (Node.js API)
 MySQL/Aurora	TCP	3307	My IP	Để backend kết nối MySQL database
 
 
+--download docker
+
+https://azdigi.com/blog/linux-server/tools/huonng-dan-cai-dat-docker-tren-ubuntu-22-04/
+
+sudo usermod -aG docker ubuntu
+newgrp docker
+docker ps
+groups ubuntu
+-sudo usermod -aG docker ubuntu
+
+ls -l /var/run/docker.sock
+sudo reboot
+
+
+--fig bug conection --
+
 đổi inboud rule:
  https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#SecurityGroup:group-id=sg-0c370d8d6e5b20650
-đổi inboud role security group rồi chạy tiếp, ngủ
+
+
+--run frontend--
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.bashrc
+nvm --version
+nvm install 14.17.0
+node -v
+npm -v
+cd ~/app/Healcare-client-ReactJS
+npm install
+npm run build
+
+cd ~/app
+docker compose down
+docker compose up -d

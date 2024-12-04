@@ -1,3 +1,4 @@
 https://chatgpt.com/c/674e8cd5-88b8-8010-9941-01ff918a28d5
 
-cicd aws: https://chatgpt.com/c/674f408a-9ac4-8009-a631-8fdd985ec94e
+thanhtr cicd aws: https://chatgpt.com/c/674f408a-9ac4-8009-a631-8fdd985ec94e
+gpt1 fixbug: https://chatgpt.com/c/674fe4cf-55bc-8004-9ec4-0364374ca656

@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0eb12fbc.chunk.css",
+    "main.js": "/static/js/main.7a42720e.chunk.js",
+    "main.js.map": "/static/js/main.7a42720e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5733c14c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5733c14c.js.map",
+    "static/css/2.4b535c51.chunk.css": "/static/css/2.4b535c51.chunk.css",
+    "static/js/2.2ddbd91b.chunk.js": "/static/js/2.2ddbd91b.chunk.js",
+    "static/js/2.2ddbd91b.chunk.js.map": "/static/js/2.2ddbd91b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.4b535c51.chunk.css.map": "/static/css/2.4b535c51.chunk.css.map",
+    "static/css/main.0eb12fbc.chunk.css.map": "/static/css/main.0eb12fbc.chunk.css.map",
+    "static/js/2.2ddbd91b.chunk.js.LICENSE.txt": "/static/js/2.2ddbd91b.chunk.js.LICENSE.txt",
+    "static/media/HomePage.scss": "/static/media/154856-mo-trong-mau-phu-nu.37554e89.png",
+    "static/media/HomeHeader.scss": "/static/media/logo.5142b518.jpg",
+    "static/media/About.scss": "/static/media/vtv1.44154b3b.png",
+    "static/media/styles.scss": "/static/media/fa-solid-900.d279d01b.svg",
+    "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5733c14c.js",
+    "static/css/2.4b535c51.chunk.css",
+    "static/js/2.2ddbd91b.chunk.js",
+    "static/css/main.0eb12fbc.chunk.css",
+    "static/js/main.7a42720e.chunk.js"
+  ]
+}
