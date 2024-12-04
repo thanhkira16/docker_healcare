@@ -25,23 +25,24 @@ deploy:
   only:
     - main
   before_script:
-    # Tạo thư mục SSH và thêm private key từ biến môi trường
     - mkdir -p ~/.ssh
     - echo "$AWS_SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    # Cấu hình SSH để không kiểm tra host key
     - echo -e "Host $AWS_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   script:
-    # Tạo thư mục `app` trên EC2
+    # Create app directory on EC2
     - ssh -i ~/.ssh/id_rsa $AWS_USER@$AWS_HOST "mkdir -p ~/app"
-    # Copy file `docker-compose.yaml` lên EC2
+    
+    # Copy necessary files to EC2
     - scp -i ~/.ssh/id_rsa docker-compose.yaml $AWS_USER@$AWS_HOST:~/app/
-    # Triển khai ứng dụng bằng Docker Compose
-    - ssh -i ~/.ssh/id_rsa $AWS_USER@$AWS_HOST "
-        cd ~/app &&
-        docker compose down &&
-        docker compose up -d --build
-      "
+    - scp -i ~/.ssh/id_rsa -r Healcare-NodeJS-Server $AWS_USER@$AWS_HOST:~/app/
+    - scp -i ~/.ssh/id_rsa -r Healcare-client-ReactJS $AWS_USER@$AWS_HOST:~/app/
+    - scp -i ~/.ssh/id_rsa default.conf $AWS_USER@$AWS_HOST:~/app/
+    - scp -i ~/.ssh/id_rsa hoidanit.sql $AWS_USER@$AWS_HOST:~/app/
+    
+    # Deploy the application using Docker Compose
+    - ssh -i ~/.ssh/id_rsa $AWS_USER@$AWS_HOST 'cd ~/app && docker compose down && docker compose up -d --build'
+
   environment:
     name: production
     url: http://$AWS_HOST

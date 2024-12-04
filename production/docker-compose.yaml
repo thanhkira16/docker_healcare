@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   database-mysql:
+    container_name: database-mysql
     image: mysql:8.0
     restart: always
     environment:
@@ -15,6 +16,7 @@ services:
       - ./hoidanit.sql:/docker-entrypoint-initdb.d/hoidanit.sql
 
   backend:
+    container_name: backend
     build:
       context: ./Healcare-NodeJS-Server
       dockerfile: Dockerfile
@@ -29,6 +31,7 @@ services:
       - 8080
 
   nginx:
+    container_name: nginx
     image: nginx:1.23.3
     ports:
       - 80:80
