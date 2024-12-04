@@ -1,0 +1,14 @@
+ssh -i ~/.ssh/id_rsa ubuntu@54.152.249.78
+ssh -i ./cicd-healcare.pem ubuntu@54.152.249.78
+
+
+Type	Protocol	Port Range	Source	Mô tả
+SSH	TCP	22	My IP	Để kết nối SSH vào EC2
+HTTP	TCP	80	Anywhere	Để truy cập website (nginx)
+Custom TCP Rule	TCP	8080	Anywhere	Để truy cập backend (Node.js API)
+MySQL/Aurora	TCP	3307	My IP	Để backend kết nối MySQL database
+
+
+đổi inboud rule:
+ https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#SecurityGroup:group-id=sg-0c370d8d6e5b20650
+đổi inboud role security group rồi chạy tiếp, ngủ

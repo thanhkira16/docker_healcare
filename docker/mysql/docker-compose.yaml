@@ -7,4 +7,4 @@ services:
       - MYSQL_DATABASE=hoidanit
       - MYSQL_ROOT_PASSWORD=123456
     ports:
-      - '3307:3306'
+      - '330:3306'
