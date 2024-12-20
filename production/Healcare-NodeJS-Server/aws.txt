@@ -42,6 +42,6 @@ cd ~/app/Healcare-client-ReactJS
 npm install
 npm run build
 
-cd ~/app
-docker compose down
-docker compose up -d
+----------------------
+- Sử biến trong gitlab khi chạy lại máy ảo
+- 
