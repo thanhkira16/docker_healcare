@@ -7,10 +7,13 @@ let sendBookingEmail = async (dataSend) => {
     // host: "smtp.forwardemail.net",
     // port: 465,
     // secure: true,
-    service: "Gmail",
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_APP,
       pass: process.env.EMAIL_APP_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false, // Giảm bớt các vấn đề xác thực SSL
     },
     // tls: {
     //   // Use the TLS version you need (e.g., 'TLSv1.2')
@@ -58,7 +61,7 @@ let sendBookingEmail = async (dataSend) => {
   let emailLanguage = emailContent[dataSend.language || "en"];
 
   let info = await transporter.sendMail({
-    from: '"VKU Healcare 👻" <thanhtruong16092004@gmail.com>', // sender address
+    from: '"VKU Healcare 👻" <hthanh16092004@gmail.com>', // sender address
     to: dataSend.receiverEmail, // list of receivers
     subject: emailLanguage.subject,
     text: emailLanguage.text,
@@ -70,7 +73,7 @@ const sendAttachment = (dataSend) => {
   return new Promise(async (resolve, reject) => {
     try {
       const transporter = nodemailer.createTransport({
-        service: "Gmail",
+        service: "gmail",
         auth: {
           user: process.env.EMAIL_APP,
           pass: process.env.EMAIL_APP_PASSWORD,
@@ -104,7 +107,7 @@ const sendAttachment = (dataSend) => {
 
       const emailLanguage = emailContent[dataSend.language || "en"];
       const info = await transporter.sendMail({
-        from: '"VKU Healcare 👻" <thanhtruong16092004@gmail.com>',
+        from: '"VKU Healcare 👻" <hthanh16092004@gmail.com>',
         to: dataSend.email,
         subject: emailLanguage.subject,
         text: emailLanguage.text,

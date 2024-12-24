@@ -9,6 +9,7 @@ variables:
 
 stages:
   - build
+  - test
   - deploy
 
 before_script:
@@ -19,6 +20,11 @@ build:
   script:
     - docker compose -f docker-compose.yaml build
     - docker images
+
+test:
+  stage: test
+  script:
+    - echo "Test stage - No operations to perform."
 
 deploy:
   stage: deploy
@@ -39,6 +45,8 @@ deploy:
     - scp -i ~/.ssh/id_rsa -r Healcare-client-ReactJS $AWS_USER@$AWS_HOST:~/app/
     - scp -i ~/.ssh/id_rsa default.conf $AWS_USER@$AWS_HOST:~/app/
     - scp -i ~/.ssh/id_rsa hoidanit.sql $AWS_USER@$AWS_HOST:~/app/
+    - scp -i ~/.ssh/id_rsa studentdb.sql $AWS_USER@$AWS_HOST:~/app/
+    - scp -i ~/.ssh/id_rsa udpmailserver.sql $AWS_USER@$AWS_HOST:~/app/
     
     # Deploy the application using Docker Compose
     - ssh -i ~/.ssh/id_rsa $AWS_USER@$AWS_HOST 'cd ~/app && docker compose down && docker compose up -d --build'

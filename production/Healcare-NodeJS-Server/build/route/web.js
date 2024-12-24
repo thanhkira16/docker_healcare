@@ -12,6 +12,9 @@ var router = _express["default"].Router();
 var initWebRoutes = function initWebRoutes(app) {
   // Home Controller Routes
   router.get("/", _homeController["default"].getHomePage);
+  router.get("/healthy", function (req, res) {
+    res.sendStatus(200);
+  });
   router.get("/test", function (req, res) {
     return res.send("Hello ste");
   });

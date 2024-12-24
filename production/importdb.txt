@@ -18,3 +18,5 @@ USE hoidanit;
 SHOW TABLES;
 SELECT * from allcodes;
 SELECT * from Specialties;
+
+docker compose build

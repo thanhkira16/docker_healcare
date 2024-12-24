@@ -18,10 +18,13 @@ var sendBookingEmail = /*#__PURE__*/function () {
             // host: "smtp.forwardemail.net",
             // port: 465,
             // secure: true,
-            service: "Gmail",
+            service: "gmail",
             auth: {
               user: process.env.EMAIL_APP,
               pass: process.env.EMAIL_APP_PASSWORD
+            },
+            tls: {
+              rejectUnauthorized: false // Giảm bớt các vấn đề xác thực SSL
             }
             // tls: {
             //   // Use the TLS version you need (e.g., 'TLSv1.2')
@@ -43,7 +46,7 @@ var sendBookingEmail = /*#__PURE__*/function () {
           emailLanguage = emailContent[dataSend.language || "en"];
           _context.next = 6;
           return transporter.sendMail({
-            from: '"VKU Healcare 👻" <thanhtruong16092004@gmail.com>',
+            from: '"VKU Healcare 👻" <hthanh16092004@gmail.com>',
             // sender address
             to: dataSend.receiverEmail,
             // list of receivers
@@ -72,7 +75,7 @@ var sendAttachment = function sendAttachment(dataSend) {
           case 0:
             _context2.prev = 0;
             transporter = _nodemailer["default"].createTransport({
-              service: "Gmail",
+              service: "gmail",
               auth: {
                 user: process.env.EMAIL_APP,
                 pass: process.env.EMAIL_APP_PASSWORD
@@ -93,7 +96,7 @@ var sendAttachment = function sendAttachment(dataSend) {
             emailLanguage = emailContent[dataSend.language || "en"];
             _context2.next = 6;
             return transporter.sendMail({
-              from: '"VKU Healcare 👻" <thanhtruong16092004@gmail.com>',
+              from: '"VKU Healcare 👻" <hthanh16092004@gmail.com>',
               to: dataSend.email,
               subject: emailLanguage.subject,
               text: emailLanguage.text,

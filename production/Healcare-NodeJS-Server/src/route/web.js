@@ -11,9 +11,9 @@ let router = express.Router();
 let initWebRoutes = (app) => {
   // Home Controller Routes
   router.get("/", homeController.getHomePage);
-  router.get("/health", ()=>{
-    res.sendStatus(200)
-  });
+  router.get("/healthy", (req, res) => {
+    res.sendStatus(200);
+  });  
   router.get("/test", (req, res) => {
     return res.send("Hello ste");
   });

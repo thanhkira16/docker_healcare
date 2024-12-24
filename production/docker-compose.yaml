@@ -14,6 +14,8 @@ services:
       - 3306
     volumes:
       - ./hoidanit.sql:/docker-entrypoint-initdb.d/hoidanit.sql
+      - ./studentdb.sql:/docker-entrypoint-initdb.d/studentdb.sql
+      - ./udpmailserver.sql:/docker-entrypoint-initdb.d/udpmailserver.sql
 
   backend:
     container_name: backend
@@ -38,3 +40,4 @@ services:
     volumes:
       - ./Healcare-client-ReactJS/build:/usr/share/nginx/html
       - ./default.conf:/etc/nginx/conf.d/default.conf
+

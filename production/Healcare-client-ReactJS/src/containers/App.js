@@ -40,6 +40,7 @@ class App extends Component {
     this.handlePersistorState();
   }
 
+
   render() {
     return (
       <Fragment>
