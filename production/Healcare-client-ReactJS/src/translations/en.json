@@ -183,5 +183,26 @@
       "booking-success": "Booking Successfully",
       "booking-failed": "Booking Failed"
     }
+  },
+  "footer": {
+    "tagline": "Comprehensive healthcare for every family",
+    "address": "470 Tran Dai Nghia, Hoa Hai, Ngu Hanh Son, Da Nang",
+    "services": "Medical Services",
+    "specialties": "Specialties",
+    "doctors": "Doctors",
+    "facilities": "Medical Facilities",
+    "booking": "Book Appointment",
+    "health-check": "Health Check Packages",
+    "support": "Support",
+    "faq": "Frequently Asked Questions",
+    "guide": "User Guide",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "feedback": "Feedback & Complaints",
+    "connect": "Connect with us",
+    "download": "Download App",
+    "copyright": " All rights reserved by VKU HealthCare.",
+    "verified": "Verified",
+    "certified": "Quality Certified"
   }
 }

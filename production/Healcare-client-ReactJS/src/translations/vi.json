@@ -186,5 +186,26 @@
       "booking-success": "Đặt lịch thành công",
       "booking-failed": "Đặt lịch thất bại"
     }
+  },
+  "footer": {
+    "tagline": "Chăm sóc sức khỏe toàn diện cho mọi gia đình",
+    "address": "470 Trần Đại Nghĩa, Hòa Hải, Ngũ Hành Sơn, Đà Nẵng",
+    "services": "Dịch vụ y tế",
+    "specialties": "Chuyên khoa",
+    "doctors": "Bác sĩ",
+    "facilities": "Cơ sở y tế",
+    "booking": "Đặt lịch khám",
+    "health-check": "Gói khám sức khỏe",
+    "support": "Hỗ trợ",
+    "faq": "Câu hỏi thường gặp",
+    "guide": "Hướng dẫn sử dụng",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "feedback": "Góp ý & khiếu nại",
+    "connect": "Kết nối với chúng tôi",
+    "download": "Tải ứng dụng",
+    "copyright": " Bản quyền thuộc về VKU HealthCare.",
+    "verified": "Đã được xác minh",
+    "certified": "Chứng nhận chất lượng"
   }
 }
