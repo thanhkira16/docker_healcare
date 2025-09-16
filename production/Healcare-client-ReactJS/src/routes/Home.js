@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import PATHS from "../constants/path";
 
 class Home extends Component {
   render() {
     const { isLoggedIn } = this.props;
-    let linkToRedirect = isLoggedIn ? "/system/user-manage" : "/home";
+    let linkToRedirect = isLoggedIn ? PATHS.SYSTEM.USER_MANAGE : PATHS.HOME;
 
     return <Redirect to={linkToRedirect} />;
   }
