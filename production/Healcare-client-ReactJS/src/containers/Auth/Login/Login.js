@@ -1,21 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import * as actions from "../../../store/actions";
 import "./Login.scss";
 import { handleLoginApi, handleSignUpApi } from "../../../services/userService";
+import InputField from "../../../components/Input/InputField";
+import { FormattedMessage } from "react-intl";
+import LanguageSwitcher from "../../../components/LanguageSwitcher";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const Login = ({ language, navigate, userLoginSuccess }) => {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phoneNumber: "",
+    errMsg: "",
+    isOpenLogin: true,
+    isShowPassword: false,
+    isShowConfirmPassword: false,
+    isValidSignUp: {
+      email: true,
+      password: true,
+      confirmPassword: true,
+      phoneNumber: true,
+    },
+    isValidLogin: {
+      email: true,
+      password: true,
+    },
+  });
+
+  useEffect(() => {
+    document.title = "VKU Healthcare - login or sign up";
+  }, []);
+
+  const resetState = () => {
+    setState(prev => ({
+      ...prev,
       email: "",
       password: "",
       confirmPassword: "",
       phoneNumber: "",
       errMsg: "",
-      isShowPassword: false,
       isOpenLogin: true,
+      isShowPassword: false,
       isShowConfirmPassword: false,
       isValidSignUp: {
         email: true,
@@ -27,104 +55,73 @@ class Login extends Component {
         email: true,
         password: true,
       },
-    };
-  }
-
-  componentDidMount() {
-    document.title = "VKU Healcare - login or sign up";
-  }
-  resetState = () => {
-    this.setState({
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phoneNumber: "",
-      errMsg: "",
-      isShowPassword: false,
-      isShowConfirmPassword: false,
-      isValid: {
-        email: true,
-        password: true,
-        confirmPassword: true,
-        phoneNumber: true,
-      },
-    });
-  };
-  handleOnchangeInput = (event, id) => {
-    let valueInput = event.target.value;
-
-    let stateCopy = { ...this.state };
-    stateCopy[id] = valueInput;
-    this.setState({
-      ...stateCopy,
-    });
+    }));
   };
 
-  handleSwitchLoginAndSignUp = () => {
-    this.resetState();
+  const handleOnchangeInput = (event, id) => {
+    const valueInput = event.target.value;
+    setState(prev => ({
+      ...prev,
+      [id]: valueInput,
+    }));
+  };
+
+  const handleSwitchLoginAndSignUp = () => {
+    resetState();
     setTimeout(() => {
-      this.setState((prevState) => ({
-        isOpenLogin: !prevState.isOpenLogin,
+      setState(prev => ({
+        ...prev,
+        isOpenLogin: !prev.isOpenLogin,
       }));
-    }, 200); // 1000 milliseconds (1 second) delay
+    }, 200);
   };
-  validateLogin = () => {
-    const { email, password } = this.state;
+
+  const validateLogin = () => {
+    const { email, password } = state;
     const isValidLogin = {
       email: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email),
-      // password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password),
       password: password.trim() !== "",
-      // confirmPassword: confirmPassword === password,
-      // phoneNumber: /^[0-9]+$/.test(phoneNumber),
     };
 
-    this.setState({ isValidLogin });
+    setState(prev => ({ ...prev, isValidLogin }));
     return Object.values(isValidLogin).every((value) => value);
   };
-  validateSignUp = () => {
-    const { email, password, confirmPassword, phoneNumber } = this.state;
-    console.log(email);
+
+  const validateSignUp = () => {
+    const { email, password, confirmPassword, phoneNumber } = state;
     const isValidSignUp = {
-      // email: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z.]+$/.test(email),
-      // password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password),
+      email: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z.]+$/.test(email),
       password: password.trim() !== "",
       confirmPassword: confirmPassword === password,
-      phoneNumber: /^[0-9]+$/.test(phoneNumber), // Example: only digits
+      phoneNumber: /^[0-9]+$/.test(phoneNumber),
     };
-    console.log(isValidSignUp);
-    this.setState({ isValidSignUp });
+
+    setState(prev => ({ ...prev, isValidSignUp }));
     return Object.values(isValidSignUp).every((value) => value);
   };
 
-  // Event handler for the login button
-  handleLogin = async () => {
-    if (this.validateLogin()) {
-      this.setState({
-        errMsg: "",
-      });
+  const handleLogin = async () => {
+    if (validateLogin()) {
+      setState(prev => ({ ...prev, errMsg: "" }));
 
       try {
-        const { email, password } = this.state;
+        const { email, password } = state;
         let data = await handleLoginApi(email, password);
         console.log(data.user);
 
         if (data && data.errCode !== 0) {
-          this.setState({
-            errMsg: data.message,
-          });
+          setState(prev => ({ ...prev, errMsg: data.message }));
         }
         if (data && data.errCode === 0) {
-          this.props.userLoginSuccess(data.user);
+          userLoginSuccess(data.user);
           console.log("Login successful");
         } else {
-          console.log("errMsg", this.state.errMsg);
+          console.log("errMsg", state.errMsg);
         }
       } catch (e) {
         if (e.response) {
           if (e.response.data) {
-            this.setState({
-              errMsg: e.response.data.message,
-            });
+            setState(prev => ({ ...prev, errMsg: e.response.data.message }));
           }
         }
         console.log(e.response);
@@ -132,266 +129,264 @@ class Login extends Component {
     }
   };
 
-  handleSignUp = async () => {
+  const handleSignUp = async () => {
     console.log("signUp");
-    if (this.validateSignUp()) {
-      this.setState({
-        errMsg: "",
-      });
+    if (validateSignUp()) {
+      setState(prev => ({ ...prev, errMsg: "" }));
 
       try {
-        const { email, phoneNumber, password } = this.state;
+        const { email, phoneNumber, password } = state;
         console.log(email, phoneNumber, password);
         let data = await handleSignUpApi(email, phoneNumber, password);
         console.log(data.user);
 
         if (data && data.errCode !== 0) {
-          this.setState({
-            errMsg: data.message,
-          });
+          setState(prev => ({ ...prev, errMsg: data.message }));
         }
         if (data && data.errCode === 0) {
-          this.props.userLoginSuccess(data.user);
+          userLoginSuccess(data.user);
           console.log("Login successful");
         } else {
-          console.log("errMsg", this.state.errMsg);
+          console.log("errMsg", state.errMsg);
         }
       } catch (e) {
         if (e.response) {
           if (e.response.data) {
-            this.setState({
-              errMsg: e.response.data.message,
-            });
+            setState(prev => ({ ...prev, errMsg: e.response.data.message }));
           }
         }
         console.log(e.response);
       }
     }
   };
-  // Event handler for the toggle password button
-  handleTogglePassword = (id) => {
-    if (id === "password") {
-      this.setState((prevState) => ({
-        isShowPassword: !prevState.isShowPassword,
-      }));
-    } else {
-      this.setState((prevState) => ({
-        isShowConfirmPassword: !prevState.isShowConfirmPassword,
-      }));
-    }
+
+  const handleTogglePassword = (id) => {
+    setState(prev => ({
+      ...prev,
+      [`isShow${id.charAt(0).toUpperCase() + id.slice(1)}`]: !prev[`isShow${id.charAt(0).toUpperCase() + id.slice(1)}`],
+    }));
   };
 
-  handleKeyDown = (event) => {
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      this.handleLogin();
+      if (state.isOpenLogin) {
+        handleLogin();
+      } else {
+        handleSignUp();
+      }
     }
   };
-  render() {
-    console.log(" state", this.state);
-    const { isOpenLogin, isValidLogin, isValidSignUp } = this.state;
-    // console.log("object valid", isValid);
-    return (
-      <>
-        <div className="container-fluid">
-          <div className="row login-container">
-            <div className="left col-7 d-none d-lg-block">
-              <h1>VKU Healcare</h1>
-              <p>
-                You can get the care you need 24/7 – be it online or in person.
-                You will be treated by caring specialist doctors.
-              </p>
-            </div>
-            {isOpenLogin ? (
-              //render login
-              <div className="right col-5 is">
-                <form action="" className="gap-3">
-                  <input
-                    type="text"
-                    className={
-                      isValidLogin.email
-                        ? "form-control"
-                        : "form-control is-invalid"
-                    }
-                    placeholder="Email address or phone number"
-                    value={this.state.email}
-                    name="email"
-                    onChange={(event) =>
-                      this.handleOnchangeInput(event, "email")
-                    }
-                  />
-                  <div className="password-input">
-                    <input
-                      type={this.state.isShowPassword ? "text" : "password"}
-                      placeholder="Password"
-                      className={
-                        isValidLogin.password
-                          ? "form-control"
-                          : "form-control is-invalid"
-                      }
-                      value={this.state.password}
-                      name="password"
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "password")
-                      }
-                      onKeyDown={(event) => this.handleKeyDown(event)}
-                    />
-                    {this.state.password && this.state.password !== "" && (
-                      <span
-                        className="show-hide"
-                        onClick={() => this.handleTogglePassword("password")}
-                        onKeyDown={(event) => this.handleKeyDown(event)}
-                      >
-                        {this.state.isShowPassword &&
-                        this.state.isShowPassword == true ? (
-                          <i class="fas fa-eye-slash"></i>
-                        ) : (
-                          <i class="fas fa-eye"></i>
-                        )}
-                      </span>
-                    )}
-                  </div>
-                  <span className="loginBtn" onClick={() => this.handleLogin()}>
-                    Log In
-                  </span>
-                  <a href="" className="forget">
-                    Forgotten password?
-                  </a>
-                  <div className="sign-up">
-                    <span
-                      onClick={this.handleSwitchLoginAndSignUp}
-                      className="signupBtn"
-                    >
-                      Create New Account
-                    </span>
-                  </div>
-                </form>
-                <p>
-                  <b>Create a Page</b> for a celebrity, band, or business.
-                </p>
+
+  console.log("state", state);
+  const { isOpenLogin, isValidLogin, isValidSignUp } = state;
+
+  return (
+    <>
+      <div className="container-fluid">
+        <div className="row login-container">
+          <div className="left col-7 d-none d-lg-block">
+            <div className="logo-section">
+              <div className="healthcare-logo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
+                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+                  <circle cx="20" cy="10" r="2" />
+                </svg>
               </div>
+              <h1>VKU Healthcare</h1>
+            </div>
+            <p>
+              <FormattedMessage id="banner.desc" />
+            </p>
+            <div className="features">
+              <div className="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <span><FormattedMessage id="footer.verified" /></span>
+              </div>
+              <div className="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12,6 12,12 16,14" />
+                </svg>
+                <span><FormattedMessage id="header.telehealth" /></span>
+              </div>
+              <div className="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <span><FormattedMessage id="footer.certified" /></span>
+              </div>
+            </div>
+          </div>
+
+          <div className="right col-lg-5 col-12">
+            {/* Header with Language Switcher */}
+            <div className="login-header">
+              <div className="login-language-switcher">
+                <LanguageSwitcher />
+              </div>
+            </div>
+
+            {isOpenLogin ? (
+              // Render login
+              <>
+                <div className="form-container">
+                  <div className="form-header">
+                    <h2><FormattedMessage id="auth.login_title" /></h2>
+                    <p><FormattedMessage id="auth.login_subtitle" /></p>
+                  </div>
+
+                  <div className="form-content gap-3">
+                    <InputField
+                      type="email"
+                      placeholder={<FormattedMessage id="auth.email_placeholder" />}
+                      value={state.email}
+                      name="email"
+                      isValid={isValidLogin.email}
+                      onChange={(event) => handleOnchangeInput(event, "email")}
+                      onKeyDown={handleKeyDown}
+                      iconType="email"
+                    />
+
+                    <InputField
+                      type="password"
+                      placeholder={<FormattedMessage id="auth.password_placeholder" />}
+                      value={state.password}
+                      name="password"
+                      isValid={isValidLogin.password}
+                      onChange={(event) => handleOnchangeInput(event, "password")}
+                      onKeyDown={handleKeyDown}
+                      isShow={state.isShowPassword}
+                      onToggle={() => handleTogglePassword("password")}
+                      iconType="password"
+                    />
+
+                    {state.errMsg && (
+                      <div className="error-message">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="15" y1="9" x2="9" y2="15" />
+                          <line x1="9" y1="9" x2="15" y2="15" />
+                        </svg>
+                        <span>{state.errMsg}</span>
+                      </div>
+                    )}
+
+                    <span className="loginBtn" onClick={() => handleLogin()}>
+                      <FormattedMessage id="auth.login_button" />
+                    </span>
+
+                    <a href="" className="forget">
+                      <FormattedMessage id="auth.forgot_password" />
+                    </a>
+
+                    <div className="sign-up">
+                      <span
+                        onClick={handleSwitchLoginAndSignUp}
+                        className="signupBtn"
+                      >
+                        <FormattedMessage id="auth.create_account" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="create-page">
+                  <b><FormattedMessage id="auth.create_page" /></b>
+                </p>
+              </>
             ) : (
-              //render sign up
-              <div className="right col-5">
-                <form action="" className="gap-3">
-                  <input
-                    type="text"
-                    placeholder="Email address"
-                    value={this.state.email}
+              // Render sign up
+              <div className="form-container">
+                <div className="form-header">
+                  <h2><FormattedMessage id="auth.signup_title" /></h2>
+                  <p><FormattedMessage id="auth.signup_subtitle" /></p>
+                </div>
+
+                <div className="form-content gap-3">
+                  <InputField
+                    type="email"
+                    placeholder={<FormattedMessage id="auth.email_placeholder" />}
+                    value={state.email}
                     name="email"
-                    className={
-                      isValidSignUp.email
-                        ? "form-control"
-                        : "form-control is-invalid"
-                    }
-                    onChange={(event) =>
-                      this.handleOnchangeInput(event, "email")
-                    }
-                  />
-                  <input
-                    type="text"
-                    placeholder="Phone number"
-                    value={this.state.phoneNumber}
-                    name="phoneNumber"
-                    className={
-                      isValidSignUp.phoneNumber
-                        ? "form-control"
-                        : "form-control is-invalid"
-                    }
-                    onChange={(event) =>
-                      this.handleOnchangeInput(event, "phoneNumber")
-                    }
+                    isValid={isValidSignUp.email}
+                    onChange={(event) => handleOnchangeInput(event, "email")}
+                    onKeyDown={handleKeyDown}
+                    iconType="email"
                   />
 
-                  <div className="password-input">
-                    <input
-                      type={this.state.isShowPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={this.state.password}
-                      name="password"
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "password")
-                      }
-                      className={
-                        isValidSignUp.password
-                          ? "form-control"
-                          : "form-control is-invalid"
-                      }
-                      onKeyDown={(event) => this.handleKeyDown(event)}
-                    />
-                    {this.state.password && this.state.password !== "" && (
-                      //first password
-                      <span
-                        className="show-hide"
-                        onClick={() => this.handleTogglePassword("password")}
-                        onKeyDown={(event) => this.handleKeyDown(event)}
-                      >
-                        {this.state.isShowPassword &&
-                        this.state.isShowPassword == true ? (
-                          <i class="fas fa-eye-slash"></i>
-                        ) : (
-                          <i class="fas fa-eye"></i>
-                        )}
-                      </span>
-                    )}
-                  </div>
-                  <div className="password-input">
-                    <input
-                      type={
-                        this.state.isShowConfirmPassword ? "text" : "password"
-                      }
-                      placeholder="Re-enter Password"
-                      value={this.state.confirmPassword}
-                      name="confirmPassword"
-                      className={
-                        isValidSignUp.confirmPassword
-                          ? "form-control"
-                          : "form-control is-invalid"
-                      }
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "confirmPassword")
-                      }
-                      onKeyDown={(event) => this.handleKeyDown(event)}
-                    />
-                    {this.state.confirmPassword &&
-                      this.state.confirmPassword !== "" && (
-                        //second password
-                        <span
-                          className="show-hide"
-                          onClick={() =>
-                            this.handleTogglePassword("confirmPassword")
-                          }
-                          onKeyDown={(event) => this.handleKeyDown(event)}
-                        >
-                          {this.state.isShowConfirmPassword &&
-                          this.state.isShowConfirmPassword == true ? (
-                            <i class="fas fa-eye-slash"></i>
-                          ) : (
-                            <i class="fas fa-eye"></i>
-                          )}
-                        </span>
-                      )}
-                  </div>
+                  <InputField
+                    type="tel"
+                    placeholder={<FormattedMessage id="auth.phone_placeholder" />}
+                    value={state.phoneNumber}
+                    name="phoneNumber"
+                    isValid={isValidSignUp.phoneNumber}
+                    onChange={(event) => handleOnchangeInput(event, "phoneNumber")}
+                    onKeyDown={handleKeyDown}
+                    iconType="phone"
+                  />
+
+                  <InputField
+                    type="password"
+                    placeholder={<FormattedMessage id="auth.password_placeholder" />}
+                    value={state.password}
+                    name="password"
+                    isValid={isValidSignUp.password}
+                    onChange={(event) => handleOnchangeInput(event, "password")}
+                    onKeyDown={handleKeyDown}
+                    isShow={state.isShowPassword}
+                    onToggle={() => handleTogglePassword("password")}
+                    iconType="password"
+                  />
+
+                  <InputField
+                    type="password"
+                    placeholder={<FormattedMessage id="auth.confirm_password_placeholder" />}
+                    value={state.confirmPassword}
+                    name="confirmPassword"
+                    isValid={isValidSignUp.confirmPassword}
+                    onChange={(event) => handleOnchangeInput(event, "confirmPassword")}
+                    onKeyDown={handleKeyDown}
+                    isShow={state.isShowConfirmPassword}
+                    onToggle={() => handleTogglePassword("confirmPassword")}
+                    iconType="confirmPassword"
+                  />
+
+                  {state.errMsg && (
+                    <div className="error-message">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="15" y1="9" x2="9" y2="15" />
+                        <line x1="9" y1="9" x2="15" y2="15" />
+                      </svg>
+                      <span>{state.errMsg}</span>
+                    </div>
+                  )}
+
                   <span
                     className="loginBtn"
-                    onClick={() => this.handleSignUp()}
+                    onClick={() => handleSignUp()}
                   >
-                    Sign Up
+                    <FormattedMessage id="auth.signup_button" />
                   </span>
+
                   <a
                     className="forget"
-                    onClick={this.handleSwitchLoginAndSignUp}
+                    onClick={handleSwitchLoginAndSignUp}
                   >
-                    Already haved an account?
+                    <FormattedMessage id="auth.already_have_account" />
                   </a>
-                </form>
+                </div>
               </div>
             )}
           </div>
         </div>
-      </>
-    );
-  }
-}
+      </div>
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -402,8 +397,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-
-    // userLoginFail: () => dispatch(actions.userLoginFail()),
     userLoginSuccess: (userInfo) =>
       dispatch(actions.userLoginSuccess(userInfo)),
   };

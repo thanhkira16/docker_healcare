@@ -54,23 +54,18 @@
       "manage-admin": "Quản lý admin",
       "crud": "CRUD user",
       "crud-redux": "CRUD redux",
-
       "manage-clinic": "Quản lý phòng khám",
       "clinic": "Phòng khám",
-
       "specialty": "Chuyên khoa",
       "manage-specialty": "Quản lý chuyên khoa",
-
       "handbook": "Cẩm nang",
       "manage-handbook": "Quản lý cẩm nang"
     },
-
     "doctor": {
       "manage-schedule": "Quản lý lịch khám bệnh",
       "manage-patient": "Quản lý bệnh nhân"
     }
   },
-
   "manage-user": {
     "addingTitle": "Thêm Người Dùng Với ThanhKira",
     "manageUserTitle": "Quản Lý Người Dùng Với ThanhKira",
@@ -95,7 +90,6 @@
     "btnEdit": "Chỉnh Sửa",
     "btnDelete": "Xóa"
   },
-
   "manage-doctor": {
     "title": "Quản lý bác sỹ",
     "doctorLabel": "Bác sỹ",
@@ -103,23 +97,19 @@
     "btnSave": "Lưu thông tin",
     "saveDetailDoctorSuccess": "LƯU THÔNG TIN THÀNH CÔNG",
     "saveDetailDoctorFailure": "LƯU THÔNG TIN THẤT BẠI",
-
     "provinceLabel": "Tỉnh/Thành phố",
     "paymentLabel": "Phương thức thanh toán",
     "priceLabel": "Giá",
-
     "select-placeholder-doctor": "Chọn một bác sĩ",
     "select-placeholder-province": "Chọn tỉnh/Thành phố",
     "select-placeholder-payment": "Chọn phương thức thanh toán",
     "select-placeholder-price": "Chọn giá",
     "select-placeholder-specialty": "Chọn chuyên khoa",
-
     "specialty": "Chuyên khoa",
     "nameClinic": "Tên phòng khám",
     "addressClinic": "Địa chỉ phòng khám",
     "note": "Ghi chú"
   },
-
   "manage-specialty": {
     "specialtyName": "Tên chuyên khoa",
     "specialtyImage": "Hình ảnh chuyên khoa",
@@ -139,7 +129,6 @@
     "unknownError": "Đã xảy ra lỗi không xác định",
     "btnSave": "Lưu"
   },
-
   "manage-schedules": {
     "title": "Quản lý lịch khám bệnh",
     "pick-doctor": "Chọn bác sỹ",
@@ -157,7 +146,6 @@
       "pick-time-tittle-first-part": "Chọn",
       "pick-time-tittle-second-part": " và đặt (Phí đặt lịch 0đ)"
     },
-
     "extra-infor-doctor": {
       "address-title": "ĐỊA CHỈ PHÒNG KHÁM",
       "price-title": "Giá Khám Bệnh",
@@ -165,7 +153,6 @@
       "show-price-detail": "Xem Chi Tiết",
       "hide-price-detail": "Ẩn Bảng Giá"
     },
-
     "booking-modal": {
       "fullname": "Họ và tên",
       "fullname-placeholder": "Nhập họ và tên của bạn",
@@ -207,5 +194,21 @@
     "copyright": " Bản quyền thuộc về VKU HealthCare.",
     "verified": "Đã được xác minh",
     "certified": "Chứng nhận chất lượng"
+  },
+  "auth": {
+    "login_title": "Đăng nhập",
+    "login_subtitle": "Chào mừng bạn trở lại với VKU Healthcare",
+    "signup_title": "Đăng ký",
+    "signup_subtitle": "Tạo tài khoản mới để sử dụng VKU Healthcare",
+    "email_placeholder": "Địa chỉ email",
+    "phone_placeholder": "Số điện thoại",
+    "password_placeholder": "Mật khẩu",
+    "confirm_password_placeholder": "Nhập lại mật khẩu",
+    "login_button": "Đăng nhập",
+    "signup_button": "Đăng ký",
+    "forgot_password": "Quên mật khẩu?",
+    "create_account": "Tạo tài khoản mới",
+    "already_have_account": "Đã có tài khoản?",
+    "create_page": "Tạo trang dành cho bệnh viện, phòng khám hoặc doanh nghiệp"
   }
 }

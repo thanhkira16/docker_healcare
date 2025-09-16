@@ -10,6 +10,7 @@ import { USER_ROLE } from "../../utils/constant";
 import { getAllSpecialties } from "../../services/userService";
 import { LANGUAGES } from "../../utils";
 import { withRouter } from "react-router";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 class Header extends Component {
   constructor(props) {
@@ -71,12 +72,6 @@ class Header extends Component {
   handleLanguageClick = (language) => {
     this.props.changeLanguageAppRedux(language);
     this.setState({ activeLanguage: language });
-  };
-
-  switchLanguage = () => {
-    const { language } = this.props;
-    const newLanguage = language === LANGUAGES.VI ? LANGUAGES.EN : LANGUAGES.VI;
-    this.props.changeLanguageAppRedux(newLanguage);
   };
 
   toggleMobileMenu = () => {
@@ -268,17 +263,7 @@ class Header extends Component {
                 </button>
 
                 {/* Language Switcher */}
-                <div className="language-switcher" onClick={this.switchLanguage}>
-                  <div className="language-toggle">
-                    <span className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}>
-                      VN
-                    </span>
-                    <span className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}>
-                      EN
-                    </span>
-                    <div className={`toggle-slider ${language === LANGUAGES.EN ? 'right' : 'left'}`}></div>
-                  </div>
-                </div>
+                <LanguageSwitcher />
 
                 {/* Contact Button */}
                 <button className="contact-btn">
