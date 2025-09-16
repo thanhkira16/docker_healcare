@@ -12,7 +12,20 @@
     "check-health": "General health check",
     "shop": "Shop",
     "language": "Language",
-    "welcome": "Welcome "
+    "welcome": "Welcome ",
+    "about": "About us"
+  },
+  "header": {
+    "specialties": "Specialties",
+    "quickActions": "Quick Actions",
+    "bookAppointment": "Book Appointment",
+    "findDoctor": "Find Doctor",
+    "emergency": "Emergency",
+    "contact": "Contact",
+    "bookOnline": "Book Online",
+    "telehealth": "Telehealth",
+    "pharmacy": "Pharmacy",
+    "healthRecord": "Health Record"
   },
 
   "banner": {

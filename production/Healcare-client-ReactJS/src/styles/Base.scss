@@ -20,7 +20,7 @@
   --bs-yellow: #fec02f;
   --bs-green: #30a64a;
   --bs-teal: #53f283;
-  --main-color: #e6f4f1;
+  --main-color: #45C3D2;
   --bs-white: #fffefe;
   --bs-gray: #7b7a8b;
   --bs-gray-dark: #464558;
@@ -45,6 +45,16 @@ html {
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+// Section styling with IDs for smooth scrolling
+#specialties, #facilities, #doctors, #about {
+  scroll-margin-top: 100px; // Account for fixed header when scrolling
+
+  @media (max-width: 992px) {
+    scroll-margin-top: 90px;
+  }
 }
 
 /* Responsive  */

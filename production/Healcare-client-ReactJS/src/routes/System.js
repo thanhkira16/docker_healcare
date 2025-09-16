@@ -4,15 +4,16 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
 import UserRedux from "../containers/System/Admin/UserRedux";
 import ManageDoctor from "../containers/System/Admin/ManageDoctor";
-import Header from "../containers/Header/Header";
+import AdminNavbar from "../containers/Header/AdminNavbar";
 import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 import ManageClinic from "../containers/System/Clinic/ManageClinic";
+import "../containers/System/AdminLayout.scss";
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
     return (
       <>
-        {isLoggedIn && <Header />}
+        {isLoggedIn && <AdminNavbar />}
         <div className="system-container">
           <div className="system-list">
             <Switch>

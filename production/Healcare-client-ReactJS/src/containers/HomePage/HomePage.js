@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Header from "../Header/Header";
 import HomeHeader from "./HomeHeader";
 import Specialty from "./Section/slider/Specialty";
 import MedicalFacility from "./Section/slider/MedicalFacility";
@@ -53,14 +54,26 @@ class HomePage extends Component {
     };
     return (
       <>
+        <Header />
         <HomeHeader isShowBanner={true} />
         <ReactionOfUser />
+        
+        <div id="specialties">
+          <Specialty settings={settings} />
+        </div>
+        
+        <div id="facilities">
+          <MedicalFacility settings={settings} />
+        </div>
+        
+        <div id="doctors">
+          <OutStandingDoctor settings={settings} />
+        </div>
 
-        <Specialty settings={settings} />
-        <MedicalFacility settings={settings} />
-        <OutStandingDoctor settings={settings} />
-
-        <About />
+        <div id="about">
+          <About />
+        </div>
+        
         <Footer />
       </>
     );

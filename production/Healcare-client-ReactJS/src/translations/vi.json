@@ -12,7 +12,20 @@
     "check-health": "Khám sức khỏe tổng quát ",
     "shop": "Cửa hàng",
     "language": "Ngôn ngữ",
-    "welcome": "Xin chào "
+    "welcome": "Xin chào ",
+    "about": "Về chúng tôi"
+  },
+  "header": {
+    "specialties": "Chuyên khoa",
+    "quickActions": "Thao tác nhanh",
+    "bookAppointment": "Đặt lịch khám",
+    "findDoctor": "Tìm bác sĩ",
+    "emergency": "Cấp cứu",
+    "contact": "Liên hệ",
+    "bookOnline": "Đặt khám online",
+    "telehealth": "Khám từ xa",
+    "pharmacy": "Nhà thuốc",
+    "healthRecord": "Hồ sơ sức khỏe"
   },
   "banner": {
     "main-title": "NỀN TẢNG Y TẾ ",
