@@ -22,7 +22,8 @@ class Header extends Component {
       isMobileMenuOpen: false,
       searchQuery: "",
       dataSpecialty: [],
-      showSearchResults: false
+      showSearchResults: false,
+      showUserDropdown: false
     };
   }
 
@@ -107,15 +108,24 @@ class Header extends Component {
     this.setState({ isMobileMenuOpen: false });
   };
 
-  render() {
-    const { processLogout, userInfo, language } = this.props;
-    const { activeLanguage, isScrolled, isMobileMenuOpen, searchQuery, showSearchResults, dataSpecialty } = this.state;
+  handleUserDropdownEnter = () => {
+    this.setState({ showUserDropdown: true });
+  };
 
-    // Check if user is logged in (admin/doctor)
+  handleUserDropdownLeave = () => {
+    this.setState({ showUserDropdown: false });
+  };
+
+  render() {
+    const { processLogout, userInfo, language, location } = this.props;
+    const { activeLanguage, isScrolled, isMobileMenuOpen, searchQuery, showSearchResults, dataSpecialty, showUserDropdown } = this.state;
+
+    // Check if this is an admin page (system or doctor routes)
+    const isAdminPage = location && (location.pathname.startsWith('/system') || location.pathname.startsWith('/doctor'));
     const isLoggedIn = userInfo && !_.isEmpty(userInfo);
 
-    // Render different header based on user status
-    if (isLoggedIn) {
+    // Render admin header only for admin pages with logged in users
+    if (isAdminPage && isLoggedIn) {
       // Admin/Doctor Header (existing header)
       return (
         <div className="header-container">
@@ -277,6 +287,39 @@ class Header extends Component {
                     <FormattedMessage id="header.contact" />
                   </span>
                 </button>
+
+                {/* User Profile (if logged in) */}
+                {isLoggedIn && (
+                  <div 
+                    className="user-profile-dropdown"
+                    onMouseEnter={this.handleUserDropdownEnter}
+                    onMouseLeave={this.handleUserDropdownLeave}
+                  >
+                    <div className="user-avatar-trigger">
+                      <i className="fas fa-user-circle"></i>
+                    </div>
+                    <div className={`dropdown-menu ${showUserDropdown ? 'show' : ''}`}>
+                      <div className="user-info">
+                        <i className="fas fa-user-circle dropdown-avatar"></i>
+                        <div className="user-details">
+                          <span className="user-name">
+                            {userInfo.firstName && userInfo.lastName
+                              ? `${userInfo.firstName} ${userInfo.lastName}`
+                              : "User"}
+                          </span>
+                          <span className="user-role">
+                            {userInfo.roleId === "R1" ? "Admin" : userInfo.roleId === "R2" ? "Doctor" : "Patient"}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="dropdown-divider"></div>
+                      <button className="logout-btn" onClick={processLogout}>
+                        <i className="fas fa-sign-out-alt"></i>
+                        <span>Đăng xuất</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {/* Mobile Menu Toggle */}
                 <button 
