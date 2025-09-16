@@ -7,7 +7,9 @@ import ManageDoctor from "../containers/System/Admin/ManageDoctor";
 import AdminNavbar from "../containers/Header/AdminNavbar";
 import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 import ManageClinic from "../containers/System/Clinic/ManageClinic";
+import "../containers/System/AdminLayout.scss";
 import PATHS from "../constants/path";
+
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
@@ -25,6 +27,7 @@ class System extends Component {
                 component={ManageSpecialty}
               />
               <Route path={PATHS.SYSTEM.MANAGE_CLINIC} component={ManageClinic} />
+
               <Route
                 component={() => {
                   return <Redirect to={systemMenuPath} />;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import Header from "../containers/Header/Header";
+import { Redirect, Route, Switch } from "react-router-dom";
+import AdminNavbar from "../containers/Header/AdminNavbar";
 import ManageSchedule from "../containers/System/Doctor/ManageSchedule";
 import ManagePatient from "../containers/System/Doctor/ManagePatient";
 import PATHS from "../constants/path";
@@ -11,7 +11,7 @@ class Doctor extends Component {
     const { isLoggedIn } = this.props;
     return (
       <>
-        {isLoggedIn && <Header />}
+        {isLoggedIn && <AdminNavbar />}
         <div className="Doctor-container">
           <div className="Doctor-list">
             <Switch>
@@ -19,10 +19,7 @@ class Doctor extends Component {
                 path={PATHS.DOCTOR.MANAGE_SCHEDULE}
                 component={ManageSchedule}
               />
-              <Route
-                path={PATHS.DOCTOR.MANAGE_PATIENT}
-                component={ManagePatient}
-              />
+              <Route path={PATHS.DOCTOR.MANAGE_PATIENT} component={ManagePatient} />
             </Switch>
           </div>
         </div>
