@@ -27,7 +27,6 @@
     "pharmacy": "Pharmacy",
     "healthRecord": "Health Record"
   },
-
   "banner": {
     "main-title": "HEALTHCARE PLATFORM ",
     "sub-title": "COMPREHENSIVE HEALTHCARE",
@@ -48,7 +47,6 @@
       "manage-admin": "Manage Admin",
       "crud": "CRUD User",
       "crud-redux": "CRUD Redux",
-
       "manage-clinic": "Manage Clinics",
       "clinic": "Clinic",
       "specialty": "Specialty",
@@ -56,13 +54,11 @@
       "handbook": "Handbook",
       "manage-handbook": "Manage Handbooks"
     },
-
     "doctor": {
       "manage-schedule": "Manage Doctor's Schedule",
       "manage-patient": "Manage Patient"
     }
   },
-
   "manage-user": {
     "addingTitle": "Adding User With ThanhKira",
     "manageUserTitle": "Manage User With ThanhKira",
@@ -87,7 +83,6 @@
     "btnEdit": "Edit",
     "btnDelete": "Delete"
   },
-
   "manage-doctor": {
     "title": "Manage Doctors",
     "doctorLabel": "Doctor",
@@ -95,7 +90,6 @@
     "btnSave": "Save changes",
     "saveDetailDoctorSuccess": "SAVE DETAIL DOCTOR SUCCESS",
     "saveDetailDoctorFailure": "SAVE DETAIL DOCTOR FAIL",
-
     "provinceLabel": "Province",
     "paymentLabel": "Payment Method",
     "priceLabel": "Price",
@@ -103,7 +97,6 @@
     "addressClinic": "Address of clinic",
     "note": "Note",
     "specialty": "Specialty",
-
     "select-placeholder-specialty": "Select specialty",
     "select-placeholder-doctor": "Select a doctor",
     "select-placeholder-province": "Select a province",
@@ -127,7 +120,6 @@
     "invalidDoctor": "Please select a name",
     "invalidDate": "Please select a date"
   },
-
   "manage-specialty": {
     "specialtyName": "Specialty Name",
     "specialtyImage": "Specialty Image",
@@ -147,7 +139,6 @@
     "unknownError": "An unknown error occurred",
     "btnSave": "Save"
   },
-
   "patient": {
     "detail-doctor": {
       "appointment": "APPOINTMENT",
@@ -162,7 +153,6 @@
       "show-price-detail": "View Details",
       "hide-price-detail": "Hide Price List"
     },
-
     "booking-modal": {
       "fullname": "Full Name",
       "fullname-placeholder": "Enter your full name",
@@ -204,5 +194,21 @@
     "copyright": " All rights reserved by VKU HealthCare.",
     "verified": "Verified",
     "certified": "Quality Certified"
+  },
+  "auth": {
+    "login_title": "Login",
+    "login_subtitle": "Welcome back to VKU Healthcare",
+    "signup_title": "Sign Up",
+    "signup_subtitle": "Create a new account to use VKU Healthcare",
+    "email_placeholder": "Email address",
+    "phone_placeholder": "Phone number",
+    "password_placeholder": "Password",
+    "confirm_password_placeholder": "Confirm password",
+    "login_button": "Login",
+    "signup_button": "Sign Up",
+    "forgot_password": "Forgot password?",
+    "create_account": "Create a new account",
+    "already_have_account": "Already have an account?",
+    "create_page": "Create a page for hospital, clinic, or business"
   }
 }

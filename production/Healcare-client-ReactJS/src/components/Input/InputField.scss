@@ -1,0 +1,129 @@
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .input-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  // Base input styles for all inputs
+  input {
+    width: 100%;
+    min-width: 0;
+    padding: 1.5rem 5rem 1.5rem 4.5rem; // Consistent padding for all inputs
+    border-radius: 12px; // Consistent border radius
+    border: 2px solid #e5e7eb; // Consistent border
+    outline: none;
+    font-size: 1.6rem;
+    background-color: #fafbfc;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+
+    // Consistent focus state for all inputs
+    &:focus {
+      border-color: var(--main-color);
+      background-color: var(--white-color);
+      box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+      border-radius: 12px; // Maintain border radius on focus
+    }
+
+    // Consistent hover state for all inputs
+    &:hover:not(:focus) {
+      border-color: #d1d5db;
+      background-color: var(--white-color);
+      border-radius: 12px; // Maintain border radius on hover
+    }
+
+    // Consistent invalid state for all inputs
+    &.is-invalid {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+      border-radius: 12px; // Maintain border radius on invalid state
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        border-radius: 12px; // Maintain border radius on invalid focus
+      }
+    }
+
+    // Consistent placeholder style for all inputs
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    // Remove any default browser styling
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  // Show/hide password button
+  .show-hide {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    z-index: 3;
+
+    &:hover {
+      color: var(--main-color);
+      background-color: rgba(69, 195, 210, 0.1);
+    }
+
+    i {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 767.98px) {
+  .input-group {
+    input {
+      padding: 1.3rem 1.3rem 1.3rem 4rem;
+      font-size: 1.5rem;
+      border-radius: 12px; // Maintain consistent border radius on mobile
+      border: 2px solid #e5e7eb; // Maintain consistent border on mobile
+    }
+
+    .input-icon {
+      left: 1.3rem;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .input-group input {
+    border-width: 2px;
+
+    &:focus {
+      border-width: 3px;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .input-group {
+    input,
+    .show-hide {
+      transition: none;
+    }
+  }
+}
