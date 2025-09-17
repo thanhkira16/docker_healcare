@@ -254,14 +254,6 @@ class Header extends Component {
 
               {/* Actions Section */}
               <div className="navbar-actions">
-                {/* Emergency Button */}
-                <button className="emergency-btn">
-                  <i className="fas fa-ambulance"></i>
-                  <span className="emergency-text">
-                    <FormattedMessage id="header.emergency" />
-                  </span>
-                </button>
-
                 {/* Language Switcher */}
                 <LanguageSwitcher />
 

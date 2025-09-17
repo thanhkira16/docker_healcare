@@ -47,16 +47,19 @@
     }
   }
 
-    .table-wrapper {
-      overflow-x: auto;
-      
-      .data-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 1.4rem;
-        background: var(--white-color);      thead {
+  .table-wrapper {
+    overflow-x: auto;
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.6rem; // Tăng từ 1.4rem
+      background: var(--white-color);
+      border: 2px solid #dee2e6; // Thay đổi thành màu đậm hơn
+
+      thead {
         background: var(--blue-medium-color);
-        
+
         tr {
           th {
             padding: 16px 20px;
@@ -64,8 +67,13 @@
             font-weight: 600;
             color: var(--main-color);
             border-bottom: 2px solid var(--main-color);
+            border-right: 2px solid #ced4da; // Thay đổi thành màu đậm hơn
             position: relative;
             transition: background-color 0.2s ease;
+
+            &:last-child {
+              border-right: none; // Bỏ border cho cột cuối
+            }
 
             &.index-col {
               width: 60px;
@@ -98,7 +106,7 @@
       tbody {
         tr {
           transition: all 0.2s ease;
-          border-bottom: 1px solid #f0f0f0;
+          border-bottom: 2px solid #dee2e6; // Thay đổi thành màu đậm hơn
 
           &:last-child {
             border-bottom: none;
@@ -108,7 +116,7 @@
             padding: 16px 20px;
             color: #333;
             vertical-align: middle;
-            border-right: 1px solid #f8f9fa;
+            border-right: 2px solid #e9ecef; // Thay đổi thành màu đậm hơn
 
             &:last-child {
               border-right: none;
@@ -165,23 +173,24 @@
 
   .actions-cell {
     .action-buttons {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
+      display: flex !important; // Đảm bảo nằm ngang
+      gap: 8px !important; // Khoảng cách giữa nút
+      justify-content: center !important; // Căn giữa
+      align-items: center !important; // Căn giữa theo chiều dọc
+      flex-wrap: nowrap !important; // Không xuống hàng
 
       .btn-action {
-        padding: 8px 16px;
+        padding: 10px 12px; // Tăng từ 6px 12px để tăng chiều cao
         border: none;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 1rem; // Giữ nguyên
         font-weight: 500;
         transition: all 0.2s ease;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        min-width: 80px;
+        gap: 4px; // Giữ nguyên
+        min-width: 70px; // Giữ nguyên chiều rộng
         justify-content: center;
 
         &:hover {
@@ -256,7 +265,7 @@
         }
 
         i {
-          font-size: 1.1rem;
+          font-size: 1.3rem; // Tăng từ 1.1rem để icon to hơn
         }
       }
     }
@@ -265,8 +274,13 @@
 
 // Animation keyframes
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 // Responsive design
@@ -275,7 +289,7 @@
     .table-wrapper {
       .data-table {
         font-size: 1.3rem;
-        
+
         thead tr th,
         tbody tr td {
           padding: 12px 16px;
@@ -288,10 +302,10 @@
 @media (max-width: 576px) {
   .table-container {
     border-radius: 8px;
-    
+
     .table-header {
       padding: 16px 20px;
-      
+
       .table-title {
         font-size: 1.6rem;
       }
@@ -300,7 +314,7 @@
     .table-wrapper {
       .data-table {
         font-size: 1.2rem;
-        
+
         thead tr th,
         tbody tr td {
           padding: 10px 12px;
@@ -310,7 +324,7 @@
 
     .actions-cell .action-buttons {
       gap: 4px;
-      
+
       .btn-action {
         padding: 6px 10px;
         font-size: 1.1rem;
