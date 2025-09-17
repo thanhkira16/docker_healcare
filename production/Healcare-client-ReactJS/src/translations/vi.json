@@ -20,7 +20,6 @@
     "quickActions": "Thao tác nhanh",
     "bookAppointment": "Đặt lịch khám",
     "findDoctor": "Tìm bác sĩ",
-    "emergency": "Cấp cứu",
     "contact": "Liên hệ",
     "bookOnline": "Đặt khám online",
     "telehealth": "Khám từ xa",
@@ -120,14 +119,29 @@
     "btnSave": "Lưu"
   },
   "manage-clinic": {
+    "title": "Quản lý phòng khám",
+    "addNew": "Thêm phòng khám mới",
     "clinicName": "Tên Phòng Khám",
     "clinicImage": "Hình Ảnh Phòng Khám",
     "clinicAddress": "Địa Chỉ Phòng Khám",
+    "clinicDescription": "Mô tả phòng khám",
+    "columnImage": "Hình ảnh",
+    "columnName": "Tên phòng khám",
+    "columnAddress": "Địa chỉ",
+    "columnDescription": "Mô tả",
+    "actionEdit": "Sửa",
+    "actionDelete": "Xóa",
+    "emptyMessage": "Chưa có phòng khám nào trong hệ thống",
     "missingParameterError": "Thiếu thông số bắt buộc",
     "createClinicSuccess": "Tạo phòng khám thành công",
     "createClinicFailed": "Không thể tạo phòng khám",
     "unknownError": "Đã xảy ra lỗi không xác định",
-    "btnSave": "Lưu"
+    "btnSave": "Lưu",
+    "btnCancel": "Hủy bỏ",
+    "saving": "Đang lưu...",
+    "placeholderName": "Nhập tên phòng khám...",
+    "placeholderAddress": "Nhập địa chỉ phòng khám...",
+    "placeholderDescription": "Nhập mô tả chi tiết về phòng khám..."
   },
   "manage-schedules": {
     "title": "Quản lý lịch khám bệnh",

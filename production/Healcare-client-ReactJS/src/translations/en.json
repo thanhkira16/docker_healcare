@@ -130,14 +130,29 @@
     "btnSave": "Save"
   },
   "manage-clinic": {
+    "title": "Manage Clinics",
+    "addNew": "Add New Clinic",
     "clinicName": "Clinic Name",
     "clinicImage": "Clinic Image",
     "clinicAddress": "Clinic Address",
+    "clinicDescription": "Clinic Description",
+    "columnImage": "Image",
+    "columnName": "Clinic Name",
+    "columnAddress": "Address",
+    "columnDescription": "Description",
+    "actionEdit": "Edit",
+    "actionDelete": "Delete",
+    "emptyMessage": "No clinics found in the system",
     "missingParameterError": "Missing required parameter",
     "createClinicSuccess": "Clinic created successfully",
     "createClinicFailed": "Failed to create clinic",
     "unknownError": "An unknown error occurred",
-    "btnSave": "Save"
+    "btnSave": "Save",
+    "btnCancel": "Cancel",
+    "saving": "Saving...",
+    "placeholderName": "Enter clinic name...",
+    "placeholderAddress": "Enter clinic address...",
+    "placeholderDescription": "Enter detailed clinic description..."
   },
   "patient": {
     "detail-doctor": {
