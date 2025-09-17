@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh; /* Thay min-height thành height để cố định chiều cao */
   background: linear-gradient(135deg, var(--blue-medium-color) 0%, #f0fffe 50%, var(--white-color) 100%);
   position: relative;
+  overflow: hidden; /* Ngăn cuộn nếu nội dung vượt quá */
   
   // Add subtle pattern overlay
   &::before {
@@ -22,29 +23,29 @@
 
   .left {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px; /* Giảm max-width từ 500px */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem;
+    padding: 1rem; /* Giảm padding từ 2rem */
     position: relative;
     z-index: 1;
 
     .logo-section {
       display: flex;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem; /* Giảm margin từ 2rem */
 
       .healthcare-logo {
-        width: 64px;
-        height: 64px;
+        width: 48px; /* Giảm kích thước logo từ 64px */
+        height: 48px;
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
-        border-radius: 16px;
+        border-radius: 12px; /* Giảm border-radius từ 16px */
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 1.5rem;
-        box-shadow: 0 8px 32px rgba(69, 195, 210, 0.3);
+        margin-right: 1rem; /* Giảm margin từ 1.5rem */
+        box-shadow: 0 4px 16px rgba(69, 195, 210, 0.3); /* Giảm shadow */
         
         svg {
           color: var(--white-color);
@@ -53,22 +54,22 @@
 
       h1 {
         font-family: "Roboto", sans-serif;
-        font-size: 4.8rem;
+        font-size: var(--font-size-xxl); /* Giảm từ --font-size-huge (3.2rem) */
         font-weight: 700;
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin: 0;
-        letter-spacing: -2px;
+        letter-spacing: -1px; /* Giảm letter-spacing từ -2px */
       }
     }
 
     p {
-      font-size: 2.4rem;
+      font-size: var(--font-size-lg); /* Giảm từ --font-size-xl (2.0rem) */
       color: #4a5568;
-      line-height: 1.5;
-      margin-bottom: 3rem;
+      line-height: 1.4; /* Giảm line-height từ 1.5 */
+      margin-bottom: 1.5rem; /* Giảm margin từ 3rem */
       font-family: "Roboto", sans-serif;
       font-weight: 400;
     }
@@ -76,31 +77,33 @@
     .features {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem; /* Giảm gap từ 1.5rem */
 
       .feature-item {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.8rem; /* Giảm gap từ 1rem */
+        padding: 0.8rem; /* Giảm padding từ 1rem */
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
-        border-radius: 12px;
+        border-radius: 10px; /* Giảm border-radius từ 12px */
         border: 1px solid rgba(69, 195, 210, 0.1);
         transition: all 0.3s ease;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(69, 195, 210, 0.15);
+          box-shadow: 0 4px 15px rgba(69, 195, 210, 0.15); /* Giảm shadow */
         }
 
         svg {
           color: var(--main-color);
           flex-shrink: 0;
+          width: 20px; /* Giảm kích thước icon */
+          height: 20px;
         }
 
         span {
-          font-size: 1.4rem;
+          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
           color: #2d3748;
           font-weight: 500;
         }
@@ -110,8 +113,8 @@
 
   .right {
     width: 100%;
-    max-width: 440px;
-    padding: 2rem;
+    max-width: 400px; /* Giảm max-width từ 440px */
+    padding: 1rem; /* Giảm padding từ 2rem */
     position: relative;
     z-index: 1;
 
@@ -120,19 +123,19 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem; /* Giảm margin từ 2rem */
       padding: 0;
 
       .login-language-switcher {
         background: rgba(255, 255, 255, 0.9);
-        border-radius: 12px;
-        padding: 0.5rem 0.8rem;
+        border-radius: 10px; /* Giảm border-radius từ 12px */
+        padding: 0.4rem 0.6rem; /* Giảm padding từ 0.5rem 0.8rem */
         border: 1px solid rgba(69, 195, 210, 0.2);
         transition: all 0.3s ease;
 
         &:hover {
           background: rgba(255, 255, 255, 1);
-          box-shadow: 0 2px 8px rgba(69, 195, 210, 0.15);
+          box-shadow: 0 2px 6px rgba(69, 195, 210, 0.15); /* Giảm shadow */
         }
 
         // Simple override for LanguageSwitcher in login page
@@ -141,7 +144,7 @@
           position: relative !important;
           display: inline-flex !important;
           align-items: center !important;
-          gap: 0.8rem !important;
+          gap: 0.6rem !important; /* Giảm gap từ 0.8rem */
 
           .language-toggle {
             position: relative !important;
@@ -153,21 +156,21 @@
             padding: 0 !important;
             transition: none !important;
             box-shadow: none !important;
-            gap: 0.5rem !important;
+            gap: 0.4rem !important; /* Giảm gap từ 0.5rem */
 
             .lang-option {
               flex: none !important;
               display: inline-block !important;
               align-items: center !important;
               justify-content: center !important;
-              font-size: 1.3rem !important;
+              font-size: var(--font-size-xs) !important; /* Giảm từ --font-size-sm (1.4rem) */
               font-weight: 500 !important;
               color: #9ca3af !important;
               transition: all 0.3s ease !important;
-              border-radius: 6px !important;
+              border-radius: 5px !important; /* Giảm border-radius từ 6px */
               cursor: pointer !important;
               z-index: 2 !important;
-              padding: 0.3rem 0.5rem !important;
+              padding: 0.2rem 0.4rem !important; /* Giảm padding từ 0.3rem 0.5rem */
               background: transparent !important;
               box-shadow: none !important;
 
@@ -197,7 +200,7 @@
           }
 
           .language-label {
-            font-size: 1.2rem !important;
+            font-size: var(--font-size-xs) !important; /* Giữ nguyên */
             color: #6b7280 !important;
             font-weight: 500 !important;
             white-space: nowrap !important;
@@ -211,7 +214,7 @@
             top: 50% !important;
             transform: translate(-50%, -50%) !important;
             color: #d1d5db !important;
-            font-size: 1.2rem !important;
+            font-size: var(--font-size-xs) !important; /* Giữ nguyên */
             pointer-events: none !important;
           }
         }
@@ -220,13 +223,13 @@
 
     .form-container {
       background: var(--white-color);
-      border-radius: 20px;
+      border-radius: 16px; /* Giảm border-radius từ 20px */
       box-shadow: 
-        0 20px 60px rgba(69, 195, 210, 0.15),
-        0 8px 25px rgba(0, 0, 0, 0.08);
+        0 10px 30px rgba(69, 195, 210, 0.15), /* Giảm shadow */
+        0 4px 12px rgba(0, 0, 0, 0.08);
       overflow: hidden;
       border: 1px solid rgba(69, 195, 210, 0.1);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem; /* Giảm margin từ 2rem */
       position: relative;
 
       // Gradient border effect
@@ -236,46 +239,46 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px; /* Giảm chiều cao từ 4px */
         background: linear-gradient(90deg, var(--main-color), #3ba5b8, var(--main-color));
         background-size: 200% 100%;
         animation: gradientSlide 3s ease-in-out infinite;
       }
 
       .form-header {
-        padding: 2.5rem 2.5rem 1rem;
+        padding: 1.5rem 1.5rem 0.5rem; /* Giảm padding từ 2.5rem 2.5rem 1rem */
         text-align: center;
         background: linear-gradient(135deg, rgba(69, 195, 210, 0.03), rgba(69, 195, 210, 0.01));
 
         h2 {
-          font-size: 2.4rem;
+          font-size: var(--font-size-lg); /* Giảm từ --font-size-xl (2.0rem) */
           font-weight: 700;
           color: var(--black-bolor);
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.3rem; /* Giảm margin từ 0.5rem */
         }
 
         p {
           color: #6b7280;
-          font-size: 1.4rem;
+          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
           margin: 0;
         }
       }
 
       .form-content {
-        padding: 1rem 2.5rem 2.5rem;
+        padding: 0.8rem 1.5rem 1.5rem; /* Giảm padding từ 1rem 2.5rem 2.5rem */
         display: flex;
         flex-direction: column;
 
         .input-group {
           position: relative;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
           width: 100%;
           display: flex;
           flex-direction: column;
 
           .input-icon {
             position: absolute;
-            left: 1.5rem;
+            left: 1.2rem; /* Giảm từ 1.5rem */
             top: 50%;
             transform: translateY(-50%);
             color: #9ca3af;
@@ -287,11 +290,11 @@
           input {
             width: 100%;
             min-width: 0;
-            padding: 1.5rem 5rem 1.5rem 4.5rem; // Consistent padding for all inputs
-            border-radius: 12px; // Consistent border radius
-            border: 2px solid #e5e7eb; // Consistent border
+            padding: 1rem 4rem 1rem 3.5rem; /* Giảm padding từ 1.5rem 5rem 1.5rem 4.5rem */
+            border-radius: 10px; /* Giảm border-radius từ 12px */
+            border: 2px solid #e5e7eb;
             outline: none;
-            font-size: 1.6rem;
+            font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
             background-color: #fafbfc;
             transition: all 0.3s ease;
             box-sizing: border-box;
@@ -301,26 +304,26 @@
             &:focus {
               border-color: var(--main-color);
               background-color: var(--white-color);
-              box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
-              border-radius: 12px; // Maintain border radius on focus
+              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1); /* Giảm shadow */
+              border-radius: 10px;
             }
 
             // Consistent hover state for all inputs
             &:hover:not(:focus) {
               border-color: #d1d5db;
               background-color: var(--white-color);
-              border-radius: 12px; // Maintain border radius on hover
+              border-radius: 10px;
             }
 
             // Consistent invalid state for all inputs
             &.is-invalid {
               border-color: #ef4444;
               background-color: #fef2f2;
-              border-radius: 12px; // Maintain border radius on invalid state
+              border-radius: 10px;
 
               &:focus {
-                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-                border-radius: 12px; // Maintain border radius on invalid focus
+                box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+                border-radius: 10px;
               }
             }
 
@@ -337,21 +340,21 @@
 
           // For inputs that don't need the show/hide button (email, phone)
           &:not(.password-field) input {
-            padding-right: 1.5rem; // Normal right padding for non-password fields
-            border-radius: 12px; // Ensure consistent border radius
-            border: 2px solid #e5e7eb; // Ensure consistent border
+            padding-right: 1.2rem; /* Giảm padding từ 1.5rem */
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
           }
 
           // Show/hide password button
           .show-hide {
             position: absolute;
             top: 50%;
-            right: 1.5rem;
+            right: 1.2rem; /* Giảm từ 1.5rem */
             transform: translateY(-50%);
             cursor: pointer;
             color: #6b7280;
-            padding: 0.5rem;
-            border-radius: 6px;
+            padding: 0.4rem; /* Giảm padding từ 0.5rem */
+            border-radius: 5px; /* Giảm border-radius từ 6px */
             transition: all 0.2s ease;
             z-index: 3;
 
@@ -361,7 +364,7 @@
             }
 
             i {
-              font-size: 1.6rem;
+              font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
             }
           }
         }
@@ -369,12 +372,12 @@
         .error-message {
           display: flex;
           align-items: center;
-          gap: 0.8rem;
+          gap: 0.6rem; /* Giảm gap từ 0.8rem */
           background-color: #fef2f2;
           border: 1px solid #fecaca;
-          border-radius: 8px;
-          padding: 1rem 1.2rem;
-          margin-bottom: 1.5rem;
+          border-radius: 6px; /* Giảm border-radius từ 8px */
+          padding: 0.8rem 1rem; /* Giảm padding từ 1rem 1.2rem */
+          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
           
           svg {
             color: #ef4444;
@@ -383,7 +386,7 @@
 
           span {
             color: #dc2626;
-            font-size: 1.4rem;
+            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
             font-weight: 500;
           }
         }
@@ -391,21 +394,21 @@
         .loginBtn {
           cursor: pointer;
           background: linear-gradient(135deg, var(--main-color) 0%, #3ba5b8 100%);
-          padding: 1.5rem 2rem;
+          padding: 1rem 1.5rem; /* Giảm padding từ 1.5rem 2rem */
           text-align: center;
           text-decoration: none;
           width: 100%;
-          border-radius: 12px;
+          border-radius: 10px; /* Giảm border-radius từ 12px */
           color: var(--white-color);
-          font-size: 1.6rem;
+          font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
           font-weight: 600;
           border: none;
           outline: none;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(69, 195, 210, 0.3);
+          box-shadow: 0 3px 10px rgba(69, 195, 210, 0.3); /* Giảm shadow */
 
           &::before {
             content: '';
@@ -420,8 +423,7 @@
 
           &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(69, 195, 210, 0.4);
-
+            box-shadow: 0 6px 15px rgba(69, 195, 210, 0.4); /* Giảm shadow */
             &::before {
               left: 100%;
             }
@@ -435,9 +437,9 @@
         .forget {
           text-align: center;
           color: var(--main-color);
-          font-size: 1.4rem;
+          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
           text-decoration: none;
-          margin-bottom: 2rem;
+          margin-bottom: 1rem; /* Giảm margin từ 2rem */
           transition: all 0.3s ease;
           cursor: pointer;
           font-weight: 500;
@@ -450,16 +452,16 @@
 
         .sign-up {
           text-align: center;
-          padding-top: 1.5rem;
+          padding-top: 1rem; /* Giảm padding từ 1.5rem */
           border-top: 1px solid #e5e7eb;
 
           .signupBtn {
             color: var(--main-color);
-            font-size: 1.4rem;
+            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
             font-weight: 600;
             cursor: pointer;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.6rem 1rem; /* Giảm padding từ 0.8rem 1.5rem */
+            border-radius: 6px; /* Giảm border-radius từ 8px */
             transition: all 0.3s ease;
             text-decoration: none;
 
@@ -474,7 +476,7 @@
 
     .create-page {
       text-align: center;
-      font-size: 1.3rem;
+      font-size: var(--font-size-xs); /* Giữ nguyên */
       color: #6b7280;
       margin: 0;
 
@@ -510,40 +512,40 @@
 
     .right {
       max-width: 100%;
-      padding: 1.5rem;
+      padding: 0.8rem; /* Giảm padding từ 1.5rem */
 
       .login-header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.8rem; /* Giảm margin từ 1.5rem */
 
         .login-language-switcher {
-          padding: 0.4rem 0.6rem;
-          border-radius: 10px;
+          padding: 0.3rem 0.5rem; /* Giảm padding từ 0.4rem 0.6rem */
+          border-radius: 8px; /* Giảm border-radius từ 10px */
           
           .language-switcher {
-            gap: 0.6rem !important;
+            gap: 0.5rem !important; /* Giảm gap từ 0.6rem */
             
             .language-toggle {
-              gap: 0.4rem !important;
+              gap: 0.3rem !important; /* Giảm gap từ 0.4rem */
               
               .lang-option {
-                font-size: 1.2rem !important;
-                padding: 0.2rem 0.4rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                padding: 0.15rem 0.3rem !important; /* Giảm padding từ 0.2rem 0.4rem */
               }
               
               &::after {
-                font-size: 1.1rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
               }
             }
             
             .language-label {
-              font-size: 1.1rem !important;
+              font-size: var(--font-size-xs) !important; /* Giữ nguyên */
             }
           }
         }
       }
 
       .form-container {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem; /* Giảm margin từ 1rem */
       }
     }
   }
@@ -551,31 +553,31 @@
 
 @media (max-width: 767.98px) {
   .login-container {
-    padding: 1rem;
+    padding: 0.5rem; /* Giảm padding từ 1rem */
 
     .right {
-      padding: 1rem;
+      padding: 0.5rem; /* Giảm padding từ 1rem */
 
       .login-header {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem; /* Giảm margin từ 1rem */
         
         .login-language-switcher {
-          padding: 0.3rem 0.5rem;
-          border-radius: 8px;
+          padding: 0.2rem 0.4rem; /* Giảm padding từ 0.3rem 0.5rem */
+          border-radius: 6px; /* Giảm border-radius từ 8px */
           
           .language-switcher {
-            gap: 0.5rem !important;
+            gap: 0.4rem !important; /* Giảm gap từ 0.5rem */
             
             .language-toggle {
-              gap: 0.3rem !important;
+              gap: 0.2rem !important; /* Giảm gap từ 0.3rem */
               
               .lang-option {
-                font-size: 1.1rem !important;
-                padding: 0.2rem 0.3rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                padding: 0.15rem 0.2rem !important; /* Giảm padding từ 0.2rem 0.3rem */
               }
               
               &::after {
-                font-size: 1rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
               }
             }
             
@@ -587,39 +589,39 @@
       }
 
       .form-container {
-        border-radius: 16px;
+        border-radius: 12px; /* Giảm border-radius từ 16px */
 
         .form-header {
-          padding: 2rem 2rem 0.5rem;
+          padding: 1rem 1rem 0.3rem; /* Giảm padding từ 2rem 2rem 0.5rem */
 
           h2 {
-            font-size: 2rem;
+            font-size: var(--font-size-md); /* Giảm từ --font-size-xl (2.0rem) */
           }
 
           p {
-            font-size: 1.3rem;
+            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
           }
         }
 
         .form-content {
-          padding: 1rem 2rem 2rem;
+          padding: 0.5rem 1rem 1rem; /* Giảm padding từ 1rem 2rem 2rem */
 
           .input-group {
             input {
-              padding: 1.3rem 1.3rem 1.3rem 4rem;
-              font-size: 1.5rem;
-              border-radius: 12px; // Maintain consistent border radius on mobile
-              border: 2px solid #e5e7eb; // Maintain consistent border on mobile
+              padding: 0.8rem 1rem 0.8rem 3rem; /* Giảm padding từ 1.3rem 1.3rem 1.3rem 4rem */
+              font-size: var(--font-size-xs); /* Giảm từ --font-size-md (1.6rem) */
+              border-radius: 8px; /* Giảm border-radius từ 12px */
+              border: 2px solid #e5e7eb;
             }
 
             .input-icon {
-              left: 1.3rem;
+              left: 1rem; /* Giảm từ 1.3rem */
             }
           }
 
           .loginBtn {
-            font-size: 1.5rem;
-            padding: 1.3rem 1.8rem;
+            font-size: var(--font-size-xs); /* Giảm từ --font-size-md (1.6rem) */
+            padding: 0.8rem 1.2rem; /* Giảm padding từ 1.3rem 1.8rem */
           }
         }
       }
@@ -632,22 +634,22 @@
     .right {
       .login-header {
         .login-language-switcher {
-          padding: 0.25rem 0.4rem;
-          border-radius: 6px;
+          padding: 0.15rem 0.3rem; /* Giảm padding từ 0.25rem 0.4rem */
+          border-radius: 5px; /* Giảm border-radius từ 6px */
           
           .language-switcher {
-            gap: 0.4rem !important;
+            gap: 0.3rem !important; /* Giảm gap từ 0.4rem */
             
             .language-toggle {
-              gap: 0.25rem !important;
+              gap: 0.15rem !important; /* Giảm gap từ 0.25rem */
               
               .lang-option {
-                font-size: 1rem !important;
-                padding: 0.15rem 0.25rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                padding: 0.1rem 0.2rem !important; /* Giảm padding từ 0.15rem 0.25rem */
               }
               
               &::after {
-                font-size: 0.9rem !important;
+                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
               }
             }
             
@@ -659,24 +661,24 @@
       }
 
       .form-container {
-        margin: 0 0.5rem 1rem;
+        margin: 0 0.3rem 0.5rem; /* Giảm margin từ 0 0.5rem 1rem */
 
         .form-header {
-          padding: 1.5rem 1.5rem 0.5rem;
+          padding: 1rem 1rem 0.3rem; /* Giảm padding từ 1.5rem 1.5rem 0.5rem */
 
           h2 {
-            font-size: 1.8rem;
+            font-size: var(--font-size-sm); /* Giảm từ --font-size-lg (1.8rem) */
           }
         }
 
         .form-content {
-          padding: 1rem 1.5rem 1.5rem;
+          padding: 0.5rem 1rem 1rem; /* Giảm padding từ 1rem 1.5rem 1.5rem */
         }
       }
 
       .create-page {
-        font-size: 1.2rem;
-        margin: 0 0.5rem;
+        font-size: var(--font-size-xs); /* Giữ nguyên */
+        margin: 0 0.3rem; /* Giảm margin từ 0 0.5rem */
       }
     }
   }

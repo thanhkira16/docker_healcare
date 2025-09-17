@@ -22,53 +22,55 @@
 
   .left {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px; // Reduced from 500px (20% smaller)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem;
+    padding: 1.6rem; // Reduced from 2rem (20% smaller)
     position: relative;
     z-index: 1;
 
     .logo-section {
       display: flex;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
 
       .healthcare-logo {
-        width: 64px;
-        height: 64px;
+        width: 51px; // Reduced from 64px (20% smaller)
+        height: 51px; // Reduced from 64px (20% smaller)
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
-        border-radius: 16px;
+        border-radius: 13px; // Reduced from 16px (20% smaller)
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 1.5rem;
-        box-shadow: 0 8px 32px rgba(69, 195, 210, 0.3);
+        margin-right: 1.2rem; // Reduced from 1.5rem (20% smaller)
+        box-shadow: 0 6px 26px rgba(69, 195, 210, 0.3); // Reduced from 8px 32px (20% smaller)
         
         svg {
           color: var(--white-color);
+          width: 38px; // Reduced from default
+          height: 38px; // Reduced from default
         }
       }
 
       h1 {
         font-family: "Roboto", sans-serif;
-        font-size: 4.8rem;
+        font-size: 3.8rem; // Reduced from 4.8rem (20% smaller)
         font-weight: 700;
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin: 0;
-        letter-spacing: -2px;
+        letter-spacing: -1.6px; // Reduced from -2px (20% smaller)
       }
     }
 
     p {
-      font-size: 2.4rem;
+      font-size: 1.9rem; // Reduced from 2.4rem (20% smaller)
       color: #4a5568;
-      line-height: 1.5;
-      margin-bottom: 3rem;
+      line-height: 1.4; // Slightly reduced from 1.5
+      margin-bottom: 2.4rem; // Reduced from 3rem (20% smaller)
       font-family: "Roboto", sans-serif;
       font-weight: 400;
     }
@@ -76,31 +78,33 @@
     .features {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.2rem; // Reduced from 1.5rem (20% smaller)
 
       .feature-item {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.8rem; // Reduced from 1rem (20% smaller)
+        padding: 0.8rem; // Reduced from 1rem (20% smaller)
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
-        border-radius: 12px;
+        border-radius: 10px; // Reduced from 12px (20% smaller)
         border: 1px solid rgba(69, 195, 210, 0.1);
         transition: all 0.3s ease;
 
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(69, 195, 210, 0.15);
+          transform: translateY(-1.6px); // Reduced from -2px (20% smaller)
+          box-shadow: 0 6px 20px rgba(69, 195, 210, 0.15); // Reduced from 8px 25px (20% smaller)
         }
 
         svg {
           color: var(--main-color);
           flex-shrink: 0;
+          width: 19px; // Reduced from 24px (20% smaller)
+          height: 19px; // Reduced from 24px (20% smaller)
         }
 
         span {
-          font-size: 1.4rem;
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
           color: #2d3748;
           font-weight: 500;
         }
@@ -110,20 +114,123 @@
 
   .right {
     width: 100%;
-    max-width: 440px;
-    padding: 2rem;
+    max-width: 352px; // Reduced from 440px (20% smaller)
+    padding: 1.6rem; // Reduced from 2rem (20% smaller)
     position: relative;
     z-index: 1;
 
+    // Header section for language switcher
+    .login-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
+      padding: 0;
+
+      .login-language-switcher {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px; // Reduced from 12px (20% smaller)
+        padding: 0.4rem 0.6rem; // Reduced from 0.5rem 0.8rem (20% smaller)
+        border: 1px solid rgba(69, 195, 210, 0.2);
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0 1.6px 6px rgba(69, 195, 210, 0.15); // Reduced from 2px 8px (20% smaller)
+        }
+
+        // Simple override for LanguageSwitcher in login page
+        .language-switcher {
+          cursor: pointer !important;
+          position: relative !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 0.6rem !important; // Reduced from 0.8rem (20% smaller)
+
+          .language-toggle {
+            position: relative !important;
+            display: flex !important;
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            transition: none !important;
+            box-shadow: none !important;
+            gap: 0.4rem !important; // Reduced from 0.5rem (20% smaller)
+
+            .lang-option {
+              flex: none !important;
+              display: inline-block !important;
+              align-items: center !important;
+              justify-content: center !important;
+              font-size: 1.0rem !important; // Reduced from 1.3rem (20% smaller)
+              font-weight: 500 !important;
+              color: #9ca3af !important;
+              transition: all 0.3s ease !important;
+              border-radius: 5px !important; // Reduced from 6px (20% smaller)
+              cursor: pointer !important;
+              z-index: 2 !important;
+              padding: 0.2rem 0.4rem !important; // Reduced from 0.3rem 0.5rem (20% smaller)
+              background: transparent !important;
+              box-shadow: none !important;
+
+              &.active {
+                color: var(--main-color) !important;
+                background: rgba(69, 195, 210, 0.1) !important;
+                font-weight: 600 !important;
+              }
+
+              &:hover {
+                color: var(--main-color) !important;
+                background: rgba(69, 195, 210, 0.05) !important;
+              }
+            }
+
+            .toggle-slider {
+              display: none !important; // Hide slider completely
+            }
+          }
+
+          &:hover .language-toggle {
+            background: transparent !important;
+          }
+
+          &:active .language-toggle {
+            transform: none !important;
+          }
+
+          .language-label {
+            font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+            color: #6b7280 !important;
+            font-weight: 500 !important;
+            white-space: nowrap !important;
+          }
+
+          // Add separator between options
+          .language-toggle::after {
+            content: '|' !important;
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            color: #d1d5db !important;
+            font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+            pointer-events: none !important;
+          }
+        }
+      }
+    }
+
     .form-container {
       background: var(--white-color);
-      border-radius: 20px;
+      border-radius: 16px; // Reduced from 20px (20% smaller)
       box-shadow: 
-        0 20px 60px rgba(69, 195, 210, 0.15),
-        0 8px 25px rgba(0, 0, 0, 0.08);
+        0 16px 48px rgba(69, 195, 210, 0.15), // Reduced from 20px 60px (20% smaller)
+        0 6px 20px rgba(0, 0, 0, 0.08); // Reduced from 8px 25px (20% smaller)
       overflow: hidden;
       border: 1px solid rgba(69, 195, 210, 0.1);
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
       position: relative;
 
       // Gradient border effect
@@ -133,54 +240,156 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px; // Reduced from 4px (20% smaller)
         background: linear-gradient(90deg, var(--main-color), #3ba5b8, var(--main-color));
         background-size: 200% 100%;
         animation: gradientSlide 3s ease-in-out infinite;
       }
 
       .form-header {
-        padding: 2.5rem 2.5rem 1rem;
+        padding: 2rem 2rem 0.8rem; // Reduced from 2.5rem 2.5rem 1rem (20% smaller)
         text-align: center;
         background: linear-gradient(135deg, rgba(69, 195, 210, 0.03), rgba(69, 195, 210, 0.01));
 
         h2 {
-          font-size: 2.4rem;
+          font-size: 1.9rem; // Reduced from 2.4rem (20% smaller)
           font-weight: 700;
           color: var(--black-bolor);
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.4rem; // Reduced from 0.5rem (20% smaller)
         }
 
         p {
           color: #6b7280;
-          font-size: 1.4rem;
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
           margin: 0;
         }
       }
 
       .form-content {
-        padding: 1rem 2.5rem 2.5rem;
+        padding: 0.8rem 2rem 2rem; // Reduced from 1rem 2.5rem 2.5rem (20% smaller)
         display: flex;
         flex-direction: column;
+
+        .input-group {
+          position: relative;
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .input-icon {
+            position: absolute;
+            left: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            z-index: 2;
+            pointer-events: none;
+          }
+
+          // Base input styles for all inputs
+          input {
+            width: 100%;
+            min-width: 0;
+            padding: 1.2rem 4rem 1.2rem 3.6rem; // Reduced from 1.5rem 5rem 1.5rem 4.5rem (20% smaller)
+            border-radius: 10px; // Reduced from 12px (20% smaller)
+            border: 2px solid #e5e7eb;
+            outline: none;
+            font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
+            background-color: #fafbfc;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+
+            // Consistent focus state for all inputs
+            &:focus {
+              border-color: var(--main-color);
+              background-color: var(--white-color);
+              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1); // Reduced from 3px (20% smaller)
+              border-radius: 10px;
+            }
+
+            // Consistent hover state for all inputs
+            &:hover:not(:focus) {
+              border-color: #d1d5db;
+              background-color: var(--white-color);
+              border-radius: 10px;
+            }
+
+            // Consistent invalid state for all inputs
+            &.is-invalid {
+              border-color: #ef4444;
+              background-color: #fef2f2;
+              border-radius: 10px;
+
+              &:focus {
+                box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1); // Reduced from 3px (20% smaller)
+                border-radius: 10px;
+              }
+            }
+
+            // Consistent placeholder style for all inputs
+            &::placeholder {
+              color: #9ca3af;
+            }
+
+            // Remove any default browser styling
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+          }
+
+          // For inputs that don't need the show/hide button (email, phone)
+          &:not(.password-field) input {
+            padding-right: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+          }
+
+          // Show/hide password button
+          .show-hide {
+            position: absolute;
+            top: 50%;
+            right: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6b7280;
+            padding: 0.4rem; // Reduced from 0.5rem (20% smaller)
+            border-radius: 5px; // Reduced from 6px (20% smaller)
+            transition: all 0.2s ease;
+            z-index: 3;
+
+            &:hover {
+              color: var(--main-color);
+              background-color: rgba(69, 195, 210, 0.1);
+            }
+
+            i {
+              font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
+            }
+          }
+        }
 
         .error-message {
           display: flex;
           align-items: center;
-          gap: 0.8rem;
+          gap: 0.6rem; // Reduced from 0.8rem (20% smaller)
           background-color: #fef2f2;
           border: 1px solid #fecaca;
-          border-radius: 8px;
-          padding: 1rem 1.2rem;
-          margin-bottom: 1.5rem;
+          border-radius: 6px; // Reduced from 8px (20% smaller)
+          padding: 0.8rem 1rem; // Reduced from 1rem 1.2rem (20% smaller)
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
           
           svg {
             color: #ef4444;
             flex-shrink: 0;
+            width: 13px; // Reduced from 16px (20% smaller)
+            height: 13px; // Reduced from 16px (20% smaller)
           }
 
           span {
             color: #dc2626;
-            font-size: 1.4rem;
+            font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
             font-weight: 500;
           }
         }
@@ -188,21 +397,21 @@
         .loginBtn {
           cursor: pointer;
           background: linear-gradient(135deg, var(--main-color) 0%, #3ba5b8 100%);
-          padding: 1.5rem 2rem;
+          padding: 1.2rem 1.6rem; // Reduced from 1.5rem 2rem (20% smaller)
           text-align: center;
           text-decoration: none;
           width: 100%;
-          border-radius: 12px;
+          border-radius: 10px; // Reduced from 12px (20% smaller)
           color: var(--white-color);
-          font-size: 1.6rem;
+          font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
           font-weight: 600;
           border: none;
           outline: none;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(69, 195, 210, 0.3);
+          box-shadow: 0 3px 12px rgba(69, 195, 210, 0.3); // Reduced from 4px 15px (20% smaller)
 
           &::before {
             content: '';
@@ -216,8 +425,8 @@
           }
 
           &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(69, 195, 210, 0.4);
+            transform: translateY(-1.6px); // Reduced from -2px (20% smaller)
+            box-shadow: 0 6px 20px rgba(69, 195, 210, 0.4); // Reduced from 8px 25px (20% smaller)
 
             &::before {
               left: 100%;
@@ -232,9 +441,9 @@
         .forget {
           text-align: center;
           color: var(--main-color);
-          font-size: 1.4rem;
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
           text-decoration: none;
-          margin-bottom: 2rem;
+          margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
           transition: all 0.3s ease;
           cursor: pointer;
           font-weight: 500;
@@ -247,16 +456,16 @@
 
         .sign-up {
           text-align: center;
-          padding-top: 1.5rem;
+          padding-top: 1.2rem; // Reduced from 1.5rem (20% smaller)
           border-top: 1px solid #e5e7eb;
 
           .signupBtn {
             color: var(--main-color);
-            font-size: 1.4rem;
+            font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
             font-weight: 600;
             cursor: pointer;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.6rem 1.2rem; // Reduced from 0.8rem 1.5rem (20% smaller)
+            border-radius: 6px; // Reduced from 8px (20% smaller)
             transition: all 0.3s ease;
             text-decoration: none;
 
@@ -271,7 +480,7 @@
 
     .create-page {
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 1.0rem; // Reduced from 1.3rem (20% smaller)
       color: #6b7280;
       margin: 0;
 
@@ -298,7 +507,7 @@
   }
 }
 
-// Responsive Design
+// Responsive Design - Updated with smaller values
 @media (max-width: 991.98px) {
   .login-container {
     .left {
@@ -307,10 +516,40 @@
 
     .right {
       max-width: 100%;
-      padding: 1.5rem;
+      padding: 1.2rem; // Reduced from 1.5rem (20% smaller)
+
+      .login-header {
+        margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
+
+        .login-language-switcher {
+          padding: 0.3rem 0.5rem; // Reduced from 0.4rem 0.6rem (20% smaller)
+          border-radius: 8px; // Reduced from 10px (20% smaller)
+          
+          .language-switcher {
+            gap: 0.5rem !important; // Reduced from 0.6rem (20% smaller)
+            
+            .language-toggle {
+              gap: 0.3rem !important; // Reduced from 0.4rem (20% smaller)
+              
+              .lang-option {
+                font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+                padding: 0.16rem 0.3rem !important; // Reduced from 0.2rem 0.4rem (20% smaller)
+              }
+              
+              &::after {
+                font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
+              }
+            }
+            
+            .language-label {
+              font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
+            }
+          }
+        }
+      }
 
       .form-container {
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem; // Reduced from 1rem (20% smaller)
       }
     }
   }
@@ -318,32 +557,75 @@
 
 @media (max-width: 767.98px) {
   .login-container {
-    padding: 1rem;
+    padding: 0.8rem; // Reduced from 1rem (20% smaller)
 
     .right {
-      padding: 1rem;
+      padding: 0.8rem; // Reduced from 1rem (20% smaller)
+
+      .login-header {
+        margin-bottom: 0.8rem; // Reduced from 1rem (20% smaller)
+        
+        .login-language-switcher {
+          padding: 0.24rem 0.4rem; // Reduced from 0.3rem 0.5rem (20% smaller)
+          border-radius: 6px; // Reduced from 8px (20% smaller)
+          
+          .language-switcher {
+            gap: 0.4rem !important; // Reduced from 0.5rem (20% smaller)
+            
+            .language-toggle {
+              gap: 0.24rem !important; // Reduced from 0.3rem (20% smaller)
+              
+              .lang-option {
+                font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
+                padding: 0.16rem 0.24rem !important; // Reduced from 0.2rem 0.3rem (20% smaller)
+              }
+              
+              &::after {
+                font-size: 0.8rem !important; // Reduced from 1rem (20% smaller)
+              }
+            }
+            
+            .language-label {
+              display: none !important;
+            }
+          }
+        }
+      }
 
       .form-container {
-        border-radius: 16px;
+        border-radius: 13px; // Reduced from 16px (20% smaller)
 
         .form-header {
-          padding: 2rem 2rem 0.5rem;
+          padding: 1.6rem 1.6rem 0.4rem; // Reduced from 2rem 2rem 0.5rem (20% smaller)
 
           h2 {
-            font-size: 2rem;
+            font-size: 1.6rem; // Reduced from 2rem (20% smaller)
           }
 
           p {
-            font-size: 1.3rem;
+            font-size: 1.0rem; // Reduced from 1.3rem (20% smaller)
           }
         }
 
         .form-content {
-          padding: 1rem 2rem 2rem;
+          padding: 0.8rem 1.6rem 1.6rem; // Reduced from 1rem 2rem 2rem (20% smaller)
+
+          .input-group {
+            input {
+              padding: 1.0rem 1.0rem 1.0rem 3.2rem; // Reduced from 1.3rem 1.3rem 1.3rem 4rem (20% smaller)
+              font-size: 1.2rem; // Reduced from 1.5rem (20% smaller)
+              border-radius: 10px;
+              border: 2px solid #e5e7eb;
+            }
+
+            .input-icon {
+              left: 1.0rem; // Reduced from 1.3rem (20% smaller)
+            }
+          }
 
           .loginBtn {
-            font-size: 1.5rem;
-            padding: 1.3rem 1.8rem;
+            font-size: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            padding: 1.0rem 1.4rem; // Reduced from 1.3rem 1.8rem (20% smaller)
           }
         }
       }
@@ -354,25 +636,53 @@
 @media (max-width: 575.98px) {
   .login-container {
     .right {
+      .login-header {
+        .login-language-switcher {
+          padding: 0.2rem 0.32rem; // Reduced from 0.25rem 0.4rem (20% smaller)
+          border-radius: 5px; // Reduced from 6px (20% smaller)
+          
+          .language-switcher {
+            gap: 0.32rem !important; // Reduced from 0.4rem (20% smaller)
+            
+            .language-toggle {
+              gap: 0.2rem !important; // Reduced from 0.25rem (20% smaller)
+              
+              .lang-option {
+                font-size: 0.8rem !important; // Reduced from 1rem (20% smaller)
+                padding: 0.12rem 0.2rem !important; // Reduced from 0.15rem 0.25rem (20% smaller)
+              }
+              
+              &::after {
+                font-size: 0.72rem !important; // Reduced from 0.9rem (20% smaller)
+              }
+            }
+            
+            .language-label {
+              display: none !important;
+            }
+          }
+        }
+      }
+
       .form-container {
-        margin: 0 0.5rem 1rem;
+        margin: 0 0.4rem 0.8rem; // Reduced from 0 0.5rem 1rem (20% smaller)
 
         .form-header {
-          padding: 1.5rem 1.5rem 0.5rem;
+          padding: 1.2rem 1.2rem 0.4rem; // Reduced from 1.5rem 1.5rem 0.5rem (20% smaller)
 
-          h1 {
-            font-size: 1.8rem;
+          h2 {
+            font-size: 1.4rem; // Reduced from 1.8rem (20% smaller)
           }
         }
 
         .form-content {
-          padding: 1rem 1.5rem 1.5rem;
+          padding: 0.8rem 1.2rem 1.2rem; // Reduced from 1rem 1.5rem 1.5rem (20% smaller)
         }
       }
 
       .create-page {
-        font-size: 1.2rem;
-        margin: 0 0.5rem;
+        font-size: 1.0rem; // Reduced from 1.2rem (20% smaller)
+        margin: 0 0.4rem; // Reduced from 0 0.5rem (20% smaller)
       }
     }
   }
@@ -381,12 +691,26 @@
 // High contrast mode support
 @media (prefers-contrast: high) {
   .login-container {
+    .login-header {
+      .login-language-switcher {
+        border: 2px solid var(--main-color);
+      }
+    }
+
     .form-container {
       border: 2px solid var(--main-color);
 
       .loginBtn {
         background: var(--main-color);
         border: 2px solid var(--main-color);
+      }
+
+      .input-group input {
+        border-width: 2px;
+
+        &:focus {
+          border-width: 3px;
+        }
       }
     }
   }
@@ -397,6 +721,12 @@
   .login-container {
     &::before {
       animation: none;
+    }
+
+    .login-header {
+      .login-language-switcher {
+        transition: none;
+      }
     }
 
     .form-container {
