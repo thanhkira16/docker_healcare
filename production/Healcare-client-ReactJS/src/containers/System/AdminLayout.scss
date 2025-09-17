@@ -1,12 +1,13 @@
 // Admin Layout Styles
 .system-container {
   min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: rgba(255, 252, 252, 0.7);
   
   .system-list {
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.7);
   }
 }
 
