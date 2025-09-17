@@ -1,30 +1,47 @@
-table {
-  font-size: 14px;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  tr {
-    th {
-      border-right: 1px solid #ccc;
-    }
-    td {
-      border-right: 1px solid #ccc;
-    }
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    .btn {
-      font-size: 12px;
-      height: 30px;
-      width: 80px;
-      background-color: #ccc;
-      margin: 0 4px;
-      &:hover {
-        opacity: 0.8;
-        background-color: #ccc;
-      }
-      &.btn-warning {
-        background-color: #45c3d2;
-      }
-    }
-  }
+.user-table-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 16px;
+}
+.user-table th, .user-table td {
+  vertical-align: middle !important;
+  text-align: center;
+}
+.user-table thead {
+  background: #f6f8fa;
+}
+.user-table tbody tr:hover {
+  background: #e9f5ff;
+}
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.95rem;
+}
+.btn-action {
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.btn-action.edit {
+  background: #36b3e8;
+  color: #fff;
+}
+.btn-action.delete {
+  background: #e74c3c;
+  color: #fff;
+}
+.btn-action:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.05);
+  opacity: 0.9;
 }

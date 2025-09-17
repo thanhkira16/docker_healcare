@@ -41,62 +41,68 @@ class TableManageUser extends Component {
           <FormattedMessage id="manage-user.manageUserTitle" />
         </div>
 
-        <div className="table-responsive mb-5">
-          <table className="table">
+        <div className="user-table-content">
+          <table className="table table-striped table-hover user-table">
             <thead>
               <tr>
-                <th scope="col">
+                <th>
                   <FormattedMessage id="manage-user.email" />
                 </th>
-                <th scope="col">
+                <th>
                   <FormattedMessage id="manage-user.firstname" />
                 </th>
-                <th scope="col">
+                <th>
                   <FormattedMessage id="manage-user.lastname" />
                 </th>
-                <th scope="col" className="d-none d-md-table-cell">
+                <th className="d-none d-md-table-cell">
                   <FormattedMessage id="manage-user.address" />
                 </th>
-                <th scope="col" className="d-none d-md-table-cell">
+                <th className="d-none d-md-table-cell">
                   <FormattedMessage id="manage-user.phonenumber" />
                 </th>
-                <th scope="col" className="d-none d-md-table-cell">
+                <th className="d-none d-md-table-cell">
                   <FormattedMessage id="manage-user.gender" />
                 </th>
-                <th scope="col"></th>
+                <th>
+                  <FormattedMessage id="manage-user.action" />
+                </th>
               </tr>
             </thead>
             <tbody>
-              {arrUsers &&
-                arrUsers.length > 0 &&
-                arrUsers.map((item, index) => {
-                  return (
-                    <tr>
-                      <td>{item.email}</td>
-                      <td>{item.firstName}</td>
-                      <td>{item.lastName}</td>
-                      <td className="d-none d-md-table-cell">{item.address}</td>
-                      <td className="d-none d-md-table-cell">
-                        {item.phonenumber}
-                      </td>
-                      <td className="d-none d-md-table-cell">{item.gender}</td>
-                      <td>
-                        <button
-                          className="btn"
-                          onClick={() => this.handleEditUser(item)}
-                        >
-                          <FormattedMessage id="manage-user.btnEdit" />
-                        </button>
-                        <button
-                          className="btn btn-warning"
-                          onClick={() => this.handleDeleteUser(item)}
-                        >
-                          <FormattedMessage id="manage-user.btnDelete" />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+              {arrUsers && arrUsers.length > 0 ? (
+                arrUsers.map((item, index) => (
+                  <tr key={item.id}>
+                    <td>{item.email}</td>
+                    <td>{item.firstName}</td>
+                    <td>{item.lastName}</td>
+                    <td className="d-none d-md-table-cell">{item.address}</td>
+                    <td className="d-none d-md-table-cell">{item.phonenumber}</td>
+                    <td className="d-none d-md-table-cell">{item.gender}</td>
+                    <td>
+                      <button
+                        className="btn-action edit"
+                        title="Edit"
+                        onClick={() => this.handleEditUser(item)}
+                      >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button
+                        className="btn-action delete"
+                        title="Delete"
+                        onClick={() => this.handleDeleteUser(item)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="text-center">
+                    <FormattedMessage id="manage-user.emptyMessage" />
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
