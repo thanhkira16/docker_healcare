@@ -1,19 +1,20 @@
 @import "../../../styles/common.scss";
+@import "../../../styles/Base.scss";
 
 // Variables
-:root {
-  --main-color: #0071ba;
-  --yellow-color: #bb8d09;
-  --white-color: #fff;
-  --success-color: #00C087;
-  --danger-color: #d01a1d;
-  --warning-color: #FFAC42;
-  --gray-light: #f8f9fa;
-  --gray-medium: #6c757d;
-  --border-color: #e9ecef;
-  --shadow-light: rgba(0, 0, 0, 0.08);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
-}
+// :root {
+//   --main-color: #0071ba;
+//   --yellow-color: #bb8d09;
+//   --white-color: #fff;
+//   --success-color: #00C087;
+//   --danger-color: #d01a1d;
+//   --warning-color: #FFAC42;
+//   --gray-light: #f8f9fa;
+//   --gray-medium: #6c757d;
+//   --border-color: #e9ecef;
+//   --shadow-light: rgba(0, 0, 0, 0.08);
+//   --shadow-medium: rgba(0, 0, 0, 0.15);
+// }
 
 .manage-clinic-container {
   padding: 20px 30px;
