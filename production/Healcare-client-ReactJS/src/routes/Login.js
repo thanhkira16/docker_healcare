@@ -184,10 +184,11 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
     <>
       <div className="container-fluid">
         <div className="row login-container">
-          <div className="left col-lg-6 d-none d-lg-block"> {/* Changed from col-7 to col-lg-6 */}
+          {/* Updated grid classes for 20% smaller layout */}
+          <div className="left col-6 d-none d-lg-block">
             <div className="logo-section">
               <div className="healthcare-logo">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
                   <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
                   <circle cx="20" cy="10" r="2" />
@@ -200,20 +201,20 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
             </p>
             <div className="features">
               <div className="feature-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 <span><FormattedMessage id="footer.verified" /></span>
               </div>
               <div className="feature-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12,6 12,12 16,14" />
                 </svg>
                 <span><FormattedMessage id="header.telehealth" /></span>
               </div>
               <div className="feature-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
                 <span><FormattedMessage id="footer.certified" /></span>
@@ -221,7 +222,9 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
             </div>
           </div>
 
-          <div className="right col-lg-6 col-12"> {/* Changed from col-lg-5 col-12 to col-lg-6 col-12 */}
+          {/* Updated grid classes for better responsive behavior */}
+          <div className="right col-lg-6 col-md-8 col-sm-10 col-12">
+            {/* Header with Language Switcher */}
             <div className="login-header">
               <div className="login-language-switcher">
                 <LanguageSwitcher />
@@ -229,74 +232,82 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
             </div>
 
             {isOpenLogin ? (
-              <div className="form-container">
-                <div className="form-header">
-                  <h2><FormattedMessage id="auth.login_title" /></h2>
-                  <p><FormattedMessage id="auth.login_subtitle" /></p>
-                </div>
+              // Render login
+              <>
+                <div className="form-container">
+                  <div className="form-header">
+                    <h2><FormattedMessage id="auth.login_title" /></h2>
+                    <p><FormattedMessage id="auth.login_subtitle" /></p>
+                  </div>
 
-                <div className="form-content gap-2"> {/* Reduced gap from 3 to 2 */}
-                  <InputField
-                    type="email"
-                    placeholder={<FormattedMessage id="auth.email_placeholder" />}
-                    value={state.email}
-                    name="email"
-                    isValid={isValidLogin.email}
-                    onChange={(event) => handleOnchangeInput(event, "email")}
-                    onKeyDown={handleKeyDown}
-                    iconType="email"
-                  />
+                  <div className="form-content gap-3">
+                    <InputField
+                      type="email"
+                      placeholder={<FormattedMessage id="auth.email_placeholder" />}
+                      value={state.email}
+                      name="email"
+                      isValid={isValidLogin.email}
+                      onChange={(event) => handleOnchangeInput(event, "email")}
+                      onKeyDown={handleKeyDown}
+                      iconType="email"
+                    />
 
-                  <InputField
-                    type="password"
-                    placeholder={<FormattedMessage id="auth.password_placeholder" />}
-                    value={state.password}
-                    name="password"
-                    isValid={isValidLogin.password}
-                    onChange={(event) => handleOnchangeInput(event, "password")}
-                    onKeyDown={handleKeyDown}
-                    isShow={state.isShowPassword}
-                    onToggle={() => handleTogglePassword("password")}
-                    iconType="password"
-                  />
+                    <InputField
+                      type="password"
+                      placeholder={<FormattedMessage id="auth.password_placeholder" />}
+                      value={state.password}
+                      name="password"
+                      isValid={isValidLogin.password}
+                      onChange={(event) => handleOnchangeInput(event, "password")}
+                      onKeyDown={handleKeyDown}
+                      isShow={state.isShowPassword}
+                      onToggle={() => handleTogglePassword("password")}
+                      iconType="password"
+                    />
 
-                  {state.errMsg && (
-                    <div className="error-message">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="15" y1="9" x2="9" y2="15" />
-                        <line x1="9" y1="9" x2="15" y2="15" />
-                      </svg>
-                      <span>{state.errMsg}</span>
-                    </div>
-                  )}
+                    {state.errMsg && (
+                      <div className="error-message">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="15" y1="9" x2="9" y2="15" />
+                          <line x1="9" y1="9" x2="15" y2="15" />
+                        </svg>
+                        <span>{state.errMsg}</span>
+                      </div>
+                    )}
 
-                  <span className="loginBtn" onClick={() => handleLogin()}>
-                    <FormattedMessage id="auth.login_button" />
-                  </span>
-
-                  <a href="" className="forget">
-                    <FormattedMessage id="auth.forgot_password" />
-                  </a>
-
-                  <div className="sign-up">
-                    <span
-                      onClick={handleSwitchLoginAndSignUp}
-                      className="signupBtn"
-                    >
-                      <FormattedMessage id="auth.create_account" />
+                    <span className="loginBtn" onClick={() => handleLogin()}>
+                      <FormattedMessage id="auth.login_button" />
                     </span>
+
+                    <a href="" className="forget">
+                      <FormattedMessage id="auth.forgot_password" />
+                    </a>
+
+                    <div className="sign-up">
+                      <span
+                        onClick={handleSwitchLoginAndSignUp}
+                        className="signupBtn"
+                      >
+                        <FormattedMessage id="auth.create_account" />
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <p className="create-page">
+                  <b><FormattedMessage id="auth.create_page" /></b>
+                </p>
+              </>
             ) : (
+              // Render sign up
               <div className="form-container">
                 <div className="form-header">
                   <h2><FormattedMessage id="auth.signup_title" /></h2>
                   <p><FormattedMessage id="auth.signup_subtitle" /></p>
                 </div>
 
-                <div className="form-content gap-2"> {/* Reduced gap from 3 to 2 */}
+                <div className="form-content gap-3">
                   <InputField
                     type="email"
                     placeholder={<FormattedMessage id="auth.email_placeholder" />}
@@ -347,7 +358,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
 
                   {state.errMsg && (
                     <div className="error-message">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
                         <line x1="15" y1="9" x2="9" y2="15" />
                         <line x1="9" y1="9" x2="15" y2="15" />
@@ -372,9 +383,6 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                 </div>
               </div>
             )}
-            <p className="create-page">
-              <b><FormattedMessage id="auth.create_page" /></b>
-            </p>
           </div>
         </div>
       </div>

@@ -1,15 +1,12 @@
-/* Login.scss */
-@import "../../styles/Base.scss";
-
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--main-color) 50%, var(--bs-white) 100%);
+  background: linear-gradient(135deg, var(--blue-medium-color) 0%, #f0fffe 50%, var(--white-color) 100%);
   position: relative;
-  padding: 1rem;
-
+  
+  // Add subtle pattern overlay
   &::before {
     content: '';
     position: absolute;
@@ -24,90 +21,91 @@
   }
 
   .left {
-    @extend .col-lg-6;
-    @extend .d-none;
-    @extend .d-lg-block;
+    width: 100%;
+    max-width: 400px; // Reduced from 500px (20% smaller)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem;
+    padding: 1.6rem; // Reduced from 2rem (20% smaller)
     position: relative;
     z-index: 1;
 
     .logo-section {
-      @extend .d-flex;
-      @extend .align-items-center;
-      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
 
       .healthcare-logo {
-        width: 48px;
-        height: 48px;
+        width: 51px; // Reduced from 64px (20% smaller)
+        height: 51px; // Reduced from 64px (20% smaller)
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
-        border-radius: 12px;
-        @extend .d-flex;
-        @extend .align-items-center;
-        @extend .justify-content-center;
-        margin-right: 1rem;
-        box-shadow: 0 4px 16px rgba(69, 195, 210, 0.3);
-
+        border-radius: 13px; // Reduced from 16px (20% smaller)
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1.2rem; // Reduced from 1.5rem (20% smaller)
+        box-shadow: 0 6px 26px rgba(69, 195, 210, 0.3); // Reduced from 8px 32px (20% smaller)
+        
         svg {
           color: var(--white-color);
+          width: 38px; // Reduced from default
+          height: 38px; // Reduced from default
         }
       }
 
       h1 {
         font-family: "Roboto", sans-serif;
-        font-size: var(--title-font-size);
+        font-size: 3.8rem; // Reduced from 4.8rem (20% smaller)
         font-weight: 700;
         background: linear-gradient(135deg, var(--main-color), #3ba5b8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        @extend .m-0;
-        letter-spacing: -1px;
+        margin: 0;
+        letter-spacing: -1.6px; // Reduced from -2px (20% smaller)
       }
     }
 
     p {
-      font-size: 1.8rem;
-      color: var(--bs-gray);
-      line-height: 1.4;
-      margin-bottom: 2rem;
+      font-size: 1.9rem; // Reduced from 2.4rem (20% smaller)
+      color: #4a5568;
+      line-height: 1.4; // Slightly reduced from 1.5
+      margin-bottom: 2.4rem; // Reduced from 3rem (20% smaller)
       font-family: "Roboto", sans-serif;
       font-weight: 400;
     }
 
     .features {
-      @extend .d-flex;
+      display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem; // Reduced from 1.5rem (20% smaller)
 
       .feature-item {
-        @extend .d-flex;
-        @extend .align-items-center;
-        gap: 0.8rem;
-        padding: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem; // Reduced from 1rem (20% smaller)
+        padding: 0.8rem; // Reduced from 1rem (20% smaller)
         background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(8px);
-        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border-radius: 10px; // Reduced from 12px (20% smaller)
         border: 1px solid rgba(69, 195, 210, 0.1);
         transition: all 0.3s ease;
 
         &:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 15px rgba(69, 195, 210, 0.15);
+          transform: translateY(-1.6px); // Reduced from -2px (20% smaller)
+          box-shadow: 0 6px 20px rgba(69, 195, 210, 0.15); // Reduced from 8px 25px (20% smaller)
         }
 
         svg {
           color: var(--main-color);
           flex-shrink: 0;
-          width: 20px;
-          height: 20px;
+          width: 19px; // Reduced from 24px (20% smaller)
+          height: 19px; // Reduced from 24px (20% smaller)
         }
 
         span {
-          font-size: 1.2rem;
-          color: var(--bs-gray-dark);
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
+          color: #2d3748;
           font-weight: 500;
         }
       }
@@ -115,59 +113,65 @@
   }
 
   .right {
-    @extend .col-lg-6;
-    @extend .col-12;
-    padding: 1.5rem;
+    width: 100%;
+    max-width: 352px; // Reduced from 440px (20% smaller)
+    padding: 1.6rem; // Reduced from 2rem (20% smaller)
     position: relative;
     z-index: 1;
 
+    // Header section for language switcher
     .login-header {
-      @extend .d-flex;
-      @extend .justify-content-end;
-      @extend .align-items-center;
-      margin-bottom: 1.5rem;
-      @extend .p-0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
+      padding: 0;
 
       .login-language-switcher {
         background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        padding: 0.4rem 0.6rem;
+        border-radius: 10px; // Reduced from 12px (20% smaller)
+        padding: 0.4rem 0.6rem; // Reduced from 0.5rem 0.8rem (20% smaller)
         border: 1px solid rgba(69, 195, 210, 0.2);
         transition: all 0.3s ease;
 
         &:hover {
-          background: var(--bs-white);
-          box-shadow: 0 2px 6px rgba(69, 195, 210, 0.15);
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0 1.6px 6px rgba(69, 195, 210, 0.15); // Reduced from 2px 8px (20% smaller)
         }
 
+        // Simple override for LanguageSwitcher in login page
         .language-switcher {
-          @extend .d-inline-flex;
-          @extend .align-items-center;
-          gap: 0.6rem !important;
           cursor: pointer !important;
+          position: relative !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 0.6rem !important; // Reduced from 0.8rem (20% smaller)
 
           .language-toggle {
-            @extend .d-flex;
-            @extend .p-0;
+            position: relative !important;
+            display: flex !important;
             width: auto !important;
             height: auto !important;
             background: transparent !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
             transition: none !important;
             box-shadow: none !important;
-            gap: 0.4rem !important;
+            gap: 0.4rem !important; // Reduced from 0.5rem (20% smaller)
 
             .lang-option {
-              @extend .d-inline-block;
-              @extend .align-items-center;
-              @extend .justify-content-center;
-              font-size: 1.1rem !important;
+              flex: none !important;
+              display: inline-block !important;
+              align-items: center !important;
+              justify-content: center !important;
+              font-size: 1.0rem !important; // Reduced from 1.3rem (20% smaller)
               font-weight: 500 !important;
-              color: var(--bs-gray) !important;
+              color: #9ca3af !important;
               transition: all 0.3s ease !important;
-              border-radius: 5px !important;
+              border-radius: 5px !important; // Reduced from 6px (20% smaller)
               cursor: pointer !important;
               z-index: 2 !important;
-              padding: 0.2rem 0.4rem !important;
+              padding: 0.2rem 0.4rem !important; // Reduced from 0.3rem 0.5rem (20% smaller)
               background: transparent !important;
               box-shadow: none !important;
 
@@ -184,151 +188,174 @@
             }
 
             .toggle-slider {
-              @extend .d-none;
-            }
-
-            &::after {
-              content: '|' !important;
-              position: absolute !important;
-              left: 50% !important;
-              top: 50% !important;
-              transform: translate(-50%, -50%) !important;
-              color: var(--border-color-light) !important;
-              font-size: 1rem !important;
-              pointer-events: none !important;
+              display: none !important; // Hide slider completely
             }
           }
 
+          &:hover .language-toggle {
+            background: transparent !important;
+          }
+
+          &:active .language-toggle {
+            transform: none !important;
+          }
+
           .language-label {
-            font-size: 1rem !important;
-            color: var(--bs-gray) !important;
+            font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+            color: #6b7280 !important;
             font-weight: 500 !important;
             white-space: nowrap !important;
+          }
+
+          // Add separator between options
+          .language-toggle::after {
+            content: '|' !important;
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            color: #d1d5db !important;
+            font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+            pointer-events: none !important;
           }
         }
       }
     }
 
     .form-container {
-      background: var(--bs-white);
-      border-radius: 16px;
+      background: var(--white-color);
+      border-radius: 16px; // Reduced from 20px (20% smaller)
       box-shadow: 
-        0 12px 40px rgba(69, 195, 210, 0.15),
-        0 6px 15px rgba(0, 0, 0, 0.08);
+        0 16px 48px rgba(69, 195, 210, 0.15), // Reduced from 20px 60px (20% smaller)
+        0 6px 20px rgba(0, 0, 0, 0.08); // Reduced from 8px 25px (20% smaller)
       overflow: hidden;
-      border: 1px solid var(--border-color-light);
-      margin-bottom: 1.5rem;
+      border: 1px solid rgba(69, 195, 210, 0.1);
+      margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
       position: relative;
 
+      // Gradient border effect
       &::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 3px;
+        height: 3px; // Reduced from 4px (20% smaller)
         background: linear-gradient(90deg, var(--main-color), #3ba5b8, var(--main-color));
         background-size: 200% 100%;
         animation: gradientSlide 3s ease-in-out infinite;
       }
 
       .form-header {
-        padding: 2rem 2rem 0.8rem;
-        @extend .text-center;
+        padding: 2rem 2rem 0.8rem; // Reduced from 2.5rem 2.5rem 1rem (20% smaller)
+        text-align: center;
         background: linear-gradient(135deg, rgba(69, 195, 210, 0.03), rgba(69, 195, 210, 0.01));
 
         h2 {
-          font-size: 2rem;
+          font-size: 1.9rem; // Reduced from 2.4rem (20% smaller)
           font-weight: 700;
-          color: var(--black-color);
-          margin-bottom: 0.4rem;
+          color: var(--black-bolor);
+          margin-bottom: 0.4rem; // Reduced from 0.5rem (20% smaller)
         }
 
         p {
-          color: var(--bs-gray);
-          font-size: 1.2rem;
-          @extend .m-0;
+          color: #6b7280;
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
+          margin: 0;
         }
       }
 
       .form-content {
-        padding: 0.8rem 2rem 2rem;
-        @extend .d-flex;
+        padding: 0.8rem 2rem 2rem; // Reduced from 1rem 2.5rem 2.5rem (20% smaller)
+        display: flex;
         flex-direction: column;
-        gap: 1.2rem;
 
         .input-group {
           position: relative;
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
           width: 100%;
-          @extend .d-flex;
+          display: flex;
           flex-direction: column;
 
           .input-icon {
             position: absolute;
-            left: 1.2rem;
+            left: 1.2rem; // Reduced from 1.5rem (20% smaller)
             top: 50%;
             transform: translateY(-50%);
-            color: var(--bs-gray);
+            color: #9ca3af;
             z-index: 2;
             pointer-events: none;
-            font-size: 1.4rem;
           }
 
+          // Base input styles for all inputs
           input {
-            @extend .w-100;
+            width: 100%;
             min-width: 0;
-            padding: 1.2rem 4rem 1.2rem 3.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
+            padding: 1.2rem 4rem 1.2rem 3.6rem; // Reduced from 1.5rem 5rem 1.5rem 4.5rem (20% smaller)
+            border-radius: 10px; // Reduced from 12px (20% smaller)
+            border: 2px solid #e5e7eb;
             outline: none;
-            font-size: 1.4rem;
-            background-color: var(--gray-medium-color);
+            font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
+            background-color: #fafbfc;
             transition: all 0.3s ease;
             box-sizing: border-box;
             font-family: "Roboto", sans-serif;
 
+            // Consistent focus state for all inputs
             &:focus {
-              border-color: var(--admin-menu-primary-color);
-              background-color: var(--bs-white);
-              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1);
+              border-color: var(--main-color);
+              background-color: var(--white-color);
+              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1); // Reduced from 3px (20% smaller)
+              border-radius: 10px;
             }
 
+            // Consistent hover state for all inputs
             &:hover:not(:focus) {
-              border-color: var(--border-color-light);
-              background-color: var(--bs-white);
+              border-color: #d1d5db;
+              background-color: var(--white-color);
+              border-radius: 10px;
             }
 
+            // Consistent invalid state for all inputs
             &.is-invalid {
-              border-color: var(--bs-danger);
+              border-color: #ef4444;
               background-color: #fef2f2;
+              border-radius: 10px;
 
               &:focus {
-                box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+                box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1); // Reduced from 3px (20% smaller)
+                border-radius: 10px;
               }
             }
 
+            // Consistent placeholder style for all inputs
             &::placeholder {
-              color: var(--bs-gray);
+              color: #9ca3af;
             }
 
+            // Remove any default browser styling
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
           }
 
+          // For inputs that don't need the show/hide button (email, phone)
           &:not(.password-field) input {
-            padding-right: 1.2rem;
+            padding-right: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
           }
 
+          // Show/hide password button
           .show-hide {
             position: absolute;
             top: 50%;
-            right: 1.2rem;
+            right: 1.2rem; // Reduced from 1.5rem (20% smaller)
             transform: translateY(-50%);
             cursor: pointer;
-            color: var(--bs-gray);
-            padding: 0.4rem;
-            border-radius: 5px;
+            color: #6b7280;
+            padding: 0.4rem; // Reduced from 0.5rem (20% smaller)
+            border-radius: 5px; // Reduced from 6px (20% smaller)
             transition: all 0.2s ease;
             z-index: 3;
 
@@ -338,31 +365,31 @@
             }
 
             i {
-              font-size: 1.4rem;
+              font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
             }
           }
         }
 
         .error-message {
-          @extend .d-flex;
-          @extend .align-items-center;
-          gap: 0.6rem;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem; // Reduced from 0.8rem (20% smaller)
           background-color: #fef2f2;
-          border: 1px solid var(--bs-danger);
-          border-radius: 6px;
-          padding: 0.8rem 1rem;
-          margin-bottom: 1.2rem;
-
+          border: 1px solid #fecaca;
+          border-radius: 6px; // Reduced from 8px (20% smaller)
+          padding: 0.8rem 1rem; // Reduced from 1rem 1.2rem (20% smaller)
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
+          
           svg {
-            color: var(--bs-danger);
+            color: #ef4444;
             flex-shrink: 0;
-            width: 14px;
-            height: 14px;
+            width: 13px; // Reduced from 16px (20% smaller)
+            height: 13px; // Reduced from 16px (20% smaller)
           }
 
           span {
-            color: var(--bs-danger);
-            font-size: 1.2rem;
+            color: #dc2626;
+            font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
             font-weight: 500;
           }
         }
@@ -370,20 +397,21 @@
         .loginBtn {
           cursor: pointer;
           background: linear-gradient(135deg, var(--main-color) 0%, #3ba5b8 100%);
-          padding: 1.2rem 1.8rem;
-          @extend .text-center;
-          @extend .w-100;
-          border-radius: 10px;
+          padding: 1.2rem 1.6rem; // Reduced from 1.5rem 2rem (20% smaller)
+          text-align: center;
+          text-decoration: none;
+          width: 100%;
+          border-radius: 10px; // Reduced from 12px (20% smaller)
           color: var(--white-color);
-          font-size: 1.4rem;
+          font-size: 1.3rem; // Reduced from 1.6rem (20% smaller)
           font-weight: 600;
           border: none;
           outline: none;
-          margin-bottom: 1.2rem;
+          margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
-          box-shadow: 0 3px 12px rgba(69, 195, 210, 0.3);
+          box-shadow: 0 3px 12px rgba(69, 195, 210, 0.3); // Reduced from 4px 15px (20% smaller)
 
           &::before {
             content: '';
@@ -397,8 +425,8 @@
           }
 
           &:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(69, 195, 210, 0.4);
+            transform: translateY(-1.6px); // Reduced from -2px (20% smaller)
+            box-shadow: 0 6px 20px rgba(69, 195, 210, 0.4); // Reduced from 8px 25px (20% smaller)
 
             &::before {
               left: 100%;
@@ -411,11 +439,11 @@
         }
 
         .forget {
-          @extend .text-center;
+          text-align: center;
           color: var(--main-color);
-          font-size: 1.2rem;
+          font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
           text-decoration: none;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.6rem; // Reduced from 2rem (20% smaller)
           transition: all 0.3s ease;
           cursor: pointer;
           font-weight: 500;
@@ -427,17 +455,17 @@
         }
 
         .sign-up {
-          @extend .text-center;
-          padding-top: 1.2rem;
-          border-top: 1px solid var(--border-color);
+          text-align: center;
+          padding-top: 1.2rem; // Reduced from 1.5rem (20% smaller)
+          border-top: 1px solid #e5e7eb;
 
           .signupBtn {
             color: var(--main-color);
-            font-size: 1.2rem;
+            font-size: 1.1rem; // Reduced from 1.4rem (20% smaller)
             font-weight: 600;
             cursor: pointer;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            padding: 0.6rem 1.2rem; // Reduced from 0.8rem 1.5rem (20% smaller)
+            border-radius: 6px; // Reduced from 8px (20% smaller)
             transition: all 0.3s ease;
             text-decoration: none;
 
@@ -451,10 +479,10 @@
     }
 
     .create-page {
-      @extend .text-center;
-      font-size: 1.1rem;
-      color: var(--bs-gray);
-      @extend .m-0;
+      text-align: center;
+      font-size: 1.0rem; // Reduced from 1.3rem (20% smaller)
+      color: #6b7280;
+      margin: 0;
 
       b {
         color: var(--main-color);
@@ -469,6 +497,7 @@
   }
 }
 
+// Animations
 @keyframes gradientSlide {
   0%, 100% {
     background-position: 0% 50%;
@@ -478,49 +507,49 @@
   }
 }
 
-/* Responsive Breakpoints */
+// Responsive Design - Updated with smaller values
 @media (max-width: 991.98px) {
   .login-container {
     .left {
-      @extend .d-none;
+      display: none;
     }
 
     .right {
-      @extend .w-100;
-      padding: 1rem;
+      max-width: 100%;
+      padding: 1.2rem; // Reduced from 1.5rem (20% smaller)
 
       .login-header {
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem; // Reduced from 1.5rem (20% smaller)
 
         .login-language-switcher {
-          padding: 0.3rem 0.5rem;
-          border-radius: 8px;
-
+          padding: 0.3rem 0.5rem; // Reduced from 0.4rem 0.6rem (20% smaller)
+          border-radius: 8px; // Reduced from 10px (20% smaller)
+          
           .language-switcher {
-            gap: 0.5rem !important;
-
+            gap: 0.5rem !important; // Reduced from 0.6rem (20% smaller)
+            
             .language-toggle {
-              gap: 0.3rem !important;
-
+              gap: 0.3rem !important; // Reduced from 0.4rem (20% smaller)
+              
               .lang-option {
-                font-size: 1rem !important;
-                padding: 0.15rem 0.3rem !important;
+                font-size: 1.0rem !important; // Reduced from 1.2rem (20% smaller)
+                padding: 0.16rem 0.3rem !important; // Reduced from 0.2rem 0.4rem (20% smaller)
               }
-
+              
               &::after {
-                font-size: 1rem !important;
+                font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
               }
             }
-
+            
             .language-label {
-              font-size: 1rem !important;
+              font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
             }
           }
         }
       }
 
       .form-container {
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem; // Reduced from 1rem (20% smaller)
       }
     }
   }
@@ -528,75 +557,75 @@
 
 @media (max-width: 767.98px) {
   .login-container {
-    padding: 0.5rem;
+    padding: 0.8rem; // Reduced from 1rem (20% smaller)
 
     .right {
-      padding: 0.8rem;
+      padding: 0.8rem; // Reduced from 1rem (20% smaller)
 
       .login-header {
-        margin-bottom: 0.8rem;
-
+        margin-bottom: 0.8rem; // Reduced from 1rem (20% smaller)
+        
         .login-language-switcher {
-          padding: 0.2rem 0.4rem;
-          border-radius: 6px;
-
+          padding: 0.24rem 0.4rem; // Reduced from 0.3rem 0.5rem (20% smaller)
+          border-radius: 6px; // Reduced from 8px (20% smaller)
+          
           .language-switcher {
-            gap: 0.4rem !important;
-
+            gap: 0.4rem !important; // Reduced from 0.5rem (20% smaller)
+            
             .language-toggle {
-              gap: 0.2rem !important;
-
+              gap: 0.24rem !important; // Reduced from 0.3rem (20% smaller)
+              
               .lang-option {
-                font-size: 0.9rem !important;
-                padding: 0.15rem 0.25rem !important;
+                font-size: 0.9rem !important; // Reduced from 1.1rem (20% smaller)
+                padding: 0.16rem 0.24rem !important; // Reduced from 0.2rem 0.3rem (20% smaller)
               }
-
+              
               &::after {
-                font-size: 0.8rem !important;
+                font-size: 0.8rem !important; // Reduced from 1rem (20% smaller)
               }
             }
-
+            
             .language-label {
-              @extend .d-none;
+              display: none !important;
             }
           }
         }
       }
 
       .form-container {
-        border-radius: 12px;
+        border-radius: 13px; // Reduced from 16px (20% smaller)
 
         .form-header {
-          padding: 1.5rem 1.5rem 0.5rem;
+          padding: 1.6rem 1.6rem 0.4rem; // Reduced from 2rem 2rem 0.5rem (20% smaller)
 
           h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem; // Reduced from 2rem (20% smaller)
           }
 
           p {
-            font-size: 1.1rem;
+            font-size: 1.0rem; // Reduced from 1.3rem (20% smaller)
           }
         }
 
         .form-content {
-          padding: 0.8rem 1.5rem 1.5rem;
+          padding: 0.8rem 1.6rem 1.6rem; // Reduced from 1rem 2rem 2rem (20% smaller)
 
           .input-group {
             input {
-              padding: 1rem 1rem 1rem 3rem;
-              font-size: 1.3rem;
-              border-radius: 8px;
+              padding: 1.0rem 1.0rem 1.0rem 3.2rem; // Reduced from 1.3rem 1.3rem 1.3rem 4rem (20% smaller)
+              font-size: 1.2rem; // Reduced from 1.5rem (20% smaller)
+              border-radius: 10px;
+              border: 2px solid #e5e7eb;
             }
 
             .input-icon {
-              left: 1rem;
-              font-size: 1.3rem;
+              left: 1.0rem; // Reduced from 1.3rem (20% smaller)
             }
           }
 
           .loginBtn {
-            font-size: 1.3rem;
-            padding: 1rem 1.5rem;
+            font-size: 1.2rem; // Reduced from 1.5rem (20% smaller)
+            padding: 1.0rem 1.4rem; // Reduced from 1.3rem 1.8rem (20% smaller)
           }
         }
       }
@@ -609,83 +638,85 @@
     .right {
       .login-header {
         .login-language-switcher {
-          padding: 0.2rem 0.3rem;
-          border-radius: 5px;
-
+          padding: 0.2rem 0.32rem; // Reduced from 0.25rem 0.4rem (20% smaller)
+          border-radius: 5px; // Reduced from 6px (20% smaller)
+          
           .language-switcher {
-            gap: 0.3rem !important;
-
+            gap: 0.32rem !important; // Reduced from 0.4rem (20% smaller)
+            
             .language-toggle {
-              gap: 0.2rem !important;
-
+              gap: 0.2rem !important; // Reduced from 0.25rem (20% smaller)
+              
               .lang-option {
-                font-size: 0.8rem !important;
-                padding: 0.1rem 0.2rem !important;
+                font-size: 0.8rem !important; // Reduced from 1rem (20% smaller)
+                padding: 0.12rem 0.2rem !important; // Reduced from 0.15rem 0.25rem (20% smaller)
               }
-
+              
               &::after {
-                font-size: 0.7rem !important;
+                font-size: 0.72rem !important; // Reduced from 0.9rem (20% smaller)
               }
             }
-
+            
             .language-label {
-              @extend .d-none;
+              display: none !important;
             }
           }
         }
       }
 
       .form-container {
-        margin: 0 0.3rem 0.8rem;
+        margin: 0 0.4rem 0.8rem; // Reduced from 0 0.5rem 1rem (20% smaller)
 
         .form-header {
-          padding: 1.2rem 1.2rem 0.4rem;
+          padding: 1.2rem 1.2rem 0.4rem; // Reduced from 1.5rem 1.5rem 0.5rem (20% smaller)
 
           h2 {
-            font-size: 1.6rem;
+            font-size: 1.4rem; // Reduced from 1.8rem (20% smaller)
           }
         }
 
         .form-content {
-          padding: 0.8rem 1.2rem 1.2rem;
+          padding: 0.8rem 1.2rem 1.2rem; // Reduced from 1rem 1.5rem 1.5rem (20% smaller)
         }
       }
 
       .create-page {
-        font-size: 1rem;
-        margin: 0 0.3rem;
+        font-size: 1.0rem; // Reduced from 1.2rem (20% smaller)
+        margin: 0 0.4rem; // Reduced from 0 0.5rem (20% smaller)
       }
     }
   }
 }
 
+// High contrast mode support
 @media (prefers-contrast: high) {
   .login-container {
     .login-header {
       .login-language-switcher {
-        border: 1px solid var(--main-color);
+        border: 2px solid var(--main-color);
       }
     }
 
     .form-container {
-      border: 1px solid var(--main-color);
+      border: 2px solid var(--main-color);
 
       .loginBtn {
         background: var(--main-color);
-        border: 1px solid var(--main-color);
+        border: 2px solid var(--main-color);
       }
 
       .input-group input {
-        border-width: 1px;
+        border-width: 2px;
 
         &:focus {
-          border-width: 2px;
+          border-width: 3px;
         }
       }
     }
   }
 }
 
+// Reduced motion support
 @media (prefers-reduced-motion: reduce) {
   .login-container {
     &::before {
