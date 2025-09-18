@@ -3,7 +3,7 @@
 
 // Healthcare Footer Styles with VKU design system
 .healthcare-footer {
-  background: linear-gradient(135deg, $main-clinic 0%, $blue-medium-clinic 100%);
+  background: var(--section-background);
   color: $black-clinic;
   font-family: $fontmain;
   position: relative;
