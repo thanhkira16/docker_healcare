@@ -64,11 +64,36 @@
 
         .carousel-slide {
             min-height: 300px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
 
             .carousel-image {
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
+            }
+
+            .doctor-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: var(--font-size-xs);
+                min-height: 80px;
+                /* Add fixed height for doctor info */
+            }
+
+            .specialty-name {
+                color: var(--bs-gray);
+                font-size: var(--font-size-sm);
+            }
+
+            .appointment-btn-container {
+                position: absolute;
+                bottom: 15px;
+                width: 90%;
+                display: flex;
+                justify-content: center;
             }
 
             .btn-appointment {
@@ -79,7 +104,6 @@
                 font-size: var(--font-size-2xs);
                 padding: 0 20px;
                 min-width: 150px;
-                margin: var(--font-size-md) 0;
                 height: 35px;
 
                 &:hover {
@@ -91,36 +115,52 @@
 
     // Medical facility specific styles
     &.medical-carousel {
-        background-color: var(--blue-medium-color);
+        background-color: var(--bs-white);
 
         .carousel-slide {
             min-height: 260px;
+            width: 98%;
+            /* Increased width for larger cards */
+            margin: 0 auto;
 
             .carousel-image {
                 height: 180px;
+            }
+
+            .carousel-item-title {
+                min-height: 40px;
+                /* Fixed height for title area */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
             }
         }
     }
 
     // Header section styles
     .carousel-header {
-        height: 100px;
+        height: 80px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: var(--font-size-md);
+        width: 100%;
 
         .header-title {
             font-size: var(--font-size-3xl);
             font-weight: 600;
+            text-align: left;
+            margin: 0;
+            padding: 0;
 
             &.header-title-underline {
                 padding-bottom: 4px;
                 border-bottom: 2px solid var(--blue-medium-color);
                 margin-bottom: 8px;
-                display: block;
+                display: inline-block;
                 min-width: 200px;
-                text-align: center;
+                text-align: left;
                 height: 40px;
             }
         }
@@ -130,9 +170,12 @@
             font-size: var(--font-size-sm);
             font-weight: 600;
             cursor: pointer;
+            margin-left: auto;
+            padding: var(--font-size-xs) var(--font-size-sm);
 
             &:hover {
                 text-decoration: underline;
+                color: var(--bs-secondary);
             }
         }
     }

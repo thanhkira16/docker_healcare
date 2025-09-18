@@ -67,7 +67,7 @@ class OutStandingDoctor extends Component {
 
         slides.push(slide);
       });
-      
+
       this.setState({
         slides: slides,
       });
@@ -76,7 +76,7 @@ class OutStandingDoctor extends Component {
 
   renderDoctorItem = (slide, index) => {
     return (
-      <div className="carousel-slide" onClick={() => this.handleViewDetailDoctor(slide.doctorId)}>
+      <div className="carousel-slide doctor-item" onClick={() => this.handleViewDetailDoctor(slide.doctorId)}>
         <div
           className="carousel-image"
           style={{
@@ -87,11 +87,13 @@ class OutStandingDoctor extends Component {
             margin: '0 auto'
           }}
         ></div>
-        <h5 className="carousel-item-title">{slide.mainTitle}</h5>
-        {slide.specialtyName && <small>{slide.specialtyName}</small>}
-        <div className="mt-4">
+        <div className="doctor-info">
+          <h5 className="carousel-item-title">{slide.mainTitle}</h5>
+          {slide.specialtyName && <small className="specialty-name">{slide.specialtyName}</small>}
+        </div>
+        <div className="appointment-btn-container">
           <button className="btn-appointment">
-            Book Appointment
+            <FormattedMessage id="home-page.book-appointment" defaultMessage="Book Appointment" />
           </button>
         </div>
       </div>
@@ -101,7 +103,7 @@ class OutStandingDoctor extends Component {
   render() {
     const { language } = this.props;
     const { slides } = this.state;
-    
+
     // Slider settings
     const settings = {
       dots: false,
@@ -146,7 +148,7 @@ class OutStandingDoctor extends Component {
               <FormattedMessage id="home-page.btnSeeMore" />
             </span>
           </div>
-          
+
           <Carousel
             slides={slides}
             settings={settings}
