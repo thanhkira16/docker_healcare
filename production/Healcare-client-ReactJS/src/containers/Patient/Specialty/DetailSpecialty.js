@@ -189,8 +189,12 @@ const DetailSpecialty = (props) => {
           </div>
         </div>
         
-        <div className="select-location">
+        
+        
+        <div className="detail-specialty-body">
           <div className="container">
+            <div className="select-location">
+          {/* <div className="container"> */}
             <select
               onChange={handleOnChangeSelect}
               className="select-location-btn"
@@ -208,11 +212,8 @@ const DetailSpecialty = (props) => {
                   );
                 })}
             </select>
-          </div>
+          {/* </div> */}
         </div>
-        
-        <div className="detail-specialty-body">
-          <div className="container">
             {arrDoctorId &&
               arrDoctorId.length > 0 &&
               arrDoctorId.map((doctorId) => (
@@ -227,7 +228,9 @@ const DetailSpecialty = (props) => {
                   <div className="doctor-schedule-section">
                     <div className="doctor-info-grid">
                       <DoctorSchedule doctorId={doctorId ? doctorId : -1} />
-                      <DoctorExtraInfor doctorId={doctorId ? doctorId : -1} />
+                      <div className="doctor-extra-infor-wrapper">
+                        <DoctorExtraInfor doctorId={doctorId ? doctorId : -1} />
+                      </div>
                     </div>
                   </div>
                 </div>

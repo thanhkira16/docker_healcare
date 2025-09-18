@@ -143,12 +143,6 @@ class ProfileDoctor extends Component {
               ) : (
                 ""
               )}
-              <li className="price">
-                <span>
-                  <FormattedMessage id="patient.booking-modal.price-title" />
-                </span>
-                {this.renderPrice(dataProfile, this.props.language)}
-              </li>
             </ul>
           </div>
         </div>
