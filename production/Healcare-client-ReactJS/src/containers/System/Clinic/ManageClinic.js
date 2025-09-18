@@ -10,6 +10,7 @@ import AddClinicModal from "./AddClinicModal";
 
 const ManageClinic = () => {
   const dispatch = useDispatch();
+  const { language } = useSelector(state => state.app);
 
   const [clinicsList, setClinicsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,18 +22,17 @@ const ManageClinic = () => {
 
   const fetchAllClinics = async () => {
     setIsLoading(true);
-
-    const result = await clinicService.fetchAllClinics();
-
-    if (result.success) {
-      const processedData = clinicService.processClinicDataForTable(result.data);
-      setClinicsList(processedData);
-    } else {
-      clinicService.showToastMessage(result);
-      setClinicsList([]);
+    try {
+      const result = await clinicService.fetchAllClinics();
+      if (result.success) {
+        const processedData = clinicService.processClinicDataForTable(result.data);
+        setClinicsList(processedData);
+      }
+    } catch (error) {
+      console.error('Error fetching clinics:', error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const handleOpenModal = () => {
@@ -43,16 +43,17 @@ const ManageClinic = () => {
     setIsModalOpen(false);
   };
 
-  const handleModalSuccess = () => {  // Refresh danh sách sau khi thêm thành công
+  const handleModalSuccess = () => {
     fetchAllClinics();
   };
 
-  const handleDeleteClinic = (clinic) => {
-    console.log("Delete clinic:", clinic);
+  const handleDeleteClinic = async (clinic) => {
+    await clinicService.deleteClinic(clinic.id);
+    fetchAllClinics();
   };
 
   const handleEditClinic = (clinic) => {
-    console.log("Edit clinic:", clinic);
+    clinicService.editClinic(clinic);
   };
 
   // Render function component
@@ -61,6 +62,7 @@ const ManageClinic = () => {
       title: <FormattedMessage id="manage-clinic.columnImage" />,
       dataIndex: "image",
       width: "120px",
+      align: "center",
       render: (image, record) => (
         <div className="clinic-image-cell">
           {image ? (
@@ -86,7 +88,7 @@ const ManageClinic = () => {
       width: "250px",
       render: (name) => (
         <div className="clinic-name">
-          <strong>{name}</strong>
+          <strong>{name || 'N/A'}</strong>
         </div>
       ),
     },
@@ -95,7 +97,7 @@ const ManageClinic = () => {
       dataIndex: "address",
       render: (address) => (
         <div className="clinic-address">
-          {address || <FormattedMessage id="manage-clinic.emptyMessage" />}
+          {address || <FormattedMessage id="manage-clinic.emptyAddress" />}
         </div>
       ),
     },
@@ -108,7 +110,7 @@ const ManageClinic = () => {
           dangerouslySetInnerHTML={{
             __html: description
               ? clinicService.formatDescriptionForDisplay(description, 100)
-              : ""
+              : "<em>Chưa có mô tả</em>"
           }}
         />
       ),
@@ -123,7 +125,7 @@ const ManageClinic = () => {
       onClick: (record) => handleEditClinic(record),
     },
     {
-      type: "danger",
+      type: "danger", 
       icon: "fas fa-trash",
       title: <FormattedMessage id="manage-clinic.actionDelete" />,
       onClick: (record) => handleDeleteClinic(record),
@@ -131,34 +133,34 @@ const ManageClinic = () => {
   ];
 
   return (
-    <>
+    <div className="manage-clinic-wrapper">
       <div className="manage-clinic-container">
-        <div className="clinic-header">
-          <div className="clinic-title">
-            <h2>
-              <i className="fas fa-hospital-user"></i>
+        <div className="admin-header">
+          <div className="admin-title">
+            <h1>
               <FormattedMessage id="manage-clinic.title" />
-            </h2>
+            </h1>
           </div>
           <button
             className="btn-add-clinic"
             onClick={handleOpenModal}
           >
-            <i className="fas fa-plus"></i>
             <FormattedMessage id="manage-clinic.addNew" />
           </button>
         </div>
 
         <div className="clinic-content">
-          <Table
-            data={clinicsList}
-            columns={columns}
-            actions={actions}
-            loading={isLoading}
-            emptyMessage={<FormattedMessage id="manage-clinic.emptyMessage" />}
-            striped={true}
-            hover={true}
-          />
+          <div className="clinic-table-wrapper">
+            <Table
+              data={clinicsList}
+              columns={columns}
+              actions={actions}
+              loading={isLoading}
+              emptyMessage={<FormattedMessage id="manage-clinic.emptyMessage" />}
+              striped={true}
+              hover={true}
+            />
+          </div>
         </div>
       </div>
 
@@ -167,7 +169,7 @@ const ManageClinic = () => {
         onClose={handleCloseModal}
         onSuccess={handleModalSuccess}
       />
-    </>
+    </div>
   );
 };
 

@@ -3,6 +3,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
+import clinicService from "../../../services/clinicService";
+import { toast } from "react-toastify";
 import "./AddClinicModal.scss";
 
 const mdParser = new MarkdownIt();
@@ -19,12 +21,20 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleInputChange = (event, field) => {
         setFormData({
             ...formData,
             [field]: event.target.value,
         });
+        // Clear error when user starts typing
+        if (errors[field]) {
+            setErrors({
+                ...errors,
+                [field]: "",
+            });
+        }
     };
 
     const handleEditorChange = ({ html, text }) => {
@@ -33,20 +43,42 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
             descriptionMarkdown: text,
             descriptionHTML: html,
         });
+        // Clear error when user starts typing
+        if (errors.description) {
+            setErrors({
+                ...errors,
+                description: "",
+            });
+        }
     };
 
     const handleImageChange = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file);
-            let objectUrl = URL.createObjectURL(file);
-            setFormData({
-                ...formData,
-                previewImgURL: objectUrl,
-                imageBase64: base64,
-            });
+        try {
+            let data = event.target.files;
+            let file = data[0];
+            if (file) {
+                let base64 = await CommonUtils.getBase64(file);
+                let objectUrl = URL.createObjectURL(file);
+                setFormData({
+                    ...formData,
+                    previewImgURL: objectUrl,
+                    imageBase64: base64,
+                });
+
+                if (errors.image) {
+                    setErrors({
+                        ...errors,
+                        image: "",
+                    });
+                }
+            }
+        } catch (error) {
+            console.error('Error handling image change:', error);
         }
+    };
+
+    const validateForm = () => {
+        return clinicService.validateClinicForm(formData, setErrors);
     };
 
     const resetForm = () => {
@@ -58,15 +90,38 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
             descriptionMarkdown: "",
             previewImgURL: "",
         });
+        setErrors({});
+        setIsLoading(false);
     };
 
     const handleSave = async () => {
-        resetForm();
-        if (onSuccess) onSuccess();
-        onClose();
+        if (!validateForm()) {
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const clinicData = {
+                name: formData.name.trim(),
+                address: formData.address.trim(),
+                imageBase64: formData.imageBase64,
+                descriptionHTML: formData.descriptionHTML,
+                descriptionMarkdown: formData.descriptionMarkdown,
+            };
+
+            await clinicService.createClinic(clinicData);
+            resetForm();
+            if (onSuccess) onSuccess();
+            onClose();
+        } catch (error) {
+            console.error('Error creating clinic:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleClose = () => {
+        if (isLoading) return;
         resetForm();
         onClose();
     };
@@ -79,10 +134,13 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                 {/* Header */}
                 <div className="clinic-modal-header">
                     <h3 className="clinic-modal-title">
-                        <i className="fas fa-hospital-user"></i>
-                        <FormattedMessage id="manage-clinic.title" />
+                        <FormattedMessage id="manage-clinic.addNew" />
                     </h3>
-                    <button className="clinic-modal-close" onClick={handleClose}>
+                    <button 
+                        className="clinic-modal-close" 
+                        onClick={handleClose}
+                        disabled={isLoading}
+                    >
                         <i className="fas fa-times"></i>
                     </button>
                 </div>
@@ -100,11 +158,13 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                                 <input
                                     type="text"
                                     id="clinicName"
-                                    className="clinic-input"
+                                    className={`clinic-input ${errors.name ? 'error' : ''}`}
                                     value={formData.name}
                                     onChange={(event) => handleInputChange(event, "name")}
-                                    placeholder={intl.formatMessage({ id: "manage-clinic.placeholderName" })}
+                                    placeholder="Nhập tên phòng khám..."
+                                    disabled={isLoading}
                                 />
+                                {errors.name && <span className="error-message">{errors.name}</span>}
                             </div>
 
                             <div className="clinic-form-group clinic-form-half">
@@ -119,10 +179,14 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                                         id="clinicImage"
                                         onChange={handleImageChange}
                                         accept="image/*"
+                                        disabled={isLoading}
                                     />
-                                    <label htmlFor="clinicImage" className="clinic-upload-btn">
+                                    <label 
+                                        htmlFor="clinicImage" 
+                                        className={`clinic-upload-btn ${errors.image ? 'error' : ''}`}
+                                    >
                                         <i className="fas fa-cloud-upload-alt"></i>
-                                        <FormattedMessage id="manage-user.uploadImage" />
+                                        Tải ảnh lên
                                     </label>
                                     {formData.previewImgURL && (
                                         <div
@@ -133,6 +197,7 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                                         />
                                     )}
                                 </div>
+                                {errors.image && <span className="error-message">{errors.image}</span>}
                             </div>
                         </div>
 
@@ -148,7 +213,8 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                                     className="clinic-input"
                                     value={formData.address}
                                     onChange={(event) => handleInputChange(event, "address")}
-                                    placeholder={intl.formatMessage({ id: "manage-clinic.placeholderAddress" })}
+                                    placeholder="Nhập địa chỉ phòng khám..."
+                                    disabled={isLoading}
                                 />
                             </div>
                         </div>
@@ -160,47 +226,53 @@ const AddClinicModal = ({ isOpen, onClose, onSuccess }) => {
                                     <FormattedMessage id="manage-clinic.clinicDescription" />
                                     <span className="required">*</span>
                                 </label>
-                                <div className="clinic-editor-container">
+                                <div className={`clinic-editor-container ${errors.description ? 'error' : ''}`}>
                                     <MdEditor
                                         style={{ height: "300px" }}
                                         renderHTML={(text) => mdParser.render(text)}
                                         onChange={handleEditorChange}
                                         value={formData.descriptionMarkdown}
-                                        placeholder={intl.formatMessage({ id: "manage-clinic.placeholderDescription" })}
+                                        placeholder="Nhập mô tả chi tiết về phòng khám..."
+                                        readOnly={isLoading}
                                     />
+                                </div>
+                                {errors.description && <span className="error-message">{errors.description}</span>}
+                            </div>
+                        </div>
+
+                        {/* Buttons */}
+                        <div className="clinic-form-row">
+                            <div className="clinic-form-group clinic-form-full">
+                                <div className="clinic-form-buttons">
+                                    <button
+                                        className="clinic-btn clinic-btn-secondary"
+                                        onClick={handleClose}
+                                        disabled={isLoading}
+                                    >
+                                        <i className="fas fa-times"></i>
+                                        <FormattedMessage id="manage-clinic.btnCancel" />
+                                    </button>
+                                    <button
+                                        className="clinic-btn clinic-btn-primary"
+                                        onClick={handleSave}
+                                        disabled={isLoading}
+                                    >
+                                        {isLoading ? (
+                                            <>
+                                                <i className="fas fa-spinner fa-spin"></i>
+                                                Đang lưu...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <i className="fas fa-save"></i>
+                                                <FormattedMessage id="manage-clinic.btnSave" />
+                                            </>
+                                        )}
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Footer */}
-                <div className="clinic-modal-footer">
-                    <button
-                        className="clinic-btn clinic-btn-secondary"
-                        onClick={handleClose}
-                        disabled={isLoading}
-                    >
-                        <i className="fas fa-times"></i>
-                        <FormattedMessage id="manage-clinic.btnCancel" />
-                    </button>
-                    <button
-                        className="clinic-btn clinic-btn-primary"
-                        onClick={handleSave}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <>
-                                <i className="fas fa-spinner fa-spin"></i>
-                                <FormattedMessage id="manage-clinic.saving" />
-                            </>
-                        ) : (
-                            <>
-                                <i className="fas fa-save"></i>
-                                <FormattedMessage id="manage-clinic.btnSave" />
-                            </>
-                        )}
-                    </button>
                 </div>
             </div>
         </div>

@@ -58,18 +58,19 @@
       border: 2px solid #dee2e6; // Thay đổi thành màu đậm hơn
 
       thead {
-        background: var(--blue-medium-color);
+        background: #E4FEFF;
 
         tr {
           th {
             padding: 16px 20px;
             text-align: left;
             font-weight: 600;
-            color: var(--main-color);
-            border-bottom: 2px solid var(--main-color);
+            color: #45C3D2;
+            border-bottom: 2px solid #45C3D2;
             border-right: 2px solid #ced4da; // Thay đổi thành màu đậm hơn
             position: relative;
             transition: background-color 0.2s ease;
+            font-size: var(--font-size-xs);
 
             &:last-child {
               border-right: none; // Bỏ border cho cột cuối
@@ -124,8 +125,9 @@
 
             &.index-cell {
               text-align: center;
-              font-weight: 600;
-              color: var(--main-color);
+              font-weight: normal;
+              color: #000000;
+              font-size: var(--font-size-xs);
             }
 
             &.empty-cell {
@@ -211,7 +213,7 @@
 
         // Button variants
         &.primary {
-          background: var(--main-color);
+          background: #45C3D2;
           color: var(--white-color);
 
           &:hover:not(:disabled) {
