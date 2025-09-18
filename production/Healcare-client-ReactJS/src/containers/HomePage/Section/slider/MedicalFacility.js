@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../scss/MedicalFacility.scss";
-import { FormattedMessage } from "react-intl";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import { getAllClinics } from "../../../../services/userService";
 import { withRouter } from "react-router";
+import { FormattedMessage } from "react-intl";
+import { getAllClinics } from "../../../../services/userService";
+import Carousel from "./Carousel";
+import CarouselHeader from "./CarouselHeader";
+import "../scss/Carousel.scss";
+
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +15,13 @@ class MedicalFacility extends Component {
       slides: [],
     };
   }
+
   async componentDidMount() {
     try {
       const res = await getAllClinics();
 
       if (res.errCode === 0) {
-        console.log("clinic res data", res.data);
         this.setState({ dataClinic: res.data ? res.data : [] });
-        console.log(this.state);
       } else {
         console.error("Failed to get all clinic");
       }
@@ -30,10 +29,12 @@ class MedicalFacility extends Component {
       console.error("An error occurred:", error);
     }
   }
-  handleViewDetailClinic(clinicId) {
+
+  handleViewDetailClinic = (clinicId) => {
     this.props.history.push(`/detail-clinic/${clinicId}`);
   }
-  componentDidUpdate(prevProps, prevState, snapshot) {
+
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.language !== this.props.language) {
       this.assignDataOfCarousel();
     }
@@ -43,19 +44,14 @@ class MedicalFacility extends Component {
   }
 
   assignDataOfCarousel() {
-    let { dataClinic } = this.state;
-    let { language } = this.props;
+    const { dataClinic } = this.state;
+    const { language } = this.props;
     let slides = [];
 
     if (dataClinic && dataClinic.length > 0) {
-      dataClinic.forEach((item, index) => {
-        // let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
-        // let nameEn = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
-
-        // Create a new slide object for each iteration
+      dataClinic.forEach((item) => {
         let slide = {
           img: item.image,
-          // mainTitle: language === LANGUAGES.VI ? nameVi : nameEn,
           mainTitle: item.name,
           clinicId: item.id,
         };
@@ -67,94 +63,74 @@ class MedicalFacility extends Component {
       });
     }
   }
-  render() {
-    console.log("props", this.state);
-    let { slides } = this.state;
+
+  renderClinicItem = (slide, index) => {
     return (
-      <>
-        <div className="container-fluid medical-container">
-          <div className="container">
-            <div className="medical-header">
-              <span className="header-title">
-                <FormattedMessage id="home-page.medical-popularity" />
-              </span>
-              <span className="home-btn-see-more">
-                <FormattedMessage
-                  id="home-page.btnSeeMore"
-                  defaultMessage="See more"
-                />
-              </span>
-            </div>
-            <Slider {...this.props.settings}>
-              {slides.map((slide, index) => {
-                return (
-                  <div className="card-container">
-                    <div
-                      className="card p-2 py-3 text-center"
-                      onClick={() =>
-                        this.handleViewDetailClinic(slide.clinicId)
-                      }
-                      key={index}
-                    >
-                      <div
-                        className=" mb-2 avt-medical"
-                        style={{
-                          backgroundImage: `url(${slide.img})`,
-                        }}
-                      ></div>
-                      <h5 className="mb-0 main-title">{slide.mainTitle}</h5>
+      <div className="carousel-slide" onClick={() => this.handleViewDetailClinic(slide.clinicId)}>
+        <div
+          className="carousel-image"
+          style={{
+            backgroundImage: `url(${slide.img})`,
+          }}
+        ></div>
+        <h5 className="carousel-item-title">{slide.mainTitle}</h5>
+      </div>
+    );
+  }
 
-                      {/* <div className="ratings mt-2">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div> */}
-                    </div>
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
+  render() {
+    const { slides } = this.state;
+
+    // Slider settings
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    };
+
+    return (
+      <div className="container-fluid">
+        <div className="container">
+          <CarouselHeader
+            titleId="home-page.medical-popularity"
+            defaultTitle="Medical Facilities"
+            onSeeMore={() => this.props.history.push('/clinics')}
+          />
+
+          <Carousel
+            slides={slides}
+            settings={settings}
+            containerClass="medical-carousel"
+            renderItem={this.renderClinicItem}
+          />
         </div>
-      </>
-      // <div className="section-common ">
-      //   <div className="section-header">
-      //     <span className="title-section">
-
-      //     </span>
-      //     <button className="btn-section">
-      //       <FormattedMessage
-      //         id="home-page.btnSeeMore"
-      //         defaultMessage="See more"
-      //       />
-      //     </button>
-      //   </div>
-
-      //   <div className="section-body">
-      //     <Slider {...this.props.settings}>
-      //       {dataClinic.map((item, index) => {
-      //         return (
-      //           <div className="section-custiomize">
-      //             <div
-      //               className="slider-card card-specialty"
-      //               key={index}
-      //               onClick={() => this.handleViewDetailSpecialty(item)}
-      //             >
-      //               <div className="section-specialty" key={index}>
-      //                 <span
-      //                   className="bg-img specialty-image"
-      //                   style={{ backgroundImage: `url(${item.image})` }}
-      //                 ></span>
-      //                 <span className="specialty-name">{item.name}</span>
-      //               </div>
-      //             </div>
-      //           </div>
-      //         );
-      //       })}
-      //     </Slider>
-      //   </div>
-      // </div>
+      </div>
     );
   }
 }

@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hoidanit`
+-- Database: `healcare`
 --
 
 -- --------------------------------------------------------
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `allcodes`
 --
-DROP DATABASE hoidanit;
-CREATE DATABASE hoidanit
+DROP DATABASE healcare;
+CREATE DATABASE healcare
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-USE hoidanit;
+USE healcare;
 
 CREATE TABLE `allcodes` (
   `id` int(11) NOT NULL,

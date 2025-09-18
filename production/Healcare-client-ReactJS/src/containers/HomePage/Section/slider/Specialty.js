@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../scss/Specialty.scss";
+import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { getAllSpecialties } from "../../../../services/userService";
-import Slider from "react-slick";
-import { withRouter } from "react-router";
-import { LANGUAGES } from "../../../../utils";
+import Carousel from "./Carousel";
+import CarouselHeader from "./CarouselHeader";
+import "../scss/Carousel.scss";
+
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +20,7 @@ class Specialty extends Component {
     try {
       const res = await getAllSpecialties();
       if (res.errCode === 0) {
-        console.log("check data", res.data);
         this.setState({ dataSpecialty: res.data ? res.data : [] });
-        console.log(this.state);
       } else {
         console.error("Failed to get all specialty");
       }
@@ -29,7 +28,8 @@ class Specialty extends Component {
       console.error("An error occurred:", error);
     }
   }
-  componentDidUpdate(prevProps, prevState, snapshot) {
+
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.language !== this.props.language) {
       this.assignDataOfCarousel();
     }
@@ -37,24 +37,20 @@ class Specialty extends Component {
       this.assignDataOfCarousel();
     }
   }
-  handleViewDetailSpecialty(specialtyId) {
+
+  handleViewDetailSpecialty = (specialtyId) => {
     this.props.history.push(`/detail-specialty/${specialtyId}`);
   }
+
   assignDataOfCarousel() {
-    let { dataSpecialty } = this.state;
-    console.log("assignDataOfCarousel", dataSpecialty);
-    let { language } = this.props;
+    const { dataSpecialty } = this.state;
+    const { language } = this.props;
     let slides = [];
 
     if (dataSpecialty && dataSpecialty.length > 0) {
-      dataSpecialty.forEach((item, index) => {
-        // let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
-        // let nameEn = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
-
-        // Create a new slide object for each iteration
+      dataSpecialty.forEach((item) => {
         let slide = {
           img: item.image,
-          // mainTitle: language === LANGUAGES.VI ? nameVi : nameEn,
           mainTitle: item.name,
           specialtyId: item.id,
         };
@@ -66,94 +62,75 @@ class Specialty extends Component {
       });
     }
   }
-  render() {
-    console.log("props spacialty", this.state);
-    let { slides } = this.state;
+
+  renderSpecialtyItem = (slide, index) => {
     return (
-      <>
-        <div className="container-fluid specialty-container">
-          <div className="container">
-            <div className="specialty-header">
-              <span className="header-title header-title-underline">
-                <FormattedMessage
-                  id="home-page.speciality-popularity"
-                  defaultMessage="Specialty"
-                />
-              </span>
-              <span className="home-btn-see-more">
-                <FormattedMessage
-                  id="home-page.btnSeeMore"
-                  defaultMessage="See more"
-                />
-              </span>
-            </div>
-            <Slider {...this.props.settings}>
-              {slides.map((slide, index) => {
-                return (
-                  <div className="card-container">
-                    <div
-                      className="card p-2 py-3 text-center"
-                      onClick={() =>
-                        this.handleViewDetailSpecialty(slide.specialtyId)
-                      }
-                      key={index}
-                    >
-                      <div
-                        className=" mb-2 avt-specialty"
-                        style={{
-                          backgroundImage: `url(${slide.img})`,
-                        }}
-                      ></div>
-                      <h5 className="mb-0 main-title">{slide.mainTitle}</h5>
+      <div className="carousel-slide" onClick={() => this.handleViewDetailSpecialty(slide.specialtyId)}>
+        <div
+          className="carousel-image"
+          style={{
+            backgroundImage: `url(${slide.img})`,
+          }}
+        ></div>
+        <h5 className="carousel-item-title">{slide.mainTitle}</h5>
+      </div>
+    );
+  }
 
-                      {/* <div className="ratings mt-2">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div> */}
-                    </div>
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
+  render() {
+    const { slides } = this.state;
+
+    // Slider settings
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    };
+
+    return (
+      <div className="container-fluid">
+        <div className="container">
+          <CarouselHeader
+            titleId="home-page.speciality-popularity"
+            defaultTitle="Specialty"
+            onSeeMore={() => this.props.history.push('/specialties')}
+          />
+
+          <Carousel
+            slides={slides}
+            settings={settings}
+            containerClass="specialty-carousel"
+            renderItem={this.renderSpecialtyItem}
+            containerStyle={{ backgroundColor: 'var(--bs-white)' }}
+          />
         </div>
-      </>
-      // <div className="section-common ">
-      //   <div className="section-header">
-      //     <span className="title-section">
-
-      //     </span>
-      //     <button className="btn-section">
-
-      //     </button>
-      //   </div>
-
-      //   <div className="section-body">
-      //     <Slider {...this.props.settings}>
-      //       {dataSpecialty.map((item, index) => {
-      //         return (
-      //           <div className="section-custiomize">
-      //             <div
-      //               className="slider-card card-specialty"
-      //               key={index}
-      //               onClick={() => this.handleViewDetailSpecialty(item)}
-      //             >
-      //               <div className="section-specialty" key={index}>
-      //                 <span
-      //                   className="bg-img specialty-image"
-      //                   style={{ backgroundImage: `url(${item.image})` }}
-      //                 ></span>
-      //                 <span className="specialty-name">{item.name}</span>
-      //               </div>
-      //             </div>
-      //           </div>
-      //         );
-      //       })}
-      //     </Slider>
-      //   </div>
-      // </div>
+      </div>
     );
   }
 }

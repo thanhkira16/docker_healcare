@@ -1,26 +1,30 @@
 .specialty-container {
   // background-color: var(--main-color);
   background-color: var(--bs-white);
-  padding-bottom: 10px;
+  padding-bottom: var(--font-size-sm);
+
   .specialty-header {
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .header-title {
-      font-size: 2.4rem;
+      font-size: var(--font-size-3xl);
       font-weight: 600;
     }
+
     .header-title-underline {
       padding-bottom: 4px;
-      border-bottom: 2px solid var(--main-color);
+      border-bottom: 2px solid var(--blue-medium-color);
       margin-bottom: 8px;
       display: block;
       min-width: 200px;
       text-align: center;
       height: 40px;
+    }
   }
-  }
+
   .card-container {
     .card {
       //   width: 320px;
@@ -37,6 +41,7 @@
       margin: 4px;
       display: flex;
       align-items: center;
+
       .avt-specialty {
         background-size: cover;
         margin: 0 auto;
@@ -45,9 +50,10 @@
         height: 180px;
         border-radius: 4px;
       }
+
       .main-title {
         margin-top: 10px;
-        font-size: 1.4rem;
+        font-size: var(--font-size-sm);
       }
 
       &:hover {

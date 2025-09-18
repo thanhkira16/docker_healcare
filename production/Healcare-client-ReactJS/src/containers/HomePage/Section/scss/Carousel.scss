@@ -1,0 +1,176 @@
+.carousel-container {
+
+    .carousel-title {
+        font-size: var(--font-size-3xl);
+        font-weight: 600;
+        margin-bottom: var(--font-size-md);
+    }
+
+    .carousel-slide {
+        position: relative;
+        width: 96%;
+        border-radius: 10px;
+        transition: all 0.3s;
+        cursor: pointer;
+        background-color: var(--bs-light);
+        margin: 4px;
+        padding: var(--font-size-xs);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 200px;
+
+        &:hover {
+            -webkit-box-shadow: 3px 5px 17px -4px rgba(119, 119, 119, 0.7);
+            box-shadow: 3px 5px 17px -4px rgba(119, 119, 119, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .carousel-image {
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 180px;
+            border-radius: 4px;
+            margin-bottom: var(--font-size-xs);
+        }
+
+        .carousel-item-title {
+            font-size: var(--font-size-sm);
+            margin-top: var(--font-size-xs);
+            text-align: center;
+            font-weight: 600;
+            color: var(--bs-dark);
+        }
+    }
+
+    // Specialty-specific styles
+    &.specialty-carousel {
+        background-color: var(--bs-white);
+
+        .carousel-slide {
+            min-height: 220px;
+
+            .carousel-image {
+                height: 160px;
+            }
+        }
+    }
+
+    // Doctor-specific styles
+    &.doctor-carousel {
+        background-color: var(--bs-white);
+
+        .carousel-slide {
+            min-height: 300px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+
+            .carousel-image {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+
+            .doctor-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: var(--font-size-xs);
+                min-height: 80px;
+                /* Add fixed height for doctor info */
+            }
+
+            .specialty-name {
+                color: var(--bs-gray);
+                font-size: var(--font-size-sm);
+            }
+
+            .appointment-btn-container {
+                position: absolute;
+                bottom: 15px;
+                width: 90%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .btn-appointment {
+                border-radius: 20px;
+                background-color: var(--bs-primary);
+                color: var(--bs-white);
+                border-color: var(--border-color-light);
+                font-size: var(--font-size-2xs);
+                padding: 0 20px;
+                min-width: 150px;
+                height: 35px;
+
+                &:hover {
+                    background-color: var(--bs-secondary);
+                }
+            }
+        }
+    }
+
+    // Medical facility specific styles
+    &.medical-carousel {
+        background-color: var(--bs-white);
+
+        .carousel-slide {
+            min-height: 260px;
+            width: 98%;
+            /* Increased width for larger cards */
+            margin: 0 auto;
+
+            .carousel-image {
+                height: 180px;
+            }
+
+            .carousel-item-title {
+                min-height: 40px;
+                /* Fixed height for title area */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+        }
+    }
+
+    // Header section styles - removed as they're now in CarouselHeader.scss
+
+    // Responsive adjustments
+    @media (max-width: 767.98px) {
+
+        // Responsive styles for carousel slides
+        .carousel-slide {
+            min-height: 180px;
+
+            .carousel-image {
+                height: 140px;
+            }
+        }
+    }
+
+    gap: var(--font-size-xs);
+
+    .header-title {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--font-size-xs);
+        width: auto;
+        flex: 1 0 100%; // Title sẽ chiếm toàn bộ chiều rộng trên mobile
+
+        &.header-title-underline {
+            min-width: auto;
+            width: auto;
+            display: inline-block;
+        }
+    }
+
+    .btn-see-more {
+        margin-left: 0;
+        margin-top: var(--font-size-xs);
+        align-self: flex-end;
+        font-size: var(--font-size-xs);
+    }
+}

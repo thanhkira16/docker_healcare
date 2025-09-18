@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import './Banner.scss';
-
+import '../scss/Banner.scss';
 class Banner extends Component {
     constructor(props) {
         super(props);
