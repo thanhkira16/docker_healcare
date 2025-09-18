@@ -373,5 +373,84 @@
       "comment": "Very satisfied with this online medical service.",
       "service": "Gynecology Consultation"
     }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're always ready to listen and support you",
+    "inquiry_types": {
+      "general": {
+        "label": "General Questions",
+        "description": "Questions about our services"
+      },
+      "support": {
+        "label": "Technical Support",
+        "description": "Help with technical issues"
+      },
+      "business": {
+        "label": "Business Cooperation",
+        "description": "Partnership and business opportunities"
+      },
+      "feedback": {
+        "label": "Feedback",
+        "description": "Share your opinions and suggestions"
+      }
+    },
+    "benefits": {
+      "security": {
+        "title": "Security",
+        "description": "256-bit SSL Encryption"
+      },
+      "response": {
+        "title": "Quick Response",
+        "description": "Response within 24 hours"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Always ready to help"
+      },
+      "team": {
+        "title": "Expert Team",
+        "description": "Professional support"
+      }
+    },
+    "form": {
+      "help_question": "How can we help you?",
+      "name": "Full Name *",
+      "name_placeholder": "Enter your full name",
+      "email": "Email Address *",
+      "email_placeholder": "Enter your email address",
+      "subject": "Subject *",
+      "subject_placeholder": "Message subject",
+      "message": "Message *",
+      "message_placeholder": "Describe your request in detail...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "send_another": "Send Another Message",
+      "privacy": "By sending this message, you agree to our",
+      "privacy_link": "privacy policy"
+    },
+    "success": {
+      "title": "Message Sent Successfully!",
+      "description": "Thank you for contacting us. We will respond within 24 hours."
+    },
+    "location": {
+      "title": "VKU Healthcare Headquarters",
+      "address": "470 Tran Dai Nghia, Ngu Hanh Son, Da Nang"
+    },
+    "quick_answers": {
+      "title": "Quick Answers",
+      "response_time": {
+        "title": "Response Time",
+        "description": "We respond within 24 hours on business days."
+      },
+      "phone_support": {
+        "title": "Phone Support",
+        "description": "Available Mon-Fri, 8AM to 6PM."
+      },
+      "emergency": {
+        "title": "Emergency Support",
+        "description": "Critical issues are handled 24/7."
+      }
+    }
   }
 }

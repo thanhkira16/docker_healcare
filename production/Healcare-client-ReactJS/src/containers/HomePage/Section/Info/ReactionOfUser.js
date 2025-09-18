@@ -87,7 +87,7 @@ class ReactionOfUser extends Component {
     const duplicatedReviews = [...reviews, ...reviews]; // Duplicate for infinite scroll
 
     return (
-      <div className="container" style={{ padding: '60px 15px' }}>
+      <div className="container" style={{ padding: '60px 15px !important' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <h2 style={{
             fontSize: 'var(--font-size-3xl)',
