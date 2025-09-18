@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom"; // Optional, if routing is needed
 import { history } from "../../redux"; // Mimicking App.js's history import
-import Header from "../Header/Header";
 import HomeHeader from "./HomeHeader";
+import Banner from "./Section/Banner";
 import Specialty from "./Section/slider/Specialty";
 import MedicalFacility from "./Section/slider/MedicalFacility";
 import OutStandingDoctor from "./Section/slider/OutStandingDoctor";
@@ -59,9 +59,9 @@ class HomePage extends Component {
     };
 
     return (
-      <Fragment> {/* Mimicking App.js's use of Fragment */}
-        <Header />
-        <HomeHeader isShowBanner={true} />
+      <Fragment>
+        <HomeHeader />
+        <Banner />
         <ReactionOfUser />
         <div id="specialties">
           <Specialty settings={settings} />

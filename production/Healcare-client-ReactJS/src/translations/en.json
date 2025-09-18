@@ -16,16 +16,16 @@
     "about": "About us"
   },
   "header": {
+    "brand-name": "VKU HealthCare",
+    "brand-slogan": "Healthcare Services",
     "specialties": "Specialties",
-    "quickActions": "Quick Actions",
-    "bookAppointment": "Book Appointment",
-    "findDoctor": "Find Doctor",
-    "emergency": "Emergency",
+    "facilities": "Facilities",
+    "doctors": "Doctors",
+    "about": "About Us",
+    "language": "Language",
     "contact": "Contact",
-    "bookOnline": "Book Online",
-    "telehealth": "Telehealth",
-    "pharmacy": "Pharmacy",
-    "healthRecord": "Health Record"
+    "logout": "Logout",
+    "search": "Search for services, doctors..."
   },
   "banner": {
     "main-title": "HEALTHCARE PLATFORM ",

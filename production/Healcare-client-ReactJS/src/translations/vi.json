@@ -16,6 +16,8 @@
     "about": "Về chúng tôi"
   },
   "header": {
+    "brand-name": "VKU HealthCare",
+    "brand-slogan": "Chăm sóc sức khỏe",
     "specialties": "Chuyên khoa",
     "quickActions": "Thao tác nhanh",
     "bookAppointment": "Đặt lịch khám",
@@ -24,7 +26,13 @@
     "bookOnline": "Đặt khám online",
     "telehealth": "Khám từ xa",
     "pharmacy": "Nhà thuốc",
-    "healthRecord": "Hồ sơ sức khỏe"
+    "healthRecord": "Hồ sơ sức khỏe",
+    "facilities": "Cơ sở y tế",
+    "doctors": "Bác sĩ",
+    "about": "Về chúng tôi",
+    "language": "Ngôn ngữ",
+    "logout": "Đăng xuất",
+    "search": "Tìm kiếm dịch vụ, bác sĩ..."
   },
   "banner": {
     "main-title": "NỀN TẢNG Y TẾ ",
