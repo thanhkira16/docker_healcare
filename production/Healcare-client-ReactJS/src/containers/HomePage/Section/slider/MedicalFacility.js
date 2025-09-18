@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { getAllClinics } from "../../../../services/userService";
 import Carousel from "./Carousel";
+import CarouselHeader from "./CarouselHeader";
 import "../scss/Carousel.scss";
 
 class MedicalFacility extends Component {
@@ -116,17 +117,11 @@ class MedicalFacility extends Component {
     return (
       <div className="container-fluid">
         <div className="container">
-          <div className="carousel-header">
-            <span className="header-title header-title-underline">
-              <FormattedMessage id="home-page.medical-popularity" />
-            </span>
-            <span className="btn-see-more">
-              <FormattedMessage
-                id="home-page.btnSeeMore"
-                defaultMessage="See more"
-              />
-            </span>
-          </div>
+          <CarouselHeader
+            titleId="home-page.medical-popularity"
+            defaultTitle="Medical Facilities"
+            onSeeMore={() => this.props.history.push('/clinics')}
+          />
 
           <Carousel
             slides={slides}

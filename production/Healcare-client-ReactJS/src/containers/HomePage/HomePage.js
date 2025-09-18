@@ -72,13 +72,13 @@ class HomePage extends Component {
         <div id="facilities">
           <MedicalFacility settings={settings} />
         </div>
+        <div id="about">
+           <ReactionOfUser />
+        </div>
         <div id="doctors">
           <OutStandingDoctor settings={settings} />
         </div>
-        <div id="about">
-          <About />
-        </div>
-        <ReactionOfUser />
+        
         <Contact />
         <Footer />
         <ChatWootWidget />

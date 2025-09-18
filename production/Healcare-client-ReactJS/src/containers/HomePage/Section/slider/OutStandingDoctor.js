@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import * as actions from "../../../../store/actions";
 import { LANGUAGES } from "../../../../utils";
 import Carousel from "./Carousel";
+import CarouselHeader from "./CarouselHeader";
 import "../scss/Carousel.scss";
 
 class OutStandingDoctor extends Component {
@@ -140,14 +141,11 @@ class OutStandingDoctor extends Component {
     return (
       <div className="container-fluid">
         <div className="container">
-          <div className="carousel-header">
-            <span className="header-title header-title-underline">
-              <FormattedMessage id="home-page.out-standings-doctor" />
-            </span>
-            <span className="btn-see-more">
-              <FormattedMessage id="home-page.btnSeeMore" />
-            </span>
-          </div>
+          <CarouselHeader
+            titleId="home-page.out-standings-doctor"
+            defaultTitle="Outstanding Doctors"
+            onSeeMore={() => this.props.history.push('/doctors')}
+          />
 
           <Carousel
             slides={slides}

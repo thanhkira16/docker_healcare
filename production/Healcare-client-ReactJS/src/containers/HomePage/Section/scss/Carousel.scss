@@ -1,5 +1,4 @@
 .carousel-container {
-    padding-bottom: var(--font-size-sm);
 
     .carousel-title {
         font-size: var(--font-size-3xl);
@@ -138,45 +137,40 @@
         }
     }
 
-    // Header section styles
-    .carousel-header {
-        height: 80px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--font-size-md);
-        width: 100%;
+    // Header section styles - removed as they're now in CarouselHeader.scss
 
-        .header-title {
-            font-size: var(--font-size-3xl);
-            font-weight: 600;
-            text-align: left;
-            margin: 0;
-            padding: 0;
+    // Responsive adjustments
+    @media (max-width: 767.98px) {
 
-            &.header-title-underline {
-                padding-bottom: 4px;
-                border-bottom: 2px solid var(--blue-medium-color);
-                margin-bottom: 8px;
-                display: inline-block;
-                min-width: 200px;
-                text-align: left;
-                height: 40px;
+        // Responsive styles for carousel slides
+        .carousel-slide {
+            min-height: 180px;
+
+            .carousel-image {
+                height: 140px;
             }
         }
+    }
 
-        .btn-see-more {
-            color: var(--bs-primary);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            margin-left: auto;
-            padding: var(--font-size-xs) var(--font-size-sm);
+    gap: var(--font-size-xs);
 
-            &:hover {
-                text-decoration: underline;
-                color: var(--bs-secondary);
-            }
+    .header-title {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--font-size-xs);
+        width: auto;
+        flex: 1 0 100%; // Title sẽ chiếm toàn bộ chiều rộng trên mobile
+
+        &.header-title-underline {
+            min-width: auto;
+            width: auto;
+            display: inline-block;
         }
+    }
+
+    .btn-see-more {
+        margin-left: 0;
+        margin-top: var(--font-size-xs);
+        align-self: flex-end;
+        font-size: var(--font-size-xs);
     }
 }

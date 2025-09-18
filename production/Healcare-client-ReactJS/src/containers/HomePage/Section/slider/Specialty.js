@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { getAllSpecialties } from "../../../../services/userService";
 import Carousel from "./Carousel";
+import CarouselHeader from "./CarouselHeader";
 import "../scss/Carousel.scss";
 
 class Specialty extends Component {
@@ -78,7 +79,7 @@ class Specialty extends Component {
 
   render() {
     const { slides } = this.state;
-    
+
     // Slider settings
     const settings = {
       dots: false,
@@ -115,21 +116,12 @@ class Specialty extends Component {
     return (
       <div className="container-fluid">
         <div className="container">
-          <div className="carousel-header">
-            <span className="header-title header-title-underline">
-              <FormattedMessage
-                id="home-page.speciality-popularity"
-                defaultMessage="Specialty"
-              />
-            </span>
-            <span className="btn-see-more">
-              <FormattedMessage
-                id="home-page.btnSeeMore"
-                defaultMessage="See more"
-              />
-            </span>
-          </div>
-          
+          <CarouselHeader
+            titleId="home-page.speciality-popularity"
+            defaultTitle="Specialty"
+            onSeeMore={() => this.props.history.push('/specialties')}
+          />
+
           <Carousel
             slides={slides}
             settings={settings}
