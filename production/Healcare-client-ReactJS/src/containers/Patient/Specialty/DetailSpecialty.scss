@@ -1,74 +1,808 @@
+@import '../../../styles/Base.scss';
+
+// Modern Mixins
+@mixin card-modern {
+  background: var(--white-color);
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border: 1px solid var(--border-color-light);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(32, 33, 36, 0.35);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-modern($bg-color: var(--blue-medium-color), $text-color: var(--white-color)) {
+  background: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin text-gradient($color1: var(--bs-primary), $color2: var(--blue-medium-color)) {
+  background: linear-gradient(135deg, $color1, $color2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .detail-specialty-container {
-  padding-bottom: 100px;
+  min-height: 100vh;
+  background: var(--border-color-light);
+  padding-top: 80px; // Để tránh bị navbar che
+  padding-bottom: 60px;
+  
+  @media (max-width: 768px) {
+    padding-top: 70px;
+  }
+
+  // Loading State
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--border-color-light);
+      border-top: 4px solid var(--bs-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      color: var(--black-medium-color);
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+
+  // Header Section
   .detail-specialty-header {
+    position: relative;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    .detail-specialty-header-content {
-      background-image: linear-gradient(
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.9),
-        rgba(255, 255, 255, 1)
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(40, 55, 121, 0.9) 0%,
+        rgba(27, 113, 161, 0.8) 50%,
+        rgba(69, 195, 210, 0.7) 100%
       );
-      position: relative;
-      &::after {
-        content: "";
-        left: -20px;
-        top: 0;
-        width: 20px;
-        height: 100%;
-        position: absolute;
-        background-image: linear-gradient(
-          rgba(255, 255, 255, 0.8),
-          rgba(255, 255, 255, 0.9),
-          rgba(255, 255, 255, 1)
-        );
-        // background-color: red;
-      }
-      &::before {
-        content: "";
-        right: -20px;
-        top: 0;
-        width: 20px;
-        height: 100%;
-        position: absolute;
-        background-image: linear-gradient(
-          rgba(255, 255, 255, 0.8),
-          rgba(255, 255, 255, 0.9),
-          rgba(255, 255, 255, 1)
-        );
-        // background-color: red;
-      }
-      padding: 20px;
-      width: 100%;
+      z-index: 1;
+    }
 
-      margin-bottom: 10px;
-      .btn-show-hide {
-        color: var(--blue-medium-color);
-        cursor: pointer;
+    .detail-specialty-header-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 32px;
+      
+      @media (max-width: 768px) {
+        padding: 40px 20px;
+      }
+      
+      @media (max-width: 480px) {
+        padding: 30px 16px;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(10px);
+        
+        @media (max-width: 768px) {
+          padding: 30px 20px;
+        }
+        
+        div[dangerouslySetInnerHTML] {
+          color: var(--black-color);
+          font-size: 16px;
+          line-height: 1.7;
+          
+          h1, h2, h3 {
+            @include text-gradient(var(--bs-primary), var(--blue-medium-color));
+            margin-bottom: 20px;
+            font-weight: 700;
+          }
+          
+          h1 { font-size: 32px; }
+          h2 { font-size: 28px; }
+          h3 { font-size: 24px; }
+          
+          p {
+            margin-bottom: 16px;
+            color: var(--bold-color);
+            text-align: justify;
+          }
+          
+          ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
+            
+            li {
+              margin-bottom: 8px;
+              color: var(--bold-color);
+              line-height: 1.6;
+            }
+          }
+        }
+
+        .btn-show-hide {
+          display: inline-block;
+          background: #007bff; // Màu xanh mặc định
+          color: var(--white-color);
+          border: none;
+          border-radius: 8px;
+          padding: 12px 24px;
+          font-size: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 20px;
+          text-decoration: none;
+          
+          &:hover {
+            background: #0056b3; // Màu xanh đậm khi hover
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            color: var(--white-color);
+          }
+          
+          &:active {
+            transform: translateY(0);
+          }
+        }
       }
     }
   }
+
+  // Location Select Section
   .select-location {
+    margin-bottom: 40px;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      
+      @media (max-width: 768px) {
+        padding: 0 20px;
+      }
+      
+      @media (max-width: 480px) {
+        padding: 0 16px;
+      }
+    }
+
     .select-location-btn {
-      padding-left: 10px;
-      width: 160px;
-      height: 30px;
-      border-radius: 2px;
-      color: #337ab7;
-      border: 1px solid var(--border-color);
+      @include card-modern;
+      width: 250px;
+      height: 52px;
+      padding: 0 20px;
+      border: 2px solid var(--border-color);
       background: var(--white-color);
-      margin-bottom: 10px;
+      color: var(--bold-color);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      
+      // Custom arrow
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 12px center;
+      background-repeat: no-repeat;
+      background-size: 16px;
+      
+      &:focus {
+        border-color: var(--blue-medium-color);
+        box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+      }
+      
+      &:hover {
+        border-color: var(--blue-medium-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      @media (max-width: 480px) {
+        width: 100%;
+      }
     }
   }
-  background-color: var(--border-color-light);
+
+  // Doctor Cards Section
   .detail-specialty-body {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      
+      @media (max-width: 768px) {
+        padding: 0 20px;
+      }
+      
+      @media (max-width: 480px) {
+        padding: 0 16px;
+      }
+    }
+
     .detail-doctor {
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-      background-color: var(--white-color);
-      border-radius: 10px;
-      box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+      @include card-modern;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      margin-bottom: 16px;
+      background: var(--white-color);
+      
+      @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 24px;
+      }
+      
+      @media (max-width: 767px) {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .doctor-profile-section {
+        display: flex;
+        flex-direction: column;
+        
+        h3 {
+          @include text-gradient();
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 12px;
+        }
+      }
+
+      .doctor-schedule-section {
+        display: flex;
+        flex-direction: column;
+        
+        .doctor-info-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 8px; // Giảm gap để compact hơn
+          
+          // Schedule and Extra Info styling
+          > div {
+            @include card-modern;
+            padding: 12px;
+            background: var(--gray-medium-color);
+            border: 1px solid var(--border-color-light);
+            margin: 0;
+            min-height: auto; // Không set min-height
+            height: auto; // Auto height
+            
+            h4 {
+              color: var(--bs-primary);
+              font-size: 15px;
+              font-weight: 600;
+              margin-bottom: 6px;
+            }
+            
+            // Đảm bảo content không bị ẩn và không có khoảng trống
+            .book-schedule-container,
+            .doctor-extra-info-container {
+              // Loại bỏ các style tạo khoảng trống
+              &:empty {
+                display: none;
+              }
+              
+              // Force loại bỏ tất cả margin/padding
+              margin: 0 !important;
+              padding: 0 !important;
+              
+              // Style cho các child components
+              * {
+                margin: 0 !important;
+              }
+              
+              // Style cho lịch khám
+              .table-schedule {
+                width: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                
+                .schedule-item {
+                  padding: 4px 8px;
+                  margin: 1px;
+                  background: var(--blue-medium-color);
+                  color: var(--white-color);
+                  border-radius: 4px;
+                  font-size: 12px;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  display: inline-block;
+                  
+                  &:hover {
+                    background: var(--bs-primary);
+                    transform: translateY(-1px);
+                  }
+                }
+              }
+              
+              // Style cho message khi không có lịch
+              .no-schedule {
+                color: var(--black-medium-color);
+                font-style: italic;
+                text-align: center;
+                padding: 2px 0;
+                margin: 0 !important;
+                font-size: 13px;
+              }
+              
+              // Style cho thông tin thêm  
+              .extra-info-item {
+                margin-bottom: 3px !important;
+                
+                &:last-child {
+                  margin-bottom: 0 !important;
+                }
+                
+                .info-label {
+                  font-weight: 600;
+                  color: var(--bold-color);
+                  font-size: 12px;
+                  margin-bottom: 1px !important;
+                }
+                
+                .info-value {
+                  color: var(--bs-primary);
+                  font-weight: 500;
+                  font-size: 14px;
+                  margin: 0 !important;
+                }
+              }
+              
+              .btn-booking {
+                background: var(--bs-success);
+                color: var(--white-color);
+                border: none;
+                border-radius: 6px;
+                padding: 6px 10px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 100%;
+                margin-top: 4px !important;
+                margin-bottom: 0 !important;
+                font-size: 12px;
+                
+                &:hover {
+                  background: var(--blue-medium-color);
+                  transform: translateY(-1px);
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                }
+              }
+              
+              // Style cho các empty div hoặc placeholder
+              .empty-schedule,
+              .no-data,
+              .loading {
+                display: none !important;
+              }
+            }
+            
+            // Loại bỏ khoảng trống cuối container
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Loading Animation
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// AGGRESSIVE EMPTY SPACE ELIMINATION - Force remove all empty spaces
+.detail-specialty-container {
+  // Global empty element removal
+  div:empty,
+  .empty-div,
+  .spacer,
+  .empty-row,
+  .empty-col,
+  .grid-gap {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .detail-doctor {
+    // Loại bỏ tất cả div trống ở mọi level
+    * {
+      &:empty {
+        display: none !important;
+        height: 0 !important;
+      }
+    }
+    
+    // Force ultra-compact layout
+    .doctor-schedule-section {
+      margin: 0 !important;
+      padding: 0 !important;
+      
+      .doctor-info-grid {
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        
+        // Force all grid children to be compact
+        > div,
+        > * {
+          margin: 0 !important;
+          padding: 8px 12px !important;
+          border: none !important;
+          
+          // Remove all empty children
+          &:empty,
+          &:not(:has(*)) {
+            display: none !important;
+            height: 0 !important;
+            width: 0 !important;
+          }
+          
+          // Force height auto để không tạo khoảng trống
+          height: auto !important;
+          min-height: auto !important;
+          max-height: none !important;
+          
+          // Xử lý tất cả child elements
+          * {
+            &:empty {
+              display: none !important;
+              height: 0 !important;
+            }
+            
+            margin-top: 0 !important;
+            margin-bottom: 8px !important;
+          }
+          
+          // Force compact for last child
+          > *:last-child {
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+      
+      // Specific component forcing
+      .book-schedule-container,
+      .doctor-extra-info-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        
+        &:empty {
+          display: none !important;
+        }
+        
+        > div:empty {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// ULTRA-RESPONSIVE DESIGN - Zero tolerance for empty spaces
+@media (max-width: 768px) {
+  .detail-specialty-container {
+    // Force hide any empty elements globally
+    *:empty {
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    .detail-doctor {
+      grid-template-columns: 1fr !important;
+      margin-bottom: 8px !important;
+      padding: 10px !important;
+      gap: 0 !important;
+      
+      .doctor-schedule-section {
+        margin: 0 !important;
+        padding: 0 !important;
+        
+        .doctor-info-grid {
+          gap: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          
+          > div {
+            padding: 6px 8px !important;
+            margin: 0 !important;
+            border: none !important;
+            
+            // Ultra-aggressive empty element removal
+            &:empty,
+            &:not(:has(h4)):not(:has(.book-schedule-container)):not(:has(.doctor-extra-info-container)) {
+              display: none !important;
+              height: 0 !important;
+              width: 0 !important;
+            }
+            
+            h4 {
+              margin: 0 0 4px 0 !important;
+              padding: 0 !important;
+              font-size: 13px !important;
+              line-height: 1.2 !important;
+            }
+            
+            .book-schedule-container,
+            .doctor-extra-info-container {
+              margin: 0 !important;
+              padding: 0 !important;
+              
+              &:empty {
+                display: none !important;
+              }
+              
+              .extra-info-item {
+                margin: 0 0 2px 0 !important;
+                padding: 0 !important;
+                font-size: 11px !important;
+                line-height: 1.2 !important;
+              }
+              
+              .btn-booking {
+                margin: 2px 0 0 0 !important;
+                padding: 3px 6px !important;
+                font-size: 10px !important;
+              }
+              
+              .no-schedule {
+                padding: 2px 0 !important;
+                margin: 0 !important;
+                font-size: 10px !important;
+              }
+              
+              .table-schedule {
+                margin: 0 !important;
+                padding: 0 !important;
+                
+                .schedule-item {
+                  padding: 1px 3px !important;
+                  margin: 1px !important;
+                  font-size: 9px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// FINAL ULTRA-AGGRESSIVE EMPTY SPACE ELIMINATION
+// Maximum force cleanup to remove any remaining empty spaces
+.detail-specialty-container {
+  // Global empty element removal with maximum specificity
+  * {
+    &:empty:not(img):not(input):not(br):not(hr):not(area):not(base):not(col):not(embed):not(meta):not(param):not(source):not(track):not(wbr) {
+      display: none !important;
+      height: 0 !important;
+      width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+  }
+  
+  // Force grid to be ultra-compact
+  .doctor-info-grid {
+    gap: 0 !important;
+    grid-gap: 0 !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    // Force all grid children to have zero spacing unless they have content
+    > * {
+      margin: 0 !important;
+      
+      &:not(:empty) {
+        padding: 8px 12px !important;
+      }
+      
+      &:empty {
+        display: none !important;
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        grid-column: unset !important;
+        grid-row: unset !important;
+      }
+    }
+  }
+  
+  // Final cleanup for schedule containers
+  .book-schedule-container,
+  .doctor-extra-info-container {
+    &:empty,
+    &:not(:has(*)) {
+      display: none !important;
+      height: 0 !important;
+    }
+    
+    // Remove any divs that might be creating spacing
+    div:empty,
+    span:empty,
+    p:empty {
+      display: none !important;
+    }
+  }
+}
+
+// ABSOLUTE FINAL MOBILE CLEANUP - TARGETED GRID FIX
+@media (max-width: 768px) {
+  .detail-specialty-container .detail-doctor {
+    // Force remove any element that doesn't contain actual content
+    .doctor-info-grid {
+      // CRITICAL: Force grid to display as block on mobile to eliminate empty rows
+      display: block !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      
+      // Force direct children to be compact blocks
+      > * {
+        display: block !important;
+        margin: 0 0 8px 0 !important;
+        padding: 8px !important;
+        width: 100% !important;
+        
+        &:last-child {
+          margin-bottom: 0 !important;
+        }
+        
+        &:empty {
+          display: none !important;
+          height: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+      
+      // Target specific components
+      .doctor-schedule-container,
+      .doctor-extra-info-container {
+        margin: 0 !important;
+        padding: 8px !important;
+        
+        &:empty {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// NUCLEAR OPTION: Complete Grid Restructure for Mobile
+@media (max-width: 768px) {
+  .detail-specialty-container {
+    .detail-doctor {
+      .doctor-schedule-section {
+        .doctor-info-grid {
+          // FORCE: Convert grid to single column flexbox to eliminate empty grid cells
+          display: flex !important;
+          flex-direction: column !important;
+          grid-template-columns: none !important;
+          grid-template-rows: none !important;
+          gap: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          
+          // Ensure all children stack vertically with zero gaps
+          > * {
+            display: block !important;
+            flex: none !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 6px !important;
+            box-sizing: border-box !important;
+            
+            // Completely remove empty elements
+            &:empty {
+              display: none !important;
+              height: 0 !important;
+              width: 0 !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              visibility: hidden !important;
+            }
+            
+            // Only add spacing between actual content elements
+            &:not(:empty):not(:first-child) {
+              margin-top: 2px !important;
+            }
+            
+            // Force child components to be ultra-compact
+            .doctor-schedule-container,
+            .doctor-extra-info-container {
+              margin: 0 !important;
+              padding: 0 !important;
+              
+              &:empty {
+                display: none !important;
+                height: 0 !important;
+              }
+              
+              // Remove empty child elements
+              > div:empty,
+              > span:empty,
+              > p:empty {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
