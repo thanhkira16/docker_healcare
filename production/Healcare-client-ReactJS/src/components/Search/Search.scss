@@ -1,0 +1,239 @@
+@import "../../styles/variables";
+@import "../../styles/Base.scss";
+
+.search-component {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .search-label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: $main-clinic;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: lighten($main-clinic, 10%);
+      font-size: var(--font-size-sm);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 3rem;
+      border: 2px solid lighten($main-clinic, 25%);
+      border-radius: 0.6rem;
+      font-size: var(--font-size-xs);
+      transition: all 0.3s ease;
+      background: $white-clinic;
+      height: 42px;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: $main-clinic;
+        box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+      }
+
+      &::placeholder {
+        color: lighten($black-clinic, 40%);
+        font-style: italic;
+      }
+
+      &:disabled {
+        background-color: lighten($main-clinic, 45%);
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: lighten($black-clinic, 30%);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 3;
+
+      &:hover {
+        background-color: lighten($main-clinic, 40%);
+        color: $main-clinic;
+      }
+
+      &:focus {
+        outline: 2px solid $main-clinic;
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+
+  // Variants
+  &.outlined {
+    .search-input-wrapper .search-input {
+      background: transparent;
+      border: 2px solid lighten($main-clinic, 20%);
+      
+      &:focus {
+        background: $white-clinic;
+        border-color: $main-clinic;
+      }
+    }
+  }
+
+  &.filled {
+    .search-input-wrapper .search-input {
+      background: lighten($main-clinic, 45%);
+      border: 2px solid transparent;
+      
+      &:focus {
+        background: $white-clinic;
+        border-color: $main-clinic;
+      }
+    }
+  }
+
+  // Sizes
+  &.small {
+    .search-label {
+      font-size: 12px;
+    }
+
+    .search-input-wrapper {
+      .search-icon {
+        left: 0.75rem;
+        font-size: 12px;
+      }
+
+      .search-input {
+        padding: 0.6rem 0.75rem 0.6rem 2.5rem;
+        height: 36px;
+        font-size: 12px;
+      }
+
+      .search-clear-btn {
+        width: 28px;
+        height: 28px;
+        right: 0.25rem;
+      }
+    }
+  }
+
+  &.large {
+    .search-label {
+      font-size: var(--font-size-sm);
+    }
+
+    .search-input-wrapper {
+      .search-icon {
+        left: 1.25rem;
+        font-size: var(--font-size-base);
+      }
+
+      .search-input {
+        padding: 1rem 1.25rem 1rem 3.5rem;
+        height: 48px;
+        font-size: var(--font-size-sm);
+      }
+
+      .search-clear-btn {
+        width: 36px;
+        height: 36px;
+        right: 0.75rem;
+      }
+    }
+  }
+
+  // Disabled state
+  &.disabled {
+    .search-label {
+      opacity: 0.6;
+    }
+
+    .search-input-wrapper {
+      .search-icon {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  // Animation
+  animation: fadeInUp 0.3s ease-out;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .search-component {
+    .search-input-wrapper {
+      .search-input {
+        font-size: 14px;
+      }
+    }
+
+    &.large {
+      .search-input-wrapper .search-input {
+        font-size: 14px;
+        height: 44px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .search-component {
+    .search-input-wrapper {
+      .search-input {
+        padding-left: 2.5rem;
+        font-size: 14px;
+      }
+
+      .search-icon {
+        left: 0.75rem;
+      }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

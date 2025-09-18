@@ -479,3 +479,33 @@ div._loading_overlay_wrapper {
     }
   }
 }
+
+// Patient Content and Search Section
+.patient-content {
+  margin-top: 1rem;
+
+  .search-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid lighten($main-clinic, 35%);
+
+    .search-component {
+      max-width: 400px;
+    }
+  }
+
+  .patient-table-wrapper {
+    margin-top: 0;
+  }
+}
+
+// Responsive for patient content
+@media (max-width: 768px) {
+  .patient-content {
+    .search-section {
+      .search-component {
+        max-width: 100%;
+      }
+    }
+  }
+}

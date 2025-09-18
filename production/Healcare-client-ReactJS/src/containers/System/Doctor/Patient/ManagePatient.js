@@ -6,6 +6,7 @@ import { LANGUAGES, CommonUtils } from "../../../../utils";
 import patientService from "../../../../services/patientService";
 import { toast } from "react-toastify";
 import Table from "../../../../components/Table/Table";
+import Search from "../../../../components/Search";
 import AddPatientModal from "./AddPatientModal";
 
 const ManagePatient = () => {
@@ -14,6 +15,8 @@ const ManagePatient = () => {
   const { userInfo } = useSelector(state => state.user);
 
   const [patientsList, setPatientsList] = useState([]);
+  const [filteredPatients, setFilteredPatients] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().getTime());
@@ -40,14 +43,17 @@ const ManagePatient = () => {
       
       if (result.success) {
         setPatientsList(result.data || []);
+        setFilteredPatients(result.data || []);
         console.log('Updated patients list:', result.data);
       } else {
         console.error('Failed to fetch patients:', result.message);
         setPatientsList([]);
+        setFilteredPatients([]);
       }
     } catch (error) {
       console.error('Error fetching patients:', error);
       setPatientsList([]);
+      setFilteredPatients([]);
     } finally {
       setIsLoading(false);
     }
@@ -77,18 +83,52 @@ const ManagePatient = () => {
         
         if (result.success) {
           setPatientsList(result.data || []);
+          setFilteredPatients(result.data || []);
         } else {
           console.error('Failed to fetch patients:', result.message);
           setPatientsList([]);
+          setFilteredPatients([]);
         }
       } catch (error) {
         console.error('Error fetching patients:', error);
         setPatientsList([]);
+        setFilteredPatients([]);
       } finally {
         setIsLoading(false);
       }
     }
   };
+
+  // Search functionality
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+    filterPatients(value);
+  };
+
+  const filterPatients = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredPatients(patientsList);
+      return;
+    }
+
+    const filtered = patientsList.filter(patient => {
+      const fullName = `${patient.firstName || ''} ${patient.lastName || ''}`.toLowerCase();
+      const email = (patient.email || '').toLowerCase();
+      const phoneNumber = (patient.phoneNumber || '').toLowerCase();
+      const search = searchTerm.toLowerCase();
+
+      return fullName.includes(search) || 
+             email.includes(search) || 
+             phoneNumber.includes(search);
+    });
+
+    setFilteredPatients(filtered);
+  };
+
+  // Update filtered patients when patients list changes
+  useEffect(() => {
+    filterPatients(searchValue);
+  }, [patientsList]);
 
   const formatDateForInput = (timestamp) => {
     const date = new Date(timestamp);
@@ -272,9 +312,22 @@ const ManagePatient = () => {
         </div>
 
         <div className="patient-content">
+          <div className="search-section">
+            <Search
+              placeholder="search.patient.placeholder"
+              value={searchValue}
+              onChange={handleSearchChange}
+              label="search.patient.label"
+              showLabel={true}
+              size="medium"
+              variant="default"
+              clearable={true}
+            />
+          </div>
+
           <div className="patient-table-wrapper">
             <Table
-              data={patientsList}
+              data={filteredPatients}
               columns={columns}
               loading={isLoading}
               emptyMessage={<FormattedMessage id="manage-patient.emptyMessage" />}

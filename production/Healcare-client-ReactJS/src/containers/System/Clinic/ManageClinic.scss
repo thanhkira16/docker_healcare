@@ -527,3 +527,33 @@
     }
   }
 }
+
+// Clinic Content and Search Section
+.clinic-content {
+  margin-top: 1rem;
+
+  .search-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid lighten($main-clinic, 35%);
+
+    .search-component {
+      max-width: 400px;
+    }
+  }
+
+  .clinic-table-wrapper {
+    margin-top: 0;
+  }
+}
+
+// Responsive for clinic content
+@media (max-width: 768px) {
+  .clinic-content {
+    .search-section {
+      .search-component {
+        max-width: 100%;
+      }
+    }
+  }
+}
