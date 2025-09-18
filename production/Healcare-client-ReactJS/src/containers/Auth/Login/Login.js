@@ -225,7 +225,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
             {/* Header with Language Switcher */}
             <div className="login-header">
               <div className="login-language-switcher">
-                <LanguageSwitcher />
+                <LanguageSwitcher showLabel={true} type="minimal" />
               </div>
             </div>
 

@@ -16,6 +16,8 @@
     "about": "Về chúng tôi"
   },
   "header": {
+    "brand-name": "HealthCare",
+    "brand-slogan": "Chăm sóc sức khỏe",
     "specialties": "Chuyên khoa",
     "quickActions": "Thao tác nhanh",
     "bookAppointment": "Đặt lịch khám",
@@ -24,20 +26,26 @@
     "bookOnline": "Đặt khám online",
     "telehealth": "Khám từ xa",
     "pharmacy": "Nhà thuốc",
-    "healthRecord": "Hồ sơ sức khỏe"
+    "healthRecord": "Hồ sơ sức khỏe",
+    "facilities": "Cơ sở y tế",
+    "doctors": "Bác sĩ",
+    "about": "Về chúng tôi",
+    "language": "Ngôn ngữ",
+    "logout": "Đăng xuất",
+    "search": "Tìm kiếm dịch vụ, bác sĩ..."
   },
   "banner": {
-    "main-title": "NỀN TẢNG Y TẾ ",
-    "sub-title": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
-    "desc": "Bạn có thể nhận được sự chăm sóc cần thiết 24/7 - trực tuyến hoặc tại người. Bạn sẽ được các bác sĩ chuyên khoa tận tâm điều trị.",
-    "btn-make-appoiment": "Đặt lịch hẹn",
-    "search-placeholder": "Tìm bác sĩ",
-    "option1": "Khám chuyên Khoa",
-    "option2": "Khám từ xa",
-    "option3": "Khám tổng quát",
-    "option4": "Xét nghiệp y học",
-    "option5": "Sức khỏe tinh thần",
-    "option6": "Khám nha khoa"
+    "platform-title": "NỀN TẢNG Y TẾ CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+    "ai-support": "Sản phẩm hỗ trợ bởi AI",
+    "appointment-booking": "Trợ lý đặt lịch khám",
+    "appointment-desc": "Tìm kiếm và đặt lịch bác sĩ, cơ sở y tế chuyên khoa uy tín.",
+    "beauty-assistant": "Trợ lý thẩm mỹ",
+    "beauty-desc": "Tìm kiếm địa chỉ, bác sĩ thẩm mỹ uy tín.",
+    "dental-assistant": "Trợ lý nha khoa",
+    "dental-desc": "Tìm kiếm địa chỉ, bác sĩ nha khoa giàu kinh nghiệm.",
+    "acne-assistant": "Trợ lý trị mụn",
+    "acne-desc": "Tìm bác sĩ, dịch vụ, cơ sở chuyên về điều trị mụn.",
+    "search-placeholder": "Tìm kiếm bác sĩ, chuyên khoa, cơ sở y tế..."
   },
   "home-page": {
     "out-standings-doctor": "Bác sĩ nổi bậc tuần qua",
@@ -327,6 +335,50 @@
     "doctor": {
       "placeholder": "Nhập từ khóa tìm kiếm...",
       "label": "Tìm kiếm bác sĩ"
+    }
+  },
+  "reviews": {
+    "title": "Đánh Giá Của Khách Hàng",
+    "subtitle": "Những chia sẻ chân thật từ bệnh nhân đã sử dụng dịch vụ",
+    "stats": {
+      "average": "Đánh giá trung bình",
+      "total": "Lượt đánh giá",
+      "satisfaction": "Khách hàng hài lòng"
+    },
+    "user1": {
+      "name": "Nguyễn Thị Lan",
+      "comment": "Dịch vụ tuyệt vời! Bác sĩ rất tận tâm và chuyên nghiệp.",
+      "service": "Tư vấn tim mạch"
+    },
+    "user2": {
+      "name": "Trần Văn Minh",
+      "comment": "Tiện lợi, nhanh chóng. Được tư vấn chi tiết từ xa.",
+      "service": "Khám nhi khoa"
+    },
+    "user3": {
+      "name": "Lê Thị Hoa",
+      "comment": "Chất lượng dịch vụ tốt, giá cả hợp lý.",
+      "service": "Tư vấn da liễu"
+    },
+    "user4": {
+      "name": "Phạm Văn Đức",
+      "comment": "Đội ngũ y tế chuyên nghiệp, hỗ trợ nhiệt tình.",
+      "service": "Khám nội tổng quát"
+    },
+    "user5": {
+      "name": "Hoàng Thị Mai",
+      "comment": "Ứng dụng dễ sử dụng, bác sĩ tư vấn kỹ lưỡng.",
+      "service": "Tư vấn dinh dưỡng"
+    },
+    "user6": {
+      "name": "Vũ Văn Nam",
+      "comment": "Dịch vụ ổn, thời gian chờ hợp lý.",
+      "service": "Khám mắt"
+    },
+    "user7": {
+      "name": "Đỗ Thị Linh",
+      "comment": "Rất hài lòng với dịch vụ khám online này.",
+      "service": "Tư vấn phụ khoa"
     }
   }
 }

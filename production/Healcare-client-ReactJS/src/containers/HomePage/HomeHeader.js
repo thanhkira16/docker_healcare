@@ -1,125 +1,103 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
-import { getAllSpecialties } from "../../services/userService";
 import { FormattedMessage } from "react-intl";
-import SearchCarousel from "./Section/slider/SearchCarousel";
+import { LANGUAGES } from "../../utils/constant";
+import { changeLanguageApp } from "../../store/actions";
+import HeaderLogo from "../../components/Header/HeaderLogo";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 class HomeHeader extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataSpecialty: [],
-            fullname: '',
-            phone: '',
-            department: '',
-            description: ''
-        };
-    }
-
-    async componentDidMount() {
-        try {
-            const res = await getAllSpecialties();
-            if (res.errCode === 0) {
-                this.setState({ dataSpecialty: res.data ? res.data : [] });
-            } else {
-                console.error("Failed to get all specialty");
-            }
-        } catch (error) {
-            console.error("An error occurred:", error);
-        }
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+    state = {
+        isDropdownOpen: false
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form submitted with state:", this.state);
+    dropdownRef = React.createRef();
+
+    componentDidMount() {
+        // Add click outside listener
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        // Remove click outside listener
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    handleClickOutside = (event) => {
+        if (this.dropdownRef.current && !this.dropdownRef.current.contains(event.target)) {
+            this.setState({ isDropdownOpen: false });
+        }
+    };
+
+    toggleDropdown = (e) => {
+        e.stopPropagation();
+        this.setState(prevState => ({
+            isDropdownOpen: !prevState.isDropdownOpen
+        }));
     };
 
     render() {
-        const { dataSpecialty, fullname, phone, department, description } = this.state;
-        const { language, isShowBanner } = this.props;
+        const { language } = this.props;
+        const { isDropdownOpen } = this.state;
 
         return (
-            <React.Fragment>
-                {isShowBanner && (
-                    <div className="banner row d-flex flex-wrap flex-lg-nowrap flex-md-wrap">
-                        <div className="banner row d-flex flex-wrap flex-lg-nowrap flex-md-wrap">
-                            <div className="banner-left mt-md-5 mb-lg-5 text-md-start text-center col-md-5 col-12 col-sm-12 col-lg-6">
-                                <div className="register">
-                                    <strong className="register-title">
-                                        <FormattedMessage id="homeheader.register" />
-                                    </strong>
-                                    <form onSubmit={this.handleSubmit}>
-                                        <input
-                                            type="text"
-                                            id="fullname"
-                                            name="fullname"
-                                            value={fullname}
-                                            onChange={this.handleChange}
-                                            placeholder="Fullname"
-                                            required
-                                        />
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            pattern="[0-9]{10,11}"
-                                            value={phone}
-                                            onChange={this.handleChange}
-                                            placeholder="Phone number"
-                                            required
-                                        />
-                                        <select
-                                            id="department"
-                                            name="department"
-                                            value={department}
-                                            onChange={this.handleChange}
-                                            required
-                                        >
-                                            <option value="">Select specialty</option>
-                                            {dataSpecialty.map(specialty => (
-                                                <option key={specialty.id} value={specialty.name}>
-                                                    {specialty.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <textarea
-                                            placeholder="Description..."
-                                            id="description"
-                                            name="description"
-                                            value={description}
-                                            onChange={this.handleChange}
-                                            required
-                                        />
-                                        <input type="submit" value={language === "en" ? "Submit" : "Gửi đăng ký"} />
-                                    </form>
-                                </div>
-                            </div>
-                            <div className="banner-right col-12 col-md-5 col-sm-12 col-lg-6 text-center mx-auto mx-sm-0">
-                                <div className="banner-title">
-                                    <h3 className="main-title">
-                                        <FormattedMessage id="banner.main-title" />
-                                    </h3>
-                                    <h2 className="sub-title">
-                                        <FormattedMessage id="banner.sub-title" />
-                                    </h2>
-                                    <p className="desc">
-                                        <FormattedMessage id="banner.desc" />
-                                    </p>
-                                </div>
-                                <div className="banner-right-background"></div>
-                            </div>
-                        </div>
-                        <SearchCarousel />
+            <div className="header">
+                <div className="navbar-container">
+                    <HeaderLogo />
+
+                    {/* Menu Section */}
+                    <div className="navbar-menu">
+                        <ul className="nav-list">
+                            <li className="nav-item">
+                                <a href="#specialties">
+                                    <i className="fas fa-stethoscope"></i>
+                                    <span><FormattedMessage id="header.specialties" /></span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a href="#facilities">
+                                    <i className="fas fa-hospital"></i>
+                                    <span><FormattedMessage id="header.facilities" /></span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a href="#doctors">
+                                    <i className="fas fa-user-md"></i>
+                                    <span><FormattedMessage id="header.doctors" /></span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a href="#about">
+                                    <i className="fas fa-info-circle"></i>
+                                    <span><FormattedMessage id="header.about" /></span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                )}
-            </React.Fragment>
+
+                    {/* Actions Section */}
+                    <div className="navbar-actions">
+                        {/* Use the modern LanguageSwitcher component */}
+                        <LanguageSwitcher showLabel={true} type="modern" />
+
+                        <button className="contact-btn">
+                            <i className="fas fa-phone"></i>
+                            <span className="contact-text">
+                                <FormattedMessage id="header.contact" />
+                            </span>
+                        </button>
+
+                        <button className="mobile-menu-toggle">
+                            <span className="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
@@ -129,4 +107,8 @@ const mapStateToProps = (state) => ({
     language: state.app.language,
 });
 
-export default connect(mapStateToProps)(HomeHeader);
+const mapDispatchToProps = dispatch => ({
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

@@ -1,0 +1,270 @@
+// Minimal Language Switcher for Login and Header
+.language-switcher.minimal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  position: relative;
+
+  .language-options {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid rgba(69, 195, 210, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(69, 195, 210, 0.3);
+    }
+
+    .lang-option {
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      user-select: none;
+
+      &.active {
+        color: var(--main-color, var(--admin-menu-primary-color));
+        background: rgba(69, 195, 210, 0.1);
+        font-weight: 600;
+      }
+
+      &:hover:not(.active) {
+        color: var(--main-color, var(--admin-menu-primary-color));
+        background: rgba(69, 195, 210, 0.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .separator {
+      color: #d1d5db;
+      font-size: var(--font-size-xs);
+      margin: 0 0.3rem;
+      user-select: none;
+      opacity: 0.6;
+    }
+  }
+
+  .language-label {
+    font-size: var(--font-size-xs);
+    color: #6b7280;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--main-color, var(--admin-menu-primary-color));
+    }
+  }
+
+  // Subtle hover effect
+  &:hover .language-options {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(69, 195, 210, 0.15);
+  }
+}
+
+// Specific styles for Login page context
+.login-container .language-switcher.minimal {
+  .language-options {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(69, 195, 210, 0.2);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 2px 6px rgba(69, 195, 210, 0.15);
+    }
+
+    .lang-option {
+      &.active {
+        color: var(--main-color);
+        background: rgba(69, 195, 210, 0.1);
+      }
+
+      &:hover:not(.active) {
+        color: var(--main-color);
+        background: rgba(69, 195, 210, 0.05);
+      }
+    }
+  }
+
+  .language-label {
+    color: #6b7280;
+
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+}
+
+// Specific styles for Header (admin) context
+.header-container .language-switcher.minimal {
+  .language-options {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .lang-option {
+      color: var(--common-text-color, #fff);
+
+      &.active {
+        color: #ff6b6b;
+        background: rgba(255, 107, 107, 0.1);
+      }
+
+      &:hover:not(.active) {
+        color: var(--common-text-color, #fff);
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .separator {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .language-label {
+    color: var(--common-text-color, #fff);
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Specific styles for User Header context
+.user-header .language-switcher.minimal {
+  .language-options {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(69, 195, 210, 0.15);
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+      border-color: rgba(69, 195, 210, 0.25);
+    }
+
+    .lang-option {
+      color: var(--black-bolor, #374151);
+
+      &.active {
+        color: var(--main-color);
+        background: rgba(69, 195, 210, 0.1);
+      }
+
+      &:hover:not(.active) {
+        color: var(--main-color);
+        background: rgba(69, 195, 210, 0.05);
+      }
+    }
+
+    .separator {
+      color: #d1d5db;
+    }
+  }
+
+  .language-label {
+    color: var(--black-bolor, #374151);
+
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+}
+
+// Responsive styles for minimal switcher
+@media (max-width: 768px) {
+  .language-switcher.minimal {
+    .language-options {
+      padding: 0.2rem 0.4rem;
+
+      .lang-option {
+        padding: 0.15rem 0.3rem;
+        font-size: var(--font-size-xs);
+      }
+
+      .separator {
+        margin: 0 0.2rem;
+        font-size: var(--font-size-xs);
+      }
+    }
+
+    .language-label {
+      display: none; // Hide label on mobile for minimal design
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .language-switcher.minimal {
+    .language-options {
+      padding: 0.15rem 0.3rem;
+
+      .lang-option {
+        padding: 0.1rem 0.25rem;
+        font-size: var(--font-size-xs);
+      }
+
+      .separator {
+        margin: 0 0.15rem;
+      }
+    }
+  }
+}
+
+// High contrast mode support for minimal switcher
+@media (prefers-contrast: high) {
+  .language-switcher.minimal {
+    .language-options {
+      border-width: 2px;
+    }
+  }
+
+  .login-container .language-switcher.minimal {
+    .language-options {
+      border: 2px solid var(--main-color);
+    }
+  }
+
+  .header-container .language-switcher.minimal {
+    .language-options {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .user-header .language-switcher.minimal {
+    .language-options {
+      border: 2px solid rgba(69, 195, 210, 0.3);
+    }
+  }
+}
+
+// Reduced motion support for minimal switcher
+@media (prefers-reduced-motion: reduce) {
+  .language-switcher.minimal {
+    .language-options,
+    .lang-option,
+    .language-label {
+      transition: none;
+    }
+
+    &:hover .language-options {
+      transform: none;
+    }
+  }
+}

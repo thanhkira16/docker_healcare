@@ -134,18 +134,8 @@ class Header extends Component {
                 ? userInfo.firstName + " " + userInfo.lastName
                 : ""}
             </span>
-            <span
-              className={`language-vi ${activeLanguage === "vi" ? "active" : ""}`}
-              onClick={() => this.handleLanguageClick("vi")}
-            >
-              VN
-            </span>
-            <span
-              className={`language-en ${activeLanguage === "en" ? "active" : ""}`}
-              onClick={() => this.handleLanguageClick("en")}
-            >
-              EN
-            </span>
+            {/* Use minimal type for admin header */}
+            <LanguageSwitcher showLabel={false} type="minimal" />
             <div className="btn btn-logout" onClick={processLogout}>
               <i className="fas fa-sign-out-alt"></i>
             </div>
@@ -254,8 +244,8 @@ class Header extends Component {
 
               {/* Actions Section */}
               <div className="navbar-actions">
-                {/* Language Switcher */}
-                <LanguageSwitcher />
+                {/* Language Switcher - using minimal type for user header */}
+                <LanguageSwitcher showLabel={false} type="minimal" />
 
                 {/* Contact Button */}
                 <button className="contact-btn">
