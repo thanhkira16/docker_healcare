@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import Search from "../Search";
 import "./Filter.scss";
 
 const Filter = ({
@@ -129,19 +130,16 @@ const Filter = ({
     <div className={`filter-container ${className}`}>
       <div className="filter-content">
         <div className="filter-search">
-          <div className="search-field">
-            <label className="filter-label">Tìm kiếm</label>
-            <div className="search-input-wrapper">
-              <i className="fas fa-search search-icon"></i>
-              <input
-                type="text"
-                className="search-input"
-                placeholder={searchPlaceholder}
-                value={searchValue}
-                onChange={handleSearchChange}
-              />
-            </div>
-          </div>
+          <Search
+            placeholder={searchPlaceholder}
+            value={searchValue}
+            onChange={onSearchChange}
+            label="search.label"
+            showLabel={true}
+            size="medium"
+            variant="default"
+            clearable={true}
+          />
         </div>
 
         {filters && filters.length > 0 && (

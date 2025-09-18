@@ -6,6 +6,7 @@ import { LANGUAGES, CommonUtils } from "../../../utils";
 import clinicService from "../../../services/clinicService";
 import { toast } from "react-toastify";
 import Table from "../../../components/Table/Table";
+import Search from "../../../components/Search";
 import AddClinicModal from "./AddClinicModal";
 
 const ManageClinic = () => {
@@ -13,6 +14,8 @@ const ManageClinic = () => {
   const { language } = useSelector(state => state.app);
 
   const [clinicsList, setClinicsList] = useState([]);
+  const [filteredClinics, setFilteredClinics] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,6 +30,7 @@ const ManageClinic = () => {
       if (result.success) {
         const processedData = clinicService.processClinicDataForTable(result.data);
         setClinicsList(processedData);
+        setFilteredClinics(processedData);
       }
     } catch (error) {
       console.error('Error fetching clinics:', error);
@@ -46,6 +50,39 @@ const ManageClinic = () => {
   const handleModalSuccess = () => {
     fetchAllClinics();
   };
+
+  // Search functionality
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+    filterClinics(value);
+  };
+
+  const filterClinics = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredClinics(clinicsList);
+      return;
+    }
+
+    const filtered = clinicsList.filter(clinic => {
+      const name = (clinic.name || '').toLowerCase();
+      const address = (clinic.address || '').toLowerCase();
+      const phone = (clinic.phone || '').toLowerCase();
+      const email = (clinic.email || '').toLowerCase();
+      const search = searchTerm.toLowerCase();
+
+      return name.includes(search) || 
+             address.includes(search) || 
+             phone.includes(search) ||
+             email.includes(search);
+    });
+
+    setFilteredClinics(filtered);
+  };
+
+  // Update filtered clinics when clinics list changes
+  useEffect(() => {
+    filterClinics(searchValue);
+  }, [clinicsList]);
 
   const handleDeleteClinic = async (clinic) => {
     await clinicService.deleteClinic(clinic.id);
@@ -150,9 +187,22 @@ const ManageClinic = () => {
         </div>
 
         <div className="clinic-content">
+          <div className="search-section">
+            <Search
+              placeholder="search.clinic.placeholder"
+              value={searchValue}
+              onChange={handleSearchChange}
+              label="search.clinic.label"
+              showLabel={true}
+              size="medium"
+              variant="default"
+              clearable={true}
+            />
+          </div>
+
           <div className="clinic-table-wrapper">
             <Table
-              data={clinicsList}
+              data={filteredClinics}
               columns={columns}
               actions={actions}
               loading={isLoading}

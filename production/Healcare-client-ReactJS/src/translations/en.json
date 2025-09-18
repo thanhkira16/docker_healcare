@@ -304,6 +304,24 @@
     "status": "Status"
   },
   "search": {
-    "placeholder": "Search by name, email..."
+    "label": "Search",
+    "placeholder": "Enter search keyword...",
+    "clear": "Clear search",
+    "patient": {
+      "placeholder": "Enter search keyword...",
+      "label": "Search Patient"
+    },
+    "clinic": {
+      "placeholder": "Enter search keyword...",
+      "label": "Search Clinic"
+    },
+    "user": {
+      "placeholder": "Enter search keyword...",
+      "label": "Search User"
+    },
+    "doctor": {
+      "placeholder": "Enter search keyword...",
+      "label": "Search Doctor"
+    }
   }
 }

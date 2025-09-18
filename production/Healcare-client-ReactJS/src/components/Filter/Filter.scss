@@ -20,54 +20,6 @@
   .filter-search {
     flex: 1;
     min-width: 250px;
-
-    .search-field {
-      position: relative;
-
-      .filter-label {
-        font-size: var(--font-size-xs);
-        font-weight: 600;
-        color: $main-clinic;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
-
-      .search-input-wrapper {
-        position: relative;
-
-        .search-icon {
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-          color: lighten($main-clinic, 10%);
-          font-size: var(--font-size-sm);
-          z-index: 2;
-        }
-
-        .search-input {
-          width: 100%;
-          padding: 0.8rem 1rem 0.8rem 3rem;
-          border: 2px solid lighten($main-clinic, 25%);
-          border-radius: 0.6rem;
-          font-size: var(--font-size-xs);
-          transition: all 0.3s ease;
-          background: $white-clinic;
-          height: 42px; // Cố định chiều cao
-
-          &:focus {
-            outline: none;
-            border-color: $main-clinic;
-            box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
-          }
-
-          &::placeholder {
-            color: lighten($black-clinic, 40%);
-            font-style: italic;
-          }
-        }
-      }
-    }
   }
 
   .filter-fields {
@@ -168,10 +120,6 @@
 
     .filter-search {
       min-width: auto;
-      
-      .search-field {
-        max-width: 100%;
-      }
     }
 
     .filter-fields {

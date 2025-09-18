@@ -303,6 +303,24 @@
     "status": "Trạng thái"
   },
   "search": {
-    "placeholder": "Tìm kiếm theo tên, email..."
+    "label": "Tìm kiếm",
+    "placeholder": "Nhập từ khóa tìm kiếm...",
+    "clear": "Xóa tìm kiếm",
+    "patient": {
+      "placeholder": "Nhập từ khóa tìm kiếm...",
+      "label": "Tìm kiếm bệnh nhân"
+    },
+    "clinic": {
+      "placeholder": "Nhập từ khóa tìm kiếm...",
+      "label": "Tìm kiếm phòng khám"
+    },
+    "user": {
+      "placeholder": "Nhập từ khóa tìm kiếm...",
+      "label": "Tìm kiếm người dùng"
+    },
+    "doctor": {
+      "placeholder": "Nhập từ khóa tìm kiếm...",
+      "label": "Tìm kiếm bác sĩ"
+    }
   }
 }
