@@ -57,6 +57,11 @@
 .detail-clinic-container {
   min-height: 100vh;
   background: #f8f9fa;
+  padding-top: 80px; // Để tránh bị navbar che
+  
+  @media (max-width: 768px) {
+    padding-top: 70px; // Giảm padding trên mobile
+  }
   
   .container {
     max-width: 1200px;
