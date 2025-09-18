@@ -1,14 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../../utils";
+import HeaderLogo from "../../../../components/Header/HeaderLogo";
 import "../scss/Footer.scss"
 
-class Footer extends Component {
-   
-    render() {
-      const { language } = this.props;
-      console.log('Footer language:', language); // Debug log
+const Footer = ({ language }) => {
       
       return (
         <footer className="healthcare-footer">
@@ -19,14 +16,11 @@ class Footer extends Component {
                 {/* Healthcare Brand Section */}
                 <div className="footer-section brand-section">
                   <div className="footer-brand">
-                    <div className="brand-logo">
-                      <i className="fas fa-heartbeat"></i>
-                    </div>
-                    <h3 className="brand-name">HealthCare</h3>
+                    <HeaderLogo />
                     <p className="brand-tagline">
                       <FormattedMessage 
                         id="footer.tagline" 
-                        defaultMessage="Chăm sóc sức khỏe toàn diện cho mọi gia đình"
+                        defaultMessage="Nền tảng y tế sức khỏe toàn diện"
                       />
                     </p>
                   </div>
@@ -37,7 +31,7 @@ class Footer extends Component {
                     </div>
                     <div className="contact-item">
                       <i className="fas fa-envelope"></i>
-                      <span>support@healthcare.vn</span>
+                      <span>support@vkuhealcare.edu.vn</span>
                     </div>
                     <div className="contact-item">
                       <i className="fas fa-map-marker-alt"></i>
@@ -51,50 +45,44 @@ class Footer extends Component {
                   </div>
                 </div>
 
+                {/* Quick Links Section */}
+                <div className="footer-section">
+                  <h4 className="section-title">
+                    <FormattedMessage id="footer.quicklinks" defaultMessage="Liên kết nhanh" />
+                  </h4>
+                  <ul className="footer-links">
+                    <li><a href="#specialties">
+                      <FormattedMessage id="header.specialties" defaultMessage="Chuyên khoa" />
+                    </a></li>
+                    <li><a href="#facilities">
+                      <FormattedMessage id="header.facilities" defaultMessage="Cơ sở y tế" />
+                    </a></li>
+                    <li><a href="#doctors">
+                      <FormattedMessage id="header.doctors" defaultMessage="Bác sĩ" />
+                    </a></li>
+                    <li><a href="#about">
+                      <FormattedMessage id="header.about" defaultMessage="Giới thiệu" />
+                    </a></li>
+                  </ul>
+                </div>
+
                 {/* Services Section */}
                 <div className="footer-section">
                   <h4 className="section-title">
                     <FormattedMessage id="footer.services" defaultMessage="Dịch vụ y tế" />
                   </h4>
                   <ul className="footer-links">
-                    <li><a href="#specialties">
-                      <FormattedMessage id="footer.specialties" defaultMessage="Chuyên khoa" />
-                    </a></li>
-                    <li><a href="#doctors">
-                      <FormattedMessage id="footer.doctors" defaultMessage="Bác sĩ" />
-                    </a></li>
-                    <li><a href="#facilities">
-                      <FormattedMessage id="footer.facilities" defaultMessage="Cơ sở y tế" />
-                    </a></li>
                     <li><a href="#booking">
                       <FormattedMessage id="footer.booking" defaultMessage="Đặt lịch khám" />
                     </a></li>
                     <li><a href="#health-check">
                       <FormattedMessage id="footer.health-check" defaultMessage="Gói khám sức khỏe" />
                     </a></li>
-                  </ul>
-                </div>
-
-                {/* Support Section */}
-                <div className="footer-section">
-                  <h4 className="section-title">
-                    <FormattedMessage id="footer.support" defaultMessage="Hỗ trợ" />
-                  </h4>
-                  <ul className="footer-links">
-                    <li><a href="#faq">
-                      <FormattedMessage id="footer.faq" defaultMessage="Câu hỏi thường gặp" />
+                    <li><a href="#emergency">
+                      <FormattedMessage id="footer.emergency" defaultMessage="Cấp cứu 24/7" />
                     </a></li>
-                    <li><a href="#guide">
-                      <FormattedMessage id="footer.guide" defaultMessage="Hướng dẫn sử dụng" />
-                    </a></li>
-                    <li><a href="#privacy">
-                      <FormattedMessage id="footer.privacy" defaultMessage="Chính sách bảo mật" />
-                    </a></li>
-                    <li><a href="#terms">
-                      <FormattedMessage id="footer.terms" defaultMessage="Điều khoản sử dụng" />
-                    </a></li>
-                    <li><a href="#feedback">
-                      <FormattedMessage id="footer.feedback" defaultMessage="Góp ý & khiếu nại" />
+                    <li><a href="#telemedicine">
+                      <FormattedMessage id="footer.telemedicine" defaultMessage="Khám từ xa" />
                     </a></li>
                   </ul>
                 </div>
@@ -139,37 +127,9 @@ class Footer extends Component {
               </div>
             </div>
           </div>
-          
-          {/* Footer Bottom */}
-          <div className="footer-bottom">
-            <div className="footer-container">
-              <div className="footer-bottom-content">
-                <div className="copyright">
-                  <p>
-                    © 2024 HealthCare Platform. 
-                    <FormattedMessage 
-                      id="footer.copyright" 
-                      defaultMessage=" Bản quyền thuộc về VKU HealthCare."
-                    />
-                  </p>
-                </div>
-                <div className="certifications">
-                  <span className="cert-item">
-                    <i className="fas fa-shield-alt"></i>
-                    <FormattedMessage id="footer.verified" defaultMessage="Đã được xác minh" />
-                  </span>
-                  <span className="cert-item">
-                    <i className="fas fa-award"></i>
-                    <FormattedMessage id="footer.certified" defaultMessage="Chứng nhận chất lượng" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
         </footer>
       );
-    }
-  }
+  };
 
 const mapStateToProps = (state) => {
   return {

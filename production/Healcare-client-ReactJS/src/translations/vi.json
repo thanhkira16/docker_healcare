@@ -226,14 +226,17 @@
     }
   },
   "footer": {
-    "tagline": "Chăm sóc sức khỏe toàn diện cho mọi gia đình",
+    "tagline": "Nền tảng y tế sức khỏe toàn diện",
     "address": "470 Trần Đại Nghĩa, Hòa Hải, Ngũ Hành Sơn, Đà Nẵng",
+    "quicklinks": "Liên kết nhanh",
     "services": "Dịch vụ y tế",
     "specialties": "Chuyên khoa",
     "doctors": "Bác sĩ",
     "facilities": "Cơ sở y tế",
     "booking": "Đặt lịch khám",
     "health-check": "Gói khám sức khỏe",
+    "emergency": "Cấp cứu 24/7",
+    "telemedicine": "Khám từ xa",
     "support": "Hỗ trợ",
     "faq": "Câu hỏi thường gặp",
     "guide": "Hướng dẫn sử dụng",

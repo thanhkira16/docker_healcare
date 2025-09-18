@@ -219,14 +219,17 @@
     }
   },
   "footer": {
-    "tagline": "Comprehensive healthcare for every family",
+    "tagline": "Comprehensive healthcare platform",
     "address": "470 Tran Dai Nghia, Hoa Hai, Ngu Hanh Son, Da Nang",
+    "quicklinks": "Quick Links",
     "services": "Medical Services",
     "specialties": "Specialties",
     "doctors": "Doctors",
     "facilities": "Medical Facilities",
     "booking": "Book Appointment",
     "health-check": "Health Check Packages",
+    "emergency": "24/7 Emergency",
+    "telemedicine": "Telemedicine",
     "support": "Support",
     "faq": "Frequently Asked Questions",
     "guide": "User Guide",
