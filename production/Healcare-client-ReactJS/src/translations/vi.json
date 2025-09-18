@@ -411,5 +411,94 @@
       "comment": "Rất hài lòng với dịch vụ khám online này.",
       "service": "Tư vấn phụ khoa"
     }
+  },
+  "contact": {
+    "title": "Liên hệ với chúng tôi",
+    "subtitle": "Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn",
+    "inquiry_types": {
+      "general": {
+        "label": "Câu hỏi chung",
+        "description": "Các câu hỏi về dịch vụ của chúng tôi"
+      },
+      "support": {
+        "label": "Hỗ trợ kỹ thuật",
+        "description": "Giúp đỡ với các vấn đề kỹ thuật"
+      },
+      "business": {
+        "label": "Hợp tác kinh doanh",
+        "description": "Cơ hội hợp tác và kinh doanh"
+      },
+      "feedback": {
+        "label": "Phản hồi",
+        "description": "Chia sẻ ý kiến và đề xuất"
+      }
+    },
+    "benefits": {
+      "security": {
+        "title": "Bảo mật",
+        "description": "Mã hóa SSL 256-bit"
+      },
+      "response": {
+        "title": "Phản hồi nhanh",
+        "description": "Trả lời trong 24 giờ"
+      },
+      "support": {
+        "title": "Hỗ trợ 24/7",
+        "description": "Luôn sẵn sàng giúp đỡ"
+      },
+      "team": {
+        "title": "Đội ngũ chuyên gia",
+        "description": "Hỗ trợ chuyên nghiệp"
+      }
+    },
+    "form": {
+      "help_question": "Chúng tôi có thể giúp gì cho bạn?",
+      "name": "Họ và tên *",
+      "name_placeholder": "Nhập họ và tên của bạn",
+      "email": "Địa chỉ email *",
+      "email_placeholder": "Nhập địa chỉ email",
+      "subject": "Tiêu đề *",
+      "subject_placeholder": "Tiêu đề của tin nhắn",
+      "message": "Tin nhắn *",
+      "message_placeholder": "Mô tả chi tiết yêu cầu của bạn...",
+      "submit": "Gửi tin nhắn",
+      "sending": "Đang gửi...",
+      "send_another": "Gửi tin nhắn khác",
+      "privacy": "Bằng cách gửi tin nhắn này, bạn đồng ý với",
+      "privacy_link": "chính sách bảo mật"
+    },
+    "success": {
+      "title": "Gửi tin nhắn thành công!",
+      "description": "Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi trong vòng 24 giờ."
+    },
+    "location": {
+      "title": "Trụ sở chính VKU Healthcare",
+      "address": "470 Trần Đại Nghĩa, Ngũ Hành Sơn, Đà Nẵng"
+    },
+    "quick_answers": {
+      "title": "Câu trả lời nhanh",
+      "response_time": {
+        "title": "Thời gian phản hồi",
+        "description": "Chúng tôi phản hồi trong vòng 24 giờ trong ngày làm việc."
+      },
+      "phone_support": {
+        "title": "Hỗ trợ điện thoại",
+        "description": "Có sẵn Thứ 2-6, 8AM đến 6PM."
+      },
+      "emergency": {
+        "title": "Hỗ trợ khẩn cấp",
+        "description": "Các vấn đề quan trọng được xử lý 24/7."
+      }
+    }
+  },
+  "chatwoot": {
+    "welcome_message": "Xin chào! 🏥\n\nTôi là trợ lý y tế AI của bạn. Tôi có thể giúp bạn:\n• Tư vấn sức khỏe cơ bản\n• Thông tin về triệu chứng\n• Lời khuyên chăm sóc sức khỏe\n• Hướng dẫn sơ cứu cơ bản\n\n⚠️ Lưu ý: Tôi chỉ cung cấp thông tin tham khảo, không thay thế chẩn đoán y khoa chuyên nghiệp.\n\nBạn có câu hỏi gì về sức khỏe không? 💊",
+    "assistant_title": "Trợ lý Y tế AI",
+    "assistant_subtitle": "Hỗ trợ sức khỏe 24/7",
+    "error_message": "Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau.",
+    "input_placeholder": "Hỏi về triệu chứng, sức khỏe...",
+    "medical_chat_button": "Tư vấn y tế miễn phí",
+    "close_button": "Đóng chat y tế",
+    "footer_text": "🏥 Chăm sóc sức khỏe thông minh"
   }
 }
