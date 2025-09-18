@@ -459,5 +459,15 @@
         "description": "Các vấn đề quan trọng được xử lý 24/7."
       }
     }
+  },
+  "chatwoot": {
+    "welcome_message": "Xin chào! 🏥\n\nTôi là trợ lý y tế AI của bạn. Tôi có thể giúp bạn:\n• Tư vấn sức khỏe cơ bản\n• Thông tin về triệu chứng\n• Lời khuyên chăm sóc sức khỏe\n• Hướng dẫn sơ cứu cơ bản\n\n⚠️ Lưu ý: Tôi chỉ cung cấp thông tin tham khảo, không thay thế chẩn đoán y khoa chuyên nghiệp.\n\nBạn có câu hỏi gì về sức khỏe không? 💊",
+    "assistant_title": "Trợ lý Y tế AI",
+    "assistant_subtitle": "Hỗ trợ sức khỏe 24/7",
+    "error_message": "Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau.",
+    "input_placeholder": "Hỏi về triệu chứng, sức khỏe...",
+    "medical_chat_button": "Tư vấn y tế miễn phí",
+    "close_button": "Đóng chat y tế",
+    "footer_text": "🏥 Chăm sóc sức khỏe thông minh"
   }
 }

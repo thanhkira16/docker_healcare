@@ -452,5 +452,15 @@
         "description": "Critical issues are handled 24/7."
       }
     }
+  },
+  "chatwoot": {
+    "welcome_message": "Hello! 🏥\n\nI'm your AI medical assistant. I can help you with:\n• Basic health advice\n• Symptom information\n• Healthcare recommendations\n• Basic first aid guidance\n\n⚠️ Note: I only provide reference information, not a replacement for professional medical diagnosis.\n\nDo you have any health questions? 💊",
+    "assistant_title": "AI Medical Assistant",
+    "assistant_subtitle": "24/7 Health Support",
+    "error_message": "Sorry, an error occurred while processing your request. Please try again later.",
+    "input_placeholder": "Ask about symptoms, health...",
+    "medical_chat_button": "Free Medical Consultation",
+    "close_button": "Close medical chat",
+    "footer_text": "🏥 Smart Healthcare"
   }
 }

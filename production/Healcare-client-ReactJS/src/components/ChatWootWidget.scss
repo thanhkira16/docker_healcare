@@ -3,17 +3,6 @@
     z-index: 9999;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
-    // Define variables for medical theme
-    --primary-color: var(--bs-primary, #0d6efd);
-    --secondary-color: var(--bs-success, #198754);
-    --accent-color: var(--bs-info, #0dcaf0);
-    --text-color: var(--black-color, #212529);
-    --background-color: var(--white-color, #ffffff);
-    --border-color: var(--border-color-light, #dee2e6);
-    --header-background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    --message-user-background: var(--primary-color);
-    --message-bot-background: var(--main-color, #f8f9fa);
-
     .chat-toggle {
         position: fixed;
         bottom: 32px;
@@ -22,15 +11,15 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-        border: 3px solid var(--background-color);
-        box-shadow: 0 4px 20px rgba(40, 55, 121, 0.3);
+        background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--admin-menu-primary-color) 100%);
+        border: 3px solid var(--white-color);
+        box-shadow: 0 4px 20px rgba(69, 195, 210, 0.3);
         transition: all 0.3s ease;
         cursor: pointer;
 
         &:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(40, 55, 121, 0.4);
+            box-shadow: 0 6px 25px rgba(69, 195, 210, 0.4);
         }
 
         &.medical-toggle-btn {
@@ -40,6 +29,7 @@
                 align-items: center;
                 justify-content: center;
                 height: 100%;
+                color: var(--white-color);
                 animation: pulse 2s infinite;
             }
         }
@@ -63,18 +53,18 @@
         right: 32px;
         z-index: 10001;
         width: 380px;
-        height: 600px;
+        height: 500px;
         border-radius: 16px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--border-color-light);
         overflow: hidden;
-        background: var(--background-color);
+        background: var(--white-color);
         display: flex;
         flex-direction: column;
 
         @media (max-width: 768px) {
             width: 100vw;
-            height: 100vh;
+            height: 80vh;
             bottom: 0;
             right: 0;
             border-radius: 0;
@@ -83,11 +73,11 @@
 
     // Header styling
     .chat-header {
-        background: var(--header-background);
+        background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--admin-menu-primary-color) 100%);
         padding: 16px 20px;
-        color: #ffffff;
+        color: var(--white-color);
         position: relative;
-        border-bottom: 2px solid var(--accent-color);
+        border-bottom: 2px solid var(--bs-info);
         display: flex;
         align-items: center;
 
@@ -95,7 +85,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: #ffffff;
+            background: var(--white-color);
             margin-right: 12px;
             display: flex;
             align-items: center;
@@ -112,14 +102,14 @@
         }
 
         .title {
-            font-size: 18px;
+            font-size: var(--font-size-lg);
             font-weight: 600;
             margin-bottom: 4px;
-            color: #ffffff !important;
+            color: var(--white-color) !important;
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: var(--font-size-sm);
             opacity: 0.9;
             color: rgba(255, 255, 255, 0.9) !important;
         }
@@ -130,7 +120,7 @@
             right: 16px;
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            color: #ffffff;
+            color: var(--white-color);
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -138,7 +128,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: var(--font-size-md);
             font-weight: bold;
             transition: all 0.2s ease;
 
@@ -152,7 +142,7 @@
     // Chat messages area
     .chat-messages {
         padding: 16px;
-        background: #f5f7fa;
+        background: var(--gray-medium-color);
         flex: 1;
         overflow-y: auto;
 
@@ -164,12 +154,12 @@
                 margin-left: auto;
 
                 .message-content {
-                    background: var(--message-user-background);
-                    color: #ffffff;
+                    background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--admin-menu-primary-color) 100%);
+                    color: var(--white-color);
                     border-radius: 18px 18px 6px 18px;
                     padding: 12px 16px;
-                    font-size: 14px;
-                    box-shadow: 0 2px 8px rgba(40, 55, 121, 0.2);
+                    font-size: var(--font-size-sm);
+                    box-shadow: 0 2px 8px rgba(69, 195, 210, 0.2);
                     white-space: pre-wrap;
                 }
             }
@@ -178,17 +168,17 @@
                 margin-right: auto;
 
                 .message-content {
-                    background: #ffffff;
-                    color: var(--text-color);
+                    background: var(--white-color);
+                    color: var(--black-color);
                     border-radius: 18px 18px 18px 6px;
                     padding: 12px 16px;
-                    font-size: 14px;
-                    border: 1px solid var(--border-color);
+                    font-size: var(--font-size-sm);
+                    border: 1px solid var(--border-color-light);
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
                     white-space: pre-wrap;
 
                     &.loading {
-                        background: #f0f0f0;
+                        background: var(--main-color);
                         min-width: 80px;
                         min-height: 48px;
                         display: flex;
@@ -198,18 +188,18 @@
 
                     // Medical advice styling with special formatting
                     &:has(.medical-advice) {
-                        border-left: 4px solid #ffc107;
-                        background: #fff9e6;
+                        border-left: 4px solid var(--bs-warning);
+                        background: rgba(254, 192, 47, 0.1);
                     }
 
                     &:has(.medical-warning) {
-                        border-left: 4px solid #dc3545;
-                        background: #fff2f2;
+                        border-left: 4px solid var(--bs-danger);
+                        background: rgba(218, 56, 73, 0.1);
                     }
 
                     &:has(.medical-info) {
-                        border-left: 4px solid #0dcaf0;
-                        background: #f0f9ff;
+                        border-left: 4px solid var(--bs-info);
+                        background: rgba(13, 175, 202, 0.1);
                     }
                 }
             }
@@ -224,7 +214,7 @@
                 height: 8px;
                 width: 8px;
                 margin: 0 2px;
-                background-color: #888;
+                background-color: var(--black-medium-color);
                 border-radius: 50%;
                 display: inline-block;
                 opacity: 0.4;
@@ -264,31 +254,34 @@
     // Input area
     .chat-input {
         padding: 16px;
-        background: #ffffff;
-        border-top: 1px solid var(--border-color);
+        background: var(--white-color);
+        border-top: 1px solid var(--border-color-light);
         display: flex;
         align-items: center;
 
         textarea {
             flex: 1;
             padding: 12px 16px;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--border-color-light);
             border-radius: 24px;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
             font-family: inherit;
             resize: none;
             outline: none;
             transition: border-color 0.2s ease;
             max-height: 120px;
             min-height: 24px;
+            color: var(--black-color);
+            background: var(--main-color);
 
             &:focus {
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 3px rgba(40, 55, 121, 0.1);
+                border-color: var(--blue-medium-color);
+                box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+                background: var(--white-color);
             }
 
             &::placeholder {
-                color: #757575;
+                color: var(--black-medium-color);
                 opacity: 0.7;
             }
 
@@ -301,8 +294,8 @@
         }
 
         .send-button {
-            background: var(--primary-color);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--admin-menu-primary-color) 100%);
+            color: var(--white-color);
             border: none;
             border-radius: 50%;
             width: 40px;
@@ -315,8 +308,8 @@
             margin-left: 12px;
 
             &:hover {
-                background: var(--secondary-color);
                 transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(69, 195, 210, 0.3);
             }
 
             &:disabled {
@@ -330,11 +323,11 @@
     // Footer
     .chat-footer {
         padding: 8px 16px;
-        background: #f0f2f5;
+        background: var(--main-color);
         text-align: center;
-        font-size: 11px;
-        color: #757575;
-        border-top: 1px solid var(--border-color);
+        font-size: var(--font-size-xs);
+        color: var(--black-medium-color);
+        border-top: 1px solid var(--border-color-light);
     }
 
     // Medical-specific message styles
@@ -344,9 +337,9 @@
         margin: 8px 0;
 
         &.warning {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
+            background: rgba(254, 192, 47, 0.15);
+            border: 1px solid var(--bs-warning);
+            color: var(--black-color);
 
             &::before {
                 content: "⚠️ ";
@@ -355,9 +348,9 @@
         }
 
         &.info {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            color: #0c5460;
+            background: rgba(13, 175, 202, 0.15);
+            border: 1px solid var(--bs-info);
+            color: var(--black-color);
 
             &::before {
                 content: "ℹ️ ";
@@ -366,9 +359,9 @@
         }
 
         &.emergency {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
+            background: rgba(218, 56, 73, 0.15);
+            border: 1px solid var(--bs-danger);
+            color: var(--black-color);
 
             &::before {
                 content: "🚨 ";
@@ -399,7 +392,7 @@
     @media (max-width: 575.98px) {
         .chat-window {
             width: calc(100vw - 20px);
-            height: calc(100vh - 40px);
+            height: calc(80vh - 40px);
             bottom: 10px;
             right: 10px;
         }
@@ -411,29 +404,29 @@
     display: inline-block;
     padding: 4px 8px;
     border-radius: 12px;
-    font-size: 11px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 
     &.emergency {
-        background: #dc3545;
-        color: #ffffff;
+        background: var(--bs-danger);
+        color: var(--white-color);
     }
 
     &.urgent {
-        background: #ffc107;
-        color: #212529;
+        background: var(--bs-warning);
+        color: var(--black-color);
     }
 
     &.routine {
-        background: #198754;
-        color: #ffffff;
+        background: var(--bs-success);
+        color: var(--white-color);
     }
 
     &.info {
-        background: #0dcaf0;
-        color: #ffffff;
+        background: var(--bs-info);
+        color: var(--white-color);
     }
 }
 
@@ -460,7 +453,7 @@
 .medical-chatbot-container {
     * {
         &:focus {
-            outline: 2px solid var(--primary-color);
+            outline: 2px solid var(--blue-medium-color);
             outline-offset: 2px;
         }
     }

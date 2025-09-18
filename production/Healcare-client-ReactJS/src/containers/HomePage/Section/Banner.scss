@@ -1,5 +1,5 @@
 .banner-container {
-  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #ADD8E6 100%);
+  background: var(--section-background);
   min-height: 48vh; // Reduced from 60vh
   padding: 6.4rem 0 3.2rem; // Reduced from 8rem 0 4rem
   margin-top: 5.6rem; // Reduced from 7rem

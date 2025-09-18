@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./ChatWootWidget.scss";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ChatWootWidget = () => {
+    const intl = useIntl();
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [messages, setMessages] = useState([]);
     const [inputText, setInputText] = useState("");
@@ -12,7 +14,7 @@ const ChatWootWidget = () => {
     const initialMessages = [
         {
             role: "assistant",
-            content: "Xin chào! 🏥\n\nTôi là trợ lý y tế AI của bạn. Tôi có thể giúp bạn:\n• Tư vấn sức khỏe cơ bản\n• Thông tin về triệu chứng\n• Lời khuyên chăm sóc sức khỏe\n• Hướng dẫn sơ cứu cơ bản\n\n⚠️ Lưu ý: Tôi chỉ cung cấp thông tin tham khảo, không thay thế chẩn đoán y khoa chuyên nghiệp.\n\nBạn có câu hỏi gì về sức khỏe không? 💊"
+            content: intl.formatMessage({ id: "chatwoot.welcome_message" })
         }
     ];
 
@@ -86,7 +88,7 @@ const ChatWootWidget = () => {
             console.error("Error calling Gemini API:", error);
             setMessages(prevMessages => [...prevMessages, {
                 role: "assistant",
-                content: "Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau."
+                content: intl.formatMessage({ id: "chatwoot.error_message" })
             }]);
         } finally {
             setIsLoading(false);
@@ -118,7 +120,7 @@ const ChatWootWidget = () => {
                 <button
                     className="chat-toggle medical-toggle-btn"
                     onClick={toggleChat}
-                    title="Tư vấn y tế miễn phí"
+                    title={intl.formatMessage({ id: "chatwoot.medical_chat_button" })}
                 >
                     <span className="medical-icon">🩺</span>
                 </button>
@@ -134,13 +136,13 @@ const ChatWootWidget = () => {
                         <div>🏥</div>
                     </div>
                     <div className="header-info">
-                        <div className="title">Trợ lý Y tế AI</div>
-                        <div className="subtitle">Hỗ trợ sức khỏe 24/7</div>
+                        <div className="title"><FormattedMessage id="chatwoot.assistant_title" /></div>
+                        <div className="subtitle"><FormattedMessage id="chatwoot.assistant_subtitle" /></div>
                     </div>
                     <button
                         className="close-btn medical-close-btn"
                         onClick={toggleChat}
-                        aria-label="Đóng chat y tế"
+                        aria-label={intl.formatMessage({ id: "chatwoot.close_button" })}
                     >
                         ✕
                     </button>
@@ -178,7 +180,7 @@ const ChatWootWidget = () => {
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder="Hỏi về triệu chứng, sức khỏe..."
+                        placeholder={intl.formatMessage({ id: "chatwoot.input_placeholder" })}
                         rows={1}
                         disabled={isLoading}
                     />
@@ -192,7 +194,7 @@ const ChatWootWidget = () => {
                 </div>
 
                 <div className="chat-footer">
-                    🏥 Chăm sóc sức khỏe thông minh
+                    <FormattedMessage id="chatwoot.footer_text" />
                 </div>
             </div>
         </div>
