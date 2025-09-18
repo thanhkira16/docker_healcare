@@ -20,6 +20,8 @@ import "../../styles/_variables.scss"; // Adjusted to match variables.scss from 
 import "../../styles/_base.scss";
 import "./HomePage.scss";
 
+import ChatWootWidget from "../../components/ChatWootWidget";
+
 class HomePage extends Component {
   componentDidMount() {
     document.title = "VKU Healcare - Nền tảng y tế sức khỏe toàn diện";
@@ -63,7 +65,7 @@ class HomePage extends Component {
       <Fragment>
         <HomeHeader />
         <Banner />
-        
+
         <div id="specialties">
           <Specialty settings={settings} />
         </div>
@@ -79,6 +81,7 @@ class HomePage extends Component {
         <ReactionOfUser />
         <Contact />
         <Footer />
+        <ChatWootWidget />
       </Fragment>
     );
   }

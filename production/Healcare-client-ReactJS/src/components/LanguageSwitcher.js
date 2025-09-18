@@ -8,60 +8,64 @@ import { FormattedMessage } from "react-intl";
 import "./LanguageSwitcher.scss";
 import "./LanguageSwitcherMinimal.scss";
 
-const LanguageSwitcher = ({ 
-  language, 
-  changeLanguageAppRedux, 
-  showLabel = true, 
+const LanguageSwitcher = ({
+  language,
+  changeLanguageAppRedux,
+  showLabel = true,
   type = "modern" // "modern" or "minimal"
 }) => {
-  const handleLanguageClick = (selectedLanguage) => {
+  const handleLanguageClick = (selectedLanguage, event) => {
+    // Prevent the click from bubbling up to the parent element
+    event.stopPropagation();
+
     if (selectedLanguage !== language) {
       changeLanguageAppRedux(selectedLanguage);
     }
   };
 
+  // New handler for clicking on the entire switcher
+  const handleSwitcherClick = () => {
+    const newLanguage = language === LANGUAGES.VI ? LANGUAGES.EN : LANGUAGES.VI;
+    changeLanguageAppRedux(newLanguage);
+  };
+
   // Modern type - for HomeHeader
   if (type === "modern") {
     return (
-      <div className="language-switcher modern">
+      <div className="language-switcher modern" onClick={handleSwitcherClick}>
         <div className="language-toggle">
-          <span 
+          <span
             className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}
-            onClick={() => handleLanguageClick(LANGUAGES.VI)}
+            onClick={(e) => handleLanguageClick(LANGUAGES.VI, e)}
           >
             VN
           </span>
-          <span 
+          <span
             className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}
-            onClick={() => handleLanguageClick(LANGUAGES.EN)}
+            onClick={(e) => handleLanguageClick(LANGUAGES.EN, e)}
           >
             EN
           </span>
           <div className={`toggle-slider ${language === LANGUAGES.EN ? 'right' : 'left'}`}></div>
         </div>
-        {showLabel && (
-          <span className="language-label">
-            <FormattedMessage id="header.language" />
-          </span>
-        )}
       </div>
     );
   }
 
   // Minimal type - for Login and Header
   return (
-    <div className="language-switcher minimal">
+    <div className="language-switcher minimal" onClick={handleSwitcherClick}>
       <div className="language-options">
-        <span 
+        <span
           className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}
-          onClick={() => handleLanguageClick(LANGUAGES.VI)}
+          onClick={(e) => handleLanguageClick(LANGUAGES.VI, e)}
         >
           VN
         </span>
         <span className="separator">|</span>
-        <span 
+        <span
           className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}
-          onClick={() => handleLanguageClick(LANGUAGES.EN)}
+          onClick={(e) => handleLanguageClick(LANGUAGES.EN, e)}
         >
           EN
         </span>

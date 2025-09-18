@@ -99,8 +99,8 @@ const Contact = () => {
     };
 
     return (
-        <div className="contact-section">
-            <div className="container">
+        <div className="container contact-section">
+            <div className="">
                 <div className="contact-header">
                     <h2 className="contact-title">
                         <FormattedMessage id="contact.title" />

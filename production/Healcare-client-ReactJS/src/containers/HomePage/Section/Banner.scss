@@ -106,6 +106,8 @@
         align-items: flex-start;
         gap: 2rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        /* Add cursor pointer to indicate item is clickable */
 
         &:hover {
           transform: translateY(-0.5rem);

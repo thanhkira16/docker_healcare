@@ -4,12 +4,6 @@
     background: linear-gradient(135deg, var(--gray-medium-color) 0%, var(--border-color-light) 100%);
     min-height: 100vh;
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
     .contact-header {
         text-align: center;
         margin-bottom: 60px;
@@ -46,7 +40,7 @@
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 40px;
-
+        padding: 0 10px;
         @media (max-width: 1024px) {
             grid-template-columns: 1fr;
             gap: 30px;
@@ -63,7 +57,7 @@
             border: 2px solid var(--border-color-light);
             position: relative;
             overflow: hidden;
-
+            
             @media (max-width: 768px) {
                 padding: 24px;
                 border-radius: 16px;
