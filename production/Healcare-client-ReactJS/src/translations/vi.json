@@ -16,7 +16,7 @@
     "about": "Về chúng tôi"
   },
   "header": {
-    "brand-name": "VKU HealthCare",
+    "brand-name": "HealthCare",
     "brand-slogan": "Chăm sóc sức khỏe",
     "specialties": "Chuyên khoa",
     "quickActions": "Thao tác nhanh",
@@ -232,5 +232,49 @@
     "create_account": "Tạo tài khoản mới",
     "already_have_account": "Đã có tài khoản?",
     "create_page": "Tạo trang dành cho bệnh viện, phòng khám hoặc doanh nghiệp"
+  },
+  "reviews": {
+    "title": "Đánh Giá Của Khách Hàng",
+    "subtitle": "Những chia sẻ chân thật từ bệnh nhân đã sử dụng dịch vụ",
+    "stats": {
+      "average": "Đánh giá trung bình",
+      "total": "Lượt đánh giá",
+      "satisfaction": "Khách hàng hài lòng"
+    },
+    "user1": {
+      "name": "Nguyễn Thị Lan",
+      "comment": "Dịch vụ tuyệt vời! Bác sĩ rất tận tâm và chuyên nghiệp.",
+      "service": "Tư vấn tim mạch"
+    },
+    "user2": {
+      "name": "Trần Văn Minh",
+      "comment": "Tiện lợi, nhanh chóng. Được tư vấn chi tiết từ xa.",
+      "service": "Khám nhi khoa"
+    },
+    "user3": {
+      "name": "Lê Thị Hoa",
+      "comment": "Chất lượng dịch vụ tốt, giá cả hợp lý.",
+      "service": "Tư vấn da liễu"
+    },
+    "user4": {
+      "name": "Phạm Văn Đức",
+      "comment": "Đội ngũ y tế chuyên nghiệp, hỗ trợ nhiệt tình.",
+      "service": "Khám nội tổng quát"
+    },
+    "user5": {
+      "name": "Hoàng Thị Mai",
+      "comment": "Ứng dụng dễ sử dụng, bác sĩ tư vấn kỹ lưỡng.",
+      "service": "Tư vấn dinh dưỡng"
+    },
+    "user6": {
+      "name": "Vũ Văn Nam",
+      "comment": "Dịch vụ ổn, thời gian chờ hợp lý.",
+      "service": "Khám mắt"
+    },
+    "user7": {
+      "name": "Đỗ Thị Linh",
+      "comment": "Rất hài lòng với dịch vụ khám online này.",
+      "service": "Tư vấn phụ khoa"
+    }
   }
 }

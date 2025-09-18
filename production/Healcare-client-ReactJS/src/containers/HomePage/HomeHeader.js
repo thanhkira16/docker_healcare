@@ -44,7 +44,6 @@ class HomeHeader extends Component {
         return (
             <div className="header">
                 <div className="navbar-container">
-                    {/* Replace Brand Section with HeaderLogo */}
                     <HeaderLogo />
 
                     {/* Menu Section */}
@@ -88,26 +87,6 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="header.contact" />
                             </span>
                         </button>
-
-                        <div className="user-profile-dropdown" ref={this.dropdownRef}>
-                            <div className="user-avatar-trigger" onClick={this.toggleDropdown}>
-                                <i className="fas fa-user-circle"></i>
-                            </div>
-                            <div className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`}>
-                                <div className="user-info">
-                                    <i className="fas fa-user-circle dropdown-avatar"></i>
-                                    <div className="user-details">
-                                        <span className="user-name">Thị Kim Loan Nguyễn</span>
-                                        <span className="user-role">Admin</span>
-                                    </div>
-                                </div>
-                                <div className="dropdown-divider"></div>
-                                <button className="logout-btn">
-                                    <i className="fas fa-sign-out-alt"></i>
-                                    <span><FormattedMessage id="header.logout" /></span>
-                                </button>
-                            </div>
-                        </div>
 
                         <button className="mobile-menu-toggle">
                             <span className="hamburger">

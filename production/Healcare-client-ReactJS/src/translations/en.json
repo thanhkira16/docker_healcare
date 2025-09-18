@@ -16,7 +16,7 @@
     "about": "About us"
   },
   "header": {
-    "brand-name": "VKU HealthCare",
+    "brand-name": "HealthCare",
     "brand-slogan": "Healthcare Services",
     "specialties": "Specialties",
     "facilities": "Facilities",
@@ -225,5 +225,49 @@
     "create_account": "Create a new account",
     "already_have_account": "Already have an account?",
     "create_page": "Create a page for hospital, clinic, or business"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "Authentic experiences from patients who used our services",
+    "stats": {
+      "average": "Average Rating",
+      "total": "Total Reviews",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "user1": {
+      "name": "Nguyen Thi Lan",
+      "comment": "Excellent service! Very dedicated and professional doctors.",
+      "service": "Cardiology Consultation"
+    },
+    "user2": {
+      "name": "Tran Van Minh",
+      "comment": "Convenient and fast. Detailed remote consultation.",
+      "service": "Pediatric Care"
+    },
+    "user3": {
+      "name": "Le Thi Hoa",
+      "comment": "Good service quality, reasonable prices.",
+      "service": "Dermatology"
+    },
+    "user4": {
+      "name": "Pham Van Duc",
+      "comment": "Professional medical team, helpful support.",
+      "service": "General Check-up"
+    },
+    "user5": {
+      "name": "Hoang Thi Mai",
+      "comment": "Easy to use app, thorough doctor consultation.",
+      "service": "Nutrition Consultation"
+    },
+    "user6": {
+      "name": "Vu Van Nam",
+      "comment": "Decent service, reasonable waiting time.",
+      "service": "Eye Examination"
+    },
+    "user7": {
+      "name": "Do Thi Linh",
+      "comment": "Very satisfied with this online medical service.",
+      "service": "Gynecology Consultation"
+    }
   }
 }

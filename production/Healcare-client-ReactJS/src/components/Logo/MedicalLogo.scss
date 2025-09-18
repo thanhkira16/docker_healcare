@@ -1,0 +1,49 @@
+@import '../../styles/styles.scss';
+
+.medical-logo {
+    display: inline-block;
+    filter: drop-shadow(0 2px 8px rgba(13, 175, 202, 0.2)); // Using bs-info color
+    transition: all 0.3s ease;
+
+    path {
+        transition: fill 0.3s ease;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 4px 12px rgba(13, 175, 202, 0.3));
+
+        path {
+            fill: var(--blue-medium-color) !important;
+        }
+    }
+
+    // Fallback CSS Variables for cases where Base.scss isn't loaded
+    :root & {
+        --blue-medium-color: var(--blue-medium-color);
+        --bs-success: var(--bs-success);
+        --white-color: var(--white-color);
+        --border-color-light: var(--border-color-light);
+    }
+}
+
+// Disable animations on mobile/touch devices
+@media (hover: none) and (pointer: coarse) {
+    .medical-logo {
+        &:hover {
+            transform: none;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+        }
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .medical-logo {
+        transition: none;
+
+        &:hover {
+            transform: none;
+        }
+    }
+}

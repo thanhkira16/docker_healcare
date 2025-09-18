@@ -1,34 +1,221 @@
+@import '../../styles/styles.scss';
 .header-logo-section {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+
     .nav-left {
         display: flex;
         align-items: center;
         cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        padding: 0.5rem;
+        border-radius: 0.8rem;
+        
+        // Focus state for accessibility
+        &:focus {
+            outline: 2px solid var(--admin-menu-primary-color);
+            outline-offset: 2px;
+        }
 
-        .header-logo {
-            background: url("../../../src/assets/brand.png") top center/contain no-repeat;
-            height: 140%;
-            width: 80%;
+        .header-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.2rem;
+            transition: transform 0.3s ease;
+
+            .header-svg-logo {
+                display: block;
+                // Additional styles will be inherited from MedicalLogo.scss
+            }
         }
 
         .brand-info {
             display: flex;
             flex-direction: column;
+            gap: 0.2rem;
 
             .brand-name {
-                font-size: 20px;
-                font-weight: bold;
-                color: #2d2d2d;
+                font-size: var(--font-size-lg);
+                font-weight: 700;
+                color: var(--black-color);
+                line-height: 1.1;
+                margin: 0;
+                transition: color 0.3s ease;
             }
 
             .brand-slogan {
-                font-size: 12px;
-                color: #6c757d;
+                font-size: var(--font-size-xs);
+                color: var(--black-medium-color);
+                line-height: 1.2;
+                margin: 0;
+                transition: color 0.3s ease;
             }
         }
 
+        // Hover effects
         &:hover {
-            opacity: 0.8;
-            transition: opacity 0.2s ease;
+            .header-logo-container {
+                transform: scale(1.05);
+            }
+
+            .brand-info {
+                .brand-name {
+                    color: var(--admin-menu-primary-color);
+                }
+
+                .brand-slogan {
+                    color: var(--black-color);
+                }
+            }
+        }
+
+        // Active state
+        &:active {
+            .header-logo-container {
+                transform: scale(0.95);
+            }
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+    .header-logo-section {
+        .nav-left {
+            padding: 0.4rem;
+
+            .header-logo-container {
+                margin-right: 1rem;
+            }
+
+            .brand-info {
+                .brand-name {
+                    font-size: var(--font-size-md);
+                }
+
+                .brand-slogan {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header-logo-section {
+        .nav-left {
+            padding: 0.3rem;
+
+            .header-logo-container {
+                margin-right: 0.8rem;
+            }
+
+            .brand-info {
+                .brand-name {
+                    font-size: var(--font-size-sm);
+                }
+
+                .brand-slogan {
+                    display: none; // Hide slogan on mobile to save space
+                }
+            }
+
+            // Disable hover effects on touch devices
+            &:hover {
+                .header-logo-container {
+                    transform: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo-section {
+        .nav-left {
+            padding: 0.2rem;
+
+            .header-logo-container {
+                margin-right: 0.6rem;
+            }
+
+            .brand-info {
+                .brand-name {
+                    font-size: var(--font-size-xs);
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .header-logo-section {
+        .nav-left {
+            .brand-info {
+                .brand-name {
+                    font-weight: 800;
+                }
+            }
+
+            &:focus {
+                outline-width: 3px;
+                outline-color: var(--black-color);
+            }
+        }
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .header-logo-section {
+        .nav-left {
+            transition: none;
+
+            .header-logo-container {
+                transition: none;
+            }
+
+            .brand-info {
+                .brand-name,
+                .brand-slogan {
+                    transition: none;
+                }
+            }
+
+            &:hover {
+                .header-logo-container {
+                    transform: none;
+                }
+            }
+
+            &:active {
+                .header-logo-container {
+                    transform: none;
+                }
+            }
+        }
+    }
+}
+
+// Print styles
+@media print {
+    .header-logo-section {
+        .nav-left {
+            .brand-info {
+                .brand-name {
+                    color: black !important;
+                }
+                
+                .brand-slogan {
+                    color: #666 !important;
+                }
+            }
         }
     }
 }

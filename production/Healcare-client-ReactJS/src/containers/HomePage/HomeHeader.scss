@@ -194,96 +194,6 @@
         }
       }
 
-      .user-profile-dropdown {
-        position: relative;
-
-        .user-avatar-trigger {
-          font-size: var(--font-size-xxl);
-          color: var(--black-medium-color);
-          cursor: pointer;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: var(--admin-menu-primary-color);
-          }
-        }
-
-        .dropdown-menu {
-          position: absolute;
-          top: 120%;
-          right: 0;
-          background: var(--white-color);
-          border-radius: 0.8rem;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-          padding: 1.5rem;
-          min-width: 22rem;
-          display: none;
-          border: 1px solid var(--border-color-light);
-
-          &.show {
-            display: block;
-          }
-
-          .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-
-            .dropdown-avatar {
-              font-size: var(--font-size-xxl);
-              color: var(--black-medium-color);
-            }
-
-            .user-details {
-              display: flex;
-              flex-direction: column;
-
-              .user-name {
-                font-size: var(--font-size-sm);
-                font-weight: 600;
-                color: var(--black-color);
-              }
-
-              .user-role {
-                font-size: var(--font-size-xs);
-                color: var(--black-medium-color);
-                margin-top: 0.2rem;
-              }
-            }
-          }
-
-          .dropdown-divider {
-            height: 1px;
-            background: var(--border-color-light);
-            margin: 1rem 0;
-          }
-
-          .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            width: 100%;
-            padding: 0.8rem;
-            border: none;
-            background: none;
-            color: var(--bs-danger);
-            cursor: pointer;
-            font-size: var(--font-size-sm);
-            border-radius: 0.4rem;
-            transition: background-color 0.3s ease;
-
-            i {
-              font-size: var(--font-size-sm);
-            }
-
-            &:hover {
-              background: var(--bs-light);
-            }
-          }
-        }
-      }
-
       .mobile-menu-toggle {
         display: none;
         border: none;
@@ -412,17 +322,6 @@
 
           i {
             font-size: var(--font-size-sm);
-          }
-        }
-
-        .user-profile-dropdown {
-          .user-avatar-trigger {
-            font-size: var(--font-size-xl);
-          }
-
-          .dropdown-menu {
-            min-width: 18rem;
-            padding: 1rem;
           }
         }
       }
