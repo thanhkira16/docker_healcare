@@ -3,13 +3,13 @@
   height: 7rem;
   width: 100%;
   top: 0;
-  z-index: 1000; // Increased z-index
-  background-color: var(--white-color, #fff); // Fallback color
+  z-index: 1000;
+  background-color: var(--white-color, #fff);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: fixed;
   left: 0;
   right: 0;
-  font-size: var(--font-size-sm, 1.4rem); // Fallback font-size
+  font-size: var(--font-size-sm, 1.4rem);
 
   // Ensure only one header is visible
   &:not(:first-of-type) {
@@ -166,59 +166,6 @@
       align-items: center;
       gap: 1.5rem;
       flex: 0 0 auto;
-
-      .language-switcher {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.4rem;
-
-        .language-toggle {
-          position: relative;
-          background: var(--gray-medium-color);
-          border-radius: 1.5rem;
-          padding: 0.2rem;
-          display: flex;
-          width: 7rem;
-
-          .lang-option {
-            flex: 1;
-            text-align: center;
-            padding: 0.4rem 0.8rem;
-            z-index: 1;
-            cursor: pointer;
-            font-size: var(--font-size-xs);
-            font-weight: 500;
-            transition: color 0.3s ease;
-
-            &.active {
-              color: var(--white-color);
-            }
-          }
-
-          .toggle-slider {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            background: var(--admin-menu-primary-color);
-            border-radius: 1.2rem;
-            transition: all 0.3s ease;
-
-            &.left {
-              left: 0.2rem;
-            }
-
-            &.right {
-              right: 0.2rem;
-            }
-          }
-        }
-
-        .language-label {
-          font-size: var(--font-size-xs);
-          color: var(--black-medium-color);
-        }
-      }
 
       .contact-btn {
         display: flex;
@@ -431,16 +378,6 @@
             font-size: var(--font-size-md);
           }
         }
-
-        .language-switcher {
-          .language-label {
-            display: none;
-          }
-
-          .language-toggle {
-            width: 6rem;
-          }
-        }
       }
     }
   }
@@ -475,15 +412,6 @@
 
           i {
             font-size: var(--font-size-sm);
-          }
-        }
-
-        .language-switcher .language-toggle {
-          width: 5.5rem;
-
-          .lang-option {
-            font-size: 1rem;
-            padding: 0.3rem 0.5rem;
           }
         }
 

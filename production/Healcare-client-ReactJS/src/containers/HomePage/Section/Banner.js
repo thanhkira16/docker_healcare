@@ -1,115 +1,123 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllSpecialties } from '../../../services/userService';
 import './Banner.scss';
 
 class Banner extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSpecialty: [],
-            fullname: '',
-            phone: '',
-            department: '',
-            description: ''
+            searchTerm: ''
         };
     }
 
-    async componentDidMount() {
-        try {
-            const res = await getAllSpecialties();
-            if (res.errCode === 0) {
-                this.setState({ dataSpecialty: res.data ? res.data : [] });
-            } else {
-                console.error("Failed to get all specialty");
-            }
-        } catch (error) {
-            console.error("An error occurred:", error);
-        }
-    }
-
-    handleChange = (e) => {
+    handleSearchChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            searchTerm: e.target.value
         });
     };
 
-    handleSubmit = (e) => {
+    handleSearchSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted with state:", this.state);
+        console.log("Search submitted:", this.state.searchTerm);
     };
 
     render() {
-        const { dataSpecialty, fullname, phone, department, description } = this.state;
-        const { language } = this.props;
+        const { searchTerm } = this.state;
+        const { intl } = this.props;
 
         return (
-            <div className="banner row d-flex flex-wrap flex-lg-nowrap flex-md-wrap">
-                <div className="banner-left mt-md-5 mb-lg-5 text-md-start text-center col-md-5 col-12 col-sm-12 col-lg-6">
-                    <div className="register">
-                        <strong className="register-title">
-                            <FormattedMessage id="homeheader.register" />
-                        </strong>
-                        <form onSubmit={this.handleSubmit}>
-                            <input
-                                type="text"
-                                id="fullname"
-                                name="fullname"
-                                value={fullname}
-                                onChange={this.handleChange}
-                                placeholder="Fullname"
-                                required
-                            />
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                pattern="[0-9]{10,11}"
-                                value={phone}
-                                onChange={this.handleChange}
-                                placeholder="Phone number"
-                                required
-                            />
-                            <select
-                                id="department"
-                                name="department"
-                                value={department}
-                                onChange={this.handleChange}
-                                required
-                            >
-                                <option value="">Select specialty</option>
-                                {dataSpecialty.map(specialty => (
-                                    <option key={specialty.id} value={specialty.name}>
-                                        {specialty.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <textarea
-                                placeholder="Description..."
-                                id="description"
-                                name="description"
-                                value={description}
-                                onChange={this.handleChange}
-                                required
-                            />
-                            <input type="submit" value={language === "en" ? "Submit" : "Gửi đăng ký"} />
+            <div className="banner-container">
+                <div className="banner-content">
+                    {/* Main Title */}
+                    <div className="banner-header">
+                        <h1 className="banner-title">
+                            <FormattedMessage id="banner.platform-title" />
+                        </h1>
+                    </div>
+
+                    {/* Search Section */}
+                    <div className="banner-search">
+                        <form className="search-form" onSubmit={this.handleSearchSubmit}>
+                            <div className="search-input-wrapper">
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    value={searchTerm}
+                                    onChange={this.handleSearchChange}
+                                    placeholder={intl.formatMessage({ id: 'banner.search-placeholder' })}
+                                />
+                                <button type="submit" className="search-btn">
+                                    <i className="fas fa-search"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
-                </div>
-                <div className="banner-right col-12 col-md-5 col-sm-12 col-lg-6 text-center mx-auto mx-sm-0">
-                    <div className="banner-title">
-                        <h3 className="main-title">
-                            <FormattedMessage id="banner.main-title" />
-                        </h3>
-                        <h2 className="sub-title">
-                            <FormattedMessage id="banner.sub-title" />
+
+                    {/* AI Support Section */}
+                    <div className="ai-support-section">
+                        <h2 className="ai-title">
+                            <FormattedMessage id="banner.ai-support" />
                         </h2>
-                        <p className="desc">
-                            <FormattedMessage id="banner.desc" />
-                        </p>
+
+                        <div className="ai-services">
+                            <div className="ai-service-item">
+                                <div className="service-icon">
+                                    <i className="fas fa-calendar-alt"></i>
+                                </div>
+                                <div className="service-content">
+                                    <h3 className="service-title">
+                                        <FormattedMessage id="banner.appointment-booking" />
+                                    </h3>
+                                    <p className="service-description">
+                                        <FormattedMessage id="banner.appointment-desc" />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="ai-service-item">
+                                <div className="service-icon">
+                                    <i className="fas fa-user-md"></i>
+                                </div>
+                                <div className="service-content">
+                                    <h3 className="service-title">
+                                        <FormattedMessage id="banner.beauty-assistant" />
+                                    </h3>
+                                    <p className="service-description">
+                                        <FormattedMessage id="banner.beauty-desc" />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="ai-service-item">
+                                <div className="service-icon">
+                                    <i className="fas fa-tooth"></i>
+                                </div>
+                                <div className="service-content">
+                                    <h3 className="service-title">
+                                        <FormattedMessage id="banner.dental-assistant" />
+                                    </h3>
+                                    <p className="service-description">
+                                        <FormattedMessage id="banner.dental-desc" />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="ai-service-item">
+                                <div className="service-icon">
+                                    <i className="fas fa-pills"></i>
+                                </div>
+                                <div className="service-content">
+                                    <h3 className="service-title">
+                                        <FormattedMessage id="banner.acne-assistant" />
+                                    </h3>
+                                    <p className="service-description">
+                                        <FormattedMessage id="banner.acne-desc" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="banner-right-background"></div>
                 </div>
             </div>
         );
@@ -120,4 +128,5 @@ const mapStateToProps = (state) => ({
     language: state.app.language,
 });
 
-export default connect(mapStateToProps)(Banner);
+// Wrap the component with both connect and injectIntl
+export default connect(mapStateToProps)(injectIntl(Banner));

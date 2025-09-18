@@ -28,17 +28,17 @@
     "search": "Search for services, doctors..."
   },
   "banner": {
-    "main-title": "HEALTHCARE PLATFORM ",
-    "sub-title": "COMPREHENSIVE HEALTHCARE",
-    "desc": "You can get the care you need 24/7 – be it online or in person. You will be treated by caring specialist doctors.",
-    "btn-make-appoiment": "Make an Appointment",
-    "search-placeholder": "Find a doctor",
-    "option1": "Specialty Examination",
-    "option2": "Remote Consultation",
-    "option3": "General Check-up",
-    "option4": "Medical Tests",
-    "option5": "Mental Health",
-    "option6": "Dental Examination"
+    "platform-title": "COMPREHENSIVE HEALTHCARE PLATFORM",
+    "ai-support": "AI-Powered Support",
+    "appointment-booking": "Appointment Assistant",
+    "appointment-desc": "Search and book appointments with trusted doctors and medical facilities.",
+    "beauty-assistant": "Beauty Assistant",
+    "beauty-desc": "Find trusted addresses and aesthetic doctors.",
+    "dental-assistant": "Dental Assistant",
+    "dental-desc": "Find experienced orthodontists and dental clinics.",
+    "acne-assistant": "Acne Treatment Assistant",
+    "acne-desc": "Find doctors, services, and facilities specializing in acne treatment.",
+    "search-placeholder": "Search for doctors, specialties, or facilities..."
   },
   "menu": {
     "admin": {

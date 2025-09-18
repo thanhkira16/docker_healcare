@@ -5,26 +5,40 @@ import { LANGUAGES } from "../utils";
 import "./LanguageSwitcher.scss";
 import { FormattedMessage } from "react-intl";
 
-const LanguageSwitcher = ({ language, changeLanguageAppRedux }) => {
+const LanguageSwitcher = ({ language, changeLanguageAppRedux, showLabel = true }) => {
   const switchLanguage = () => {
     const newLanguage = language === LANGUAGES.VI ? LANGUAGES.EN : LANGUAGES.VI;
     changeLanguageAppRedux(newLanguage);
   };
 
+  const handleLanguageClick = (selectedLanguage) => {
+    if (selectedLanguage !== language) {
+      changeLanguageAppRedux(selectedLanguage);
+    }
+  };
+
   return (
-    <div className="language-switcher" onClick={switchLanguage}>
+    <div className="language-switcher">
       <div className="language-toggle">
-        <span className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}>
+        <span 
+          className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}
+          onClick={() => handleLanguageClick(LANGUAGES.VI)}
+        >
           VN
         </span>
-        <span className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}>
+        <span 
+          className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}
+          onClick={() => handleLanguageClick(LANGUAGES.EN)}
+        >
           EN
         </span>
         <div className={`toggle-slider ${language === LANGUAGES.EN ? 'right' : 'left'}`}></div>
       </div>
-      <span className="language-label">
-        <FormattedMessage id="homeheader.language" />
-      </span>
+      {showLabel && (
+        <span className="language-label">
+          <FormattedMessage id="header.language" />
+        </span>
+      )}
     </div>
   );
 };

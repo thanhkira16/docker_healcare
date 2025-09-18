@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils/constant";
 import { changeLanguageApp } from "../../store/actions";
 import HeaderLogo from "../../components/Header/HeaderLogo";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 class HomeHeader extends Component {
     state = {
@@ -36,13 +37,6 @@ class HomeHeader extends Component {
         }));
     };
 
-    handleChangeLanguage = (language) => {
-        // Close dropdown if open
-        this.setState({ isDropdownOpen: false });
-        // Dispatch language change
-        this.props.changeLanguageAppRedux(language);
-    };
-
     render() {
         const { language } = this.props;
         const { isDropdownOpen } = this.state;
@@ -52,23 +46,6 @@ class HomeHeader extends Component {
                 <div className="navbar-container">
                     {/* Replace Brand Section with HeaderLogo */}
                     <HeaderLogo />
-
-                    {/* Search Section */}
-                    <div className="navbar-search">
-                        <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-                            <div className="search-input-wrapper">
-                                <i className="fas fa-search search-icon"></i>
-                                <input
-                                    type="text"
-                                    className="search-input"
-                                    placeholder={language === LANGUAGES.VI ?
-                                        <FormattedMessage id="header.search" /> :
-                                        <FormattedMessage id="header.search" />
-                                    }
-                                />
-                            </div>
-                        </form>
-                    </div>
 
                     {/* Menu Section */}
                     <div className="navbar-menu">
@@ -102,26 +79,8 @@ class HomeHeader extends Component {
 
                     {/* Actions Section */}
                     <div className="navbar-actions">
-                        <div className="language-switcher">
-                            <div className="language-toggle">
-                                <span
-                                    className={`lang-option ${language === LANGUAGES.VI ? 'active' : ''}`}
-                                    onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}
-                                >
-                                    VN
-                                </span>
-                                <span
-                                    className={`lang-option ${language === LANGUAGES.EN ? 'active' : ''}`}
-                                    onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}
-                                >
-                                    EN
-                                </span>
-                                <div className={`toggle-slider ${language === LANGUAGES.VI ? 'left' : 'right'}`}></div>
-                            </div>
-                            <span className="language-label">
-                                <FormattedMessage id="header.language" />
-                            </span>
-                        </div>
+                        {/* Use the LanguageSwitcher component */}
+                        <LanguageSwitcher showLabel={true} />
 
                         <button className="contact-btn">
                             <i className="fas fa-phone"></i>

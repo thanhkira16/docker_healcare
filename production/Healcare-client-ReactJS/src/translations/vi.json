@@ -35,17 +35,17 @@
     "search": "Tìm kiếm dịch vụ, bác sĩ..."
   },
   "banner": {
-    "main-title": "NỀN TẢNG Y TẾ ",
-    "sub-title": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
-    "desc": "Bạn có thể nhận được sự chăm sóc cần thiết 24/7 - trực tuyến hoặc tại người. Bạn sẽ được các bác sĩ chuyên khoa tận tâm điều trị.",
-    "btn-make-appoiment": "Đặt lịch hẹn",
-    "search-placeholder": "Tìm bác sĩ",
-    "option1": "Khám chuyên Khoa",
-    "option2": "Khám từ xa",
-    "option3": "Khám tổng quát",
-    "option4": "Xét nghiệp y học",
-    "option5": "Sức khỏe tinh thần",
-    "option6": "Khám nha khoa"
+    "platform-title": "NỀN TẢNG Y TẾ CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+    "ai-support": "Sản phẩm hỗ trợ bởi AI",
+    "appointment-booking": "Trợ lý đặt lịch khám",
+    "appointment-desc": "Tìm kiếm và đặt lịch bác sĩ, cơ sở y tế chuyên khoa uy tín.",
+    "beauty-assistant": "Trợ lý thẩm mỹ",
+    "beauty-desc": "Tìm kiếm địa chỉ, bác sĩ thẩm mỹ uy tín.",
+    "dental-assistant": "Trợ lý nha khoa",
+    "dental-desc": "Tìm kiếm địa chỉ, bác sĩ nha khoa giàu kinh nghiệm.",
+    "acne-assistant": "Trợ lý trị mụn",
+    "acne-desc": "Tìm bác sĩ, dịch vụ, cơ sở chuyên về điều trị mụn.",
+    "search-placeholder": "Tìm kiếm bác sĩ, chuyên khoa, cơ sở y tế..."
   },
   "home-page": {
     "out-standings-doctor": "Bác sĩ nổi bậc tuần qua",
