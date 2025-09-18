@@ -307,7 +307,6 @@ const UserManage = () => {
             className="btn-add-user"
             onClick={handleAddNewUser}
           >
-            <i className="fas fa-plus"></i>
             <FormattedMessage id="manage-user.addNew" />
           </button>
         </div>

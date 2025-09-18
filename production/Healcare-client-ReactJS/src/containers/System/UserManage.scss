@@ -12,22 +12,19 @@
   
   // Admin Header Style
   .admin-header {
-    padding: 0rem 0;
-    margin-bottom: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $blue-medium-clinic;
 
     .admin-title {
       h1 {
         color: $main-clinic;
-        font-size: var(--font-size-xxl);
+        font-size: 2.2rem;
         font-weight: 700;
         margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
       }
     }
 
@@ -53,6 +50,41 @@
         border-color: darken($main-clinic, 5%);
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(69, 195, 210, 0.3);
+      }
+    }
+
+    // Responsive for admin-header
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+
+      .admin-title {
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .btn-add-user {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.5rem;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-title {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .btn-add-user {
+        padding: 0.7rem 1.2rem;
+        font-size: 12px;
       }
     }
   }
