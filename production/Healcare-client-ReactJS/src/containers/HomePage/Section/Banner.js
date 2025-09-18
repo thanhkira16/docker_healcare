@@ -91,7 +91,7 @@ class Banner extends Component {
 
                             <div className="ai-service-item">
                                 <div className="service-icon">
-                                    <i className="fas fa-tooth"></i>
+                                   <i className="fas fa-stethoscope"></i>
                                 </div>
                                 <div className="service-content">
                                     <h3 className="service-title">

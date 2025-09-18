@@ -9,6 +9,7 @@ import MedicalFacility from "./Section/slider/MedicalFacility";
 import OutStandingDoctor from "./Section/slider/OutStandingDoctor";
 import Footer from "./Section/Info/Footer";
 import ReactionOfUser from "./Section/Info/ReactionOfUser";
+import Contact from "./Section/Info/Contact";
 import About from "./Section/About";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,6 +19,8 @@ import "../../styles/_form.scss"; // Adjusted to match form.scss from App.scss
 import "../../styles/_variables.scss"; // Adjusted to match variables.scss from App.scss
 import "../../styles/_base.scss";
 import "./HomePage.scss";
+
+import ChatWootWidget from "../../components/ChatWootWidget";
 
 class HomePage extends Component {
   componentDidMount() {
@@ -62,7 +65,7 @@ class HomePage extends Component {
       <Fragment>
         <HomeHeader />
         <Banner />
-        <ReactionOfUser />
+
         <div id="specialties">
           <Specialty settings={settings} />
         </div>
@@ -75,7 +78,10 @@ class HomePage extends Component {
         <div id="about">
           <About />
         </div>
+        <ReactionOfUser />
+        <Contact />
         <Footer />
+        <ChatWootWidget />
       </Fragment>
     );
   }
