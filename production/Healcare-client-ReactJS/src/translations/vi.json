@@ -175,7 +175,35 @@
     "unknownError": "Đã xảy ra lỗi không xác định",
     "btnSave": "Lưu",
     "btnCancel": "Hủy bỏ",
-    "saving": "Đang lưu...",
+    "saving": "Đang lưu..."
+  },
+  "clinic": {
+    "detail": {
+      "title": "Chi tiết phòng khám"
+    },
+    "verified": "Đã xác minh",
+    "quality": "Chất lượng cao",
+    "doctors": {
+      "title": "Đội ngũ bác sĩ",
+      "subtitle": "Đội ngũ bác sĩ chuyên nghiệp và giàu kinh nghiệm"
+    },
+    "no-doctors": {
+      "title": "Chưa có bác sĩ",
+      "message": "Phòng khám này hiện chưa có bác sĩ nào."
+    }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "show-more": "Xem thêm",
+    "show-less": "Thu gọn"
+  },
+  "doctor": {
+    "schedule": {
+      "title": "Lịch khám"
+    },
+    "extra-info": {
+      "title": "Thông tin thêm"
+    },
     "placeholderName": "Nhập tên phòng khám...",
     "placeholderAddress": "Nhập địa chỉ phòng khám...",
     "placeholderDescription": "Nhập mô tả chi tiết về phòng khám..."

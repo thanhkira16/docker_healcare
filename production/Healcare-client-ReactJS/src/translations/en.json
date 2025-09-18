@@ -183,6 +183,34 @@
     "placeholderAddress": "Enter clinic address...",
     "placeholderDescription": "Enter detailed clinic description..."
   },
+  "clinic": {
+    "detail": {
+      "title": "Clinic Details"
+    },
+    "verified": "Verified",
+    "quality": "High Quality",
+    "doctors": {
+      "title": "Medical Team",
+      "subtitle": "Professional and experienced medical team"
+    },
+    "no-doctors": {
+      "title": "No Doctors Available",
+      "message": "This clinic currently has no doctors available."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "show-more": "Show more",
+    "show-less": "Show less"
+  },
+  "doctor": {
+    "schedule": {
+      "title": "Schedule"
+    },
+    "extra-info": {
+      "title": "Additional Information"
+    }
+  },
   "patient": {
     "detail-doctor": {
       "appointment": "APPOINTMENT",
