@@ -1,0 +1,211 @@
+@import "../../styles/variables";
+@import "../../styles/Base.scss";
+
+.filter-container {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+
+  // Layout cho search và filters nằm cùng hàng
+  .filter-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .filter-search {
+    flex: 1;
+    min-width: 250px;
+
+    .search-field {
+      position: relative;
+
+      .filter-label {
+        font-size: var(--font-size-xs);
+        font-weight: 600;
+        color: $main-clinic;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .search-input-wrapper {
+        position: relative;
+
+        .search-icon {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: lighten($main-clinic, 10%);
+          font-size: var(--font-size-sm);
+          z-index: 2;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 0.8rem 1rem 0.8rem 3rem;
+          border: 2px solid lighten($main-clinic, 25%);
+          border-radius: 0.6rem;
+          font-size: var(--font-size-xs);
+          transition: all 0.3s ease;
+          background: $white-clinic;
+          height: 42px; // Cố định chiều cao
+
+          &:focus {
+            outline: none;
+            border-color: $main-clinic;
+            box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+          }
+
+          &::placeholder {
+            color: lighten($black-clinic, 40%);
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  .filter-fields {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      min-width: 200px;
+
+      .filter-label {
+        font-size: var(--font-size-xs);
+        font-weight: 600;
+        color: $main-clinic;
+        margin-bottom: 0.5rem;
+      }
+
+      .filter-select,
+      .filter-input {
+        padding: 0.8rem 1rem;
+        border: 2px solid lighten($main-clinic, 25%);
+        border-radius: 0.6rem;
+        font-size: var(--font-size-xs);
+        transition: all 0.3s ease;
+        background: $white-clinic;
+        height: 42px; // Cùng chiều cao với search input
+
+        &:focus {
+          outline: none;
+          border-color: $main-clinic;
+          box-shadow: 0 0 0 3px rgba(69, 195, 210, 0.1);
+        }
+      }
+
+      .filter-select {
+        cursor: pointer;
+
+        option {
+          padding: 0.5rem;
+        }
+      }
+
+      .filter-input {
+        &::placeholder {
+          color: lighten($black-clinic, 40%);
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    .btn-clear-filter {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: lighten($main-clinic, 35%);
+      color: $main-clinic;
+      border: 2px solid lighten($main-clinic, 25%);
+      border-radius: 0.6rem;
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: lighten($main-clinic, 30%);
+        border-color: $main-clinic;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(69, 195, 210, 0.2);
+      }
+
+      i {
+        font-size: var(--font-size-sm);
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .filter-container {
+    padding: 1rem;
+
+    .filter-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .filter-search {
+      min-width: auto;
+      
+      .search-field {
+        max-width: 100%;
+      }
+    }
+
+    .filter-fields {
+      flex-direction: column;
+      gap: 1rem;
+      
+      .filter-field {
+        min-width: auto;
+      }
+    }
+
+    .filter-actions {
+      justify-content: center;
+      
+      .btn-clear-filter {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Animation for smooth transitions
+.filter-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
