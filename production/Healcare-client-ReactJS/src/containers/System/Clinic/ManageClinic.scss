@@ -12,22 +12,19 @@
   
   // Admin Header Style
   .admin-header {
-    padding: 2rem 0;
-    margin-bottom: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $blue-medium-clinic;
 
     .admin-title {
       h1 {
         color: $main-clinic;
-        font-size: var(--font-size-xxl);
+        font-size: 2.2rem;
         font-weight: 700;
         margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
       }
     }
 
@@ -46,6 +43,41 @@
 
       i {
         font-size: var(--font-size-md);
+      }
+    }
+
+    // Responsive for admin-header
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+
+      .admin-title {
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .btn-add-clinic {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.5rem;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-title {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .btn-add-clinic {
+        padding: 0.7rem 1.2rem;
+        font-size: 12px;
       }
     }
   }
@@ -398,5 +430,100 @@
     background: $blue-medium-clinic !important;
     color: $main-clinic !important;
     font-size: var(--font-size-xs) !important;
+  }
+}
+
+// Responsive Design for ManageClinic
+@media (max-width: 1200px) {
+  .manage-clinic-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .manage-clinic-container {
+    padding: 1rem;
+    
+    .clinic-content .clinic-table-wrapper {
+      overflow-x: auto;
+      
+      :global(.table-container) .data-table {
+        min-width: 50rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .manage-clinic-container {
+    padding: 0.8rem;
+
+    .clinic-content .clinic-table-wrapper {
+      border-radius: 0.8rem;
+      margin: 0 -0.5rem;
+      
+      :global(.table-container) .data-table {
+        min-width: 45rem;
+        font-size: 13px;
+        
+        th, td {
+          padding: 0.5rem 0.3rem;
+        }
+      }
+    }
+
+    .clinic-description {
+      max-width: 10rem;
+      font-size: 12px;
+    }
+
+    .clinic-image-cell {
+      .clinic-thumbnail,
+      .no-image {
+        width: 3rem;
+        height: 2.5rem;
+      }
+
+      .no-image i {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .manage-clinic-container {
+    padding: 0.5rem;
+
+    .clinic-content .clinic-table-wrapper {
+      margin: 0 -0.3rem;
+      border-radius: 0.6rem;
+      
+      :global(.table-container) .data-table {
+        min-width: 40rem;
+        font-size: 12px;
+        
+        th, td {
+          padding: 0.4rem 0.2rem;
+        }
+      }
+    }
+
+    .clinic-description {
+      max-width: 8rem;
+      font-size: 11px;
+    }
+
+    .clinic-image-cell {
+      .clinic-thumbnail,
+      .no-image {
+        width: 2.5rem;
+        height: 2rem;
+      }
+
+      .no-image i {
+        font-size: 1rem;
+      }
+    }
   }
 }
