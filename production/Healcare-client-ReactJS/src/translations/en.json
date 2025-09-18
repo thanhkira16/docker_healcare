@@ -144,13 +144,19 @@
     "invalidDate": "Please select a date"
   },
   "manage-specialty": {
+    "title": "Manage Specialties", 
     "specialtyName": "Specialty Name",
     "specialtyImage": "Specialty Image",
+    "specialtyDescription": "Specialty Description",
+    "specialtyNameRequired": "Please enter specialty name",
+    "specialtyImageRequired": "Please select specialty image",
+    "specialtyDescriptionRequired": "Please enter specialty description",
     "missingParameterError": "Missing required parameter",
     "createSpecialtySuccess": "Specialty created successfully",
     "createSpecialtyFailed": "Failed to create specialty",
     "unknownError": "An unknown error occurred",
-    "btnSave": "Save"
+    "btnSave": "Save",
+    "btnReset": "Reset"
   },
   "manage-clinic": {
     "title": "Manage Clinics",

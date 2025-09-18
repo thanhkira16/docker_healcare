@@ -1,187 +1,242 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./ManageSpecialty.scss";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
+
+// Utils and Services
 import { LANGUAGES, CommonUtils } from "../../../utils";
 import { createSpecialty } from "../../../services/userService";
-import { toast } from "react-toastify";
 
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+// Styles
+import "./ManageSpecialty.scss";
 
-class ManageSpecialty extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      imageBase64: "",
-      descriptionHTML: "",
-      descriptionMarkdown: "",
-      previewImgURL: "",
-    };
-  }
+const mdParser = new MarkdownIt();
 
-  async componentDidMount() {}
+const ManageSpecialty = () => {
+  const { language } = useSelector(state => state.app);
 
-  handleOnChangeInput = (event, field) => {
-    this.setState({
-      [field]: event.target.value,
-    });
+  // Component state
+  const [name, setName] = useState("");
+  const [imageBase64, setImageBase64] = useState("");
+  const [descriptionHTML, setDescriptionHTML] = useState("");
+  const [descriptionMarkdown, setDescriptionMarkdown] = useState("");
+  const [previewImgURL, setPreviewImgURL] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Handle input changes
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
-  handleEditorChange = ({ html, text }) => {
-    this.setState({
-      descriptionMarkdown: text,
-      descriptionHTML: html,
-    });
+  // Handle markdown editor changes
+  const handleEditorChange = ({ html, text }) => {
+    setDescriptionMarkdown(text);
+    setDescriptionHTML(html);
   };
 
-  handleOnChangeImage = async (event) => {
-    let data = event.target.files;
-    let file = data[0];
+  // Handle image upload
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
     if (file) {
-      let base64 = await CommonUtils.getBase64(file);
-      let objectUrl = URL.createObjectURL(file);
-      this.setState({
-        previewImgURL: objectUrl,
-        imageBase64: base64,
-      });
-      console.log("Image URL: " + objectUrl);
+      try {
+        const base64 = await CommonUtils.getBase64(file);
+        const objectUrl = URL.createObjectURL(file);
+        setPreviewImgURL(objectUrl);
+        setImageBase64(base64);
+      } catch (error) {
+        console.error("Error processing image:", error);
+        toast.error(
+          language === LANGUAGES.VI 
+            ? "Lỗi khi xử lý hình ảnh" 
+            : "Error processing image"
+        );
+      }
     }
   };
 
-  handleSave = () => {
-    const { name, imageBase64, descriptionHTML, descriptionMarkdown } =
-      this.state;
-
-    // Check if any required fields are empty
-    if (!name || !imageBase64 || !descriptionHTML || !descriptionMarkdown) {
-      toast.error(
-        <FormattedMessage id="manage-specialty.missingParameterError" />
-      );
+  // Handle save specialty
+  const handleSave = async () => {
+    // Validation
+    if (!name.trim()) {
+      toast.error(<FormattedMessage id="manage-specialty.specialtyNameRequired" />);
       return;
     }
 
-    // Call the API service to create a new specialty
-    createSpecialty({
-      name,
-      imageBase64,
-      descriptionHTML,
-      descriptionMarkdown,
-    })
-      .then((newSpecialty) => {
-        if (newSpecialty.errCode === 0) {
-          toast.success(
-            <FormattedMessage id="manage-specialty.createSpecialtySuccess" />
-          );
-        } else {
-          toast.error(
-            <FormattedMessage id="manage-specialty.createSpecialtyFailed" />
-          );
-        }
-        this.setState({
-          name: "",
-          imageBase64: "",
-          descriptionHTML: "",
-          descriptionMarkdown: "",
-          previewImgURL: "",
-        });
-      })
-      .catch((error) => {
-        toast.error(<FormattedMessage id="manage-specialty.unknownError" />);
-        console.error("Error:", error);
+    if (!imageBase64) {
+      toast.error(<FormattedMessage id="manage-specialty.specialtyImageRequired" />);
+      return;
+    }
+
+    if (!descriptionHTML.trim() || !descriptionMarkdown.trim()) {
+      toast.error(<FormattedMessage id="manage-specialty.specialtyDescriptionRequired" />);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await createSpecialty({
+        name: name.trim(),
+        imageBase64,
+        descriptionHTML,
+        descriptionMarkdown,
       });
+
+      if (response && response.errCode === 0) {
+        toast.success(<FormattedMessage id="manage-specialty.createSpecialtySuccess" />);
+        // Reset form
+        resetForm();
+      } else {
+        toast.error(response?.errMsg || <FormattedMessage id="manage-specialty.createSpecialtyFailed" />);
+      }
+    } catch (error) {
+      console.error("Error creating specialty:", error);
+      toast.error(<FormattedMessage id="manage-specialty.unknownError" />);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  render() {
-    return (
-      <>
-        <div className="specialty-container">
-          <div className="container">
-            <div className="row mb-5">
-              {/* Input for Specialty Name */}
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="specialtyName">
-                    <FormattedMessage id="manage-specialty.specialtyName" />
-                  </label>
-                  <input
-                    type="text"
-                    id="specialtyName"
-                    className="form-control input-area"
-                    value={this.state.name}
-                    onChange={(event) =>
-                      this.handleOnChangeInput(event, "name")
-                    }
-                  />
-                </div>
-              </div>
+  // Reset form
+  const resetForm = () => {
+    setName("");
+    setImageBase64("");
+    setDescriptionHTML("");
+    setDescriptionMarkdown("");
+    setPreviewImgURL("");
+  };
 
-              {/* Input for Specialty Image */}
-              <div className="col-md-6">
-                <label htmlFor="inputImage" className="d-block">
-                  <FormattedMessage id="manage-specialty.specialtyImage" />
-                </label>
-                <div className="previewImg-container">
-                  <input
-                    type="file"
-                    className="form-control-file"
-                    id="inputImage"
-                    onChange={(event) => this.handleOnChangeImage(event)}
-                  />
-                  <label htmlFor="inputImage">
-                    <FormattedMessage id="manage-user.uploadImage" />
-                    <i className="fas fa-upload"></i>
-                  </label>
-                  <div
-                    className="preview-image"
-                    style={{
-                      backgroundImage: `url(${this.state.previewImgURL})`,
-                    }}
-                    onClick={() => this.openPreviewImage()}
-                  ></div>
-                </div>
-              </div>
-            </div>
+  // Handle image preview click
+  const openPreviewImage = () => {
+    if (previewImgURL) {
+      window.open(previewImgURL, '_blank');
+    }
+  };
 
-            <div className="row">
-              <div className="col-md-12">
-                <MdEditor
-                  style={{ height: "500px" }}
-                  renderHTML={(text) => mdParser.render(text)}
-                  onChange={this.handleEditorChange}
-                  value={this.state.descriptionMarkdown}
-                />
-              </div>
-            </div>
-
-            {/* Save button */}
-            <div className="row mt-3">
-              <div className="col-md-12">
-                <button
-                  className="btn btn-primary px-5"
-                  onClick={this.handleSave}
-                >
-                  <FormattedMessage id="manage-specialty.btnSave" />
-                </button>
-              </div>
-            </div>
+  return (
+    <div className="manage-specialty-wrapper">
+      <div className="manage-specialty-container">
+        <div className="admin-header">
+          <div className="admin-title">
+            <h1>
+              <FormattedMessage id="manage-specialty.title" />
+            </h1>
           </div>
         </div>
 
-        <div style={{ height: "100px" }}></div>
-      </>
-    );
-  }
-}
+        <div className="specialty-form">
+          {/* Basic Information */}
+          <div className="form-row">
+            {/* Specialty Name */}
+            <div className="form-group">
+              <label className="form-label">
+                <FormattedMessage id="manage-specialty.specialtyName" />
+                <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                className="form-input"
+                value={name}
+                onChange={handleNameChange}
+                placeholder={
+                  language === LANGUAGES.VI 
+                    ? "Nhập tên chuyên khoa..." 
+                    : "Enter specialty name..."
+                }
+              />
+            </div>
 
-const mapStateToProps = (state) => {
-  return {};
+            {/* Specialty Image */}
+            <div className="form-group">
+              <label className="form-label">
+                <FormattedMessage id="manage-specialty.specialtyImage" />
+                <span className="required">*</span>
+              </label>
+              <div className="image-upload-container">
+                <input
+                  type="file"
+                  className="file-input"
+                  id="specialty-image"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+                <label htmlFor="specialty-image" className="file-upload-btn">
+                  <i className="fas fa-upload"></i>
+                  <FormattedMessage id="manage-user.uploadImage" />
+                </label>
+                {previewImgURL && (
+                  <div 
+                    className="preview-image"
+                    style={{ backgroundImage: `url(${previewImgURL})` }}
+                    onClick={openPreviewImage}
+                    title={
+                      language === LANGUAGES.VI 
+                        ? "Click để xem ảnh" 
+                        : "Click to view image"
+                    }
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Specialty Description */}
+          <div className="form-section">
+            <label className="form-label">
+              <FormattedMessage id="manage-specialty.specialtyDescription" />
+              <span className="required">*</span>
+            </label>
+            <div className="markdown-editor-wrapper">
+              <MdEditor
+                style={{ height: "500px" }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={handleEditorChange}
+                value={descriptionMarkdown}
+                placeholder={
+                  language === LANGUAGES.VI 
+                    ? "Nhập mô tả chuyên khoa..." 
+                    : "Enter specialty description..."
+                }
+              />
+            </div>
+          </div>
+
+          {/* Form Actions */}
+          <div className="form-actions">
+            <button
+              type="button"
+              className="btn-reset"
+              onClick={resetForm}
+              disabled={isLoading}
+            >
+              <i className="fas fa-undo"></i>
+              <FormattedMessage id="manage-specialty.btnReset" />
+            </button>
+            
+            <button
+              type="button"
+              className="btn-save"
+              onClick={handleSave}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <i className="fas fa-spinner fa-spin"></i>
+                  {language === LANGUAGES.VI ? "Đang lưu..." : "Saving..."}
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-save"></i>
+                  <FormattedMessage id="manage-specialty.btnSave" />
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);
+export default ManageSpecialty;

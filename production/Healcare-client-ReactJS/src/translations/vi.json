@@ -133,13 +133,19 @@
     "note": "Ghi chú"
   },
   "manage-specialty": {
+    "title": "Quản lý chuyên khoa",
     "specialtyName": "Tên chuyên khoa",
     "specialtyImage": "Hình ảnh chuyên khoa",
+    "specialtyDescription": "Mô tả chuyên khoa",
+    "specialtyNameRequired": "Vui lòng nhập tên chuyên khoa",
+    "specialtyImageRequired": "Vui lòng chọn hình ảnh chuyên khoa",
+    "specialtyDescriptionRequired": "Vui lòng nhập mô tả chuyên khoa",
     "missingParameterError": "Vui lòng điền đầy đủ thông tin",
     "createSpecialtySuccess": "Tạo chuyên khoa thành công",
     "createSpecialtyFailed": "Không thể tạo chuyên khoa",
     "unknownError": "Đã xảy ra lỗi không xác định",
-    "btnSave": "Lưu"
+    "btnSave": "Lưu",
+    "btnReset": "Đặt lại"
   },
   "manage-clinic": {
     "title": "Quản lý phòng khám",
