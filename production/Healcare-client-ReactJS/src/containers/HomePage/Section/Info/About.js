@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import YouTube from "react-youtube";
-import "../Section/scss/About.scss";
+import '../scss/About.scss';
 class About extends Component {
   changeLanguage(language) {
     this.props.changeLanguageAppRedux(language);

@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom"; // Optional, if routing is needed
 import { history } from "../../redux"; // Mimicking App.js's history import
 import HomeHeader from "./HomeHeader";
-import Banner from "./Section/Banner";
+import Banner from "./Section/Info/Banner";
 import Specialty from "./Section/slider/Specialty";
 import MedicalFacility from "./Section/slider/MedicalFacility";
 import OutStandingDoctor from "./Section/slider/OutStandingDoctor";
 import Footer from "./Section/Info/Footer";
 import ReactionOfUser from "./Section/Info/ReactionOfUser";
 import Contact from "./Section/Info/Contact";
-import About from "./Section/About";
+import About from "./Section/Info/About";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../styles/common.scss";

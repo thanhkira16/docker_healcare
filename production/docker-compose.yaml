@@ -5,7 +5,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      - MYSQL_DATABASE=hoidanit
+      - MYSQL_DATABASE=healcare
       - MYSQL_ROOT_PASSWORD=123456
     ports:
       - '3306:3306'
@@ -13,7 +13,7 @@ services:
     expose:
       - 3306
     volumes:
-      - ./hoidanit.sql:/docker-entrypoint-initdb.d/hoidanit.sql
+      - ./healcare.sql:/docker-entrypoint-initdb.d/healcare.sql
       - ./studentdb.sql:/docker-entrypoint-initdb.d/studentdb.sql
       - ./udpmailserver.sql:/docker-entrypoint-initdb.d/udpmailserver.sql
 
