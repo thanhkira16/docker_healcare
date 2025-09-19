@@ -50,3 +50,34 @@ export const userIsAdmin = connectedRouterRedirect({
   },
   allowRedirectBack: false,
 });
+
+export const userIsDoctor = connectedRouterRedirect({
+  authenticatedSelector: (state) => {
+    // Debug logging
+    console.log("userIsDoctor check:", {
+      isLoggedIn: state.user.isLoggedIn,
+      userInfo: state.user.userInfo,
+      roleId: state.user.userInfo?.roleId,
+      expectedRole: USER_ROLE.DOCTOR,
+      isDoctor: state.user.isLoggedIn &&
+        state.user.userInfo &&
+        state.user.userInfo.roleId === USER_ROLE.DOCTOR
+    });
+
+    return state.user.isLoggedIn &&
+      state.user.userInfo &&
+      state.user.userInfo.roleId === USER_ROLE.DOCTOR;
+  },
+  wrapperDisplayName: "UserIsDoctor",
+  redirectPath: (state, ownProps) => {
+    // If user is not logged in, redirect to login
+    if (!state.user.isLoggedIn) {
+      console.log("userIsDoctor: User not logged in, redirecting to login");
+      return PATHS.LOGIN;
+    }
+    // If user is logged in but not doctor, redirect to home
+    console.log("userIsDoctor: User logged in but not doctor, redirecting to home");
+    return PATHS.HOME;
+  },
+  allowRedirectBack: false,
+});

@@ -122,8 +122,11 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
           if (data.user.roleId === USER_ROLE.ADMIN) {
             // Admin -> redirect to system management
             navigate(PATHS.SYSTEM.USER_MANAGE);
+          } else if (data.user.roleId === USER_ROLE.DOCTOR) {
+            // Doctor -> redirect to doctor dashboard
+            navigate(PATHS.DOCTOR.MANAGE_SCHEDULE);
           } else {
-            // Other users -> redirect to home page
+            // Other users (Patient) -> redirect to home page
             navigate(PATHS.HOME);
           }
         } else {

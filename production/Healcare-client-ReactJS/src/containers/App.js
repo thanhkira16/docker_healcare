@@ -8,6 +8,7 @@ import {
   userIsAuthenticated,
   userIsNotAuthenticated,
   userIsAdmin,
+  userIsDoctor,
 } from "../hoc/authentication";
 import PATHS from "../utils/path";
 import Home from "../routes/Home";
@@ -59,7 +60,7 @@ class App extends Component {
                   />
                   <Route
                     path={PATHS.DOCTOR.BASE}
-                    component={userIsAuthenticated(Doctor)}
+                    component={userIsDoctor(Doctor)}
                   />
                   <Route path={PATHS.HOMEPAGE} component={HomePage} />
                   <Route path={PATHS.DETAIL_DOCTOR} component={DetailDoctor} />
