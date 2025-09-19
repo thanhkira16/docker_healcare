@@ -1,5 +1,11 @@
 export const adminMenu = [
   {
+    name: "menu.admin.dashboard",
+    menus: [
+      { name: "menu.admin.dashboard", link: "/system/dashboard" },
+    ],
+  },
+  {
     //Manage user
     name: "menu.admin.manage-user",
     menus: [

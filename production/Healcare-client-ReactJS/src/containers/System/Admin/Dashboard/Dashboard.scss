@@ -1,0 +1,220 @@
+.dashboard {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  position: relative; // Add this for absolute positioned filter
+
+  // Header
+  &__header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative; // Add this for filter positioning
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__title-section {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  // Stats Cards
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  // Charts Grid
+  &__charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 32px;
+  }
+}
+
+// Chart Container
+.chart-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.chart-header {
+  margin-bottom: 24px;
+  
+  .chart-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    svg {
+      color: #6366f1;
+    }
+  }
+
+  .chart-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+// Service Trends Specific
+.service-trends {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.service-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #64748b;
+    
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+  .dashboard {
+    &__charts {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 16px;
+    
+    &__title {
+      font-size: 24px;
+    }
+    
+    &__stats {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    &__charts {
+      gap: 24px;
+    }
+  }
+  
+  .chart-container {
+    padding: 16px;
+  }
+}
+
+// Time Filter Component - Horizontal bar in top right
+.time-filter {
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  font-size: 16px;
+
+  &__header {
+    color: #6366f1;
+    display: flex;
+    align-items: center;
+  }
+
+  &__selects {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.filter-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #64748b;
+    white-space: nowrap;
+  }
+
+  &__input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: white;
+    font-size: 16px;
+    min-width: 80px;
+    cursor: pointer;
+    color: #374151;
+
+    &:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+    }
+
+    &:hover {
+      border-color: #9ca3af;
+    }
+  }
+}

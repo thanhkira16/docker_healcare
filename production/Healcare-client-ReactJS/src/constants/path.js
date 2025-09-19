@@ -2,6 +2,7 @@ const PATHS = {
   HOME: "/home",
   SYSTEM: {
     BASE: "/system",
+    DASHBOARD: "/system/dashboard",
     USER_MANAGE: "/system/user-manage",
     USER_REDUX: "/system/user-redux",
     MANAGE_DOCTOR: "/system/manage-doctor",

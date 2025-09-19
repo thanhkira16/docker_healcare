@@ -7,6 +7,7 @@ import ManageDoctor from "../containers/System/Admin/ManageDoctor";
 import AdminNavbar from "../containers/Header/AdminNavbar";
 import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 import ManageClinic from "../containers/System/Clinic/ManageClinic";
+import Dashboard from "../containers/System/Admin/Dashboard/Dashboard";
 import "../containers/System/AdminLayout.scss";
 import PATHS from "../constants/path";
 
@@ -19,6 +20,7 @@ class System extends Component {
         <div className="system-container">
           <div className="system-list">
             <Switch>
+              <Route path={PATHS.SYSTEM.DASHBOARD} component={Dashboard} />
               <Route path={PATHS.SYSTEM.USER_MANAGE} component={UserManage} />
               <Route path={PATHS.SYSTEM.USER_REDUX} component={UserRedux} />
               <Route path={PATHS.SYSTEM.MANAGE_DOCTOR} component={ManageDoctor} />

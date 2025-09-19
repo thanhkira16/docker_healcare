@@ -57,6 +57,7 @@
   },
   "menu": {
     "admin": {
+      "dashboard": "Dashboard",
       "manage-user": "Quản lý người dùng",
       "manage-doctor": "Quản lý bác sỹ",
       "manage-admin": "Quản lý admin",
@@ -505,5 +506,11 @@
     "medical_chat_button": "Tư vấn y tế miễn phí",
     "close_button": "Đóng chat y tế",
     "footer_text": "🏥 Chăm sóc sức khỏe thông minh"
+  },
+  "system": {
+    "dashboard": {
+      "title": "Dashboard - Báo cáo & Thống kê",
+      "subtitle": "Theo dõi hoạt động và hiệu suất hệ thống Healthcare"
+    }
   }
 }
