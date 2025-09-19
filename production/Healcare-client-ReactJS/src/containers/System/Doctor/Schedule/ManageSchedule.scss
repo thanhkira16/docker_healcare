@@ -6,8 +6,35 @@
 
     .btn-custom {
       width: 200px;
+
       &.active {
         background-color: var(--blue-medium-color);
+      }
+    }
+  }
+
+  // Save button styling
+  .btn-primary {
+    transition: all 0.3s ease;
+
+    &.has-selection {
+      background-color: var(--blue-medium-color) !important;
+      border-color: var(--blue-medium-color) !important;
+      box-shadow: 0 4px 8px rgba(69, 195, 210, 0.3);
+      transform: translateY(-1px);
+
+      &:hover {
+        background-color: #3bb5c7 !important;
+        border-color: #3bb5c7 !important;
+        box-shadow: 0 6px 12px rgba(69, 195, 210, 0.4);
+        transform: translateY(-2px);
+      }
+    }
+
+    &:not(.has-selection) {
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(69, 195, 210, 0.2);
       }
     }
   }
