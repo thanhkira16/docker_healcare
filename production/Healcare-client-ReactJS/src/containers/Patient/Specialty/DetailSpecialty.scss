@@ -300,27 +300,27 @@
 
     .detail-doctor {
       background: var(--white-color);
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(229, 232, 235, 0.8);
       display: flex;
       flex-direction: column;
-      padding: 24px;
-      margin-bottom: 24px;
+      padding: 16px;
+      margin-bottom: 16px;
       position: relative;
       overflow: hidden;
       
       @media (min-width: 768px) {
         display: grid;
-        grid-template-columns: 1.8fr 1.2fr;
-        gap: 32px;
-        padding: 32px;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+        padding: 20px;
       }
       
       @media (max-width: 767px) {
-        padding: 20px;
-        gap: 20px;
-        margin-bottom: 20px;
+        padding: 12px;
+        gap: 12px;
+        margin-bottom: 12px;
       }
 
       .doctor-profile-section {
@@ -381,15 +381,15 @@
         .doctor-info-grid {
           display: flex;
           flex-direction: column;
-          gap: 25px !important;
+          gap: 8px !important;
           
           // Enhanced card styling with clear borders and spacing
           > div {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
-            border: 3px solid var(--blue-medium-color) !important; // Sử dụng màu thống nhất từ Base.scss
-            border-radius: 16px !important;
-            padding: 15px !important;
-            margin: 0 0 2px 0 !important;
+            border: 2px solid var(--blue-medium-color) !important;
+            border-radius: 12px !important;
+            padding: 12px !important;
+            margin: 0 !important;
             position: relative !important;
             overflow: hidden !important;
             
@@ -399,12 +399,12 @@
             
             h4 {
               color: #2d3748 !important;
-              font-size: 16px !important;
+              font-size: 14px !important;
               font-weight: 700 !important;
-              margin-bottom: 16px !important;
+              margin-bottom: 8px !important;
               display: flex;
               align-items: center;
-              gap: 10px;
+              gap: 8px;
               position: relative;
               z-index: 2;
             }
@@ -412,9 +412,9 @@
             // Wrapper cho DoctorExtraInfor với padding riêng
             &.doctor-extra-infor-wrapper,
             .doctor-extra-infor-wrapper {
-              padding: 20px; // Padding đặc biệt cho DoctorExtraInfor
-              border: 2px solid #10b981; // Border xanh lá cho phân biệt
-              box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+              padding: 12px;
+              border: 2px solid #10b981;
+              box-shadow: 0 2px 12px rgba(16, 185, 129, 0.1);
             }
             
             // Enhanced schedule container styling
@@ -433,19 +433,18 @@
                 gap: 8px;
                 
                 .schedule-item {
-                  padding: 10px 16px;
+                  padding: 6px 10px;
                   margin: 0;
                   background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
                   color: var(--white-color);
-                  border-radius: 10px;
-                  font-size: 12px;
+                  border-radius: 6px;
+                  font-size: 11px;
                   font-weight: 600;
                   cursor: pointer;
                   display: inline-flex;
                   align-items: center;
-                  border: 2px solid rgba(255, 255, 255, 0.2);
-                  box-shadow: 0 3px 10px rgba(66, 153, 225, 0.3);
-                  backdrop-filter: blur(4px);
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  box-shadow: 0 2px 6px rgba(66, 153, 225, 0.2);
                 }
               }
               
@@ -453,20 +452,12 @@
                 color: #6b7280;
                 font-style: italic;
                 text-align: center;
-                padding: 16px;
+                padding: 8px;
                 margin: 0 !important;
-                font-size: 13px;
-                background: linear-gradient(135deg, rgba(156, 163, 175, 0.1) 0%, rgba(209, 213, 219, 0.05) 100%);
-                border-radius: 10px;
-                border: 2px dashed #d1d5db;
-                position: relative;
-                
-                &::before {
-                  content: '⏰';
-                  display: block;
-                  font-size: 20px;
-                  margin-bottom: 8px;
-                }
+                font-size: 12px;
+                background: rgba(156, 163, 175, 0.05);
+                border-radius: 6px;
+                border: 1px dashed #d1d5db;
               }
             }
             
@@ -478,26 +469,11 @@
               z-index: 2;
               
               .extra-info-item {
-                margin-bottom: 16px !important;
-                padding: 16px;
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
-                border-radius: 12px;
-                border: 2px solid transparent;
-                position: relative;
-                overflow: hidden;
-                
-                // Subtle gradient border
-                &::before {
-                  content: '';
-                  position: absolute;
-                  inset: 0;
-                  padding: 2px;
-                  background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
-                  border-radius: 12px;
-                  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-                  mask-composite: xor;
-                  -webkit-mask-composite: xor;
-                }
+                margin-bottom: 8px !important;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 8px;
+                border: 1px solid rgba(226, 232, 240, 0.8);
                 
                 &:last-child {
                   margin-bottom: 0 !important;
@@ -507,49 +483,33 @@
                   font-weight: 600;
                   color: #4a5568;
                   font-size: 10px;
-                  margin-bottom: 6px !important;
+                  margin-bottom: 4px !important;
                   text-transform: uppercase;
                   letter-spacing: 0.1em;
                   font-family: 'Arial', sans-serif;
-                  position: relative;
-                  z-index: 2;
                 }
                 
                 .info-value {
                   color: #e53e3e;
                   font-weight: 700;
-                  font-size: 13px;
+                  font-size: 12px;
                   margin: 0 !important;
                   display: flex;
                   align-items: center;
-                  gap: 6px;
+                  gap: 4px;
                   font-family: 'Segoe UI', system-ui, sans-serif;
-                  position: relative;
-                  z-index: 2;
-                  
-                  // Modern currency icon
-                  &::before {
-                    content: '💰';
-                    font-size: 14px;
-                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-                  }
                 }
                 
-                // Special styling for price items with vibrant colors
+                // Special styling for price items
                 &.price-item,
                 &[class*="price"] {
                   background: linear-gradient(135deg, #fef7f7 0%, #fed7d7 100%);
-                  border: 2px solid #fca5a5;
-                  
-                  &::before {
-                    background: linear-gradient(135deg, #fca5a5, #f87171);
-                  }
+                  border: 1px solid #fca5a5;
                   
                   .info-value {
                     color: #dc2626;
-                    font-size: 15px;
+                    font-size: 13px;
                     font-weight: 800;
-                    text-shadow: 0 1px 2px rgba(220, 38, 38, 0.1);
                   }
                 }
               }
@@ -558,27 +518,18 @@
                 background: linear-gradient(135deg, #10b981 0%, #059669 100%);
                 color: var(--white-color);
                 border: none;
-                border-radius: 12px;
-                padding: 14px 20px;
+                border-radius: 6px;
+                padding: 8px 12px;
                 font-weight: 700;
                 cursor: pointer;
                 width: 100%;
-                margin-top: 12px !important;
+                margin-top: 6px !important;
                 margin-bottom: 0 !important;
-                font-size: 11px;
-                box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+                font-size: 10px;
+                box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 font-family: 'Arial', sans-serif;
-                position: relative;
-                z-index: 2;
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-                
-                &::before {
-                  content: '📋';
-                  margin-right: 6px;
-                  font-size: 12px;
-                }
               }
             }
           }
@@ -738,23 +689,23 @@
 @media (max-width: 768px) {
   .detail-specialty-container {
     .detail-doctor {
-      margin-bottom: 20px;
-      padding: 20px;
+      margin-bottom: 12px;
+      padding: 12px;
       
       .doctor-profile-section {
         .profile-doctor-container {
           .introduction-doctor {
             .content-right {
               h3, .name-doctor {
-                font-size: 16px !important;
+                font-size: 15px !important;
               }
               
               .position, .doctor-position {
-                font-size: 12px !important;
+                font-size: 11px !important;
               }
               
               .description, .doctor-description {
-                font-size: 12px !important;
+                font-size: 11px !important;
               }
             }
           }
@@ -763,40 +714,46 @@
       
       .doctor-schedule-section {
         .doctor-info-grid {
-          gap: 12px;
+          gap: 6px;
           
           > div {
-            padding: 16px;
+            padding: 10px;
             
             h4 {
-              font-size: 14px !important;
+              font-size: 12px !important;
+              margin-bottom: 6px !important;
             }
             
             .book-schedule-container {
               .table-schedule {
+                gap: 3px;
+                
                 .schedule-item {
-                  padding: 6px 10px;
-                  font-size: 11px;
+                  padding: 4px 8px;
+                  font-size: 10px;
                 }
               }
             }
             
             .doctor-extra-info-container {
               .extra-info-item {
-                padding: 10px;
+                padding: 8px;
+                margin-bottom: 6px !important;
                 
                 .info-label {
-                  font-size: 11px;
+                  font-size: 10px;
+                  margin-bottom: 3px !important;
                 }
                 
                 .info-value {
-                  font-size: 14px;
+                  font-size: 12px;
                 }
               }
               
               .btn-booking {
-                padding: 10px 14px;
-                font-size: 12px;
+                padding: 6px 10px;
+                font-size: 10px;
+                margin-top: 4px !important;
               }
             }
           }
@@ -808,18 +765,59 @@
 
 @media (max-width: 480px) {
   .detail-specialty-container {
-    padding-top: 60px;
-    padding-bottom: 40px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     
     .detail-doctor {
-      padding: 16px;
-      border-radius: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
       
       .doctor-schedule-section {
         .doctor-info-grid {
+          gap: 4px;
+          
           > div {
-            padding: 12px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            
+            h4 {
+              font-size: 11px !important;
+              margin-bottom: 4px !important;
+            }
+            
+            .book-schedule-container {
+              .table-schedule {
+                gap: 2px;
+                
+                .schedule-item {
+                  padding: 3px 6px;
+                  font-size: 9px;
+                }
+              }
+            }
+            
+            .doctor-extra-info-container {
+              .extra-info-item {
+                padding: 6px;
+                margin-bottom: 4px !important;
+                
+                .info-label {
+                  font-size: 9px;
+                  margin-bottom: 2px !important;
+                }
+                
+                .info-value {
+                  font-size: 11px;
+                }
+              }
+              
+              .btn-booking {
+                padding: 5px 8px;
+                font-size: 9px;
+                margin-top: 3px !important;
+              }
+            }
           }
         }
       }
