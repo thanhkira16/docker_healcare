@@ -87,7 +87,13 @@ let getDetailClinicByIdService = async (inputId) => {
     let data = await db.Clinic.findOne({
       where: { id: inputId },
       raw: false,
-      attributes: ["descriptionHTML", "descriptionMarkdown", "image"],
+      attributes: [
+        "name",
+        "address",
+        "descriptionHTML",
+        "descriptionMarkdown",
+        "image",
+      ],
     });
 
     if (!data) {

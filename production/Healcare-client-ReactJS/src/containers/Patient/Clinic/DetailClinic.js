@@ -16,7 +16,7 @@ const DetailClinic = ({ match }) => {
   const [dataDetailClinic, setDataDetailClinic] = useState({});
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+
   const language = useSelector(state => state.app.language);
 
   // Mock data cho các phần không có trong database
@@ -28,7 +28,7 @@ const DetailClinic = ({ match }) => {
 
   const workingHours = {
     "monday": "8:00 - 17:00",
-    "tuesday": "8:00 - 17:00", 
+    "tuesday": "8:00 - 17:00",
     "wednesday": "8:00 - 17:00",
     "thursday": "8:00 - 17:00",
     "friday": "8:00 - 17:00",
@@ -41,20 +41,31 @@ const DetailClinic = ({ match }) => {
     try {
       setLoading(true);
       const res = await getDetailClinicById({ id: clinicId });
-      
+
       console.log("Clinic API Response:", res); // Debug log
-      
+
       if (res && res.errCode === 0) {
         let listDoctors = res.listDoctors;
         let arrDoctorId = [];
-        
+
         if (listDoctors && listDoctors.length > 0) {
           listDoctors.map((item) => {
             arrDoctorId.push(item.doctorId);
           });
         }
 
-        console.log("Clinic Data:", res.data); // Debug log
+        // Make sure we log the entire data object to debug
+        console.log("Clinic Data:", res.data);
+
+        // Convert image to binary if it exists and is a buffer
+        if (res.data && res.data.image) {
+          const imageData = typeof res.data.image === 'object'
+            ? Buffer.from(res.data.image).toString('binary')
+            : res.data.image;
+
+          res.data.imageDisplay = imageData;
+        }
+
         setDataDetailClinic(res.data);
         setArrDoctorId(arrDoctorId);
       }
@@ -94,6 +105,11 @@ const DetailClinic = ({ match }) => {
   // Image processing for display
   const getClinicImage = () => {
     if (dataDetailClinic && dataDetailClinic.image) {
+      // If we already processed the image
+      if (dataDetailClinic.imageDisplay) {
+        return dataDetailClinic.imageDisplay;
+      }
+
       // If image is base64 string, display it directly
       if (typeof dataDetailClinic.image === 'string') {
         return `data:image/jpeg;base64,${dataDetailClinic.image}`;
@@ -108,9 +124,9 @@ const DetailClinic = ({ match }) => {
   const contentToShow = dataDetailClinic && dataDetailClinic.descriptionHTML
     ? expanded
       ? dataDetailClinic.descriptionHTML
-      : (dataDetailClinic.descriptionHTML.length > 200 
-          ? dataDetailClinic.descriptionHTML.slice(0, 200) + "..." 
-          : dataDetailClinic.descriptionHTML)
+      : (dataDetailClinic.descriptionHTML.length > 200
+        ? dataDetailClinic.descriptionHTML.slice(0, 200) + "..."
+        : dataDetailClinic.descriptionHTML)
     : "";
 
   return (
@@ -132,7 +148,7 @@ const DetailClinic = ({ match }) => {
                   <i className="fas fa-stethoscope"></i>
                   {dataDetailClinic?.specialty || "Phòng khám đa khoa"}
                 </p>
-                <button 
+                <button
                   className="btn-book-now"
                   onClick={() => alert("Vui lòng liên hệ trực tiếp để đặt lịch khám!")}
                 >
@@ -141,7 +157,7 @@ const DetailClinic = ({ match }) => {
                 </button>
               </div>
               <div className="hero-right">
-                
+
                 <div className="contact-info">
                   <div className="contact-item">
                     <i className="fas fa-map-marker-alt"></i>
@@ -174,16 +190,16 @@ const DetailClinic = ({ match }) => {
                 </div>
                 <div className="card-content">
                   {dataDetailClinic?.descriptionHTML ? (
-                    <div 
+                    <div
                       className="description-content"
-                      dangerouslySetInnerHTML={{ 
-                        __html: expanded 
-                          ? dataDetailClinic.descriptionHTML 
-                          : (dataDetailClinic.descriptionHTML.length > 300 
-                              ? dataDetailClinic.descriptionHTML.slice(0, 300) + "..." 
-                              : dataDetailClinic.descriptionHTML
-                            )
-                      }} 
+                      dangerouslySetInnerHTML={{
+                        __html: expanded
+                          ? dataDetailClinic.descriptionHTML
+                          : (dataDetailClinic.descriptionHTML.length > 300
+                            ? dataDetailClinic.descriptionHTML.slice(0, 300) + "..."
+                            : dataDetailClinic.descriptionHTML
+                          )
+                      }}
                     />
                   ) : (
                     <div className="loading-content">
@@ -275,7 +291,7 @@ const DetailClinic = ({ match }) => {
                       <span>{service.duration}</span>
                     </div>
                   </div>
-                  <button 
+                  <button
                     className="btn-book-service"
                     onClick={() => alert(`Liên hệ để đặt lịch dịch vụ: ${service.name}`)}
                   >
@@ -307,7 +323,7 @@ const DetailClinic = ({ match }) => {
                       />
                     </div>
                     <div className="doctor-actions">
-                      <button 
+                      <button
                         className="btn-book-doctor"
                         onClick={() => alert(`Liên hệ để đặt lịch với bác sĩ #${doctorId}`)}
                       >

@@ -8,6 +8,7 @@ import { getProfileDoctorByID } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class ProfileDoctor extends Component {
       dataProfile: {},
     };
   }
+
   async componentDidMount() {
     let data = await this.getInforDoctor(this.props.doctorId);
     this.setState({ dataProfile: data });
@@ -35,14 +37,19 @@ class ProfileDoctor extends Component {
     if (this.props.language !== prevProps.language) {
     }
     if (this.props.doctorId !== prevProps.doctorId) {
+      this.getInforDoctor(this.props.doctorId).then(data => {
+        this.setState({ dataProfile: data });
+      });
     }
   }
+
   convertToCustomFormat(number) {
     if (number >= 1000) {
       return (number / 1000).toFixed(3).replace(".", ",");
     }
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
   renderPrice(dataProfile, language) {
     if (
       dataProfile &&
@@ -53,8 +60,8 @@ class ProfileDoctor extends Component {
         language === LANGUAGES.VI
           ? dataProfile.Doctor_Infor.priceTypeData.valueVI
           : language === LANGUAGES.EN
-          ? dataProfile.Doctor_Infor.priceTypeData.valueEN
-          : null; // Handle other languages if needed
+            ? dataProfile.Doctor_Infor.priceTypeData.valueEN
+            : null;
 
       if (priceValue !== null) {
         return (
@@ -65,9 +72,11 @@ class ProfileDoctor extends Component {
     }
     return "";
   }
+
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
   renderTimeBooking = (dataTime) => {
     let language = this.props.language;
     if (dataTime && !_.isEmpty(dataTime)) {
@@ -79,9 +88,9 @@ class ProfileDoctor extends Component {
         language === LANGUAGES.VI
           ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
           : moment
-              .unix(+dataTime.date / 1000)
-              .locale("en")
-              .format("dddd - MM/DD/YYYY");
+            .unix(+dataTime.date / 1000)
+            .locale("en")
+            .format("dddd - MM/DD/YYYY");
       let forMatedDate = this.capitalizeFirstLetter(date);
       return (
         <>
@@ -94,8 +103,18 @@ class ProfileDoctor extends Component {
     }
   };
 
+  handleCardClick = (e) => {
+    // Prevent card click if clicking on doctor name link
+    if (e.target.closest('.doctor-name-link')) {
+      return;
+    }
+    // Navigate to doctor detail page
+    if (this.props.doctorId) {
+      window.location.href = `/detail-doctor/${this.props.doctorId}`;
+    }
+  };
+
   render() {
-    // console.log("check prop", this.props.dataBookingModal);
     let { dataProfile } = this.state;
     console.log("render", this.props.doctorId);
     let { language, dataBookingModal, isShowDescription } = this.props;
@@ -106,20 +125,32 @@ class ProfileDoctor extends Component {
       nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
+
     return (
       <>
-        <div className="profile-doctor-container">
+        <div 
+          className="profile-doctor-container"
+          onClick={this.handleCardClick}
+        >
+          {/* Main card clickable overlay */}
+          <Link
+            to={`/detail-doctor/${this.props.doctorId}`}
+            className="card-link-overlay"
+          ></Link>
+
           <div className="introduction-doctor">
-            <div
-              className="avatar-doctor"
-              style={{
-                backgroundImage: `url(${dataProfile.image})`,
-              }}
-            >
-              <Link
-                className="link-to-detail-doctor"
-                to={`/detail-doctor/${this.props.doctorId}`}
-              ></Link>
+            <div className="avatar-doctor-wrapper">
+              <div
+                className="avatar-doctor"
+                style={{
+                  backgroundImage: `url(${dataProfile.image})`,
+                }}
+              >
+                <Link
+                  to={`/detail-doctor/${this.props.doctorId}`}
+                  className="doctor-link-overlay"
+                ></Link>
+              </div>
             </div>
 
             <ul className="info-doctor">
@@ -127,16 +158,21 @@ class ProfileDoctor extends Component {
                 <FormattedMessage id="patient.booking-modal.booking-title" />
               </li>
               <li className="infor-doctor-contain-name-and-time">
-                <span className="slider-card-title">
-                  {language === LANGUAGES.VI ? nameVi : nameEn}
-                </span>
+                <Link
+                  to={`/detail-doctor/${this.props.doctorId}`}
+                  className="doctor-name-link"
+                >
+                  <span className="slider-card-title">
+                    {language === LANGUAGES.VI ? nameVi : nameEn}
+                  </span>
+                </Link>
                 <>{this.renderTimeBooking(dataBookingModal)}</>
               </li>
-              {isShowDescription == true ? (
+              {isShowDescription === true ? (
                 <li className="doctor-desc">
                   {dataProfile &&
-                  dataProfile.Markdown &&
-                  dataProfile.Markdown.description
+                    dataProfile.Markdown &&
+                    dataProfile.Markdown.description
                     ? dataProfile.Markdown.description
                     : ""}
                 </li>
