@@ -217,7 +217,8 @@
     "saveChangesSuccess": "Lưu thông tin thành công",
     "saveChangesFailed": "Lưu thông tin thất bại",
     "invalidDoctor": "Vui lòng chọn tên",
-    "invalidDate": "Vui lòng chọn ngày"
+    "invalidDate": "Vui lòng chọn ngày",
+    "datePickerPlaceholder": "Chọn một ngày"
   },
   "patient": {
     "detail-doctor": {
@@ -289,6 +290,7 @@
     "columnAddress": "Địa chỉ",
     "columnTime": "Giờ khám",
     "columnStatus": "Trạng thái",
+    "columnActions": "Thao Tác",
     "statusNew": "Lịch hẹn mới",
     "statusConfirmed": "Đã xác nhận",
     "statusDone": "Đã khám xong",
@@ -322,7 +324,14 @@
     "deleteSuccess": "Xóa bệnh nhân thành công!",
     "deleteFailed": "Xóa bệnh nhân thất bại!",
     "deleteConfirm": "Bạn có chắc chắn muốn xóa bệnh nhân này?",
-    "required": "*"
+    "required": "*",
+    "confirmButton": "Xác nhận",
+    "confirmAppointment": "Xác nhận lịch hẹn",
+    "successSent": "Gửi thành công",
+    "errorSending": "Lỗi khi gửi",
+    "datePickerPlaceholder": "Chọn ngày",
+    "columnNumber": "#",
+    "columnFullname": "Họ và tên"
   },
   "auth": {
     "login_title": "Đăng nhập",

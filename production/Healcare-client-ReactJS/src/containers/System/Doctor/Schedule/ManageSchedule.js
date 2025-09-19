@@ -4,7 +4,7 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import * as actions from "../../../../store/actions";
 import Select from "react-select";
-import { LANGUAGES, dateFormat } from "../../../../utils";
+import { LANGUAGES, dateFormat, USER_ROLE } from "../../../../utils/constant";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
@@ -42,6 +42,17 @@ class ManageSchedule extends Component {
     return results;
   };
 
+  autoSelectDoctorIfNeeded = (doctorsList) => {
+    const { userInfo } = this.props;
+    // If user is doctor role and no doctor is selected yet
+    if (userInfo && userInfo.roleId === USER_ROLE.DOCTOR && !this.state.selectedDoctor) {
+      const currentDoctor = doctorsList.find(doctor => doctor.value === userInfo.id);
+      if (currentDoctor) {
+        this.setState({ selectedDoctor: currentDoctor });
+      }
+    }
+  };
+
   componentDidMount() {
     this.props.fetchAllDoctors();
     this.props.fetchAllScheduleTime();
@@ -53,6 +64,9 @@ class ManageSchedule extends Component {
       this.setState({
         listDoctors: dataSelect,
       });
+
+      // Auto-select current doctor if user is doctor role
+      this.autoSelectDoctorIfNeeded(dataSelect);
     }
 
     if (prevProps.language !== this.props.language) {
@@ -165,8 +179,14 @@ class ManageSchedule extends Component {
 
   render() {
     const { selectedDoctor, listDoctors } = this.state;
-    let { language } = this.props;
+    let { language, userInfo } = this.props;
     let rangeTime = this.state.rangeTime;
+
+    // Check if user is doctor role to disable doctor selection
+    const isDoctorRole = userInfo && userInfo.roleId === USER_ROLE.DOCTOR;
+
+    // Check if any time slot is selected
+    const hasSelectedTime = rangeTime && rangeTime.some(item => item.isSelected === true);
     return (
       <>
         <div className="container manage-schedule-doctor">
@@ -178,11 +198,17 @@ class ManageSchedule extends Component {
               <label>
                 <FormattedMessage id="manage-schedules.pick-doctor" />
               </label>
-              <div className="input-area">
+              <div className={`input-area ${isDoctorRole ? 'doctor-readonly' : ''}`}>
                 <Select
                   value={selectedDoctor}
                   onChange={this.handleChangeSelect}
                   options={listDoctors}
+                  isDisabled={isDoctorRole}
+                  placeholder={
+                    isDoctorRole
+                      ? (language === LANGUAGES.VI ? "Bác sĩ hiện tại" : "Current Doctor")
+                      : (language === LANGUAGES.VI ? "Chọn bác sĩ" : "Select Doctor")
+                  }
                 />
               </div>
             </div>
@@ -206,7 +232,11 @@ class ManageSchedule extends Component {
                   className="date-picker-text"
                   value={this.state.textDate}
                   readOnly
-                  placeholder="Select a date"
+                  placeholder={
+                    this.props.language === LANGUAGES.VI
+                      ? "Chọn một ngày"
+                      : "Select a date"
+                  }
                 />
               </div>
             </div>
@@ -231,7 +261,7 @@ class ManageSchedule extends Component {
               })}
           </div>
           <button
-            className="btn btn-custom btn-primary px-5 mt-3 d-block"
+            className={`btn btn-custom btn-primary px-5 mt-3 d-block ${hasSelectedTime ? 'has-selection' : ''}`}
             onClick={this.handleSaveSchedule}
           >
             <FormattedMessage id="manage-schedules.btnSave" />
@@ -248,6 +278,7 @@ const mapStateToProps = (state) => {
     allDoctors: state.admin.allDoctors,
     language: state.app.language,
     allScheduleTime: state.admin.allScheduleTime,
+    userInfo: state.user.userInfo,
   };
 };
 

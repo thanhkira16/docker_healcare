@@ -7,13 +7,14 @@ import { ToastContainer } from "react-toastify";
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
+  userIsAdmin,
+  userIsDoctor,
 } from "../hoc/authentication";
-import { path } from "../utils";
+import PATHS from "../utils/path";
 import Home from "../routes/Home";
 import Login from "./Auth/Login/Login.js";
-import './App.scss'; 
+import './App.scss';
 import System from "../routes/System";
-// import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
 import CustomScrollbars from "../components/CustomScrollbars/CustomScrollbars";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
@@ -40,7 +41,6 @@ class App extends Component {
     this.handlePersistorState();
   }
 
-
   render() {
     return (
       <Fragment>
@@ -49,46 +49,32 @@ class App extends Component {
             <div className="main-container">
               <div className="content-container">
                 <Switch>
-                  <Route path={path.HOME} exact component={Home} />
+                  <Route path={PATHS.HOME} exact component={Home} />
                   <Route
-                    path={path.LOGIN}
-                    component={userIsNotAuthenticated(Login)}
-                  />
-
-                  <Route
-                    path={path.SYSTEM}
-                    component={userIsAuthenticated(System)}
+                    path={PATHS.LOGIN}
+                    component={Login}
                   />
                   <Route
-                    path={"/doctor/"}
-                    component={userIsAuthenticated(Doctor)}
+                    path={PATHS.SYSTEM.BASE}
+                    component={userIsAdmin(System)}
                   />
-                  <Route path={path.HOMEPAGE} component={HomePage} />
-                  <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                   <Route
-                    path={path.DETAIL_SPECIALTY}
+                    path={PATHS.DOCTOR.BASE}
+                    component={userIsDoctor(Doctor)}
+                  />
+                  <Route path={PATHS.HOMEPAGE} component={HomePage} />
+                  <Route path={PATHS.DETAIL_DOCTOR} component={DetailDoctor} />
+                  <Route
+                    path={PATHS.DETAIL_SPECIALTY}
                     component={DetailSpecialty}
                   />
-                  <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                  <Route path={PATHS.DETAIL_CLINIC} component={DetailClinic} />
                   <Route
-                    path={path.VERIFY_EMAIL_BOOKING}
+                    path={PATHS.VERIFY_EMAIL_BOOKING}
                     component={VerifyEmail}
                   />
                 </Switch>
               </div>
-
-              {/* <ToastContainer
-                className="toast-container"
-                toastClassName="toast-item"
-                bodyClassName="toast-item-body"
-                autoClose={false}
-                hideProgressBar={true}
-                pauseOnHover={false}
-                pauseOnFocusLoss={true}
-                closeOnClick={false}
-                draggable={false}
-                closeButton={<CustomToastCloseButton />}
-              /> */}
 
               <ToastContainer
                 position="bottom-right"

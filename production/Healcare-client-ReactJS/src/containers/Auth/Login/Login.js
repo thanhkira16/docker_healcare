@@ -7,8 +7,10 @@ import { handleLoginApi, handleSignUpApi } from "../../../services/userService";
 import InputField from "../../../components/Input/InputField";
 import { FormattedMessage } from "react-intl";
 import LanguageSwitcher from "../../../components/LanguageSwitcher/LanguageSwitcher";
+import { USER_ROLE } from "../../../utils/constant";
+import PATHS from "../../../utils/path";
 
-const Login = ({ language, navigate, userLoginSuccess }) => {
+const Login = ({ language, navigate, userLoginSuccess, isLoggedIn, userInfo }) => {
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -33,6 +35,24 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
   useEffect(() => {
     document.title = "VKU Healthcare - login or sign up";
   }, []);
+
+  // Redirect already logged in users to their appropriate dashboard
+  useEffect(() => {
+    if (isLoggedIn && userInfo) {
+      console.log('User already logged in, redirecting...', userInfo);
+
+      if (userInfo.roleId === USER_ROLE.ADMIN) {
+        // Admin -> redirect to admin management page
+        navigate('/system/user-admin');
+      } else if (userInfo.roleId === USER_ROLE.DOCTOR) {
+        // Doctor -> redirect to doctor dashboard
+        navigate('/doctor/manage-schedule');
+      } else {
+        // Patient or other users -> redirect to home page
+        navigate(PATHS.HOME);
+      }
+    }
+  }, [isLoggedIn, userInfo, navigate]);
 
   const resetState = () => {
     setState(prev => ({
@@ -115,6 +135,18 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
         if (data && data.errCode === 0) {
           userLoginSuccess(data.user);
           console.log("Login successful");
+
+          // Redirect based on user role
+          if (data.user.roleId === USER_ROLE.ADMIN) {
+            // Admin -> redirect to system management
+            navigate(PATHS.SYSTEM.USER_MANAGE);
+          } else if (data.user.roleId === USER_ROLE.DOCTOR) {
+            // Doctor -> redirect to doctor dashboard
+            navigate(PATHS.DOCTOR.MANAGE_SCHEDULE);
+          } else {
+            // Other users (Patient) -> redirect to home page
+            navigate(PATHS.HOME);
+          }
         } else {
           console.log("errMsg", state.errMsg);
         }
@@ -145,7 +177,10 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
         }
         if (data && data.errCode === 0) {
           userLoginSuccess(data.user);
-          console.log("Login successful");
+          console.log("SignUp successful");
+
+          // Redirect to home page for new users (they will be R3 - Patient by default)
+          navigate(PATHS.HOME);
         } else {
           console.log("errMsg", state.errMsg);
         }
@@ -408,6 +443,8 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
   };
 };
 

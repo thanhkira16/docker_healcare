@@ -1,9 +1,22 @@
 import actionTypes from "../actions/actionTypes";
+import { getUserSession } from "../../utils/sessionStorage";
 
-const initialState = {
-  isLoggedIn: false,
-  userInfo: null,
+// Get initial state from localStorage if available
+const getInitialState = () => {
+  const session = getUserSession();
+  if (session) {
+    return {
+      isLoggedIn: session.isLoggedIn,
+      userInfo: session.userInfo,
+    };
+  }
+  return {
+    isLoggedIn: false,
+    userInfo: null,
+  };
 };
+
+const initialState = getInitialState();
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

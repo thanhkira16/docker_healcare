@@ -1,5 +1,14 @@
 const PATHS = {
-  HOME: "/home",
+  HOME: "/",
+  HOMEPAGE: "/home",
+  HEALTHY: "/healthy",
+  LOGIN: "/login",
+  LOG_OUT: "/logout",
+  REGISTER: "/register",
+  DETAIL_DOCTOR: "/detail-doctor/:id",
+  DETAIL_SPECIALTY: "/detail-specialty/:id",
+  DETAIL_CLINIC: "/detail-clinic/:id",
+  VERIFY_EMAIL_BOOKING: "/verify-booking",
   SYSTEM: {
     BASE: "/system",
     USER_MANAGE: "/system/user-manage",
@@ -13,7 +22,6 @@ const PATHS = {
     MANAGE_SCHEDULE: "/doctor/manage-schedule",
     MANAGE_PATIENT: "/doctor/manage-patient",
   },
-  LOGIN: "/login",
 };
 
 export default PATHS;
