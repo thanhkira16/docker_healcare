@@ -12,7 +12,6 @@ class Home extends Component {
     if (isLoggedIn && userInfo && userInfo.roleId === USER_ROLE.ADMIN) {
       return <Redirect to={PATHS.SYSTEM.USER_MANAGE} />;
     }
-    
     // If user is logged in and is doctor, redirect to doctor dashboard
     if (isLoggedIn && userInfo && userInfo.roleId === USER_ROLE.DOCTOR) {
       return <Redirect to={PATHS.DOCTOR.MANAGE_SCHEDULE} />;
