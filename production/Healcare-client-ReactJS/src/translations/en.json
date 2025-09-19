@@ -50,6 +50,7 @@
   },
   "menu": {
     "admin": {
+      "dashboard": "Dashboard",
       "manage-user": "Manage Users",
       "manage-doctor": "Manage Doctors",
       "manage-admin": "Manage Admin",
@@ -514,5 +515,11 @@
     "medical_chat_button": "Free Medical Consultation",
     "close_button": "Close medical chat",
     "footer_text": "🏥 Smart Healthcare"
+  },
+  "system": {
+    "dashboard": {
+      "title": "Dashboard - Reports & Analytics",
+      "subtitle": "Monitor Healthcare system activity and performance"
+    }
   }
 }
