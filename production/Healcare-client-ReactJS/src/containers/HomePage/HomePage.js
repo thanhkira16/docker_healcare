@@ -20,7 +20,7 @@ import "../../styles/_variables.scss"; // Adjusted to match variables.scss from 
 import "../../styles/_base.scss";
 import "./HomePage.scss";
 
-import ChatWootWidget from "../../components/ChatWootWidget";
+import ChatWootWidget from "../../components/ChatWootWidget/ChatWootWidget";
 
 class HomePage extends Component {
   componentDidMount() {

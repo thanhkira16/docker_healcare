@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import CustomToast from "../components/CustomToast";
+import CustomToast from "../components/CustomToast/CustomToast";
 
 const TYPE_SUCCESS = 'SUCCESS';
 const TYPE_INFO = 'INFO';

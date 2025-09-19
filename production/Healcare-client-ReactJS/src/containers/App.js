@@ -15,7 +15,7 @@ import './App.scss';
 import System from "../routes/System";
 // import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
-import CustomScrollbars from "../components/CustomScrollbars";
+import CustomScrollbars from "../components/CustomScrollbars/CustomScrollbars";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
 import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
