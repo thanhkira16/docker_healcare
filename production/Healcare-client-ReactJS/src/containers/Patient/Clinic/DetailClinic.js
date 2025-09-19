@@ -14,35 +14,15 @@ import Footer from "../../HomePage/Section/Info/Footer.js";
 const DetailClinic = ({ match }) => {
   const [arrDoctorId, setArrDoctorId] = useState([]);
   const [dataDetailClinic, setDataDetailClinic] = useState({});
-  const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const language = useSelector(state => state.app.language);
-
-  // Mock data cho các phần không có trong database
-  const mockServices = [
-    { id: 1, name: "Khám tổng quát", price: "500,000 VNĐ", duration: "30 phút", description: "Khám sức khỏe tổng quát, tư vấn y tế" },
-    { id: 2, name: "Siêu âm tim", price: "800,000 VNĐ", duration: "45 phút", description: "Siêu âm tim màu, đánh giá chức năng tim" },
-    { id: 3, name: "Xét nghiệm máu", price: "300,000 VNĐ", duration: "15 phút", description: "Xét nghiệm máu cơ bản, sinh hóa" },
-  ];
-
-  const workingHours = {
-    "monday": "8:00 - 17:00",
-    "tuesday": "8:00 - 17:00",
-    "wednesday": "8:00 - 17:00",
-    "thursday": "8:00 - 17:00",
-    "friday": "8:00 - 17:00",
-    "saturday": "8:00 - 12:00",
-    "sunday": "Nghỉ"
-  };
 
   // Fetch clinic details
   const fetchClinicDetails = async (clinicId) => {
     try {
       setLoading(true);
       const res = await getDetailClinicById({ id: clinicId });
-
-      console.log("Clinic API Response:", res); // Debug log
 
       if (res && res.errCode === 0) {
         let listDoctors = res.listDoctors;
@@ -53,9 +33,6 @@ const DetailClinic = ({ match }) => {
             arrDoctorId.push(item.doctorId);
           });
         }
-
-        // Make sure we log the entire data object to debug
-        console.log("Clinic Data:", res.data);
 
         // Convert image to binary if it exists and is a buffer
         if (res.data && res.data.image) {
@@ -82,10 +59,6 @@ const DetailClinic = ({ match }) => {
     }
   }, [match]);
 
-  const toggleExpand = () => {
-    setExpanded(prevState => !prevState);
-  };
-
   // Render loading state
   if (loading) {
     return (
@@ -105,250 +78,338 @@ const DetailClinic = ({ match }) => {
   // Image processing for display
   const getClinicImage = () => {
     if (dataDetailClinic && dataDetailClinic.image) {
-      // If we already processed the image
       if (dataDetailClinic.imageDisplay) {
         return dataDetailClinic.imageDisplay;
       }
 
-      // If image is base64 string, display it directly
       if (typeof dataDetailClinic.image === 'string') {
         return `data:image/jpeg;base64,${dataDetailClinic.image}`;
       } else {
-        // If image is buffer, convert it
         return Buffer.from(dataDetailClinic.image, "base64").toString("binary");
       }
     }
-    return clinicImage; // Default image
+    return clinicImage;
   };
-
-  const contentToShow = dataDetailClinic && dataDetailClinic.descriptionHTML
-    ? expanded
-      ? dataDetailClinic.descriptionHTML
-      : (dataDetailClinic.descriptionHTML.length > 200
-        ? dataDetailClinic.descriptionHTML.slice(0, 200) + "..."
-        : dataDetailClinic.descriptionHTML)
-    : "";
 
   return (
     <>
       <HomeHeader />
       <div className="detail-clinic-container">
-        {/* 1. Hero Section - Compact Banner */}
-        <div className="hero-section">
-          <div className="container">
-            <div className="hero-content">
-              <div className="hero-left">
-                <div className="clinic-image">
-                  <img src={getClinicImage()} alt={dataDetailClinic?.name || "Clinic"} />
-                </div>
-                <h1 className="clinic-name">
-                  {dataDetailClinic?.name || "Phòng khám chuyên khoa"}
-                </h1>
-                <p className="clinic-specialty">
-                  <i className="fas fa-stethoscope"></i>
-                  {dataDetailClinic?.specialty || "Phòng khám đa khoa"}
-                </p>
-                <button
-                  className="btn-book-now"
-                  onClick={() => alert("Vui lòng liên hệ trực tiếp để đặt lịch khám!")}
-                >
-                  <i className="fas fa-calendar-plus"></i>
-                  Đặt lịch ngay
-                </button>
-              </div>
-              <div className="hero-right">
+        {/* Header Banner with Clinic Info - BookingCare Style */}
+        <div className="clinic-header">
+          <div className="clinic-header-content">
+            <div className="clinic-logo">
+              <img 
+                src={getClinicImage()} 
+                alt={dataDetailClinic?.name || "Clinic Logo"} 
+              />
+            </div>
+            <div className="clinic-info">
+              <h1 className="clinic-name">
+                {dataDetailClinic?.name || "Bệnh viện Hữu nghị Việt Đức"}
+              </h1>
+              <p className="clinic-address">
+                {dataDetailClinic?.address || "Nhà H, Tầng 1, số 16 Phủ Doãn, Phường Hàng Bông, Quận Hoàn Kiếm, Hà Nội"}
+              </p>
+            </div>
+          </div>
+        </div>
 
-                <div className="contact-info">
-                  <div className="contact-item">
-                    <i className="fas fa-map-marker-alt"></i>
-                    <span>{dataDetailClinic?.address || "Số 16 - 18 Phủ Doãn, Hoàn Kiếm, Hà Nội"}</span>
-                  </div>
-                  <div className="contact-item">
-                    <i className="fas fa-clock"></i>
-                    <span>Thứ 2 - 6: 8:00 - 17:00, Thứ 7: 8:00 - 12:00</span>
-                  </div>
-                  <div className="contact-item">
-                    <i className="fas fa-phone"></i>
-                    <span>0123 456 789</span>
-                  </div>
-                </div>
+        {/* Navigation Tabs */}
+        <div className="clinic-nav">
+          <div className="nav-container">
+            <div className="nav-tabs">
+              <a href="#introduction" className="nav-tab active">GIỚI THIỆU</a>
+              <a href="#specialties" className="nav-tab">THẾ MẠNH CHUYÊN MÔN</a>
+              <a href="#equipment" className="nav-tab">TRANG THIẾT BỊ</a>
+              <a href="#process" className="nav-tab">QUY TRÌNH KHÁM</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Blue section with search and FAQ */}
+        <div className="clinic-search-section">
+          <div className="search-container">
+            <div className="search-header">
+              <h2>Hỏi nhanh, đáp chuẩn - Đặt khám dễ dàng với {dataDetailClinic?.name || "Bệnh viện Hữu nghị Việt Đức"}</h2>
+            </div>
+            <div className="search-input-wrapper">
+              <input 
+                type="text" 
+                placeholder="Hỏi Trợ lý AI cách đặt lịch khám"
+                className="search-input"
+              />
+              <button className="search-btn">
+                <i className="fas fa-arrow-right"></i>
+              </button>
+            </div>
+            
+            {/* FAQ Grid */}
+            <div className="faq-grid">
+              <div className="faq-item">
+                <span className="faq-icon">+</span>
+                <span className="faq-text">Khoa Nội-Hồi sức thần kinh Bệnh viện Hữu nghị Việt Đức nhận khám những bệnh gì?</span>
+              </div>
+              <div className="faq-item">
+                <span className="faq-icon">+</span>
+                <span className="faq-text">Lịch khám bác sĩ khoa Chi dưới, Bệnh viện Hữu nghị Việt Đức</span>
+              </div>
+              <div className="faq-item">
+                <span className="faq-icon">+</span>
+                <span className="faq-text">Khoa Thần Tiết niệu Bệnh viện Hữu nghị Việt Đức nhận khám những bệnh gì?</span>
+              </div>
+              <div className="faq-item">
+                <span className="faq-icon">+</span>
+                <span className="faq-text">Tôi muốn nói soi và cắt polyp trong ngày tại Bệnh viện Hữu nghị Việt Đức có được không?</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 2. Main Content - 2 columns grid + separate map row */}
-        <div className="main-content">
-          <div className="container">
-            <div className="content-grid">
-              <div className="description-card info-card">
-                <div className="card-header">
-                  <h3>
-                    <i className="fas fa-info-circle"></i>
-                    Giới thiệu
-                  </h3>
+        {/* Main Content */}
+        <div className="clinic-main-content">
+          <div className="content-container">
+            {/* Introduction Section */}
+            <section id="introduction" className="content-section">
+              <h2 className="section-title">GIỚI THIỆU</h2>
+              
+              {/* Contact Info */}
+              <div className="contact-info-box">
+                <div className="info-item">
+                  <strong>Địa chỉ:</strong> {dataDetailClinic?.address || "Bệnh viện có nhiều cổng, bệnh nhân đến khám sẽ đến cổng:"}
                 </div>
-                <div className="card-content">
-                  {dataDetailClinic?.descriptionHTML ? (
-                    <div
-                      className="description-content"
-                      dangerouslySetInnerHTML={{
-                        __html: expanded
-                          ? dataDetailClinic.descriptionHTML
-                          : (dataDetailClinic.descriptionHTML.length > 300
-                            ? dataDetailClinic.descriptionHTML.slice(0, 300) + "..."
-                            : dataDetailClinic.descriptionHTML
-                          )
-                      }}
-                    />
-                  ) : (
-                    <div className="loading-content">
-                      <p>Đang tải thông tin chi tiết...</p>
-                    </div>
-                  )}
-                  {dataDetailClinic?.descriptionHTML && dataDetailClinic.descriptionHTML.length > 300 && (
-                    <button className="btn-read-more" onClick={toggleExpand}>
-                      <i className={`fas ${expanded ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
-                      {expanded ? "Thu gọn" : "Xem thêm"}
-                    </button>
-                  )}
+                <div className="info-item">
+                  <strong>• Số 16 Phủ Doãn, Hàng Bông, Hoàn Kiếm, Hà Nội</strong>
+                </div>
+                <div className="info-item">
+                  <strong>Thời gian làm việc:</strong> Thứ 2 đến thứ 7
+                </div>
+                <div className="info-item">
+                  <strong>• Sáng:</strong> 7h00 - 12h00
+                </div>
+                <div className="info-item">
+                  <strong>• Chiều:</strong> 13h30 - 16h30
                 </div>
               </div>
 
-              <div className="working-hours-card info-card">
-                <div className="card-header">
-                  <h3>
-                    <i className="fas fa-clock"></i>
-                    Giờ làm việc
-                  </h3>
-                </div>
-                <div className="card-content">
-                  <div className="hours-list">
-                    <div className="hour-item">
-                      <span className="day">Thứ 2 - Thứ 6</span>
-                      <span className="time">8:00 - 17:00</span>
+              {/* Description */}
+              <div className="description-content">
+                {dataDetailClinic?.descriptionHTML ? (
+                  <div 
+                    dangerouslySetInnerHTML={{ 
+                      __html: dataDetailClinic.descriptionHTML 
+                    }}
+                  />
+                ) : (
+                  <div className="default-description">
+                    <p>Bệnh viện Việt Đức là một trong 5 bệnh viện tuyến Trung ương, hạng đặc biệt của Việt Nam. Bệnh viện có lịch sử trên 100 năm, bề dày truyền thống danh tiếng, là cái nôi của ngành ngoại khoa Việt Nam gắn liền với những thành tựu Y học quan trọng của đất nước.</p>
+                    
+                    <p>Việt Đức là địa chỉ uy tín hàng đầu về ngoại khoa, tiến hành khám bệnh, chữa bệnh và thực hiện các kỹ thuật chụp chiếu, xét nghiệm, thăm dò chức năng cơ bản và chuyên sâu hàng ngày cho người dân.</p>
+                    
+                    <p>Bệnh viện có đội ngũ y bác sĩ hùng hậu, nhiều người kiêm là cán bộ giảng dạy tại Đại học Y khoa Hà Nội hoặc Khoa Y Dược - Đại học Quốc gia Hà Nội. Trong số họ nhiều người là chuyên gia đầu ngành và bác sĩ giàu kinh nghiệm ở các chuyên khoa khác nhau.</p>
+                    
+                    <div className="important-notes">
+                      <h3>Lưu ý quan trọng</h3>
+                      <ul>
+                        <li>Bệnh viện có nhiều khu khám bệnh, hiện tại BookingCare đang hỗ trợ đăng ký khám tại tòa nhà C4 - Khoa khám bệnh theo yêu cầu. Người bệnh đến khám đúng tòa nhà C4 để được hỗ trợ.</li>
+                        <li>Bệnh viện chuyên về Ngoại khoa nên lịch của các bác sĩ thường linh động và ưu tiên khám cho các ca cấp cứu.</li>
+                        <li>Mỗi bệnh nhân trong ngày chỉ được đặt trước 1 chuyên khoa, nếu đăng kí 2 chuyên khoa trở lên sẽ trao đổi bác sĩ thăm khám ban đầu chuyển khám thêm khoa khác.</li>
+                      </ul>
                     </div>
-                    <div className="hour-item">
-                      <span className="day">Thứ 7</span>
-                      <span className="time">8:00 - 12:00</span>
-                    </div>
-                    <div className="hour-item">
-                      <span className="day">Chủ nhật</span>
-                      <span className="time closed">Nghỉ</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Map section - separate row */}
-            <div className="map-section">
-              <div className="map-card info-card">
-                <div className="card-header">
-                  <h3>
-                    <i className="fas fa-map"></i>
-                    Vị trí
-                  </h3>
-                </div>
-                <div className="card-content">
-                  <div className="map-container">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.3225817981167!2d106.6877265148617!3d10.787251392310804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0x3dbb34f78e6c7d3d!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBCYWNoIGtob2EgLSDEkEggUUc!5e0!3m2!1svi!2s!4v1629789012345!5m2!1svi!2s"
-                      width="100%"
-                      height="350"
-                      style={{ border: 0, borderRadius: '8px' }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      title="Clinic Location"
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. Dịch vụ & Giá */}
-        <div className="services-section">
-          <div className="container">
-            <div className="section-header">
-              <h2>
-                <i className="fas fa-medical-bag"></i>
-                Dịch vụ & Giá
-              </h2>
-            </div>
-            <div className="services-grid">
-              {mockServices.map(service => (
-                <div key={service.id} className="service-card">
-                  <div className="service-header">
-                    <h4>{service.name}</h4>
-                    <div className="service-price">{service.price}</div>
-                  </div>
-                  <div className="service-body">
-                    <p>{service.description}</p>
-                    <div className="service-duration">
-                      <i className="fas fa-clock"></i>
-                      <span>{service.duration}</span>
-                    </div>
-                  </div>
-                  <button
-                    className="btn-book-service"
-                    onClick={() => alert(`Liên hệ để đặt lịch dịch vụ: ${service.name}`)}
-                  >
-                    Đặt lịch
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 4. Đội ngũ bác sĩ */}
-        <div className="doctors-section">
-          <div className="container">
-            <div className="section-header">
-              <h2>
-                <i className="fas fa-user-md"></i>
-                Đội ngũ bác sĩ
-              </h2>
-            </div>
-            {arrDoctorId && arrDoctorId.length > 0 ? (
-              <div className="doctors-grid">
-                {arrDoctorId.map((doctorId, index) => (
-                  <div key={doctorId} className="doctor-card">
-                    <div className="doctor-profile">
-                      <ProfileDoctor
-                        doctorId={doctorId}
-                        isShowDescription={true}
-                      />
-                    </div>
-                    <div className="doctor-actions">
-                      <button
-                        className="btn-book-doctor"
-                        onClick={() => alert(`Liên hệ để đặt lịch với bác sĩ #${doctorId}`)}
-                      >
-                        Đặt lịch với bác sĩ
-                      </button>
-                    </div>
-                    <div className="doctor-info-grid">
-                      <div className="doctor-schedule">
-                        <h5>Lịch khám</h5>
-                        <DoctorSchedule doctorId={doctorId || -1} />
-                      </div>
-                      <div className="doctor-extra-info">
-                        <h5>Thông tin thêm</h5>
-                        <DoctorExtraInfor doctorId={doctorId || -1} />
+                    <div className="pricing-info">
+                      <h3>Chi phí khám</h3>
+                      <p>Người bệnh có thể lựa chọn một trong các gói khám sau:</p>
+                      <div className="pricing-packages">
+                        <div className="package">
+                          <h4>Gói 1:</h4>
+                          <ul>
+                            <li>Khám Giáo sư, Phó Giáo sư, Tiến sĩ, Bác sĩ Chuyên khoa II - Chi phí 500.000 đồng/lần khám</li>
+                            <li>Khám với bác sĩ Trưởng khoa hoặc Phó khoa - Chi phí 500.000 đồng/lần khám</li>
+                          </ul>
+                        </div>
+                        <div className="package">
+                          <h4>Gói 2:</h4>
+                          <ul>
+                            <li>Khám Thạc sĩ, Bác sĩ Chuyên khoa I - Chi phí: 300.000 đồng/lần khám</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                )}
               </div>
-            ) : (
-              <div className="no-doctors">
-                <i className="fas fa-user-md"></i>
-                <h3>Chưa có thông tin bác sĩ</h3>
-                <p>Vui lòng liên hệ trực tiếp để biết thêm thông tin về đội ngũ bác sĩ.</p>
+            </section>
+
+            {/* Specialties Section */}
+            <section id="specialties" className="content-section">
+              <h2 className="section-title">THẾ MẠNH CHUYÊN MÔN</h2>
+              <div className="specialties-content">
+                <p>Bệnh viện Việt Đức là bệnh viện chuyên khoa Ngoại (phẫu thuật), có thế mạnh về khám, điều trị và Phẫu thuật nhiều chuyên khoa. Một số thế mạnh của Bệnh viện Việt Đức là:</p>
+                
+                <div className="specialty-list">
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Thần kinh (Thần kinh I, Thần kinh II):</h4>
+                    <p>Chấn thương; Bệnh lý sọ não; Tuỷ sống; Dây thần kinh ngoại vi; Ứng dụng nội soi trong phẫu thuật thần kinh; Phẫu thuật thần kinh chức năng; Phẫu thuật u nền sọ;...</p>
+                  </div>
+                  
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Cơ xương khớp:</h4>
+                    <div className="sub-specialties">
+                      <p><strong>◦ Khám, điều trị, phẫu thuật về Chi trên và Y học thể thao:</strong> Khám các bệnh lý do chấn thương thể thao; Bệnh lý đứt dây chằng gối do chơi thể thao; Chấn thương chỉnh hình xương khớp; Phẫu thuật bàn tay; Bệnh lý cơ xương khớp về tay;...</p>
+                      
+                      <p><strong>◦ Khám, điều trị, phẫu thuật về Chi dưới:</strong> Điều trị thoái hóa khớp gối, khớp háng; Bệnh lý đứt dây chằng gối; Phẫu thuật khớp gối, khớp háng, khớp cổ chân; Bệnh lý về chân;...</p>
+                      
+                      <p><strong>◦ Khám, điều trị, phẫu thuật về Xương và điều trị ngoại trú:</strong> Nắn chỉnh về xương, tai nạn bị gãy tay gãy chân, tháo bột, kiểm tra lại sau khi nắn chỉnh về xương.</p>
+                      
+                      <p><strong>◦ Khám, điều trị, phẫu thuật về chấn thương chung:</strong> tháo đinh, kiếm tra lại sau mổ,...</p>
+                    </div>
+                  </div>
+                  
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Cột sống:</h4>
+                    <p>Bệnh lý cột sống; Đau vai gáy; Thoái hoá và thoát vị đĩa đệm; Chấn thương chỉnh hình cột sống; Trượt đốt sống; Vẹo cột sống; Bơm xi-măng vào thân đốt sống;...</p>
+                  </div>
+                  
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Tim mạch và lồng ngực:</h4>
+                    <p>Khám và điều trị bệnh lý tim bẩm sinh trẻ em; Khám và điều trị các bệnh lý nội, ngoại khoa về tim mạch; Điều trị các bệnh lý phức tạp về động - tĩnh mạch bằng các phương pháp tiên tiến; Các bệnh lý về xương sườn;...</p>
+                  </div>
+                  
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Tạo hình-Hàm mặt-Thẩm mỹ:</h4>
+                    <p>Bệnh lý và chấn thương vùng hàm mặt; Phục hồi tái tạo các cơ quan sau điều trị ung thư; Sửa chữa các dị tật sọ mặt; Nối vành tai đứt rời, mũi đứt rời; Phẫu thuật thẩm mĩ mi mắt, mũi, tạo hình ngực, bụng….</p>
+                  </div>
+                  
+                  <div className="specialty-item">
+                    <h4>• Khám, điều trị, phẫu thuật về Tiêu hóa:</h4>
+                    <p>Cắt bỏ và tạo hình thực quản; Cắt khối tá tuỵ; Cắt toàn bộ dạ dày, cắt đại tràng các loại.</p>
+                  </div>
+                </div>
+                
+                <div className="other-specialties">
+                  <h4>Ngoài ra, bệnh viện khám, điều trị, phẫu thuật các chuyên khoa khác như:</h4>
+                  <div className="specialty-grid">
+                    <div className="specialty-column">
+                      <ul>
+                        <li>Bệnh lý thần kinh</li>
+                        <li>Nội - Hồi sức thần kinh</li>
+                        <li>Bệnh tim mạch và lồng ngực</li>
+                        <li>Phẫu thuật tim mạch - lồng ngực</li>
+                        <li>Ngoại nhi và trẻ sơ sinh</li>
+                        <li>Bệnh lý tiêu hóa</li>
+                        <li>Phẫu thuật tiêu hóa</li>
+                        <li>Bệnh cột sống/thoát vị đĩa đệm</li>
+                      </ul>
+                    </div>
+                    <div className="specialty-column">
+                      <ul>
+                        <li>Chi trên và y học thể thao</li>
+                        <li>Bệnh lý chi dưới</li>
+                        <li>Khám xương và điều trị ngoại trú</li>
+                        <li>Phẫu thuật chấn thương chung</li>
+                        <li>Phẫu thuật tạo hình - hàm mặt - thẩm mỹ</li>
+                        <li>Phục hồi chức năng</li>
+                        <li>Nhiễm khuẩn</li>
+                        <li>Phẫu thuật nhiễm khuẩn</li>
+                      </ul>
+                    </div>
+                    <div className="specialty-column">
+                      <ul>
+                        <li>Bệnh đường tiết niệu</li>
+                        <li>Bệnh nam học/nam khoa</li>
+                        <li>Bệnh lý gan mật</li>
+                        <li>Ung bướu</li>
+                        <li>Thận lọc máu</li>
+                        <li>Bệnh lý hậu môn trực tràng</li>
+                        <li>Trung tâm ghép tạng</li>
+                        <li>Phòng khám Tai mũi họng</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </section>
+
+            {/* Equipment Section */}
+            <section id="equipment" className="content-section">
+              <h2 className="section-title">TRANG THIẾT BỊ</h2>
+              <div className="equipment-content">
+                <p>Bệnh viện Việt Đức được trang bị hầu hết các trang thiết bị hiện đại hàng đầu hiện nay phục vụ trong chẩn đoán và thực hiện các xét nghiệm cơ bản, xét nghiệm kỹ thuật cao như các xét nghiệm theo dõi bệnh nhân ghép tạng, các xét nghiệm chỉ điểm khối u.</p>
+                
+                <div className="equipment-list">
+                  <ul>
+                    <li>Xquang số hóa</li>
+                    <li>Máy siêu âm</li>
+                    <li>Máy chụp cắt lớp vi tính đa dãy CT Scan</li>
+                    <li>Máy chụp cộng hưởng từ MRI 3.0 Tesla</li>
+                    <li>Hệ thống chụp mạch máy chuyên dụng</li>
+                    <li>Hệ thống PET/CT phát hiện ung thư sớm và đánh giá các bệnh lý tim mạch, thần kinh</li>
+                    <li>Hệ thống máy sinh hóa miễn dịch tự động, máy sinh hóa tự động, máy xét nghiệm huyết học, xét nghiệm đông máu tự động…</li>
+                  </ul>
+                </div>
+                
+                <div className="endoscopy-equipment">
+                  <h4>Các thiết bị thăm dò chức năng hỗ trợ thăm khám và thực hiện các thủ thuật nội soi tiêu hóa - gan mật:</h4>
+                  <ul>
+                    <li>Nội soi thực quản - dạ dày - tá tràng chẩn đoán</li>
+                    <li>Nội soi đại trực tràng chẩn đoán</li>
+                    <li>Nội soi đường mật - tụy ngược dòng ERCP</li>
+                    <li>Siêu âm nội soi chẩn đoán bệnh lý thuộc cơ quan tiêu hóa, chọc hút tế bào</li>
+                    <li>Nội soi can thiệp, nong hẹp đường tiêu hóa</li>
+                    <li>Nội soi đặt stent khí quản, đặt sonde tá tràng</li>
+                    <li>Nội soi can thiệp đại tràng</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* Process Section */}
+            <section id="process" className="content-section">
+              <h2 className="section-title">QUY TRÌNH KHÁM</h2>
+              <div className="process-content">
+                <p><strong>Quy trình khám dành cho người bệnh đặt khám thông qua BookingCare</strong></p>
+                
+                <div className="process-benefits">
+                  <p>Từ nay, người bệnh có thể đặt lịch tại Khu khám bệnh theo yêu cầu, Bệnh viện Hữu nghị Việt Đức thông qua hệ thống đặt khám BookingCare.</p>
+                  
+                  <ul>
+                    <li>Được lựa chọn các giáo sư, tiến sĩ, bác sĩ chuyên khoa giàu kinh nghiệm</li>
+                    <li>Hỗ trợ đặt khám trực tuyến trước khi đi khám (miễn phí đặt lịch)</li>
+                    <li>Giảm thời gian chờ đợi khi làm thủ tục khám và ưu tiên khám trước</li>
+                    <li>Nhận được hướng dẫn chi tiết sau khi đặt lịch</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* Doctors Section */}
+            {arrDoctorId && arrDoctorId.length > 0 && (
+              <section className="doctors-section">
+                <h2 className="section-title">ĐỘI NGŨ BÁC SĨ</h2>
+                <div className="doctors-grid">
+                  {arrDoctorId.map((doctorId, index) => (
+                    <div key={doctorId} className="doctor-card">
+                      <div className="doctor-profile">
+                        <ProfileDoctor
+                          doctorId={doctorId}
+                          isShowDescription={true}
+                        />
+                      </div>
+                      <div className="doctor-info-wrapper">
+                        <div className="doctor-schedule">
+                          <h4>Lịch khám</h4>
+                          <DoctorSchedule doctorId={doctorId || -1} />
+                        </div>
+                        <div className="doctor-extra-info">
+                          <h4>Thông tin thêm</h4>
+                          <DoctorExtraInfor doctorId={doctorId || -1} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
             )}
           </div>
         </div>
