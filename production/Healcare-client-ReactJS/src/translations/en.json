@@ -149,7 +149,8 @@
     "saveChangesSuccess": "Information saved successfully",
     "saveChangesFailed": "Failed to save information",
     "invalidDoctor": "Please select a name",
-    "invalidDate": "Please select a date"
+    "invalidDate": "Please select a date",
+    "datePickerPlaceholder": "Select a date"
   },
   "manage-specialty": {
     "title": "Manage Specialties",
@@ -289,6 +290,7 @@
     "columnAddress": "Address",
     "columnTime": "Appointment Time",
     "columnStatus": "Status",
+    "columnActions": "Action",
     "statusNew": "New Appointment",
     "statusConfirmed": "Confirmed",
     "statusDone": "Completed",
@@ -322,7 +324,14 @@
     "deleteSuccess": "Patient deleted successfully!",
     "deleteFailed": "Failed to delete patient!",
     "deleteConfirm": "Are you sure you want to delete this patient?",
-    "required": "*"
+    "required": "*",
+    "confirmButton": "Confirm",
+    "confirmAppointment": "Confirm Appointment",
+    "successSent": "Successfully sent",
+    "errorSending": "Error sending",
+    "datePickerPlaceholder": "Select a date",
+    "columnNumber": "#",
+    "columnFullname": "Fullname"
   },
   "auth": {
     "login_title": "Login",

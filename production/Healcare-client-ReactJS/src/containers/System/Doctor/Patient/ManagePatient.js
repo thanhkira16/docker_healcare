@@ -52,7 +52,7 @@ class ManagePatient extends Component {
     }
   };
 
-  componentDidUpdate(prevProps) {}
+  componentDidUpdate(prevProps) { }
   handleDatePickerClick = () => {
     this.setState((prevState) => ({
       isDatePickerOpen: !prevState.isDatePickerOpen,
@@ -122,9 +122,13 @@ class ManagePatient extends Component {
       await this.getDataPatients();
       this.handleCloseRemedyModal();
       this.setState({ isLoading: false });
-      toast.success("Successfully sent");
+      toast.success(
+        <FormattedMessage id="manage-patient.successSent" />
+      );
     } else {
-      toast.error("Error sending");
+      toast.error(
+        <FormattedMessage id="manage-patient.errorSending" />
+      );
     }
   };
   render() {
@@ -135,7 +139,9 @@ class ManagePatient extends Component {
     return (
       <>
         <div className="container manage-patient-container">
-          <div className="title">Quan ly benh nhan</div>
+          <div className="title">
+            <FormattedMessage id="manage-patient.title" />
+          </div>
           <div className="row mb-4">
             <div className="col-md-4">
               <label>
@@ -160,7 +166,11 @@ class ManagePatient extends Component {
                   className="date-picker-text"
                   value={this.state.textDate}
                   readOnly // Make the input read-only to display the selected date
-                  placeholder="Select a date"
+                  placeholder={
+                    this.props.language === LANGUAGES.VI
+                      ? "Chọn ngày"
+                      : "Select a date"
+                  }
                 />
               </div>
             </div>
@@ -169,12 +179,24 @@ class ManagePatient extends Component {
             <table id="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Fullname</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Gender</th>
-                  <th scope="col">actions</th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnNumber" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnTime" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnFullname" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnAddress" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnGender" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="manage-patient.columnActions" />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -204,7 +226,7 @@ class ManagePatient extends Component {
                             className="btn red px-3"
                             onClick={() => this.handleConfirmAppoiment(item)}
                           >
-                            Conform
+                            <FormattedMessage id="manage-patient.confirmButton" />
                           </button>
                         </td>
                       </tr>

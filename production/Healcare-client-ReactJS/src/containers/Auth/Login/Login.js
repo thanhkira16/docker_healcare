@@ -10,7 +10,7 @@ import LanguageSwitcher from "../../../components/LanguageSwitcher/LanguageSwitc
 import { USER_ROLE } from "../../../utils/constant";
 import PATHS from "../../../utils/path";
 
-const Login = ({ language, navigate, userLoginSuccess }) => {
+const Login = ({ language, navigate, userLoginSuccess, isLoggedIn, userInfo }) => {
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -35,6 +35,24 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
   useEffect(() => {
     document.title = "VKU Healthcare - login or sign up";
   }, []);
+
+  // Redirect already logged in users to their appropriate dashboard
+  useEffect(() => {
+    if (isLoggedIn && userInfo) {
+      console.log('User already logged in, redirecting...', userInfo);
+
+      if (userInfo.roleId === USER_ROLE.ADMIN) {
+        // Admin -> redirect to admin management page
+        navigate('/system/user-admin');
+      } else if (userInfo.roleId === USER_ROLE.DOCTOR) {
+        // Doctor -> redirect to doctor dashboard
+        navigate('/doctor/manage-schedule');
+      } else {
+        // Patient or other users -> redirect to home page
+        navigate(PATHS.HOME);
+      }
+    }
+  }, [isLoggedIn, userInfo, navigate]);
 
   const resetState = () => {
     setState(prev => ({
@@ -425,6 +443,8 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
   };
 };
 

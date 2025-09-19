@@ -206,7 +206,11 @@ class ManageSchedule extends Component {
                   className="date-picker-text"
                   value={this.state.textDate}
                   readOnly
-                  placeholder="Select a date"
+                  placeholder={
+                    this.props.language === LANGUAGES.VI
+                      ? "Chọn một ngày"
+                      : "Select a date"
+                  }
                 />
               </div>
             </div>
