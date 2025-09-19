@@ -1,7 +1,7 @@
-// Contact Section Styles
+// Contact Section Styles - Updated with React Icons and Lighter Design
 .contact-section {
     padding: 20px 0;
-    background: linear-gradient(135deg, var(--gray-medium-color) 0%, var(--border-color-light) 100%);
+    background: var(--gray-light-color, #f8f9fa);
     min-height: 100vh;
 
     .contact-header {
@@ -10,13 +10,10 @@
 
         .contact-title {
             font-size: var(--font-size-3xl);
-            font-weight: 700;
-            color: var(--black-color);
+            font-weight: 600; // Đậm hơn
+            color: var(--primary-color, #0066cc);
             margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--bs-blue) 0%, var(--bs-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.02em;
 
             @media (max-width: 768px) {
                 font-size: var(--font-size-xl);
@@ -25,10 +22,11 @@
 
         .contact-subtitle {
             font-size: var(--font-size-md);
-            color: var(--black-medium-color);
+            color: var(--text-secondary, #6c757d);
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            font-weight: 300; // Thon hơn
 
             @media (max-width: 768px) {
                 font-size: var(--font-size-sm);
@@ -51,16 +49,16 @@
     .contact-form-wrapper {
         .contact-form-container {
             background: var(--white-color);
-            border-radius: 24px;
+            border-radius: 16px; // Giảm bo góc
             padding: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-            border: 2px solid var(--border-color-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); // Shadow nhẹ hơn
+            border: 1px solid var(--border-color, #e9ecef);
             position: relative;
             overflow: hidden;
             
             @media (max-width: 768px) {
                 padding: 24px;
-                border-radius: 16px;
+                border-radius: 12px;
             }
         }
     }
@@ -77,35 +75,43 @@
         .success-icon {
             font-size: var(--font-size-huge);
             margin-bottom: 24px;
+            color: var(--success-color, #28a745);
             animation: bounce 2s infinite;
+            
+            svg {
+                width: 64px;
+                height: 64px;
+            }
         }
 
         h3 {
             font-size: var(--font-size-lg);
-            font-weight: 700;
-            color: var(--bs-success);
+            font-weight: 400; // Thon hơn
+            color: var(--success-color, #28a745);
             margin-bottom: 12px;
         }
 
         p {
-            color: var(--black-medium-color);
+            color: var(--text-secondary, #6c757d);
             margin-bottom: 32px;
             font-size: var(--font-size-sm);
+            font-weight: 300; // Thon hơn
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--admin-menu-primary-color) 0%, var(--bs-primary) 100%);
+            background: var(--primary-color, #0066cc);
             color: var(--white-color);
             padding: 12px 32px;
             border: none;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-weight: 400; // Thon hơn
             cursor: pointer;
             transition: all 0.3s ease;
 
             &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+                background: var(--primary-dark, #0052a3);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
             }
         }
     }
@@ -115,10 +121,11 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
-        background: var(--gray-medium-color);
+        background: var(--light-bg, #f8f9fa);
         padding: 24px;
-        border-radius: 16px;
+        border-radius: 12px;
         margin-bottom: 40px;
+        border: 1px solid var(--border-color, #e9ecef);
 
         @media (max-width: 768px) {
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -132,25 +139,32 @@
             gap: 12px;
 
             .trust-icon {
-                font-size: var(--font-size-lg);
-                background: var(--main-color);
+                color: var(--primary-color, #0066cc);
+                background: rgba(0, 102, 204, 0.1);
                 padding: 8px;
                 border-radius: 8px;
                 min-width: 40px;
                 text-align: center;
+                font-size: 20px;
+                
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
             }
 
             .trust-content {
                 .trust-title {
-                    font-weight: 600;
-                    color: var(--black-color);
+                    font-weight: 400; // Thon hơn
+                    color: var(--text-primary, #212529);
                     font-size: var(--font-size-xs);
                     margin-bottom: 2px;
                 }
 
                 .trust-description {
                     font-size: var(--font-size-2xs);
-                    color: var(--black-medium-color);
+                    color: var(--text-secondary, #6c757d);
+                    font-weight: 300; // Thon hơn
                 }
             }
         }
@@ -173,8 +187,8 @@
 
         .form-label {
             display: block;
-            font-weight: 700;
-            color: var(--black-color);
+            font-weight: 400; // Thon hơn
+            color: var(--text-primary, #212529);
             margin-bottom: 12px;
             font-size: var(--font-size-xs);
         }
@@ -191,26 +205,24 @@
             .inquiry-option {
                 position: relative;
                 padding: 20px;
-                border: 2px solid var(--border-color-light);
-                border-radius: 16px;
+                border: 2px solid var(--border-color, #e9ecef);
+                border-radius: 12px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 background: var(--white-color);
 
                 &:hover {
-                    border-color: var(--blue-medium-color);
-                    background: var(--main-color);
-                    transform: translateY(-2px);
+                    border-color: var(--primary-light, #66a3ff);
+                    box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1);
                 }
 
                 &.selected {
-                    border-color: var(--blue-medium-color);
-                    background: var(--main-color);
-                    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
-                    transform: scale(1.02);
+                    border-color: var(--primary-color, #0066cc);
+                    background: rgba(0, 102, 204, 0.03);
+                    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.15);
                 }
 
-                input {
+                input[type="radio"] {
                     display: none;
                 }
 
@@ -220,39 +232,42 @@
                     gap: 16px;
 
                     .inquiry-icon {
-                        font-size: var(--font-size-lg);
-                        background: var(--gray-medium-color);
-                        padding: 12px;
-                        border-radius: 12px;
-                        transition: all 0.3s ease;
+                        color: var(--primary-color, #0066cc);
+                        font-size: 24px;
+                        min-width: 32px;
+                        
+                        svg {
+                            width: 24px;
+                            height: 24px;
+                        }
                     }
 
                     .inquiry-text {
                         flex: 1;
 
                         .inquiry-label {
-                            font-weight: 600;
-                            color: var(--black-color);
+                            font-weight: 500; // Thon hơn
+                            color: var(--text-primary, #212529);
                             margin-bottom: 4px;
                         }
 
                         .inquiry-description {
                             font-size: var(--font-size-xs);
-                            color: var(--black-medium-color);
+                            color: var(--text-secondary, #6c757d);
                             line-height: 1.5;
+                            font-weight: 300; // Thon hơn
                         }
                     }
                 }
 
                 .selected-indicator {
                     position: absolute;
-                    top: 12px;
-                    right: 12px;
-                    width: 12px;
-                    height: 12px;
-                    background: var(--blue-medium-color);
+                    top: 8px;
+                    right: 8px;
+                    width: 8px;
+                    height: 8px;
+                    background: var(--primary-color, #0066cc);
                     border-radius: 50%;
-                    animation: scale-in 0.3s ease;
                 }
 
                 &.selected .inquiry-icon {
@@ -277,27 +292,23 @@
         .form-textarea {
             width: 100%;
             padding: 16px;
-            border: 2px solid var(--border-color-light);
-            border-radius: 12px;
+            border: 2px solid var(--border-color, #e9ecef);
+            border-radius: 8px;
             font-size: var(--font-size-sm);
-            color: var(--black-color);
-            background: var(--gray-medium-color);
+            font-weight: 300; // Thon hơn
+            color: var(--text-primary, #212529);
+            background: var(--white-color);
             transition: all 0.3s ease;
-            outline: none;
-            font-family: inherit;
 
             &::placeholder {
-                color: var(--black-medium-color);
+                color: var(--text-muted, #adb5bd);
+                font-weight: 300;
             }
 
             &:focus {
-                border-color: var(--blue-medium-color);
-                background: var(--white-color);
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            }
-
-            @media (max-width: 768px) {
-                padding: 14px;
+                outline: none;
+                border-color: var(--primary-color, #0066cc);
+                box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
             }
         }
 
@@ -307,62 +318,60 @@
         }
 
         .form-submit {
+            text-align: center;
+
             .btn-submit {
-                width: 100%;
-                background: linear-gradient(135deg, var(--blue-medium-color) 0%, var(--admin-menu-primary-color) 100%);
+                background: var(--primary-color, #0066cc);
                 color: var(--white-color);
-                font-weight: 700;
-                padding: 20px 24px;
+                padding: 16px 40px;
                 border: none;
-                border-radius: 16px;
+                border-radius: 8px;
                 font-size: var(--font-size-sm);
+                font-weight: 400; // Thon hơn
                 cursor: pointer;
                 transition: all 0.3s ease;
-                display: flex;
+                display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                gap: 12px;
-                position: relative;
-                overflow: hidden;
+                gap: 8px;
+                margin-bottom: 16px;
 
-                &:hover:not(:disabled) {
-                    transform: translateY(-2px);
-                    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+                svg {
+                    width: 18px;
+                    height: 18px;
                 }
 
-                &:active {
-                    transform: scale(0.98);
+                &:hover:not(:disabled) {
+                    background: var(--primary-dark, #0052a3);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.2);
                 }
 
                 &:disabled {
-                    opacity: 0.7;
+                    opacity: 0.6;
                     cursor: not-allowed;
+                    transform: none;
                 }
 
                 .loading-spinner {
-                    width: 20px;
-                    height: 20px;
-                    border: 2px solid transparent;
-                    border-top: 2px solid var(--white-color);
+                    width: 18px;
+                    height: 18px;
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    border-top: 2px solid white;
                     border-radius: 50%;
                     animation: spin 1s linear infinite;
-                }
-
-                @media (max-width: 768px) {
-                    padding: 16px 20px;
-                    font-size: var(--font-size-xs);
                 }
             }
 
             .privacy-note {
-                margin-top: 16px;
-                text-align: center;
                 font-size: var(--font-size-xs);
-                color: var(--black-medium-color);
+                color: var(--text-secondary, #6c757d);
+                margin: 0;
+                font-weight: 300; // Thon hơn
 
                 .privacy-link {
-                    color: var(--blue-medium-color);
+                    color: var(--primary-color, #0066cc);
                     cursor: pointer;
+                    text-decoration: none;
 
                     &:hover {
                         text-decoration: underline;
@@ -398,35 +407,31 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
 
             .location-info {
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 12px;
-                padding: 20px;
                 display: flex;
-                align-items: flex-start;
-                gap: 16px;
+                align-items: center;
+                gap: 12px;
 
                 .location-icon {
-                    font-size: var(--font-size-lg);
-                    background: rgba(59, 130, 246, 0.2);
-                    border: 1px solid rgba(59, 130, 246, 0.3);
-                    padding: 8px;
-                    border-radius: 8px;
-                    backdrop-filter: blur(10px);
+                    color: var(--primary-color, #0066cc);
+                    font-size: 24px;
+                    
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                    }
                 }
 
                 .location-details {
-                    flex: 1;
-
                     .location-title {
-                        color: var(--white-color);
-                        font-weight: 700;
-                        margin-bottom: 8px;
+                        font-size: var(--font-size-sm);
+                        font-weight: 500; // Thon hơn
+                        color: var(--text-primary, #212529);
+                        margin-bottom: 4px;
                         display: flex;
                         align-items: center;
                         gap: 8px;
@@ -434,17 +439,17 @@
                         .status-indicator {
                             width: 8px;
                             height: 8px;
-                            background: var(--bs-success);
+                            background: var(--success-color, #28a745);
                             border-radius: 50%;
                             animation: pulse 2s infinite;
                         }
                     }
 
                     .location-address {
-                        color: var(--border-color-light);
                         font-size: var(--font-size-xs);
-                        line-height: 1.5;
+                        color: var(--text-secondary, #6c757d);
                         margin: 0;
+                        font-weight: 300; // Thon hơn
                     }
                 }
             }
@@ -454,25 +459,26 @@
     .faq-section {
         background: var(--white-color);
         border-radius: 16px;
-        padding: 32px;
-        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-        border: 1px solid var(--border-color-light);
-
-        @media (max-width: 768px) {
-            padding: 24px;
-        }
+        padding: 30px;
+        border: 1px solid var(--border-color, #e9ecef);
 
         .faq-title {
             display: flex;
             align-items: center;
             gap: 12px;
             font-size: var(--font-size-md);
-            font-weight: 700;
-            color: var(--black-color);
+            font-weight: 500; // Thon hơn
+            color: var(--text-primary, #212529);
             margin-bottom: 24px;
 
             .faq-icon {
-                font-size: var(--font-size-lg);
+                color: var(--primary-color, #0066cc);
+                font-size: 24px;
+                
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
             }
         }
 
@@ -482,37 +488,38 @@
             gap: 16px;
 
             .faq-item {
-                padding: 16px;
+                padding: 20px;
+                border-radius: 12px;
                 border-left: 4px solid;
-                border-radius: 0 12px 12px 0;
 
                 &.blue {
-                    border-left-color: var(--blue-medium-color);
-                    background: var(--main-color);
+                    background: rgba(0, 102, 204, 0.05);
+                    border-left-color: var(--primary-color, #0066cc);
                 }
 
                 &.green {
-                    border-left-color: var(--bs-success);
-                    background: var(--main-color);
+                    background: rgba(40, 167, 69, 0.05);
+                    border-left-color: var(--success-color, #28a745);
                 }
 
                 &.purple {
-                    border-left-color: var(--bs-purple);
-                    background: var(--main-color);
+                    background: rgba(108, 117, 125, 0.05);
+                    border-left-color: var(--purple-color, #6c757d);
                 }
 
                 h4 {
-                    font-weight: 700;
-                    color: var(--black-color);
+                    font-size: var(--font-size-sm);
+                    font-weight: 500; // Thon hơn
+                    color: var(--text-primary, #212529);
                     margin-bottom: 8px;
-                    font-size: var(--font-size-xs);
                 }
 
                 p {
-                    color: var(--black-medium-color);
-                    font-size: var(--font-size-2xs);
-                    line-height: 1.5;
+                    font-size: var(--font-size-xs);
+                    color: var(--text-secondary, #6c757d);
                     margin: 0;
+                    line-height: 1.5;
+                    font-weight: 300; // Thon hơn
                 }
             }
         }
