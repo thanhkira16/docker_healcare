@@ -6,7 +6,7 @@ import "./Login.scss";
 import { handleLoginApi, handleSignUpApi } from "../../../services/userService";
 import InputField from "../../../components/Input/InputField";
 import { FormattedMessage } from "react-intl";
-import LanguageSwitcher from "../../../components/LanguageSwitcher";
+import LanguageSwitcher from "../../../components/LanguageSwitcher/LanguageSwitcher";
 
 const Login = ({ language, navigate, userLoginSuccess }) => {
   const [state, setState] = useState({

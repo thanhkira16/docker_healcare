@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils/constant";
 import { changeLanguageApp } from "../../store/actions";
 import HeaderLogo from "../../components/Header/HeaderLogo";
-import LanguageSwitcher from "../../components/LanguageSwitcher";
+import LanguageSwitcher from "../../components/LanguageSwitcher/LanguageSwitcher";
 
 class HomeHeader extends Component {
     state = {

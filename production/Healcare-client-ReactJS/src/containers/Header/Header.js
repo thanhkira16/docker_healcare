@@ -10,7 +10,7 @@ import { USER_ROLE } from "../../utils/constant";
 import { getAllSpecialties } from "../../services/userService";
 import { LANGUAGES } from "../../utils";
 import { withRouter } from "react-router";
-import LanguageSwitcher from "../../components/LanguageSwitcher";
+import LanguageSwitcher from "../../components/LanguageSwitcher/LanguageSwitcher";
 
 class Header extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Header extends Component {
   async componentDidMount() {
     let { userInfo } = this.props;
     let menu = [];
-    
+
     // Set up menu for admin/doctor
     if (userInfo && !_.isEmpty(userInfo)) {
       let role = userInfo.roleId;
@@ -84,7 +84,7 @@ class Header extends Component {
   };
 
   handleSearchChange = (e) => {
-    this.setState({ 
+    this.setState({
       searchQuery: e.target.value,
       showSearchResults: e.target.value.length > 0
     });
@@ -166,7 +166,7 @@ class Header extends Component {
                 <form onSubmit={this.handleSearchSubmit} className="search-form">
                   <div className="search-input-wrapper">
                     <i className="fas fa-search search-icon"></i>
-                    <input 
+                    <input
                       type="text"
                       placeholder={language === LANGUAGES.VI ? "Tìm kiếm dịch vụ, bác sĩ..." : "Search services, doctors..."}
                       value={searchQuery}
@@ -174,8 +174,8 @@ class Header extends Component {
                       className="search-input"
                     />
                     {searchQuery && (
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         className="clear-search"
                         onClick={() => this.setState({ searchQuery: "", showSearchResults: false })}
                       >
@@ -183,7 +183,7 @@ class Header extends Component {
                       </button>
                     )}
                   </div>
-                  
+
                   {/* Search Results Dropdown */}
                   {showSearchResults && (
                     <div className="search-results">
@@ -257,7 +257,7 @@ class Header extends Component {
 
                 {/* User Profile (if logged in) */}
                 {isLoggedIn && (
-                  <div 
+                  <div
                     className="user-profile-dropdown"
                     onMouseEnter={this.handleUserDropdownEnter}
                     onMouseLeave={this.handleUserDropdownLeave}
@@ -289,7 +289,7 @@ class Header extends Component {
                 )}
 
                 {/* Mobile Menu Toggle */}
-                <button 
+                <button
                   className="mobile-menu-toggle"
                   onClick={this.toggleMobileMenu}
                 >
