@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PATHS from "../constants/path";
+import PATHS from "../utils/path";
 
 class Home extends Component {
   render() {

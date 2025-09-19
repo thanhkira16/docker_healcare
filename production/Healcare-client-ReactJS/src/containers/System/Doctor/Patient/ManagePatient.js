@@ -1,350 +1,249 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import "./ManagePatient.scss";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { LANGUAGES, CommonUtils } from "../../../../utils";
-import patientService from "../../../../services/patientService";
+import "./ManagePatient.scss";
+import { LANGUAGES } from "../../../../utils";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+import {
+  getAllPaitentsBookedAppoiment,
+  postSendRemedy,
+} from "../../../../services/userService";
+import moment from "moment";
+import RemedyModal from "../../../Patient/Doctor/Modal/RemedyModal";
 import { toast } from "react-toastify";
-import Table from "../../../../components/Table/Table";
-import Search from "../../../../components/Search";
-import AddPatientModal from "./AddPatientModal";
+import LoadingOverlay from "react-loading-overlay";
+class ManagePatient extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpenModalRemedy: false,
+      isDatePickerOpen: false,
+      currDate: moment(new Date()).add(0, "days").startOf("day").valueOf(),
+      textDate: "",
+      dataPatients: [],
+      dataRemedyModal: {},
+      isLoading: false,
+    };
+  }
 
-const ManagePatient = () => {
-  const dispatch = useDispatch();
-  const { language } = useSelector(state => state.app);
-  const { userInfo } = useSelector(state => state.user);
+  async componentDidMount() {
+    this.getDataPatients();
+  }
 
-  const [patientsList, setPatientsList] = useState([]);
-  const [filteredPatients, setFilteredPatients] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date().getTime());
-
-  useEffect(() => {
-    if (userInfo && userInfo.id) {
-      fetchAllPatients();
-    }
-  }, [userInfo]);
-
-  const fetchAllPatients = async () => {
-    if (!userInfo || !userInfo.id) {
-      console.error('Doctor information not available');
-      return;
-    }
-
-    console.log('Fetching patients for doctor:', userInfo.id, 'date:', selectedDate, 'formatted date:', new Date(selectedDate));
-
-    setIsLoading(true);
-    try {
-      const result = await patientService.fetchAllPatients(userInfo.id, selectedDate);
-      
-      console.log('Fetch result:', result);
-      
-      if (result.success) {
-        setPatientsList(result.data || []);
-        setFilteredPatients(result.data || []);
-        console.log('Updated patients list:', result.data);
-      } else {
-        console.error('Failed to fetch patients:', result.message);
-        setPatientsList([]);
-        setFilteredPatients([]);
-      }
-    } catch (error) {
-      console.error('Error fetching patients:', error);
-      setPatientsList([]);
-      setFilteredPatients([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleModalSuccess = () => {
-    fetchAllPatients();
-  };
-
-  const handleDateChange = async (event) => {
-    const selectedDate = event.target.value;
-    const timestamp = new Date(selectedDate).getTime();
-    setSelectedDate(timestamp);
-    
-    if (userInfo && userInfo.id) {
-      setIsLoading(true);
-      try {
-        const result = await patientService.fetchAllPatients(userInfo.id, timestamp);
-        
-        if (result.success) {
-          setPatientsList(result.data || []);
-          setFilteredPatients(result.data || []);
-        } else {
-          console.error('Failed to fetch patients:', result.message);
-          setPatientsList([]);
-          setFilteredPatients([]);
-        }
-      } catch (error) {
-        console.error('Error fetching patients:', error);
-        setPatientsList([]);
-        setFilteredPatients([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
-
-  // Search functionality
-  const handleSearchChange = (value) => {
-    setSearchValue(value);
-    filterPatients(value);
-  };
-
-  const filterPatients = (searchTerm) => {
-    if (!searchTerm.trim()) {
-      setFilteredPatients(patientsList);
-      return;
-    }
-
-    const filtered = patientsList.filter(patient => {
-      const fullName = `${patient.firstName || ''} ${patient.lastName || ''}`.toLowerCase();
-      const email = (patient.email || '').toLowerCase();
-      const phoneNumber = (patient.phoneNumber || '').toLowerCase();
-      const search = searchTerm.toLowerCase();
-
-      return fullName.includes(search) || 
-             email.includes(search) || 
-             phoneNumber.includes(search);
+  getDataPatients = async () => {
+    //set date
+    let { user } = this.props;
+    let date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+    let { currDate } = this.state;
+    let formatedDate = new Date(currDate).getTime();
+    this.setState({ textDate: this.convertDateToString(date) });
+    //render patient appoiments
+    let res = await getAllPaitentsBookedAppoiment({
+      doctorId: user.id,
+      date: formatedDate,
     });
 
-    setFilteredPatients(filtered);
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataPatients: res.data,
+      });
+    }
   };
 
-  // Update filtered patients when patients list changes
-  useEffect(() => {
-    filterPatients(searchValue);
-  }, [patientsList]);
-
-  const formatDateForInput = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toISOString().split('T')[0];
+  componentDidUpdate(prevProps) {}
+  handleDatePickerClick = () => {
+    this.setState((prevState) => ({
+      isDatePickerOpen: !prevState.isDatePickerOpen,
+    }));
   };
+  convertDateToString = (date) => {
+    let formattedDate = "";
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      weekday: "long", // Include the full name of the day of the week
+    };
 
-  // Placeholder functions for future CRUD operations
-  const handleEditPatient = (patient) => {
-    // TODO: Implement edit functionality
-    console.log('Edit patient:', patient);
+    if (this.props.language === LANGUAGES.VI) {
+      // For Vietnamese language, format as "Thứ N, dd/mm/yyyy"
+      formattedDate = date.toLocaleDateString("vi-VN", options);
+    } else {
+      // For English language, format as "Monday, mm/dd/yyyy"
+      formattedDate = date.toLocaleDateString("en-US", options);
+    }
+
+    return formattedDate;
   };
+  handleOnChangeDatePicker = (date) => {
+    let currDate;
+    currDate = moment(date).add(0, "days").startOf("day").valueOf();
 
-  const handleDeletePatient = (patient) => {
-    // TODO: Implement delete functionality
-    console.log('Delete patient:', patient);
-  };
-
-  // Render function component
-  const columns = [
-    {
-      title: <FormattedMessage id="manage-patient.columnAvatar" />,
-      dataIndex: "image",
-      width: "100px",
-      align: "center",
-      render: (image, record) => (
-        <div className="patient-avatar-cell">
-          {image ? (
-            <img
-              src={image}
-              alt={`${record.firstName} ${record.lastName}`}
-              className="patient-avatar"
-              onError={(e) => {
-                e.target.src = "/default-avatar.png";
-              }}
-            />
-          ) : (
-            <div className="no-avatar">
-              <i className="fas fa-user"></i>
-            </div>
-          )}
-        </div>
-      ),
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnName" />,
-      dataIndex: "firstName",
-      width: "200px",
-      render: (firstName, record) => (
-        <div className="patient-name">
-          <strong>{`${record.firstName || ''} ${record.lastName || ''}`.trim() || 'N/A'}</strong>
-          <div className="patient-email">{record.email}</div>
-        </div>
-      ),
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnGender" />,
-      dataIndex: "gender",
-      width: "100px",
-      align: "center",
-      render: (gender) => {
-        // Xử lý các format gender khác nhau
-        let isMale = false;
-        
-        if (gender === '1' || gender === 1 || gender === 'M' || gender === 'Male' || gender === 'Nam') {
-          isMale = true;
-        } else if (gender === '0' || gender === 0 || gender === 'F' || gender === 'Female' || gender === 'Nữ') {
-          isMale = false;
-        }
-        
-        return (
-          <div className="patient-gender">
-            {isMale ? 
-              <FormattedMessage id="manage-patient.male" /> : 
-              <FormattedMessage id="manage-patient.female" />
-            }
-          </div>
-        );
+    this.setState(
+      {
+        currDate,
+        textDate: this.convertDateToString(date),
       },
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnPhone" />,
-      dataIndex: "phoneNumber",
-      width: "180px",
-      render: (phone) => (
-        <div className="patient-phone">
-          {phone || <FormattedMessage id="manage-patient.emptyPhone" />}
-        </div>
-      ),
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnAddress" />,
-      dataIndex: "address",
-      width: "180px",
-      render: (address) => (
-        <div className="patient-address">
-          {address || <FormattedMessage id="manage-patient.emptyAddress" />}
-        </div>
-      ),
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnTime" />,
-      dataIndex: "timeTypeData",
-      width: "150px",
-      align: "center",
-      render: (timeTypeData, record) => (
-        <div className="patient-time">
-          <div className="time-slot">
-            {timeTypeData ? 
-              (language === LANGUAGES.VI ? timeTypeData.valueVi : timeTypeData.valueEn) : 
-              "N/A"
-            }
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: <FormattedMessage id="manage-patient.columnStatus" />,
-      dataIndex: "statusId",
-      width: "150px",
-      align: "center",
-      render: (statusId) => {
-        let statusText = "";
-        let statusClass = "";
-        
-        switch(statusId) {
-          case "S1":
-            statusText = <FormattedMessage id="manage-patient.statusNew" />;
-            statusClass = "status-new";
-            break;
-          case "S2": 
-            statusText = <FormattedMessage id="manage-patient.statusConfirmed" />;
-            statusClass = "status-confirmed";
-            break;
-          case "S3":
-            statusText = <FormattedMessage id="manage-patient.statusDone" />;
-            statusClass = "status-done";
-            break;
-          default:
-            statusText = "N/A";
-            statusClass = "status-unknown";
-        }
-        
-        return (
-          <div className={`patient-status ${statusClass}`}>
-            <span className="status-badge">{statusText}</span>
-          </div>
-        );
-      },
-    },
-  ];
+      async () => {
+        await this.getDataPatients();
+      }
+    );
+  };
 
-  return (
-    <div className="manage-patient-wrapper">
-      <div className="manage-patient-container">
-        <div className="admin-header">
-          <div className="admin-title">
-            <h1>
-              <FormattedMessage id="manage-patient.title" />
-            </h1>
-          </div>
-          <div className="header-controls">
-            <div className="date-filter">
-              <label htmlFor="date-picker">
-                <FormattedMessage id="manage-patient.selectDate" />:
+  handleConfirmAppoiment = (item) => {
+    let data = {
+      doctorId: item.doctorId,
+      patientId: item.patientId,
+      email: item.patientData.email,
+      timeType: item.timeType,
+      patientName: item.patientData.firstName,
+    };
+    this.setState({ isOpenModalRemedy: true, dataRemedyModal: data });
+    console.log("data", data);
+  };
+  handleCloseRemedyModal = () => {
+    this.setState({ isOpenModalRemedy: false });
+  };
+  sendRemedy = async (data) => {
+    this.setState({ isLoading: true });
+    let { dataRemedyModal } = this.state;
+    let res = await postSendRemedy({
+      email: data.email,
+      imgBase64: data.imgBase64,
+      patientId: dataRemedyModal.patientId,
+      doctorId: dataRemedyModal.doctorId,
+      timeType: dataRemedyModal.timeType,
+      language: this.props.language,
+      patientName: dataRemedyModal.patientName,
+    });
+    if (res && res.errCode === 0) {
+      await this.getDataPatients();
+      this.handleCloseRemedyModal();
+      this.setState({ isLoading: false });
+      toast.success("Successfully sent");
+    } else {
+      toast.error("Error sending");
+    }
+  };
+  render() {
+    console.log(" user ", this.state);
+    let { dataPatients, isOpenModalRemedy, dataRemedyModal, isLoading } =
+      this.state;
+    let { language } = this.props;
+    return (
+      <>
+        <div className="container manage-patient-container">
+          <div className="title">Quan ly benh nhan</div>
+          <div className="row mb-4">
+            <div className="col-md-4">
+              <label>
+                <FormattedMessage id="manage-schedules.pick-date" />
               </label>
-              <input
-                id="date-picker"
-                type="date"
-                value={formatDateForInput(selectedDate)}
-                onChange={handleDateChange}
-                className="date-input"
-              />
+              <div
+                className="date-picker "
+                onClick={this.handleDatePickerClick}
+              >
+                <DatePicker
+                  onChange={this.handleOnChangeDatePicker}
+                  className="form-control date-picker-select"
+                  selected={this.state.currDate}
+                  minDate={new Date(new Date().getTime() - 24 * 60 * 60 * 1000)}
+                  // minDate={new Date()}
+                  style={{ fontSize: "18px" }}
+                  // format={dateFormat.SEND_TO_SERVER}
+                  isOpen={this.state.isDatePickerOpen}
+                />
+                <input
+                  type="text"
+                  className="date-picker-text"
+                  value={this.state.textDate}
+                  readOnly // Make the input read-only to display the selected date
+                  placeholder="Select a date"
+                />
+              </div>
             </div>
-            <button
-              className="btn-add-patient"
-              onClick={handleOpenModal}
-            >
-              <FormattedMessage id="manage-patient.addNew" />
-            </button>
+          </div>
+          <div className="row">
+            <table id="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Fullname</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataPatients &&
+                  dataPatients.length > 0 &&
+                  dataPatients.map((item, index) => {
+                    let time =
+                      language === LANGUAGES.VI
+                        ? item.timeTypeDataPatient.valueVi
+                        : item.timeTypeDataPatient.valueEn;
+                    let gender =
+                      language === LANGUAGES.VI
+                        ? item.patientData.genderData.valueVi
+                        : item.patientData.genderData.valueEn;
+                    return (
+                      <tr key={index}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{time}</td>
+                        <td>{item.patientData.firstName}</td>
+                        <td>{item.patientData.address}</td>
+                        <td>{gender}</td>
+                        <td>
+                          {/* Add action buttons or links here for each user */}
+                          {/* For example, a button to view user details */}
+
+                          <button
+                            className="btn red px-3"
+                            onClick={() => this.handleConfirmAppoiment(item)}
+                          >
+                            Conform
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
           </div>
         </div>
+        <RemedyModal
+          isOpenModalBooking={isOpenModalRemedy}
+          dataRemedyModal={dataRemedyModal}
+          onCloseRemedyModal={this.handleCloseRemedyModal}
+          sendRemedy={this.sendRemedy}
+        />
 
-        <div className="patient-content">
-          <div className="search-section">
-            <Search
-              placeholder="search.patient.placeholder"
-              value={searchValue}
-              onChange={handleSearchChange}
-              label="search.patient.label"
-              showLabel={true}
-              size="medium"
-              variant="default"
-              clearable={true}
-            />
-          </div>
+        <LoadingOverlay
+          className="loading-overlay"
+          active={isLoading}
+          spinner
+          text="Loading..."
+        >
+          {/* Your content goes here */}
+          <div></div>
+        </LoadingOverlay>
+      </>
+    );
+  }
+}
 
-          <div className="patient-table-wrapper">
-            <Table
-              data={filteredPatients}
-              columns={columns}
-              loading={isLoading}
-              emptyMessage={<FormattedMessage id="manage-patient.emptyMessage" />}
-              striped={true}
-              hover={true}
-            />
-          </div>
-        </div>
-      </div>
-
-      <AddPatientModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSuccess={handleModalSuccess}
-      />
-    </div>
-  );
+const mapStateToProps = (state) => {
+  return {
+    language: state.app.language,
+    user: state.user.userInfo,
+  };
 };
 
-export default ManagePatient;
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePatient);

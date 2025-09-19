@@ -8,7 +8,7 @@ import AdminNavbar from "../containers/Header/AdminNavbar";
 import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 import ManageClinic from "../containers/System/Clinic/ManageClinic";
 import "../containers/System/AdminLayout.scss";
-import PATHS from "../constants/path";
+import PATHS from "../utils/path";
 
 class System extends Component {
   render() {

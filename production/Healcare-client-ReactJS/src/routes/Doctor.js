@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import AdminNavbar from "../containers/Header/AdminNavbar";
-import ManageSchedule from "../containers/System/Doctor/ManageSchedule";
+import ManageSchedule from "../containers/System/Doctor/Schedule/ManageSchedule";
 import ManagePatient from "../containers/System/Doctor/Patient/ManagePatient";
-import PATHS from "../constants/path";
+import PATHS from "../utils/path";
 
 class Doctor extends Component {
   render() {

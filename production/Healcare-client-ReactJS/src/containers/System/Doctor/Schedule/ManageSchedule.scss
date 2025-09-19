@@ -1,0 +1,14 @@
+.manage-schedule-doctor {
+  .pick-time-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .btn-custom {
+      width: 200px;
+      &.active {
+        background-color: var(--blue-medium-color);
+      }
+    }
+  }
+}
