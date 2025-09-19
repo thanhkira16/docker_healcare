@@ -8,7 +8,6 @@ import "./DetailDoctor.scss";
 import "../../../styles/Base.scss";
 import { FormattedMessage } from "react-intl";
 import DoctorSchedule from "./DoctorSchedule";
-import SchedulingToday from "./Modal/SchedulingToday";
 import DoctorExtraInfor from "./DoctorExtraInfor";
 import LikeAndShare from "../SocialPlugin/LikeAndShare";
 import Footer from "../../HomePage/Section/Info/Footer";
@@ -137,7 +136,7 @@ const DetailDoctor = ({ language }) => {
           {/* Schedule and Booking Section */}
           <div className="schedule-booking-section">
             <div className="row">
-              <div className="col-lg-8 col-md-7">
+              <div className="col-8 col-lg-8 col-md-7 col-sm-12">
                 <div className="schedule-card">
                   <div className="card-header">
                     <h3><i className="fas fa-calendar-alt"></i> Lịch khám</h3>
@@ -151,7 +150,7 @@ const DetailDoctor = ({ language }) => {
                 </div>
               </div>
               
-              <div className="col-lg-4 col-md-5">
+              <div className="col-4 col-lg-4 col-md-5 col-sm-12">
                 <div className="booking-card">
                   <div className="card-header">
                     <h3><i className="fas fa-money-bill-wave"></i> Thông tin khám</h3>
@@ -169,7 +168,7 @@ const DetailDoctor = ({ language }) => {
           {/* Doctor Details and Registration Section */}
           <div className="details-registration-section">
             <div className="row">
-              <div className="col-lg-7 col-md-6">
+              <div className="col-8 col-lg-8 col-md-7 col-sm-12">
                 <div className="doctor-details-card">
                   <div className="card-header">
                     <h3><i className="fas fa-info-circle"></i> Thông tin chi tiết</h3>
@@ -188,7 +187,7 @@ const DetailDoctor = ({ language }) => {
                 </div>
               </div>
               
-              <div className="col-lg-5 col-md-6">
+              <div className="col-4 col-lg-4 col-md-5 col-sm-12">
                 <div className="registration-card">
                   <div className="quick-registration">
                     <div className="card-header">

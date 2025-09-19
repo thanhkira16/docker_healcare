@@ -29,13 +29,16 @@ class DoctorSchedule extends Component {
 
     if (this.props.doctorId) {
       let allDays = this.getArrDays(this.props.language);
+      console.log("Fetching initial schedules for doctor:", this.props.doctorId, "date:", allDays[0].value);
       let res = await getScheduleDoctorByDate(
         this.props.doctorId,
         allDays[0].value
       );
+      console.log("Initial API Response:", res);
       this.setState({
-        allAvailableTimes: res.data ? res.data : [],
+        allAvailableTimes: res && res.data ? res.data : [],
       });
+      console.log("Initial allAvailableTimes:", res && res.data ? res.data : []);
     }
   }
 
@@ -53,7 +56,7 @@ class DoctorSchedule extends Component {
         allDays[0].value
       );
       this.setState({
-        allAvailableTimes: res.data ? res.data : [],
+        allAvailableTimes: res && res.data ? res.data : [],
       });
     }
   }
@@ -65,14 +68,22 @@ class DoctorSchedule extends Component {
       // let dateLabel = this.initDateLabel(event.target.key, this.props.language);
       // console.log("date label", dateLabel);
       let dateLabel = event.target.options[event.target.selectedIndex].label;
+      console.log("Fetching schedules for doctor:", doctorId, "date:", date);
       let res = await getScheduleDoctorByDate(doctorId, date);
+      console.log("API Response:", res);
       if (res && res.errCode === 0) {
         this.setState({
-          allAvailableTimes: res.data ? res.data : [],
+          allAvailableTimes: res && res.data ? res.data : [],
+          dateSelected: dateLabel,
+        });
+      } else {
+        console.error("API error:", res);
+        this.setState({
+          allAvailableTimes: [],
           dateSelected: dateLabel,
         });
       }
-      // console.log("available schedules", res.data);
+      console.log("Set allAvailableTimes:", res && res.data ? res.data : []);
     }
   };
   capitalizeFirstLetter(string) {
@@ -164,9 +175,8 @@ class DoctorSchedule extends Component {
                   return (
                     <button
                       key={index}
-                      className={`btn-time ${
-                        language === "en" ? "btn-en" : ""
-                      }`}
+                      className={`btn-time ${language === "en" ? "btn-en" : ""
+                        }`}
                       onClick={() =>
                         this.handleOpenModalBooking(item, timeDisplay)
                       }

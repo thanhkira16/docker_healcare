@@ -396,9 +396,10 @@
 
 // Tablet and below
 @media (max-width: 992px) {
+  .schedule-booking-section,
   .details-registration-section {
-    .col-lg-7,
-    .col-lg-5 {
+    .col-8,
+    .col-4 {
       margin-bottom: 1.5rem;
     }
   }
@@ -450,6 +451,12 @@
   .schedule-booking-section,
   .details-registration-section {
     margin-bottom: 1.5rem;
+    
+    .col-8,
+    .col-4 {
+      width: 100% !important;
+      margin-bottom: 1rem;
+    }
   }
   
   .schedule-card,
@@ -535,4 +542,3 @@
     }
   }
 }
-

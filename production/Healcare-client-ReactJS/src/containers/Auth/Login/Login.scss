@@ -2,11 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Thay min-height thành height để cố định chiều cao */
-  background: linear-gradient(135deg, var(--blue-medium-color) 0%, #f0fffe 50%, var(--white-color) 100%);
+  height: 100vh;
+  /* Thay min-height thành height để cố định chiều cao */
+  background: var(--section-background);
   position: relative;
-  overflow: hidden; /* Ngăn cuộn nếu nội dung vượt quá */
-  
+  overflow: hidden;
+  /* Ngăn cuộn nếu nội dung vượt quá */
+
   // Add subtle pattern overlay
   &::before {
     content: '';
@@ -15,7 +17,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
       radial-gradient(circle at 25% 25%, rgba(69, 195, 210, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, rgba(69, 195, 210, 0.05) 0%, transparent 50%);
     pointer-events: none;
@@ -23,53 +25,65 @@
 
   .left {
     width: 100%;
-    max-width: 450px; /* Giảm max-width từ 500px */
+    max-width: 450px;
+    /* Giảm max-width từ 500px */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem; /* Giảm padding từ 2rem */
+    padding: 1rem;
+    /* Giảm padding từ 2rem */
     position: relative;
     z-index: 1;
 
     .logo-section {
       display: flex;
       align-items: center;
-      margin-bottom: 1rem; /* Giảm margin từ 2rem */
+      margin-bottom: 1rem;
+      /* Giảm margin từ 2rem */
 
       .healthcare-logo {
-        width: 48px; /* Giảm kích thước logo từ 64px */
+        width: 48px;
+        /* Giảm kích thước logo từ 64px */
         height: 48px;
-        background: linear-gradient(135deg, var(--main-color), #3ba5b8);
-        border-radius: 12px; /* Giảm border-radius từ 16px */
+        background: linear-gradient(135deg, var(--bs-primary), #3ba5b8);
+        border-radius: 12px;
+        /* Giảm border-radius từ 16px */
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 1rem; /* Giảm margin từ 1.5rem */
-        box-shadow: 0 4px 16px rgba(69, 195, 210, 0.3); /* Giảm shadow */
-        
+        margin-right: 1rem;
+        /* Giảm margin từ 1.5rem */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* Match Banner.scss shadow */
+
         svg {
           color: var(--white-color);
         }
       }
 
       h1 {
-        font-family: "Roboto", sans-serif;
-        font-size: var(--font-size-xxl); /* Giảm từ --font-size-huge (3.2rem) */
+        font-family: "Helvetica", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-size: var(--font-size-xxl);
+        /* Giảm từ --font-size-huge (3.2rem) */
         font-weight: 700;
-        background: linear-gradient(135deg, var(--main-color), #3ba5b8);
+        background: linear-gradient(135deg, var(--bs-primary), #3ba5b8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin: 0;
-        letter-spacing: -1px; /* Giảm letter-spacing từ -2px */
+        letter-spacing: -1px;
+        /* Giảm letter-spacing từ -2px */
       }
     }
 
     p {
-      font-size: var(--font-size-lg); /* Giảm từ --font-size-xl (2.0rem) */
+      font-size: var(--font-size-lg);
+      /* Giảm từ --font-size-xl (2.0rem) */
       color: #4a5568;
-      line-height: 1.4; /* Giảm line-height từ 1.5 */
-      margin-bottom: 1.5rem; /* Giảm margin từ 3rem */
+      line-height: 1.4;
+      /* Giảm line-height từ 1.5 */
+      margin-bottom: 1.5rem;
+      /* Giảm margin từ 3rem */
       font-family: "Roboto", sans-serif;
       font-weight: 400;
     }
@@ -77,33 +91,41 @@
     .features {
       display: flex;
       flex-direction: column;
-      gap: 1rem; /* Giảm gap từ 1.5rem */
+      gap: 1rem;
+      /* Giảm gap từ 1.5rem */
 
       .feature-item {
         display: flex;
         align-items: center;
-        gap: 0.8rem; /* Giảm gap từ 1rem */
-        padding: 0.8rem; /* Giảm padding từ 1rem */
-        background: rgba(255, 255, 255, 0.7);
+        gap: 0.8rem;
+        /* Giảm gap từ 1rem */
+        padding: 0.8rem;
+        /* Giảm padding từ 1rem */
+        background: var(--white-color);
         backdrop-filter: blur(10px);
-        border-radius: 10px; /* Giảm border-radius từ 12px */
-        border: 1px solid rgba(69, 195, 210, 0.1);
-        transition: all 0.3s ease;
+        border-radius: 1.5rem;
+        /* Match Banner.scss border-radius */
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
 
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(69, 195, 210, 0.15); /* Giảm shadow */
+          transform: translateY(-0.5rem);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+          /* Match Banner.scss shadow */
         }
 
         svg {
-          color: var(--main-color);
+          color: var(--bs-primary);
           flex-shrink: 0;
-          width: 20px; /* Giảm kích thước icon */
+          width: 20px;
+          /* Giảm kích thước icon */
           height: 20px;
         }
 
         span {
-          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+          font-size: var(--font-size-xs);
+          /* Giảm từ --font-size-sm (1.4rem) */
           color: #2d3748;
           font-weight: 500;
         }
@@ -113,8 +135,10 @@
 
   .right {
     width: 100%;
-    max-width: 400px; /* Giảm max-width từ 440px */
-    padding: 1rem; /* Giảm padding từ 2rem */
+    max-width: 400px;
+    /* Giảm max-width từ 440px */
+    padding: 1rem;
+    /* Giảm padding từ 2rem */
     position: relative;
     z-index: 1;
 
@@ -123,19 +147,24 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-bottom: 1rem; /* Giảm margin từ 2rem */
+      margin-bottom: 1rem;
+      /* Giảm margin từ 2rem */
       padding: 0;
 
       .login-language-switcher {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px; /* Giảm border-radius từ 12px */
-        padding: 0.4rem 0.6rem; /* Giảm padding từ 0.5rem 0.8rem */
-        border: 1px solid rgba(69, 195, 210, 0.2);
-        transition: all 0.3s ease;
+        background: var(--white-color);
+        border-radius: 1.5rem;
+        /* Match Banner.scss border-radius */
+        padding: 0.4rem 0.6rem;
+        /* Giảm padding từ 0.5rem 0.8rem */
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         &:hover {
-          background: rgba(255, 255, 255, 1);
-          box-shadow: 0 2px 6px rgba(69, 195, 210, 0.15); /* Giảm shadow */
+          background: var(--white-color);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          /* Match Banner.scss shadow */
+          transform: translateY(-0.5rem);
         }
 
         // Simple override for LanguageSwitcher in login page
@@ -144,7 +173,8 @@
           position: relative !important;
           display: inline-flex !important;
           align-items: center !important;
-          gap: 0.6rem !important; /* Giảm gap từ 0.8rem */
+          gap: 0.6rem !important;
+          /* Giảm gap từ 0.8rem */
 
           .language-toggle {
             position: relative !important;
@@ -156,21 +186,25 @@
             padding: 0 !important;
             transition: none !important;
             box-shadow: none !important;
-            gap: 0.4rem !important; /* Giảm gap từ 0.5rem */
+            gap: 0.4rem !important;
+            /* Giảm gap từ 0.5rem */
 
             .lang-option {
               flex: none !important;
               display: inline-block !important;
               align-items: center !important;
               justify-content: center !important;
-              font-size: var(--font-size-xs) !important; /* Giảm từ --font-size-sm (1.4rem) */
+              font-size: var(--font-size-xs) !important;
+              /* Giảm từ --font-size-sm (1.4rem) */
               font-weight: 500 !important;
               color: #9ca3af !important;
               transition: all 0.3s ease !important;
-              border-radius: 5px !important; /* Giảm border-radius từ 6px */
+              border-radius: 5px !important;
+              /* Giảm border-radius từ 6px */
               cursor: pointer !important;
               z-index: 2 !important;
-              padding: 0.2rem 0.4rem !important; /* Giảm padding từ 0.3rem 0.5rem */
+              padding: 0.2rem 0.4rem !important;
+              /* Giảm padding từ 0.3rem 0.5rem */
               background: transparent !important;
               box-shadow: none !important;
 
@@ -200,7 +234,8 @@
           }
 
           .language-label {
-            font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+            font-size: var(--font-size-xs) !important;
+            /* Giữ nguyên */
             color: #6b7280 !important;
             font-weight: 500 !important;
             white-space: nowrap !important;
@@ -214,7 +249,8 @@
             top: 50% !important;
             transform: translate(-50%, -50%) !important;
             color: #d1d5db !important;
-            font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+            font-size: var(--font-size-xs) !important;
+            /* Giữ nguyên */
             pointer-events: none !important;
           }
         }
@@ -223,14 +259,16 @@
 
     .form-container {
       background: var(--white-color);
-      border-radius: 16px; /* Giảm border-radius từ 20px */
-      box-shadow: 
-        0 10px 30px rgba(69, 195, 210, 0.15), /* Giảm shadow */
-        0 4px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 1.5rem;
+      /* Match Banner.scss border-radius */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      /* Match Banner.scss shadow */
       overflow: hidden;
-      border: 1px solid rgba(69, 195, 210, 0.1);
-      margin-bottom: 1rem; /* Giảm margin từ 2rem */
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      margin-bottom: 1rem;
+      /* Giảm margin từ 2rem */
       position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
       // Gradient border effect
       &::before {
@@ -239,46 +277,59 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 3px; /* Giảm chiều cao từ 4px */
-        background: linear-gradient(90deg, var(--main-color), #3ba5b8, var(--main-color));
+        height: 3px;
+        /* Giảm chiều cao từ 4px */
+        background: linear-gradient(90deg, var(--bs-primary), #3ba5b8, var(--bs-primary));
         background-size: 200% 100%;
         animation: gradientSlide 3s ease-in-out infinite;
       }
 
+      &:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      }
+
       .form-header {
-        padding: 1.5rem 1.5rem 0.5rem; /* Giảm padding từ 2.5rem 2.5rem 1rem */
+        padding: 1.5rem 1.5rem 0.5rem;
+        /* Giảm padding từ 2.5rem 2.5rem 1rem */
         text-align: center;
         background: linear-gradient(135deg, rgba(69, 195, 210, 0.03), rgba(69, 195, 210, 0.01));
 
         h2 {
-          font-size: var(--font-size-lg); /* Giảm từ --font-size-xl (2.0rem) */
+          font-size: var(--font-size-lg);
+          /* Giảm từ --font-size-xl (2.0rem) */
           font-weight: 700;
           color: var(--black-bolor);
-          margin-bottom: 0.3rem; /* Giảm margin từ 0.5rem */
+          margin-bottom: 0.3rem;
+          /* Giảm margin từ 0.5rem */
         }
 
         p {
           color: #6b7280;
-          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+          font-size: var(--font-size-xs);
+          /* Giảm từ --font-size-sm (1.4rem) */
           margin: 0;
         }
       }
 
       .form-content {
-        padding: 0.8rem 1.5rem 1.5rem; /* Giảm padding từ 1rem 2.5rem 2.5rem */
+        padding: 0.8rem 1.5rem 1.5rem;
+        /* Giảm padding từ 1rem 2.5rem 2.5rem */
         display: flex;
         flex-direction: column;
 
         .input-group {
           position: relative;
-          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
+          margin-bottom: 1rem;
+          /* Giảm margin từ 1.5rem */
           width: 100%;
           display: flex;
           flex-direction: column;
 
           .input-icon {
             position: absolute;
-            left: 1.2rem; /* Giảm từ 1.5rem */
+            left: 1.2rem;
+            /* Giảm từ 1.5rem */
             top: 50%;
             transform: translateY(-50%);
             color: #9ca3af;
@@ -290,11 +341,14 @@
           input {
             width: 100%;
             min-width: 0;
-            padding: 1rem 4rem 1rem 3.5rem; /* Giảm padding từ 1.5rem 5rem 1.5rem 4.5rem */
-            border-radius: 10px; /* Giảm border-radius từ 12px */
+            padding: 1.44rem 4rem 1.44rem 3.5rem;
+            /* Match Banner.scss search input padding */
+            border-radius: 10px;
+            /* Giảm border-radius từ 12px */
             border: 2px solid #e5e7eb;
             outline: none;
-            font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
+            font-size: var(--font-size-sm);
+            /* Giảm từ --font-size-md (1.6rem) */
             background-color: #fafbfc;
             transition: all 0.3s ease;
             box-sizing: border-box;
@@ -304,7 +358,8 @@
             &:focus {
               border-color: var(--main-color);
               background-color: var(--white-color);
-              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1); /* Giảm shadow */
+              box-shadow: 0 0 0 2px rgba(69, 195, 210, 0.1);
+              /* Giảm shadow */
               border-radius: 10px;
             }
 
@@ -340,7 +395,8 @@
 
           // For inputs that don't need the show/hide button (email, phone)
           &:not(.password-field) input {
-            padding-right: 1.2rem; /* Giảm padding từ 1.5rem */
+            padding-right: 1.2rem;
+            /* Giảm padding từ 1.5rem */
             border-radius: 10px;
             border: 2px solid #e5e7eb;
           }
@@ -349,12 +405,15 @@
           .show-hide {
             position: absolute;
             top: 50%;
-            right: 1.2rem; /* Giảm từ 1.5rem */
+            right: 1.2rem;
+            /* Giảm từ 1.5rem */
             transform: translateY(-50%);
             cursor: pointer;
             color: #6b7280;
-            padding: 0.4rem; /* Giảm padding từ 0.5rem */
-            border-radius: 5px; /* Giảm border-radius từ 6px */
+            padding: 0.4rem;
+            /* Giảm padding từ 0.5rem */
+            border-radius: 5px;
+            /* Giảm border-radius từ 6px */
             transition: all 0.2s ease;
             z-index: 3;
 
@@ -364,7 +423,8 @@
             }
 
             i {
-              font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
+              font-size: var(--font-size-sm);
+              /* Giảm từ --font-size-md (1.6rem) */
             }
           }
         }
@@ -372,13 +432,17 @@
         .error-message {
           display: flex;
           align-items: center;
-          gap: 0.6rem; /* Giảm gap từ 0.8rem */
+          gap: 0.6rem;
+          /* Giảm gap từ 0.8rem */
           background-color: #fef2f2;
           border: 1px solid #fecaca;
-          border-radius: 6px; /* Giảm border-radius từ 8px */
-          padding: 0.8rem 1rem; /* Giảm padding từ 1rem 1.2rem */
-          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
-          
+          border-radius: 6px;
+          /* Giảm border-radius từ 8px */
+          padding: 0.8rem 1rem;
+          /* Giảm padding từ 1rem 1.2rem */
+          margin-bottom: 1rem;
+          /* Giảm margin từ 1.5rem */
+
           svg {
             color: #ef4444;
             flex-shrink: 0;
@@ -386,29 +450,45 @@
 
           span {
             color: #dc2626;
-            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+            font-size: var(--font-size-xs);
+            /* Giảm từ --font-size-sm (1.4rem) */
             font-weight: 500;
           }
         }
 
+        .validation-error {
+          color: #dc2626;
+          font-size: var(--font-size-xs);
+          margin-top: -0.5rem;
+          margin-bottom: 0.5rem;
+          padding-left: 3.5rem;
+          text-align: left;
+          font-weight: 500;
+        }
+
         .loginBtn {
           cursor: pointer;
-          background: linear-gradient(135deg, var(--main-color) 0%, #3ba5b8 100%);
-          padding: 1rem 1.5rem; /* Giảm padding từ 1.5rem 2rem */
+          background: var(--bs-primary);
+          padding: 1rem 1.5rem;
+          /* Giảm padding từ 1.5rem 2rem */
           text-align: center;
           text-decoration: none;
           width: 100%;
-          border-radius: 10px; /* Giảm border-radius từ 12px */
+          border-radius: 3rem;
+          /* Match Banner.scss search button */
           color: var(--white-color);
-          font-size: var(--font-size-sm); /* Giảm từ --font-size-md (1.6rem) */
+          font-size: var(--font-size-sm);
+          /* Giảm từ --font-size-md (1.6rem) */
           font-weight: 600;
           border: none;
           outline: none;
-          margin-bottom: 1rem; /* Giảm margin từ 1.5rem */
+          margin-bottom: 1rem;
+          /* Giảm margin từ 1.5rem */
           position: relative;
           overflow: hidden;
-          transition: all 0.3s ease;
-          box-shadow: 0 3px 10px rgba(69, 195, 210, 0.3); /* Giảm shadow */
+          transition: background-color 0.3s ease;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          /* Match Banner.scss shadow */
 
           &::before {
             content: '';
@@ -423,7 +503,9 @@
 
           &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(69, 195, 210, 0.4); /* Giảm shadow */
+            box-shadow: 0 6px 15px rgba(69, 195, 210, 0.4);
+
+            /* Giảm shadow */
             &::before {
               left: 100%;
             }
@@ -436,10 +518,12 @@
 
         .forget {
           text-align: center;
-          color: var(--main-color);
-          font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+          color: var(--bs-primary);
+          font-size: var(--font-size-xs);
+          /* Giảm từ --font-size-sm (1.4rem) */
           text-decoration: none;
-          margin-bottom: 1rem; /* Giảm margin từ 2rem */
+          margin-bottom: 1rem;
+          /* Giảm margin từ 2rem */
           transition: all 0.3s ease;
           cursor: pointer;
           font-weight: 500;
@@ -452,16 +536,20 @@
 
         .sign-up {
           text-align: center;
-          padding-top: 1rem; /* Giảm padding từ 1.5rem */
+          padding-top: 1rem;
+          /* Giảm padding từ 1.5rem */
           border-top: 1px solid #e5e7eb;
 
           .signupBtn {
             color: var(--main-color);
-            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+            font-size: var(--font-size-xs);
+            /* Giảm từ --font-size-sm (1.4rem) */
             font-weight: 600;
             cursor: pointer;
-            padding: 0.6rem 1rem; /* Giảm padding từ 0.8rem 1.5rem */
-            border-radius: 6px; /* Giảm border-radius từ 8px */
+            padding: 0.6rem 1rem;
+            /* Giảm padding từ 0.8rem 1.5rem */
+            border-radius: 6px;
+            /* Giảm border-radius từ 8px */
             transition: all 0.3s ease;
             text-decoration: none;
 
@@ -476,17 +564,18 @@
 
     .create-page {
       text-align: center;
-      font-size: var(--font-size-xs); /* Giữ nguyên */
+      font-size: var(--font-size-xs);
+      /* Giữ nguyên */
       color: #6b7280;
       margin: 0;
 
       b {
-        color: var(--main-color);
+        color: var(--bs-primary);
         cursor: pointer;
         transition: color 0.3s ease;
 
         &:hover {
-          color: #3ba5b8;
+          color: var(--bs-secondary);
         }
       }
     }
@@ -495,9 +584,12 @@
 
 // Animations
 @keyframes gradientSlide {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -512,40 +604,52 @@
 
     .right {
       max-width: 100%;
-      padding: 0.8rem; /* Giảm padding từ 1.5rem */
+      padding: 0.8rem;
+      /* Giảm padding từ 1.5rem */
 
       .login-header {
-        margin-bottom: 0.8rem; /* Giảm margin từ 1.5rem */
+        margin-bottom: 0.8rem;
+        /* Giảm margin từ 1.5rem */
 
         .login-language-switcher {
-          padding: 0.3rem 0.5rem; /* Giảm padding từ 0.4rem 0.6rem */
-          border-radius: 8px; /* Giảm border-radius từ 10px */
-          
+          padding: 0.3rem 0.5rem;
+          /* Giảm padding từ 0.4rem 0.6rem */
+          border-radius: 8px;
+          /* Giảm border-radius từ 10px */
+
           .language-switcher {
-            gap: 0.5rem !important; /* Giảm gap từ 0.6rem */
-            
+            gap: 0.5rem !important;
+            /* Giảm gap từ 0.6rem */
+
             .language-toggle {
-              gap: 0.3rem !important; /* Giảm gap từ 0.4rem */
-              
+              gap: 0.3rem !important;
+              /* Giảm gap từ 0.4rem */
+
               .lang-option {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
-                padding: 0.15rem 0.3rem !important; /* Giảm padding từ 0.2rem 0.4rem */
+                font-size: var(--font-size-xs) !important;
+                /* Giữ nguyên */
+                padding: 0.15rem 0.3rem !important;
+                /* Giảm padding từ 0.2rem 0.4rem */
+                background-color: var(--bs-secondary) !important;
               }
-              
+
               &::after {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                font-size: var(--font-size-xs) !important;
+                /* Giữ nguyên */
               }
             }
-            
+
             .language-label {
-              font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+              font-size: var(--font-size-xs) !important;
+              /* Giữ nguyên */
             }
           }
         }
       }
 
       .form-container {
-        margin-bottom: 0.5rem; /* Giảm margin từ 1rem */
+        margin-bottom: 0.5rem;
+        /* Giảm margin từ 1rem */
       }
     }
   }
@@ -553,34 +657,45 @@
 
 @media (max-width: 767.98px) {
   .login-container {
-    padding: 0.5rem; /* Giảm padding từ 1rem */
+    padding: 0.5rem;
+    /* Giảm padding từ 1rem */
 
     .right {
-      padding: 0.5rem; /* Giảm padding từ 1rem */
+      padding: 0.5rem;
+      /* Giảm padding từ 1rem */
 
       .login-header {
-        margin-bottom: 0.5rem; /* Giảm margin từ 1rem */
-        
+        margin-bottom: 0.5rem;
+        /* Giảm margin từ 1rem */
+
         .login-language-switcher {
-          padding: 0.2rem 0.4rem; /* Giảm padding từ 0.3rem 0.5rem */
-          border-radius: 6px; /* Giảm border-radius từ 8px */
-          
+          padding: 0.2rem 0.4rem;
+          /* Giảm padding từ 0.3rem 0.5rem */
+          border-radius: 6px;
+          /* Giảm border-radius từ 8px */
+
           .language-switcher {
-            gap: 0.4rem !important; /* Giảm gap từ 0.5rem */
-            
+            gap: 0.4rem !important;
+            /* Giảm gap từ 0.5rem */
+
             .language-toggle {
-              gap: 0.2rem !important; /* Giảm gap từ 0.3rem */
-              
+              gap: 0.2rem !important;
+              /* Giảm gap từ 0.3rem */
+
               .lang-option {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
-                padding: 0.15rem 0.2rem !important; /* Giảm padding từ 0.2rem 0.3rem */
+                font-size: var(--font-size-xs) !important;
+                /* Giữ nguyên */
+                padding: 0.15rem 0.2rem !important;
+                /* Giảm padding từ 0.2rem 0.3rem */
+                background-color: var(--bs-secondary) !important;
               }
-              
+
               &::after {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                font-size: var(--font-size-xs) !important;
+                /* Giữ nguyên */
               }
             }
-            
+
             .language-label {
               display: none !important; // Hide label on mobile
             }
@@ -589,39 +704,50 @@
       }
 
       .form-container {
-        border-radius: 12px; /* Giảm border-radius từ 16px */
+        border-radius: 12px;
+        /* Giảm border-radius từ 16px */
 
         .form-header {
-          padding: 1rem 1rem 0.3rem; /* Giảm padding từ 2rem 2rem 0.5rem */
+          padding: 1rem 1rem 0.3rem;
+          /* Giảm padding từ 2rem 2rem 0.5rem */
 
           h2 {
-            font-size: var(--font-size-md); /* Giảm từ --font-size-xl (2.0rem) */
+            font-size: var(--font-size-md);
+            /* Giảm từ --font-size-xl (2.0rem) */
           }
 
           p {
-            font-size: var(--font-size-xs); /* Giảm từ --font-size-sm (1.4rem) */
+            font-size: var(--font-size-xs);
+            /* Giảm từ --font-size-sm (1.4rem) */
           }
         }
 
         .form-content {
-          padding: 0.5rem 1rem 1rem; /* Giảm padding từ 1rem 2rem 2rem */
+          padding: 0.5rem 1rem 1rem;
+          /* Giảm padding từ 1rem 2rem 2rem */
 
           .input-group {
             input {
-              padding: 0.8rem 1rem 0.8rem 3rem; /* Giảm padding từ 1.3rem 1.3rem 1.3rem 4rem */
-              font-size: var(--font-size-xs); /* Giảm từ --font-size-md (1.6rem) */
-              border-radius: 8px; /* Giảm border-radius từ 12px */
+              padding: 0.8rem 1rem 0.8rem 3rem;
+              /* Giảm padding từ 1.3rem 1.3rem 1.3rem 4rem */
+              font-size: var(--font-size-xs);
+              /* Giảm từ --font-size-md (1.6rem) */
+              border-radius: 8px;
+              /* Giảm border-radius từ 12px */
               border: 2px solid #e5e7eb;
             }
 
             .input-icon {
-              left: 1rem; /* Giảm từ 1.3rem */
+              left: 1rem;
+              /* Giảm từ 1.3rem */
             }
           }
 
           .loginBtn {
-            font-size: var(--font-size-xs); /* Giảm từ --font-size-md (1.6rem) */
-            padding: 0.8rem 1.2rem; /* Giảm padding từ 1.3rem 1.8rem */
+            font-size: var(--font-size-xs);
+            /* Giảm từ --font-size-md (1.6rem) */
+            padding: 0.8rem 1.2rem;
+            /* Giảm padding từ 1.3rem 1.8rem */
           }
         }
       }
@@ -634,25 +760,33 @@
     .right {
       .login-header {
         .login-language-switcher {
-          padding: 0.15rem 0.3rem; /* Giảm padding từ 0.25rem 0.4rem */
-          border-radius: 5px; /* Giảm border-radius từ 6px */
-          
+          padding: 0.15rem 0.3rem;
+
+          /* Giảm padding từ 0.25rem 0.4rem */
+          border-radius: 5px;
+          /* Giảm border-radius từ 6px */
+
           .language-switcher {
-            gap: 0.3rem !important; /* Giảm gap từ 0.4rem */
-            
+            gap: 0.3rem !important;
+            /* Giảm gap từ 0.4rem */
+
             .language-toggle {
-              gap: 0.15rem !important; /* Giảm gap từ 0.25rem */
-              
+              gap: 0.15rem !important;
+              /* Giảm gap từ 0.25rem */
+
               .lang-option {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
-                padding: 0.1rem 0.2rem !important; /* Giảm padding từ 0.15rem 0.25rem */
+                font-size: var(--font-size-xs) !important;
+                background-color: var(--bs-secondary) !important;
+                padding: 0.1rem 0.2rem !important;
+                /* Giảm padding từ 0.15rem 0.25rem */
               }
-              
+
               &::after {
-                font-size: var(--font-size-xs) !important; /* Giữ nguyên */
+                font-size: var(--font-size-xs) !important;
+                /* Giữ nguyên */
               }
             }
-            
+
             .language-label {
               display: none !important;
             }
@@ -661,24 +795,30 @@
       }
 
       .form-container {
-        margin: 0 0.3rem 0.5rem; /* Giảm margin từ 0 0.5rem 1rem */
+        margin: 0 0.3rem 0.5rem;
+        /* Giảm margin từ 0 0.5rem 1rem */
 
         .form-header {
-          padding: 1rem 1rem 0.3rem; /* Giảm padding từ 1.5rem 1.5rem 0.5rem */
+          padding: 1rem 1rem 0.3rem;
+          /* Giảm padding từ 1.5rem 1.5rem 0.5rem */
 
           h2 {
-            font-size: var(--font-size-sm); /* Giảm từ --font-size-lg (1.8rem) */
+            font-size: var(--font-size-sm);
+            /* Giảm từ --font-size-lg (1.8rem) */
           }
         }
 
         .form-content {
-          padding: 0.5rem 1rem 1rem; /* Giảm padding từ 1rem 1.5rem 1.5rem */
+          padding: 0.5rem 1rem 1rem;
+          /* Giảm padding từ 1rem 1.5rem 1.5rem */
         }
       }
 
       .create-page {
-        font-size: var(--font-size-xs); /* Giữ nguyên */
-        margin: 0 0.3rem; /* Giảm margin từ 0 0.5rem */
+        font-size: var(--font-size-xs);
+        /* Giữ nguyên */
+        margin: 0 0.3rem;
+        /* Giảm margin từ 0 0.5rem */
       }
     }
   }

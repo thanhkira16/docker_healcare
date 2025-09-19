@@ -45,7 +45,8 @@
     "dental-desc": "Tìm kiếm địa chỉ, bác sĩ nha khoa giàu kinh nghiệm.",
     "acne-assistant": "Trợ lý trị mụn",
     "acne-desc": "Tìm bác sĩ, dịch vụ, cơ sở chuyên về điều trị mụn.",
-    "search-placeholder": "Tìm kiếm bác sĩ, chuyên khoa, cơ sở y tế..."
+    "search-placeholder": "Tìm kiếm bác sĩ, chuyên khoa, cơ sở y tế...",
+    "desc": "Chăm sóc sức khỏe dễ dàng với đội ngũ bác sĩ uy tín, đặt lịch khám đơn giản và chăm sóc toàn diện."
   },
   "home-page": {
     "out-standings-doctor": "Bác sĩ nổi bậc tuần qua",
@@ -59,7 +60,7 @@
       "manage-user": "Quản lý người dùng",
       "manage-doctor": "Quản lý bác sỹ",
       "manage-admin": "Quản lý admin",
-      "crud": "CRUD user",
+      "crud": "Quản lý người dùng",
       "crud-redux": "CRUD redux",
       "manage-clinic": "Quản lý phòng khám",
       "clinic": "Phòng khám",
@@ -337,7 +338,11 @@
     "forgot_password": "Quên mật khẩu?",
     "create_account": "Tạo tài khoản mới",
     "already_have_account": "Đã có tài khoản?",
-    "create_page": "Tạo trang dành cho bệnh viện, phòng khám hoặc doanh nghiệp"
+    "create_page": "Tạo trang dành cho bệnh viện, phòng khám hoặc doanh nghiệp",
+    "error_invalid_email": "Vui lòng nhập đúng định dạng email",
+    "error_invalid_password": "Mật khẩu không được để trống",
+    "error_password_mismatch": "Mật khẩu nhập lại không khớp",
+    "error_invalid_phone": "Vui lòng nhập đúng số điện thoại"
   },
   "filter": {
     "all": "Tất cả",

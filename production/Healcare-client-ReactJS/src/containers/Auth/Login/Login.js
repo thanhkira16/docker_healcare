@@ -177,6 +177,17 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
     }
   };
 
+  // Render validation error messages with translations
+  const renderValidationError = (isValid, errorType) => {
+    if (isValid) return null;
+
+    return (
+      <div className="validation-error">
+        <FormattedMessage id={`auth.error_${errorType}`} />
+      </div>
+    );
+  };
+
   console.log("state", state);
   const { isOpenLogin, isValidLogin, isValidSignUp } = state;
 
@@ -249,6 +260,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                       onKeyDown={handleKeyDown}
                       iconType="email"
                     />
+                    {renderValidationError(isValidLogin.email, "invalid_email")}
 
                     <InputField
                       type="password"
@@ -262,6 +274,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                       onToggle={() => handleTogglePassword("password")}
                       iconType="password"
                     />
+                    {renderValidationError(isValidLogin.password, "invalid_password")}
 
                     {state.errMsg && (
                       <div className="error-message">
@@ -316,6 +329,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                     onKeyDown={handleKeyDown}
                     iconType="email"
                   />
+                  {renderValidationError(isValidSignUp.email, "invalid_email")}
 
                   <InputField
                     type="tel"
@@ -327,6 +341,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                     onKeyDown={handleKeyDown}
                     iconType="phone"
                   />
+                  {renderValidationError(isValidSignUp.phoneNumber, "invalid_phone")}
 
                   <InputField
                     type="password"
@@ -340,6 +355,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                     onToggle={() => handleTogglePassword("password")}
                     iconType="password"
                   />
+                  {renderValidationError(isValidSignUp.password, "invalid_password")}
 
                   <InputField
                     type="password"
@@ -353,6 +369,7 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
                     onToggle={() => handleTogglePassword("confirmPassword")}
                     iconType="confirmPassword"
                   />
+                  {renderValidationError(isValidSignUp.confirmPassword, "password_mismatch")}
 
                   {state.errMsg && (
                     <div className="error-message">

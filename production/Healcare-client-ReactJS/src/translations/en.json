@@ -25,7 +25,14 @@
     "language": "Language",
     "contact": "Contact",
     "logout": "Logout",
-    "search": "Search for services, doctors..."
+    "search": "Search for services, doctors...",
+    "telehealth": "Telehealth",
+    "quickActions": "Quick Actions",
+    "bookAppointment": "Book Appointment",
+    "findDoctor": "Find Doctor",
+    "bookOnline": "Book Online",
+    "pharmacy": "Pharmacy",
+    "healthRecord": "Health Records"
   },
   "banner": {
     "platform-title": "COMPREHENSIVE HEALTHCARE PLATFORM",
@@ -38,14 +45,15 @@
     "dental-desc": "Find experienced orthodontists and dental clinics.",
     "acne-assistant": "Acne Treatment Assistant",
     "acne-desc": "Find doctors, services, and facilities specializing in acne treatment.",
-    "search-placeholder": "Search for doctors, specialties, or facilities..."
+    "search-placeholder": "Search for doctors, specialties, or facilities...",
+    "desc": "Healthcare made easy with trusted doctors, easy appointment booking, and comprehensive care."
   },
   "menu": {
     "admin": {
       "manage-user": "Manage Users",
       "manage-doctor": "Manage Doctors",
       "manage-admin": "Manage Admin",
-      "crud": "CRUD User",
+      "crud": "Manage User",
       "crud-redux": "CRUD Redux",
       "manage-clinic": "Manage Clinics",
       "clinic": "Clinic",
@@ -330,7 +338,11 @@
     "forgot_password": "Forgot password?",
     "create_account": "Create a new account",
     "already_have_account": "Already have an account?",
-    "create_page": "Create a page for hospital, clinic, or business"
+    "create_page": "Create a page for hospital, clinic, or business",
+    "error_invalid_email": "Please enter a valid email address",
+    "error_invalid_password": "Password cannot be empty",
+    "error_password_mismatch": "Passwords do not match",
+    "error_invalid_phone": "Please enter a valid phone number"
   },
   "filter": {
     "all": "All",

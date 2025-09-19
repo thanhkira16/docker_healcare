@@ -6,9 +6,16 @@ const instance = axios.create({
   // withCredentials: true
 });
 
-instance.interceptors.response.use((response) => {
-  const { data } = response;
-  return response.data;
-});
+instance.interceptors.response.use(
+  (response) => {
+    console.log("Axios Response:", response);
+    // Original behavior
+    return response.data;
+  },
+  (error) => {
+    console.error("Axios Error:", error);
+    return Promise.reject(error);
+  }
+);
 
 export default instance;
