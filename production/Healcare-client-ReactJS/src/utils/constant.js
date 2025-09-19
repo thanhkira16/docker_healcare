@@ -1,17 +1,3 @@
-export const path = {
-  HOME: "/",
-  HOMEPAGE: "/home",
-  HEALTHY: "/healthy",
-  LOGIN: "/login",
-  LOG_OUT: "/logout",
-  REGISTER: "/register",
-  SYSTEM: "/system",
-  DETAIL_DOCTOR: "/detail-doctor/:id",
-  DETAIL_SPECIALTY: "/detail-specialty/:id",
-  DETAIL_CLINIC: "/detail-clinic/:id",
-  VERIFY_EMAIL_BOOKING: "/verify-booking",
-};
-
 export const LANGUAGES = {
   VI: "vi",
   EN: "en",
