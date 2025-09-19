@@ -51,7 +51,7 @@ class App extends Component {
                   <Route path={PATHS.HOME} exact component={Home} />
                   <Route
                     path={PATHS.LOGIN}
-                    component={userIsNotAuthenticated(Login)}
+                    component={Login}
                   />
                   <Route
                     path={PATHS.SYSTEM.BASE}

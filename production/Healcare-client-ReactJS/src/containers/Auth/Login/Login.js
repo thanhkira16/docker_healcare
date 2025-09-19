@@ -7,6 +7,8 @@ import { handleLoginApi, handleSignUpApi } from "../../../services/userService";
 import InputField from "../../../components/Input/InputField";
 import { FormattedMessage } from "react-intl";
 import LanguageSwitcher from "../../../components/LanguageSwitcher/LanguageSwitcher";
+import { USER_ROLE } from "../../../utils/constant";
+import PATHS from "../../../utils/path";
 
 const Login = ({ language, navigate, userLoginSuccess }) => {
   const [state, setState] = useState({
@@ -115,6 +117,15 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
         if (data && data.errCode === 0) {
           userLoginSuccess(data.user);
           console.log("Login successful");
+
+          // Redirect based on user role
+          if (data.user.roleId === USER_ROLE.ADMIN) {
+            // Admin -> redirect to system management
+            navigate(PATHS.SYSTEM.USER_MANAGE);
+          } else {
+            // Other users -> redirect to home page
+            navigate(PATHS.HOME);
+          }
         } else {
           console.log("errMsg", state.errMsg);
         }
@@ -145,7 +156,10 @@ const Login = ({ language, navigate, userLoginSuccess }) => {
         }
         if (data && data.errCode === 0) {
           userLoginSuccess(data.user);
-          console.log("Login successful");
+          console.log("SignUp successful");
+
+          // Redirect to home page for new users (they will be R3 - Patient by default)
+          navigate(PATHS.HOME);
         } else {
           console.log("errMsg", state.errMsg);
         }
