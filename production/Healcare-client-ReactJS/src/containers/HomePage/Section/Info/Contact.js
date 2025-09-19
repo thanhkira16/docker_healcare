@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { 
+    FaQuestionCircle, 
+    FaTools, 
+    FaBriefcase, 
+    FaComments, 
+    FaShieldAlt, 
+    FaClock, 
+    FaPhone, 
+    FaUsers, 
+    FaCheckCircle, 
+    FaEnvelope, 
+    FaMapMarkerAlt,
+    FaSpinner 
+} from 'react-icons/fa';
 import '../scss/Contact.scss';
 
 const Contact = () => {
@@ -18,25 +32,25 @@ const Contact = () => {
             value: 'general',
             label: <FormattedMessage id="contact.inquiry_types.general.label" />,
             description: <FormattedMessage id="contact.inquiry_types.general.description" />,
-            icon: '❓'
+            icon: <FaQuestionCircle />
         },
         {
             value: 'support',
             label: <FormattedMessage id="contact.inquiry_types.support.label" />,
             description: <FormattedMessage id="contact.inquiry_types.support.description" />,
-            icon: '🔧'
+            icon: <FaTools />
         },
         {
             value: 'business',
             label: <FormattedMessage id="contact.inquiry_types.business.label" />,
             description: <FormattedMessage id="contact.inquiry_types.business.description" />,
-            icon: '💼'
+            icon: <FaBriefcase />
         },
         {
             value: 'feedback',
             label: <FormattedMessage id="contact.inquiry_types.feedback.label" />,
             description: <FormattedMessage id="contact.inquiry_types.feedback.description" />,
-            icon: '💬'
+            icon: <FaComments />
         }
     ];
 
@@ -44,22 +58,22 @@ const Contact = () => {
         {
             title: <FormattedMessage id="contact.benefits.security.title" />,
             description: <FormattedMessage id="contact.benefits.security.description" />,
-            icon: '🛡️'
+            icon: <FaShieldAlt />
         },
         {
             title: <FormattedMessage id="contact.benefits.response.title" />,
             description: <FormattedMessage id="contact.benefits.response.description" />,
-            icon: '⏰'
+            icon: <FaClock />
         },
         {
             title: <FormattedMessage id="contact.benefits.support.title" />,
             description: <FormattedMessage id="contact.benefits.support.description" />,
-            icon: '📞'
+            icon: <FaPhone />
         },
         {
             title: <FormattedMessage id="contact.benefits.team.title" />,
             description: <FormattedMessage id="contact.benefits.team.description" />,
-            icon: '👥'
+            icon: <FaUsers />
         }
     ];
 
@@ -115,7 +129,7 @@ const Contact = () => {
                         <div className="contact-form-container">
                             {isSubmitted ? (
                                 <div className="success-message">
-                                    <div className="success-icon">✅</div>
+                                    <div className="success-icon"><FaCheckCircle /></div>
                                     <h3><FormattedMessage id="contact.success.title" /></h3>
                                     <p><FormattedMessage id="contact.success.description" /></p>
                                     <button
@@ -241,12 +255,12 @@ const Contact = () => {
                                             >
                                                 {isSubmitting ? (
                                                     <>
-                                                        <div className="loading-spinner"></div>
+                                                        <FaSpinner className="loading-spinner" />
                                                         <span><FormattedMessage id="contact.form.sending" /></span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <span>✉️</span>
+                                                        <FaEnvelope />
                                                         <span><FormattedMessage id="contact.form.submit" /></span>
                                                     </>
                                                 )}
@@ -279,7 +293,7 @@ const Contact = () => {
                             />
                             <div className="map-overlay">
                                 <div className="location-info">
-                                    <div className="location-icon">📍</div>
+                                    <div className="location-icon"><FaMapMarkerAlt /></div>
                                     <div className="location-details">
                                         <h4 className="location-title">
                                             <FormattedMessage id="contact.location.title" />
@@ -295,7 +309,7 @@ const Contact = () => {
 
                         <div className="faq-section">
                             <h3 className="faq-title">
-                                <span className="faq-icon">💬</span>
+                                <span className="faq-icon"><FaComments /></span>
                                 <FormattedMessage id="contact.quick_answers.title" />
                             </h3>
                             <div className="faq-list">
